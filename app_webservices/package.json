@@ -1,0 +1,38 @@
+{
+  "name": "carsa_gav_procesocrediticiodigital_api",
+  "version": "1.0.0",
+  "description": "Proceso crediticio digital: CARSA",
+  "main": "index.js",
+  "scripts": {
+    "start": "pm2 start src/js/index.js --name 'carsa_gav_procesocrediticiodigital_api'",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/js/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cerounocarsa/gav_procesocrediticiodigital.git"
+  },
+  "keywords": [],
+  "author": "HOLIX: Msc. Christian Zelaya",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "camelcase-keys": "^6.2.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.1",
+    "express-basic-auth": "^1.2.0",
+    "express-group-routes": "^1.1.0",
+    "morgan": "^1.10.0",
+    "pg": "^8.10.0",
+    "rotating-file-stream": "^2.1.5",
+    "swagger-jsdoc": "^6.0.1",
+    "swagger-ui-express": "^4.1.6",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
