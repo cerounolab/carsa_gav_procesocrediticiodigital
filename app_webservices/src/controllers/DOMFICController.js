@@ -283,7 +283,7 @@ const deleteDominio = (apiREQ, apiRES) => {
     let _DOMFICAIP  =   (apiREQ.body.auditoria_ip != undefined && apiREQ.body.auditoria_ip != null && apiREQ.body.auditoria_ip != '') ? "'"+apiREQ.body.auditoria_ip.trim().toUpperCase()+"'" : false;
     let _DOMFICAPR  =   (apiREQ.body.auditoria_programa != undefined && apiREQ.body.auditoria_programa != null && apiREQ.body.auditoria_programa != '') ? "'"+apiREQ.body.auditoria_programa.trim().toUpperCase()+"'" : false;
   
-    if (_DOMFICCOD && _DOMFICEST && _DOMFICNOM && _DOMFICPAR && _DOMFICNOM && _DOMFICVAL && _DOMFICAEM && _DOMFICAUS && _DOMFICAIP && _DOMFICAPR) {
+    if (_DOMFICCOD && _DOMFICEST && _DOMFICNOM && _DOMFICPAR && _DOMFICVAL && _DOMFICAEM && _DOMFICAUS && _DOMFICAIP && _DOMFICAPR) {
 
         (async () => {
             xDATA = await deleteDOMFIC(_DOMFICCOD);
