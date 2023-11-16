@@ -58,7 +58,6 @@ const {errorBody}   = require('../utils/_json');
 
                             WHERE a.DOMFICCOD = ${codigo} AND
                             NOT EXISTS (SELECT * FROM adm.DOMFIC c WHERE c.DOMFICVAL = ${_DOMFICVAL} AND b.DOMFICPAR <> c.DOMFICPAR AND c.DOMFICCOD = ${codigo})`;	
-            console.log(query00);
             break;
 
             case 2:
@@ -93,7 +92,6 @@ const {errorBody}   = require('../utils/_json');
                 })
                 .catch(e => {
                     _code = 500;
-                    console.log(e);
                     errorBody(_code, 'Code: '+ e.code + ', Routine2: ' + e.routine + ', Function: updateDOMFIC', true)
                         .then(result => _data = result);
                 })
@@ -285,7 +283,6 @@ const {errorBody}   = require('../utils/_json');
                 })
                 .catch(e => {
                     _code = 500;
-                    console.log(e);
                     errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateSUCFIC', true)
                         .then(result => _data = result);
                 })
@@ -329,13 +326,15 @@ const {errorBody}   = require('../utils/_json');
         switch (_ACCION) {
             case 1:
                 query00 = `UPDATE adm.USUFIC SET
-                                USUFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOESTADO' AND DOMFICEST	= ${_USUFICEST}), 
+                                USUFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOESTADO' AND DOMFICPAR	= ${_USUFICEST}), 
                                 USUFICEMC	= ${_USUFICEMC}, 
                                 USUFICSUC	= ${_USUFICSUC}, 
                                 USUFICORD	= ${_USUFICORD}, 
                                 USUFICDOC	= ${_USUFICDOC},  
                                 USUFICNOM	= ${_USUFICNOM},
                                 USUFICAPE	= ${_USUFICAPE}, 
+                                USUFICUSU   = ${_USUFICUSU},
+                                USUFICPAS   = '${_USUFICPAS}',
                                 USUFICEMA	= ${_USUFICEMA}, 
                                 USUFICCEL	= ${_USUFICCEL}, 
                                 USUFICOBS	= ${_USUFICOBS}, 
@@ -343,7 +342,7 @@ const {errorBody}   = require('../utils/_json');
                                 USUFICAUS	= ${_USUFICAUS},   
                                 USUFICAIP	= ${_USUFICAIP}, 
                                 USUFICAPR	= ${_USUFICAPR},  
-                                USUFICAIN	= ${_USUFICAIN},
+                                USUFICAIN	= ${_USUFICAIN}
                             
                             WHERE USUFICCOD = ${codigo}`;	
 
@@ -351,15 +350,27 @@ const {errorBody}   = require('../utils/_json');
 
             case 2:
                 query00 = `UPDATE adm.USUFIC SET
-                                USUFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOESTADO' AND DOMFICEST	= ${_USUFICEST}),      
+                                USUFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOESTADO' AND DOMFICPAR	= ${_USUFICEST}),       
                                 USUFICAEM	= ${_USUFICAEM}, 
                                 USUFICAUS	= ${_USUFICAUS},   
                                 USUFICAIP	= ${_USUFICAIP}, 
                                 USUFICAPR	= ${_USUFICAPR},  
-                                USUFICAIN	= ${_USUFICAIN},
+                                USUFICAIN	= ${_USUFICAIN}
 
-                            WHERE SUCFICCOD =  ${codigo}`;
+                            WHERE USUFICCOD =  ${codigo}`;
             break;	
+
+            case 3:
+                query00 = `UPDATE adm.USUFIC SET
+                                USUFICPAS   = '${_USUFICPAS}',    
+                                USUFICAEM	= ${_USUFICAEM}, 
+                                USUFICAUS	= ${_USUFICAUS},   
+                                USUFICAIP	= ${_USUFICAIP}, 
+                                USUFICAPR	= ${_USUFICAPR},  
+                                USUFICAIN	= ${_USUFICAIN}
+
+                            WHERE USUFICCOD =  ${codigo}`;
+            break;
         }
 
         const connPGSQL = new Client(initPGSQL);

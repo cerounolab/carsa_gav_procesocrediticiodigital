@@ -316,7 +316,6 @@ const postUsuarioLogin   = (apiREQ, apiRES) => {
                     
                     bcrypt.compare(_USUFICPAS, _password, async (err, coinciden) => {
                         
-                        //console.log(err);
                         if (coinciden){
                             _dataJSON[0].usuario_password = '';
                             _dataJSON   = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, _dataJSON);
@@ -379,59 +378,62 @@ const putUsuario    = (apiREQ, apiRES) => {
     let _USUFICAPR  = (apiREQ.body.auditoria_programa != undefined && apiREQ.body.auditoria_programa != null && apiREQ.body.auditoria_programa != '') ? "'"+apiREQ.body.auditoria_programa.trim()+"'" : false; 
     let _USUFICAIN  = (apiREQ.body.auditoria_incidencia != undefined && apiREQ.body.auditoria_incidencia != null && apiREQ.body.auditoria_incidencia != '') ? "'"+apiREQ.body.auditoria_incidencia.trim()+"'" : null;
 
+    let rondasDeSal = 12;
  
     if (_ACCION && _USUFICEST && _USUFICEMC && _USUFICSUC && _USUFICDOC && _USUFICNOM && _USUFICAPE && _USUFICUSU && _USUFICPAS && _USUFICEMA && _USUFICAEM && _USUFICAUS && _USUFICAIP && _USUFICAPR) {
 
         (async () => {
-            xDATA = await updateUSUFIC(_ACCION,
-                _USUFICCOD,
-                _USUFICEMC,
-                _USUFICSUC,
-                _USUFICORD,
-                _USUFICDOC,
-                _USUFICNOM,
-                _USUFICAPE,
-                _USUFICUSU,
-                _USUFICPAS,
-                _USUFICEMA,
-                _USUFICCEL,
-                _USUFICOBS,
-                _USUFICCEM,
-                _USUFICCUS,
-                _USUFICCIP,
-                _USUFICCPR,
-                _USUFICAEM,
-                _USUFICAUS,
-                _USUFICAIP,
-                _USUFICAPR,
-                _USUFICAIN);
+            bcrypt.hash(_USUFICPAS, rondasDeSal, async (err, _USUFICPAS2) => {
+                xDATA = await updateUSUFIC(_ACCION,
+                    _USUFICCOD,
+                    _USUFICEST,
+                    _USUFICEMC,
+                    _USUFICSUC,
+                    _USUFICORD,
+                    _USUFICDOC,
+                    _USUFICNOM,
+                    _USUFICAPE,
+                    _USUFICUSU,
+                    _USUFICPAS2,
+                    _USUFICEMA,
+                    _USUFICCEL,
+                    _USUFICOBS,
+                    _USUFICCEM,
+                    _USUFICCUS,
+                    _USUFICCIP,
+                    _USUFICCPR,
+                    _USUFICAEM,
+                    _USUFICAUS,
+                    _USUFICAIP,
+                    _USUFICAPR,
+                    _USUFICAIN);
 
-            _code   = xDATA[0];
-            xJSON   = xDATA[1];
-
-            if (_code == 200) {
-                xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
-
-            } else {
+                _code   = xDATA[0];
                 xJSON   = xDATA[1];
-                xJSON = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
-            }
 
-            xJSON = camelcaseKeys(xJSON, {deep: true});
+                if (_code == 200) {
+                    xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
 
-           return apiRES.status(_code).json(xJSON);
+                } else {
+                    xJSON   = xDATA[1];
+                    xJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
+                }
 
+                xJSON = camelcaseKeys(xJSON, {deep: true});
+
+                return apiRES.status(_code).json(xJSON);
+            });   
         })();
 
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
+            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true); 
 
             return apiRES.status(_code).json(xJSON);
         })();
-    
-    }       
+
+}       
 
 }
 
