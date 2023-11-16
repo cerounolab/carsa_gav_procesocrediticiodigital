@@ -7,7 +7,7 @@ require('express-group-routes');
 const { getDominio, getDominioId, getDominioValor, postDominio, putDominio, deleteDominio} = require('../controllers/DOMFICController');
 const { getEmpresa, getEmpresaId, getEmpresaRUC, getEmpresaTipoRubro, postEmpresa, putEmpresa, deleteEmpresa } = require('../controllers/EMPFICController');
 const { getSucursal, getSucursalId, getSucursalEmpresaId, getEmpresaTipoSucursal, postSucursal, putSucursal, deleteSucursal } = require('../controllers/SUCFICController');
-const { getUsuario, getUsuarioId, getUsuarioEmpresaId, getUsuarioSucursalId, getUsuarioDocumento, getUsuarioUsu, postUsuario,  putUsuario, deleteUsuario} = require('../controllers/USUFICController');
+const { getUsuario, getUsuarioId, getUsuarioEmpresaId, getUsuarioSucursalId, getUsuarioDocumento, getUsuarioUsu, postUsuario,  postUsuarioLogin, putUsuario, deleteUsuario} = require('../controllers/USUFICController');
 
 router.group('/v1/', (routerGroup) => {
   routerGroup.get('/dominio/listado', getDominio);
@@ -39,7 +39,9 @@ router.group('/v1/', (routerGroup) => {
   routerGroup.get('/usuario/sucursal/:sucursal', getUsuarioSucursalId);
   routerGroup.get('/usuario/documento/:documento', getUsuarioDocumento);
   routerGroup.get('/usuario/usuario/:usuario', getUsuarioUsu);
-  routerGroup.post('/usuario', postUsuario);
+  routerGroup.post('/usuario/registro', postUsuario);
+  routerGroup.post('/usuario/login', postUsuarioLogin);
+
   routerGroup.put('/usuario/:codigo', putUsuario);
   routerGroup.delete('/usuario/:codigo', deleteUsuario);
   

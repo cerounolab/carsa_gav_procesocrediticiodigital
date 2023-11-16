@@ -8,6 +8,7 @@ const {updateUSUFIC}= require('../helpers/sql_update');
 const {deleteUSUFIC}= require('../helpers/sql_delete');
 const {jsonBody}    = require('../utils/_json');
 const {errorBody}   = require('../utils/_json');
+const bcrypt        = require('bcryptjs');
 
 //const affiliateId = process.env.ENV_AFFILIATEID;
 
@@ -60,7 +61,7 @@ const getUsuarioId  = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code       = 400;
-            _dataJSON   = await errorBody(_code, 'Parameters are missing, Function: getUSUARIOId', true);
+            _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
             return apiRES.status(_code).json(_dataJSON);
         })();
@@ -95,7 +96,7 @@ const getUsuarioDocumento   = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code       = 400;
-            _dataJSON   = await errorBody(_code, 'Parameters are missing, Function: getUsuarioDocumento', true);
+            _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
             return apiRES.status(_code).json(_dataJSON);
         })();
@@ -130,7 +131,7 @@ const getUsuarioUsu = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code       = 400;
-            _dataJSON   = await errorBody(_code, 'Parameters are missing, Function: getUsuarioDocumento', true);
+            _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
             return apiRES.status(_code).json(_dataJSON);
         })();
@@ -165,7 +166,7 @@ const getUsuarioEmpresaId = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code       = 400;
-            _dataJSON   = await errorBody(_code, 'Parameters are missing, Function: getEmpresaTipoUSUARIO', true);
+            _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
             return apiRES.status(_code).json(_dataJSON);
         })();
@@ -200,7 +201,7 @@ const getUsuarioSucursalId = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code       = 400;
-            _dataJSON   = await errorBody(_code, 'Parameters are missing, Function: getEmpresaTipoUSUARIO', true);
+            _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
             return apiRES.status(_code).json(_dataJSON);
         })();
@@ -219,7 +220,7 @@ const postUsuario   = (apiREQ, apiRES) => {
     let _USUFICNOM  = (apiREQ.body.usuario_nombre != undefined && apiREQ.body.usuario_nombre != null && apiREQ.body.usuario_nombre != '') ? "'"+apiREQ.body.usuario_nombre.trim()+"'" : false; 
     let _USUFICAPE  = (apiREQ.body.usuario_apellido != undefined && apiREQ.body.usuario_apellido != null && apiREQ.body.usuario_apellido != '') ? "'"+apiREQ.body.usuario_apellido.trim()+"'" : false;
     let _USUFICUSU  = (apiREQ.body.usuario_usuario != undefined && apiREQ.body.usuario_usuario != null && apiREQ.body.usuario_usuario != '') ? "'"+apiREQ.body.usuario_usuario.trim().toUpperCase()+"'" : false;
-    let _USUFICPAS  = (apiREQ.body.usuario_password != undefined && apiREQ.body.usuario_password != null && apiREQ.body.usuario_password != '') ? "'"+apiREQ.body.usuario_password.trim().toUpperCase()+"'" : false;
+    let _USUFICPAS  = (apiREQ.body.usuario_password != undefined && apiREQ.body.usuario_password != null && apiREQ.body.usuario_password != '') ? "'"+apiREQ.body.usuario_password.trim()+"'" : false;
     let _USUFICEMA  = (apiREQ.body.usuario_correo != undefined && apiREQ.body.usuario_correo != null && apiREQ.body.usuario_correo != '') ? "'"+apiREQ.body.usuario_correo.trim().toLowerCase()+"'" : false;
     let _USUFICCEL  = (apiREQ.body.usuario_celular != undefined && apiREQ.body.usuario_celular != null && apiREQ.body.usuario_celular != '') ? "'"+apiREQ.body.usuario_celular.trim().toLowerCase()+"'" : null;
     let _USUFICOBS  = (apiREQ.body.usuario_observacion != undefined && apiREQ.body.usuario_observacion != null && apiREQ.body.usuario_observacion != '') ? "'"+apiREQ.body.usuario_observacion.trim()+"'" : null;
@@ -227,61 +228,121 @@ const postUsuario   = (apiREQ, apiRES) => {
     let _USUFICCEM  = (apiREQ.body.alta_empresa_codigo != undefined && apiREQ.body.alta_empresa_codigo != null && apiREQ.body.alta_empresa_codigo != '' && apiREQ.body.alta_empresa_codigo > 0) ? Number.parseInt(apiREQ.body.alta_empresa_codigo) : false; 
     let _USUFICCUS  = (apiREQ.body.alta_usuario != undefined && apiREQ.body.alta_usuario != null && apiREQ.body.alta_usuario != '') ? "'"+apiREQ.body.alta_usuario.trim().toUpperCase()+"'" : false;
     let _USUFICCIP  = (apiREQ.body.alta_ip != undefined && apiREQ.body.alta_ip != null && apiREQ.body.alta_ip != '') ? "'"+apiREQ.body.alta_ip.trim().toUpperCase()+"'" : false;
-    let _USUFICCPR  = (apiREQ.body.alta_programa != undefined && apiREQ.body.alta_programa != null && apiREQ.body.alta_programa != '') ? "'"+apiREQ.body.alta_programa.trim()+"'" : false; 
+    let _USUFICCPR  = (apiREQ.body.alta_programa != undefined && apiREQ.body.alta_programa != null && apiREQ.body.alta_programa != '') ? "'"+apiREQ.body.alta_programa.trim().toUpperCase()+"'" : null;
 
     let _USUFICAEM  = (apiREQ.body.auditoria_empresa_codigo != undefined && apiREQ.body.auditoria_empresa_codigo != null && apiREQ.body.auditoria_empresa_codigo != '' && apiREQ.body.auditoria_empresa_codigo > 0) ? Number.parseInt(apiREQ.body.auditoria_empresa_codigo) : false; 
     let _USUFICAUS  = (apiREQ.body.auditoria_usuario != undefined && apiREQ.body.auditoria_usuario != null && apiREQ.body.auditoria_usuario != '') ? "'"+apiREQ.body.auditoria_usuario.trim().toUpperCase()+"'" : false; 
     let _USUFICAIP  = (apiREQ.body.auditoria_ip != undefined && apiREQ.body.auditoria_ip != null && apiREQ.body.auditoria_ip != '') ? "'"+apiREQ.body.auditoria_ip.trim().toUpperCase()+"'" : false; 
     let _USUFICAPR  = (apiREQ.body.auditoria_programa != undefined && apiREQ.body.auditoria_programa != null && apiREQ.body.auditoria_programa != '') ? "'"+apiREQ.body.auditoria_programa.trim()+"'" : false; 
     let _USUFICAIN  = (apiREQ.body.auditoria_incidencia != undefined && apiREQ.body.auditoria_incidencia != null && apiREQ.body.auditoria_incidencia != '') ? "'"+apiREQ.body.auditoria_incidencia.trim()+"'" : null;
+    
+    const rondasDeSal   =   12;
 
-    if (_USUFICEST && _USUFICEMC && _USUFICSUC && _USUFICDOC && _USUFICNOM && _USUFICAPE && _USUFICUSU && _USUFICPAS && _USUFICEMA && _USUFICCEM && _USUFICCUS && _USUFICCIP && _USUFICCPR && _USUFICAEM 
-        && _USUFICAUS && _USUFICAIP && _USUFICAPR) {
+    if (_USUFICEST && _USUFICEMC && _USUFICSUC && _USUFICDOC && _USUFICNOM && _USUFICAPE && _USUFICUSU && _USUFICPAS && _USUFICEMA && _USUFICCEM && _USUFICCUS && _USUFICCIP && _USUFICCPR && _USUFICAEM && _USUFICAUS && _USUFICAIP && _USUFICAPR){
+            (async () => {
+                bcrypt.hash(_USUFICPAS, rondasDeSal, async (err, _USUFICPAS2) => {
+                    xDATA = await insertUSUFIC(_USUFICEST,
+                        _USUFICEMC,
+                        _USUFICSUC,
+                        _USUFICORD,
+                        _USUFICDOC,
+                        _USUFICNOM,
+                        _USUFICAPE,
+                        _USUFICUSU,
+                        _USUFICPAS2,
+                        _USUFICEMA,
+                        _USUFICCEL,
+                        _USUFICOBS,
+                        _USUFICCEM,
+                        _USUFICCUS,
+                        _USUFICCIP,
+                        _USUFICCPR,
+                        _USUFICAEM,
+                        _USUFICAUS,
+                        _USUFICAIP,
+                        _USUFICAPR,
+                        _USUFICAIN);
 
-        (async () => {
-            xDATA = await insertUSUFIC(_USUFICEST,
-                _USUFICEMC,
-                _USUFICSUC,
-                _USUFICORD,
-                _USUFICDOC,
-                _USUFICNOM,
-                _USUFICAPE,
-                _USUFICUSU,
-                _USUFICPAS,
-                _USUFICEMA,
-                _USUFICCEL,
-                _USUFICOBS,
-                _USUFICCEM,
-                _USUFICCUS,
-                _USUFICCIP,
-                _USUFICCPR,
-                _USUFICAEM,
-                _USUFICAUS,
-                _USUFICAIP,
-                _USUFICAPR,
-                _USUFICAIN);
+                    _code   = xDATA[0];
+                    xJSON   = xDATA[1];
 
-            _code   = xDATA[0];
-            xJSON   = xDATA[1];
+                    if (_code == 200) {
+                        xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
 
-            if (_code == 200) {
-                xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
+                    } else {
+                        xJSON   = xDATA[1];
+                        xJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
+                    }
 
-            } else {
-                xJSON   = xDATA[1];
-                xJSON = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
-            }
+                    xJSON = camelcaseKeys(xJSON, {deep: true});
 
-            xJSON = camelcaseKeys(xJSON, {deep: true});
-
-           return apiRES.status(_code).json(xJSON);
-
-        })();
-
+                    return apiRES.status(_code).json(xJSON);
+                });   
+            })();     
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await errorBody(_code, 'Parameters are missing, Function: postUSUARIO', true);
+            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true); 
+
+            return apiRES.status(_code).json(xJSON);
+        })();
+    
+    }       
+
+}
+
+const postUsuarioLogin   = (apiREQ, apiRES) => {
+
+    let  xDATA      =   []; 
+    let _USUFICUSU  = (apiREQ.body.usuario_usuario != undefined && apiREQ.body.usuario_usuario != null && apiREQ.body.usuario_usuario != '') ? "'"+apiREQ.body.usuario_usuario.trim().toUpperCase()+"'" : false;
+    let _USUFICPAS  = (apiREQ.body.usuario_password != undefined && apiREQ.body.usuario_password != null && apiREQ.body.usuario_password != '') ? "'"+apiREQ.body.usuario_password.trim()+"'" : false;
+
+    let _USUFICAEM  = (apiREQ.body.auditoria_empresa_codigo != undefined && apiREQ.body.auditoria_empresa_codigo != null && apiREQ.body.auditoria_empresa_codigo != '' && apiREQ.body.auditoria_empresa_codigo > 0) ? Number.parseInt(apiREQ.body.auditoria_empresa_codigo) : false; 
+    let _USUFICAUS  = (apiREQ.body.auditoria_usuario != undefined && apiREQ.body.auditoria_usuario != null && apiREQ.body.auditoria_usuario != '') ? "'"+apiREQ.body.auditoria_usuario.trim().toUpperCase()+"'" : false; 
+    let _USUFICAIP  = (apiREQ.body.auditoria_ip != undefined && apiREQ.body.auditoria_ip != null && apiREQ.body.auditoria_ip != '') ? "'"+apiREQ.body.auditoria_ip.trim().toUpperCase()+"'" : false; 
+    let _USUFICAPR  = (apiREQ.body.auditoria_programa != undefined && apiREQ.body.auditoria_programa != null && apiREQ.body.auditoria_programa != '') ? "'"+apiREQ.body.auditoria_programa.trim()+"'" : false; 
+    let _USUFICAIN  = (apiREQ.body.auditoria_incidencia != undefined && apiREQ.body.auditoria_incidencia != null && apiREQ.body.auditoria_incidencia != '') ? "'"+apiREQ.body.auditoria_incidencia.trim()+"'" : null;
+    let _password   = '';
+
+    if (_USUFICUSU && _USUFICPAS && _USUFICAEM && _USUFICAUS && _USUFICAIP && _USUFICAPR){
+            (async () => {
+
+                const xDATA = await selectUSUARIO(4, 0, _USUFICUSU);
+                _code       = xDATA[0];
+                _dataJSON   = xDATA[1];
+                console.log('_code=> '+_code);
+
+                if (_code == 200) {
+                    _password   =  _dataJSON[0].usuario_password;
+
+                    bcrypt.compare(_USUFICPAS, _password, async (err, coinciden) => {
+    
+                        if (coinciden){
+                            _dataJSON[0].usuario_password = '';
+                            _dataJSON   = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, _dataJSON);
+        
+                        } else {
+                            _dataJSON   = await jsonBody(_code, 'Error', null, null, 'La contraseña no coincide, verifique', 0, 0, 0, 0, []);
+                        }
+
+                        _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
+
+                        return apiRES.status(_code).json(_dataJSON);
+                            
+                    });                  
+
+                } else {
+                    _dataJSON   = xDATA[1];
+
+                    _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
+        
+                    return apiRES.status(_code).json(_dataJSON);
+                }
+            })();    
+    }else{
+        (async () => {
+            _code   = 400;
+            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true); 
 
             return apiRES.status(_code).json(xJSON);
         })();
@@ -303,7 +364,7 @@ const putUsuario    = (apiREQ, apiRES) => {
     let _USUFICNOM  = (apiREQ.body.usuario_nombre != undefined && apiREQ.body.usuario_nombre != null && apiREQ.body.usuario_nombre != '') ? "'"+apiREQ.body.usuario_nombre.trim()+"'" : false; 
     let _USUFICAPE  = (apiREQ.body.usuario_apellido != undefined && apiREQ.body.usuario_apellido != null && apiREQ.body.usuario_apellido != '') ? "'"+apiREQ.body.usuario_apellido.trim()+"'" : false;
     let _USUFICUSU  = (apiREQ.body.usuario_usuario != undefined && apiREQ.body.usuario_usuario != null && apiREQ.body.usuario_usuario != '') ? "'"+apiREQ.body.usuario_usuario.trim().toUpperCase()+"'" : false;
-    let _USUFICPAS  = (apiREQ.body.usuario_password != undefined && apiREQ.body.usuario_password != null && apiREQ.body.usuario_password != '') ? "'"+apiREQ.body.usuario_password.trim().toUpperCase()+"'" : false;
+    let _USUFICPAS  = (apiREQ.body.usuario_password != undefined && apiREQ.body.usuario_password != null && apiREQ.body.usuario_password != '') ? "'"+apiREQ.body.usuario_password.trim()+"'" : false;
     let _USUFICEMA  = (apiREQ.body.usuario_correo != undefined && apiREQ.body.usuario_correo != null && apiREQ.body.usuario_correo != '') ? "'"+apiREQ.body.usuario_correo.trim().toLowerCase()+"'" : false;
     let _USUFICCEL  = (apiREQ.body.usuario_celular != undefined && apiREQ.body.usuario_celular != null && apiREQ.body.usuario_celular != '') ? "'"+apiREQ.body.usuario_celular.trim().toLowerCase()+"'" : null;
     let _USUFICOBS  = (apiREQ.body.usuario_observacion != undefined && apiREQ.body.usuario_observacion != null && apiREQ.body.usuario_observacion != '') ? "'"+apiREQ.body.usuario_observacion.trim()+"'" : null;
@@ -355,7 +416,7 @@ const putUsuario    = (apiREQ, apiRES) => {
                 xJSON = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
             }
 
-            xJSON1 = camelcaseKeys(xJSON, {deep: true});
+            xJSON = camelcaseKeys(xJSON, {deep: true});
 
            return apiRES.status(_code).json(xJSON);
 
@@ -364,7 +425,7 @@ const putUsuario    = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await errorBody(_code, 'Parameters are missing, Function: putUSUARIO', true);
+            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
             return apiRES.status(_code).json(xJSON);
         })();
@@ -385,7 +446,7 @@ const deleteUsuario = (apiREQ, apiRES) => {
     let _USUFICNOM  = (apiREQ.body.usuario_nombre != undefined && apiREQ.body.usuario_nombre != null && apiREQ.body.usuario_nombre != '') ? "'"+apiREQ.body.usuario_nombre.trim()+"'" : false; 
     let _USUFICAPE  = (apiREQ.body.usuario_apellido != undefined && apiREQ.body.usuario_apellido != null && apiREQ.body.usuario_apellido != '') ? "'"+apiREQ.body.usuario_apellido.trim()+"'" : false;
     let _USUFICUSU  = (apiREQ.body.usuario_usuario != undefined && apiREQ.body.usuario_usuario != null && apiREQ.body.usuario_usuario != '') ? "'"+apiREQ.body.usuario_usuario.trim().toUpperCase()+"'" : false;
-    let _USUFICPAS  = (apiREQ.body.usuario_password != undefined && apiREQ.body.usuario_password != null && apiREQ.body.usuario_password != '') ? "'"+apiREQ.body.usuario_password.trim().toUpperCase()+"'" : false;
+    let _USUFICPAS  = (apiREQ.body.usuario_password != undefined && apiREQ.body.usuario_password != null && apiREQ.body.usuario_password != '') ? "'"+apiREQ.body.usuario_password.trim()+"'" : false;
     let _USUFICEMA  = (apiREQ.body.usuario_correo != undefined && apiREQ.body.usuario_correo != null && apiREQ.body.usuario_correo != '') ? "'"+apiREQ.body.usuario_correo.trim().toLowerCase()+"'" : false;
     let _USUFICCEL  = (apiREQ.body.usuario_celular != undefined && apiREQ.body.usuario_celular != null && apiREQ.body.usuario_celular != '') ? "'"+apiREQ.body.usuario_celular.trim().toLowerCase()+"'" : null;
     let _USUFICOBS  = (apiREQ.body.usuario_observacion != undefined && apiREQ.body.usuario_observacion != null && apiREQ.body.usuario_observacion != '') ? "'"+apiREQ.body.usuario_observacion.trim()+"'" : null;
@@ -426,7 +487,7 @@ const deleteUsuario = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await errorBody(_code, 'Parameters are missing, Function: deleteUSUARIO', true);
+            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
             return apiRES.status(_code).json(xJSON);
         })();
@@ -442,7 +503,8 @@ module.exports  = {
     getUsuarioUsu,
     getUsuarioEmpresaId,
     getUsuarioSucursalId,
-    postUsuario, 
+    postUsuario,
+    postUsuarioLogin, 
     putUsuario,
     deleteUsuario
 }
