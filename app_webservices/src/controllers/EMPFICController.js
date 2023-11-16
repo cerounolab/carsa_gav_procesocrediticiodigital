@@ -9,6 +9,7 @@ const {deleteEMPFIC}= require('../helpers/sql_delete');
 const {jsonBody}    = require('../utils/_json');
 const {errorBody}   = require('../utils/_json');
 
+
 //const affiliateId = process.env.ENV_AFFILIATEID;
 
 const getEmpresa    = (apiREQ, apiRES) => {
@@ -106,7 +107,7 @@ const getEmpresaRUC = (apiREQ, apiRES) => {
 const getEmpresaTipoRubro   = (apiREQ, apiRES) => {
     let _code       = 200;
     let _dataJSON   = [];
-    let _codigo     = String(apiREQ.params.tiporubro).toUpperCase().trim();
+    let _codigo     = parseInt(apiREQ.params.tiporubro);
 
     if (_codigo != 'undefined' && _codigo > 0){
 
@@ -140,7 +141,7 @@ const getEmpresaTipoRubro   = (apiREQ, apiRES) => {
 
 const postEmpresa   = (apiREQ, apiRES) => {
 
-    let xDATA   =   []; 
+    let xDATA       =  []; 
     let _EMPFICEST  = (apiREQ.body.tipo_estado_parametro != undefined && apiREQ.body.tipo_estado_parametro != null && apiREQ.body.tipo_estado_parametro != '' && apiREQ.body.tipo_estado_parametro > 0) ? Number.parseInt(apiREQ.body.tipo_estado_parametro) : false; 
     let _EMPFICTRC  = (apiREQ.body.tipo_rubro_parametro != undefined && apiREQ.body.tipo_rubro_parametro != null && apiREQ.body.tipo_rubro_parametro != '' && apiREQ.body.tipo_rubro_parametro > 0) ? Number.parseInt(apiREQ.body.tipo_rubro_parametro) : false; 
     let _EMPFICTAC  = (apiREQ.body.tipo_acceso_parametro != undefined && apiREQ.body.tipo_acceso_parametro != null && apiREQ.body.tipo_acceso_parametro != '' && apiREQ.body.tipo_acceso_parametro > 0) ? Number.parseInt(apiREQ.body.tipo_acceso_parametro) : false;
@@ -205,7 +206,7 @@ const postEmpresa   = (apiREQ, apiRES) => {
                 xJSON = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
             }
 
-            xJSON1 = camelcaseKeys(xJSON, {deep: true});
+            xJSON = camelcaseKeys(xJSON, {deep: true});
 
            return apiRES.status(_code).json(xJSON);
 
@@ -290,7 +291,7 @@ const putEmpresa    = (apiREQ, apiRES) => {
                 xJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
             }
 
-            xJSON1 = camelcaseKeys(xJSON, {deep: true});
+            xJSON = camelcaseKeys(xJSON, {deep: true});
 
            return apiRES.status(_code).json(xJSON);
 
@@ -355,7 +356,7 @@ const deleteEmpresa = (apiREQ, apiRES) => {
                 xJSON = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
             }
 
-            xJSON1 = camelcaseKeys(xJSON, {deep: true});
+            xJSON = camelcaseKeys(xJSON, {deep: true});
 
            return apiRES.status(_code).json(xJSON);
 

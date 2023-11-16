@@ -125,6 +125,7 @@ const insertEMPFIC  = async(_EMPFICEST,
             })
             .catch(e => {
                 _code = 500;
+                console.log(e);
                 errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertEMPFIC', true)
                     .then(result => _data = result);
             })
@@ -166,6 +167,7 @@ const insertSUCFIC  = async(_SUCFICEST,
     query00 = `INSERT INTO adm.SUCFIC(																					 SUCFICEST, 																						   SUCFICTSC, 	  SUCFICEMP, 	 SUCFICORD, 	SUCFICNOM, 	   SUCFICTEL,     SUCFICCEL, 	 SUCFICCOR, 	SUCFICUBI, 	   SUCFICDIR, 	  SUCFICOBS,     SUCFICCEM,    SUCFICCUS,     SUCFICCIP,    SUCFICCPR,      SUCFICAEM,     SUCFICAUS,     SUCFICAIP,     SUCFICAPR,     SUCFICAIN)
                 VALUES ((SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMSUCURSALESTADO' AND DOMFICPAR = ${_SUCFICEST}), (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMSUCURSALTIPO' AND DOMFICPAR = ${_SUCFICTSC}), ${_SUCFICEMP}, ${_SUCFICORD}, ${_SUCFICNOM}, ${_SUCFICTEL}, ${_SUCFICCEL}, ${_SUCFICCOR}, ${_SUCFICUBI}, ${_SUCFICDIR}, ${_SUCFICOBS}, ${_SUCFICCEM}, ${_SUCFICCUS}, ${_SUCFICCIP}, ${_SUCFICCPR}, ${_SUCFICAEM}, ${_SUCFICAUS}, ${_SUCFICAIP}, ${_SUCFICAPR}, ${_SUCFICAIN})`;	            
 
+                console.log(query00);
     const connPGSQL = new Client(initPGSQL);
 
     await connPGSQL
@@ -186,6 +188,7 @@ const insertSUCFIC  = async(_SUCFICEST,
             })
             .catch(e => {
                 _code = 500;
+                console.log(e);
                 errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertSUCFIC', true)
                     .then(result => _data = result);
             })
