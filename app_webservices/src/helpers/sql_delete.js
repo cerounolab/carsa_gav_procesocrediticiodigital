@@ -35,7 +35,6 @@ const deleteDOMFIC  = async(codigo) => {
             })
             .catch(e => {
                 _code = 500;
-                console.log(e);
                 errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: deleteDOMFIC', true)
                     .then(result => _data = result);
             })
@@ -119,7 +118,6 @@ const deleteSUCFIC  = async(codigo) => {
             })
             .catch(e => {
                 _code = 500;
-                console.log(e);
                 errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: deleteSUCFIC', true)
                     .then(result => _data = result);
             })
@@ -161,7 +159,6 @@ const deleteUSUFIC  = async(codigo) => {
             })
             .catch(e => {
                 _code = 500;
-                console.log(e);
                 errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: deleteUSUFIC', true)
                     .then(result => _data = result);
             })

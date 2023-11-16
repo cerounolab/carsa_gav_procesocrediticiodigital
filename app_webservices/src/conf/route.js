@@ -41,9 +41,9 @@ router.group('/v1/', (routerGroup) => {
   routerGroup.get('/usuario/usuario/:usuario', getUsuarioUsu);
   routerGroup.post('/usuario/registro', postUsuario);
   routerGroup.post('/usuario/login', postUsuarioLogin);
-
   routerGroup.put('/usuario/:codigo', putUsuario);
   routerGroup.delete('/usuario/:codigo', deleteUsuario);
+
   
 }); 
 

@@ -244,10 +244,14 @@ const putSucursal    = (apiREQ, apiRES) => {
     let _SUCFICAPR  = (apiREQ.body.auditoria_programa != undefined && apiREQ.body.auditoria_programa != null && apiREQ.body.auditoria_programa != '') ? "'"+apiREQ.body.auditoria_programa.trim()+"'" : false; 
     let _SUCFICAIN  = (apiREQ.body.auditoria_incidencia != undefined && apiREQ.body.auditoria_incidencia != null && apiREQ.body.auditoria_incidencia != '') ? "'"+apiREQ.body.auditoria_incidencia.trim()+"'" : null;
 
+    
+
     if (_ACCION && _SUCFICCOD && _SUCFICEST && _SUCFICTSC && _SUCFICEMP && _SUCFICNOM && _SUCFICCOR && _SUCFICAEM && _SUCFICAUS && _SUCFICAIP && _SUCFICAPR) {
 
         (async () => {
-            xDATA = await updateSUCFIC(_SUCFICEST,
+            xDATA = await updateSUCFIC(_ACCION,
+                _SUCFICCOD,
+                _SUCFICEST,
                 _SUCFICTSC,
                 _SUCFICEMP,
                 _SUCFICORD,
@@ -258,10 +262,6 @@ const putSucursal    = (apiREQ, apiRES) => {
                 _SUCFICUBI,
                 _SUCFICDIR,
                 _SUCFICOBS,
-                _SUCFICCEM,
-                _SUCFICCUS,
-                _SUCFICCIP,
-                _SUCFICCPR,
                 _SUCFICAEM,
                 _SUCFICAUS,
                 _SUCFICAIP,
