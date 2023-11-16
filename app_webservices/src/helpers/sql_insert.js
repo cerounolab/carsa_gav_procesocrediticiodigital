@@ -30,14 +30,14 @@ const insertDOMFIC  = async(_DOMFICEST,
    
     let query00 = '';
 
-    query00 = `INSERT INTO adm.DOMFIC (                                                                                DOMFICEST,     DOMFICORD,                                                                                            DOMFICPAR,      DOMFICNOM,      DOMFICCSS,     DOMFICICO,     DOMFICPAT,     DOMFICEQU,     DOMFICVAL,     DOMFICCEM,     DOMFICCUS,     DOMFICCIP,     DOMFICCPR,     DOMFICAEM,     DOMFICAUS,     DOMFICAIP,     DOMFICAPR)
+    query00 = `INSERT INTO adm.DOMFIC (                                                                                DOMFICEST,     DOMFICORD,                                                                                            DOMFICPAR,      DOMFICNOM,      DOMFICCSS,     DOMFICICO,     DOMFICPAT,     DOMFICEQU,     DOMFICVAL,     DOMFICCEM,     DOMFICCUS,     DOMFICCIP,         DOMFICOBS,     DOMFICCPR,     DOMFICAEM,     DOMFICAUS,     DOMFICAIP,     DOMFICAPR)
                     SELECT (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMDOMINIOESTADO' AND DOMFICPAR = ${_DOMFICEST}), ${_DOMFICORD}, (
                                                                                                                                                     CASE
                                                                                                                                                         WHEN (SELECT MAX(DOMFICPAR) FROM adm.DOMFIC WHERE DOMFICVAL = ${_DOMFICVAL}) IS NULL THEN 1
                                                                                                                                                         WHEN (SELECT MAX(DOMFICPAR) FROM adm.DOMFIC WHERE DOMFICVAL = ${_DOMFICVAL}) IS NOT NULL THEN 
                                                                                                                                                         (SELECT MAX(DOMFICPAR) + 1 FROM adm.DOMFIC WHERE DOMFICVAL = ${_DOMFICVAL})
                                                                                                                                                     END
-                                                                                                                                                 ),                                                                                                        '${_DOMFICNOM}', ${_DOMFICCSS}, ${_DOMFICICO}, ${_DOMFICPAT}, ${_DOMFICEQU}, ${_DOMFICVAL}, ${_DOMFICCEM}, ${_DOMFICCUS}, ${_DOMFICCIP}, ${_DOMFICCPR}, ${_DOMFICAEM}, ${_DOMFICAUS}, ${_DOMFICAIP}, ${_DOMFICAPR} 
+                                                                                                                                                 ),                                                                                                        '${_DOMFICNOM}', ${_DOMFICCSS}, ${_DOMFICICO}, ${_DOMFICPAT}, ${_DOMFICEQU}, ${_DOMFICVAL}, ${_DOMFICCEM}, ${_DOMFICCUS}, ${_DOMFICCIP}, ${_DOMFICOBS},  ${_DOMFICCPR}, ${_DOMFICAEM}, ${_DOMFICAUS}, ${_DOMFICAIP}, ${_DOMFICAPR} 
                     WHERE NOT EXISTS (SELECT * FROM adm.DOMFIC WHERE DOMFICVAL = ${_DOMFICVAL}  AND DOMFICPAR = (SELECT MAX(DOMFICPAR) + 1 FROM adm.DOMFIC WHERE DOMFICVAL = ${_DOMFICVAL}))`;				                
 
     const connPGSQL = new Client(initPGSQL);
@@ -228,7 +228,7 @@ const insertUSUFIC  = async(_USUFICEST,
     query00 = `INSERT INTO adm.USUFIC(																					   USUFICEST, 	  USUFICEMC, 	 USUFICSUC,     USUFICORD, 	   USUFICDOC, 	  USUFICNOM, 	 USUFICAPE, 	USUFICUSU, 	  USUFICPAS, 	 USUFICEMA, 	 USUFICCEL, 	USUFICOBS, 	  USUFICCEM, 	  USUFICCUS, 	 USUFICCIP, 	USUFICCPR,     USUFICAEM,     USUFICAUS,     USUFICAIP, 	   USUFICAPR, USUFICAIN)
                         SELECT (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOESTADO' AND DOMFICPAR = ${_USUFICEST}), ${_USUFICEMC}, ${_USUFICSUC}, ${_USUFICORD}, ${_USUFICDOC}, ${_USUFICNOM}, ${_USUFICAPE}, ${_USUFICUSU}, '${_USUFICPAS}', ${_USUFICEMA}, ${_USUFICCEL}, ${_USUFICOBS}, ${_USUFICCEM}, ${_USUFICCUS}, ${_USUFICCIP}, ${_USUFICCPR}, ${_USUFICAEM}, ${_USUFICAUS}, ${_USUFICAIP}, ${_USUFICAPR}, ${_USUFICAIN}
                         WHERE NOT EXISTS (SELECT * FROM adm.USUFIC WHERE USUFICUSU = ${_USUFICUSU})`;	            
-        console.log(query00);
+
     const connPGSQL = new Client(initPGSQL);
 //funcion FSD050
     await connPGSQL
@@ -249,7 +249,6 @@ const insertUSUFIC  = async(_USUFICEST,
             })
             .catch(e => {
                 _code = 500;
-                console.log(e);
                 errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertUSUFIC', true)
                     .then(result => _data = result);
             })
