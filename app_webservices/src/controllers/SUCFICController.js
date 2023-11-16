@@ -60,7 +60,7 @@ const getSucursalId  = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code       = 400;
-            _dataJSON   = await errorBody(_code, 'Parameters are missing, Function: getSucursalId', true);
+            _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
             return apiRES.status(_code).json(_dataJSON);
         })();
@@ -95,7 +95,7 @@ const getSucursalEmpresaId   = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code       = 400;
-            _dataJSON   = await errorBody(_code, 'Parameters are missing, Function: getSucursalEmpresaId', true);
+            _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
             return apiRES.status(_code).json(_dataJSON);
         })();
@@ -130,7 +130,7 @@ const getEmpresaTipoSucursal = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code       = 400;
-            _dataJSON   = await errorBody(_code, 'Parameters are missing, Function: getEmpresaTipoSucursal', true);
+            _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
             return apiRES.status(_code).json(_dataJSON);
         })();
@@ -208,7 +208,7 @@ const postSucursal   = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await errorBody(_code, 'Parameters are missing, Function: postSucursal', true);
+            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
             return apiRES.status(_code).json(xJSON);
         })();
@@ -288,7 +288,7 @@ const putSucursal    = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await errorBody(_code, 'Parameters are missing, Function: putSucursal', true);
+            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
             return apiRES.status(_code).json(xJSON);
         })();
@@ -350,7 +350,7 @@ const deleteSucursal = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await errorBody(_code, 'Parameters are missing, Function: deleteSucursal', true);
+            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
             return apiRES.status(_code).json(xJSON);
         })();

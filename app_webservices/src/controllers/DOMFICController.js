@@ -60,7 +60,7 @@ const getDominioId  = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code       = 400;
-            _dataJSON   = await errorBody(_code, 'Parameters are missing, Function: getDominioId', true);
+            _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
             return apiRES.status(_code).json(_dataJSON);
         })();
@@ -95,7 +95,7 @@ const getDominioValor   = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code       = 400;
-            _dataJSON   = await errorBody(_code, 'Parameters are missing, Function: getDominioValor', true);
+            _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
             return apiRES.status(_code).json(_dataJSON);
         })();
@@ -114,7 +114,7 @@ const postDominio   = (apiREQ, apiRES) => {
     let _DOMFICICO  =   (apiREQ.body.tipo_icono != undefined && apiREQ.body.tipo_icono != null && apiREQ.body.tipo_icono != '') ? "'"+apiREQ.body.tipo_icono.trim().toUpperCase()+"'" : null;   
     let _DOMFICPAT  =   (apiREQ.body.tipo_path != undefined && apiREQ.body.tipo_path != null && apiREQ.body.tipo_path != '') ? "'"+apiREQ.body.tipo_path.trim().toLowerCase()+"'" : null;
     let _DOMFICEQU  =   (apiREQ.body.tipo_equivalencia != undefined && apiREQ.body.tipo_equivalencia != null && apiREQ.body.tipo_equivalencia != '') ? "'"+apiREQ.body.tipo_equivalencia.trim().toUpperCase()+"'" : null;  
-    let _DOMFICVAL  =   (apiREQ.body.tipo_dominio != undefined && apiREQ.body.tipo_dominio != null && apiREQ.body.tipo_dominio != '') ? "'"+apiREQ.body.tipo_dominio.trim().toUpperCase()+"'" : null;  
+    let _DOMFICVAL  =   (apiREQ.body.tipo_valor != undefined && apiREQ.body.tipo_valor != null && apiREQ.body.tipo_valor != '') ? "'"+apiREQ.body.tipo_valor.trim().toUpperCase()+"'" : null;  
     let _DOMFICOBS  =   (apiREQ.body.tipo_observacion != undefined && apiREQ.body.tipo_observacion != null && apiREQ.body.tipo_observacion != '') ? "'"+apiREQ.body.tipo_observacion.trim().toUpperCase()+"'" : null;  
 
     let _DOMFICCEM  =   (apiREQ.body.alta_empresa_codigo != undefined && apiREQ.body.alta_empresa_codigo != null && apiREQ.body.alta_empresa_codigo != '' && apiREQ.body.alta_empresa_codigo > 0) ? Number.parseInt(apiREQ.body.alta_empresa_codigo) : false;
@@ -127,7 +127,7 @@ const postDominio   = (apiREQ, apiRES) => {
     let _DOMFICAIP  =   (apiREQ.body.auditoria_ip != undefined && apiREQ.body.auditoria_ip != null && apiREQ.body.auditoria_ip != '') ? "'"+apiREQ.body.auditoria_ip.trim().toUpperCase()+"'" : false;
     let _DOMFICAPR  =   (apiREQ.body.auditoria_programa != undefined && apiREQ.body.auditoria_programa != null && apiREQ.body.auditoria_programa != '') ? "'"+apiREQ.body.auditoria_programa.trim().toUpperCase()+"'" : false;
   
-    if (_DOMFICEST && _DOMFICNOM && _DOMFICPAR && _DOMFICNOM && _DOMFICVAL && _DOMFICCEM && _DOMFICCUS && _DOMFICCIP && _DOMFICCPR && _DOMFICAEM && _DOMFICAUS && _DOMFICAIP && _DOMFICAPR) {
+    if (_DOMFICEST && _DOMFICNOM && _DOMFICPAR && _DOMFICVAL && _DOMFICCEM && _DOMFICCUS && _DOMFICCIP && _DOMFICCPR && _DOMFICAEM && _DOMFICAUS && _DOMFICAIP && _DOMFICAPR) {
 
         (async () => {
             xDATA = await insertDOMFIC(_DOMFICEST,
@@ -160,7 +160,7 @@ const postDominio   = (apiREQ, apiRES) => {
                 xJSON = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
             }
 
-            xJSON1 = camelcaseKeys(xJSON, {deep: true});
+            xJSON = camelcaseKeys(xJSON, {deep: true});
 
            return apiRES.status(_code).json(xJSON);
 
@@ -169,7 +169,7 @@ const postDominio   = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await errorBody(_code, 'Parameters are missing, Function: postDominio', true);
+            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
             return apiRES.status(_code).json(xJSON);
         })();
@@ -191,7 +191,7 @@ const putDominio    = (apiREQ, apiRES) => {
     let _DOMFICICO  =   (apiREQ.body.tipo_icono != undefined && apiREQ.body.tipo_icono != null && apiREQ.body.tipo_icono != '') ? "'"+apiREQ.body.tipo_icono.trim().toUpperCase()+"'" : null;   
     let _DOMFICPAT  =   (apiREQ.body.tipo_path != undefined && apiREQ.body.tipo_path != null && apiREQ.body.tipo_path != '') ? "'"+apiREQ.body.tipo_path.trim().toLowerCase()+"'" : null;
     let _DOMFICEQU  =   (apiREQ.body.tipo_equivalencia != undefined && apiREQ.body.tipo_equivalencia != null && apiREQ.body.tipo_equivalencia != '') ? "'"+apiREQ.body.tipo_equivalencia.trim().toUpperCase()+"'" : null;  
-    let _DOMFICVAL  =   (apiREQ.body.tipo_dominio != undefined && apiREQ.body.tipo_dominio != null && apiREQ.body.tipo_dominio != '') ? "'"+apiREQ.body.tipo_dominio.trim().toUpperCase()+"'" : null;  
+    let _DOMFICVAL  =   (apiREQ.body.tipo_valor != undefined && apiREQ.body.tipo_valor != null && apiREQ.body.tipo_valor != '') ? "'"+apiREQ.body.tipo_valor.trim().toUpperCase()+"'" : null;  
     let _DOMFICOBS  =   (apiREQ.body.tipo_observacion != undefined && apiREQ.body.tipo_observacion != null && apiREQ.body.tipo_observacion != '') ? "'"+apiREQ.body.tipo_observacion.trim().toUpperCase()+"'" : null;  
 
     let _DOMFICCEM  =   (apiREQ.body.alta_empresa_codigo != undefined && apiREQ.body.alta_empresa_codigo != null && apiREQ.body.alta_empresa_codigo != '' && apiREQ.body.alta_empresa_codigo > 0) ? Number.parseInt(apiREQ.body.alta_empresa_codigo) : false;
@@ -204,7 +204,7 @@ const putDominio    = (apiREQ, apiRES) => {
     let _DOMFICAIP  =   (apiREQ.body.auditoria_ip != undefined && apiREQ.body.auditoria_ip != null && apiREQ.body.auditoria_ip != '') ? "'"+apiREQ.body.auditoria_ip.trim().toUpperCase()+"'" : false;
     let _DOMFICAPR  =   (apiREQ.body.auditoria_programa != undefined && apiREQ.body.auditoria_programa != null && apiREQ.body.auditoria_programa != '') ? "'"+apiREQ.body.auditoria_programa.trim().toUpperCase()+"'" : false;
   
-    if (_ACCION && _DOMFICCOD && _DOMFICEST && _DOMFICNOM && _DOMFICPAR && _DOMFICNOM && _DOMFICVAL && _DOMFICAEM && _DOMFICAUS && _DOMFICAIP && _DOMFICAPR) {
+    if (_ACCION && _DOMFICCOD && _DOMFICEST && _DOMFICPAR && _DOMFICNOM && _DOMFICVAL && _DOMFICAEM && _DOMFICAUS && _DOMFICAIP && _DOMFICAPR) {
 
         (async () => {
             xDATA = await updateDOMFIC(_ACCION,
@@ -248,7 +248,7 @@ const putDominio    = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await errorBody(_code, 'Parameters are missing, Function: updateDominio', true);
+            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
             return apiRES.status(_code).json(xJSON);
         })();
@@ -270,7 +270,7 @@ const deleteDominio = (apiREQ, apiRES) => {
     let _DOMFICICO  =   (apiREQ.body.tipo_icono != undefined && apiREQ.body.tipo_icono != null && apiREQ.body.tipo_icono != '') ? "'"+apiREQ.body.tipo_icono.trim().toUpperCase()+"'" : null;   
     let _DOMFICPAT  =   (apiREQ.body.tipo_path != undefined && apiREQ.body.tipo_path != null && apiREQ.body.tipo_path != '') ? "'"+apiREQ.body.tipo_path.trim().toLowerCase()+"'" : null;
     let _DOMFICEQU  =   (apiREQ.body.tipo_equivalencia != undefined && apiREQ.body.tipo_equivalencia != null && apiREQ.body.tipo_equivalencia != '') ? "'"+apiREQ.body.tipo_equivalencia.trim().toUpperCase()+"'" : null;  
-    let _DOMFICVAL  =   (apiREQ.body.tipo_dominio != undefined && apiREQ.body.tipo_dominio != null && apiREQ.body.tipo_dominio != '') ? "'"+apiREQ.body.tipo_dominio.trim().toUpperCase()+"'" : null;  
+    let _DOMFICVAL  =   (apiREQ.body.tipo_valor != undefined && apiREQ.body.tipo_valor != null && apiREQ.body.tipo_valor != '') ? "'"+apiREQ.body.tipo_valor.trim().toUpperCase()+"'" : null;  
     let _DOMFICOBS  =   (apiREQ.body.tipo_observacion != undefined && apiREQ.body.tipo_observacion != null && apiREQ.body.tipo_observacion != '') ? "'"+apiREQ.body.tipo_observacion.trim().toUpperCase()+"'" : null;  
 
     let _DOMFICCEM  =   (apiREQ.body.alta_empresa_codigo != undefined && apiREQ.body.alta_empresa_codigo != null && apiREQ.body.alta_empresa_codigo != '' && apiREQ.body.alta_empresa_codigo > 0) ? Number.parseInt(apiREQ.body.alta_empresa_codigo) : false;
@@ -308,7 +308,7 @@ const deleteDominio = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await errorBody(_code, 'Parameters are missing, Function: deleteDominio', true);
+            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
             return apiRES.status(_code).json(xJSON);
         })();
