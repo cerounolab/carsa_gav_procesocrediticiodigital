@@ -60,7 +60,7 @@ const getEmpresaId  = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code       = 400;
-            _dataJSON   = await errorBody(_code, 'Parameters are missing, Function: getEmpresaId', true);
+            _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
             return apiRES.status(_code).json(_dataJSON);
         })();
@@ -95,7 +95,7 @@ const getEmpresaRUC = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code       = 400;
-            _dataJSON   = await errorBody(_code, 'Parameters are missing, Function: getEmpresaRUC', true);
+            _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
             return apiRES.status(_code).json(_dataJSON);
         })();
@@ -130,7 +130,7 @@ const getEmpresaTipoRubro   = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code       = 400;
-            _dataJSON   = await errorBody(_code, 'Parameters are missing, Function: getEmpresaTipoRubro', true);
+            _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
             return apiRES.status(_code).json(_dataJSON);
         })();
@@ -214,7 +214,7 @@ const postEmpresa   = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await errorBody(_code, 'Parameters are missing, Function: postEmpresa', true);
+            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
             return apiRES.status(_code).json(xJSON);
         })();
@@ -299,7 +299,7 @@ const putEmpresa    = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await errorBody(_code, 'Parameters are missing, Function: putEmpresa', true);
+            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
             return apiRES.status(_code).json(xJSON);
         })();
@@ -364,7 +364,7 @@ const deleteEmpresa = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await errorBody(_code, 'Parameters are missing, Function: deleteEmpresa', true);
+            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
             return apiRES.status(_code).json(xJSON);
         })();

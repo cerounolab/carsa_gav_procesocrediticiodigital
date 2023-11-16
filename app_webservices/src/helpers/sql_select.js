@@ -229,6 +229,7 @@ const selectUSUARIO = async(actionType, codigo, valor) => {
     let _code   = 200;
     let _data   = [];
     let query00 = '';
+    let _empresaCodigo = parseInt(valor.trim().substring(1, 4));
 
     switch (actionType) {
         case 1:
@@ -253,7 +254,7 @@ const selectUSUARIO = async(actionType, codigo, valor) => {
                         FROM
                             adm.USUARIO
                         WHERE
-                            usuario_documento  = ${valor})`;
+                            usuario_documento  = ${valor}`;
                             
             break;
 
@@ -263,7 +264,7 @@ const selectUSUARIO = async(actionType, codigo, valor) => {
                             FROM
                                 adm.USUARIO
                             WHERE
-                                usuario_usuario   = ${valor})`;
+                                usuario_usuario   = ${valor} AND empresa_codigo = ${_empresaCodigo}`;
                                 
                 break;
 
@@ -282,7 +283,7 @@ const selectUSUARIO = async(actionType, codigo, valor) => {
                         FROM
                             adm.USUARIO
                         WHERE
-                            sucursal_codigo  = ${codigo})`;
+                            sucursal_codigo  = ${codigo}`;
             break;
 
         default:
@@ -294,7 +295,7 @@ const selectUSUARIO = async(actionType, codigo, valor) => {
         .connect()
         .catch(e => {
             _code = 401;
-            errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: selectSUCURSAL', true)
+            errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: selectUSUARIO', true)
                 .then(result => _data = result);
         }
     );
@@ -308,13 +309,17 @@ const selectUSUARIO = async(actionType, codigo, valor) => {
             })
             .catch(e => {
                 _code = 500;
-                errorBody(_code, 'Code: '+ e.code +' '+e.severity+', '+e.hint, 'Function: selectSUCURSAL')
+                errorBody(_code, 'Code: '+ e.code +' '+e.severity+', '+e.hint, 'Function: selectUSUARIO')
                     .then(result => _data = result);
             })
             .then(() => {
                 connPGSQL.end();
             }
         );
+    }else{
+        _code = 404;
+        errorBody(_code, 'Code: '+ e.code +' '+e.severity+', '+e.hint, 'Function: selectUSUARIO')
+            .then(result => _data = result);
     }
 
     return Array(_code, _data);
