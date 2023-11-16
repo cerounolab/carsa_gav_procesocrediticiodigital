@@ -206,27 +206,23 @@ const {errorBody}   = require('../utils/_json');
     }
 
     const updateSUCFIC  = async(_ACCION,
-        codigo,
-        _SUCFICEST,
-        _SUCFICTSC,
-        _SUCFICEMP,
-        _SUCFICORD,
-        _SUCFICNOM,
-        _SUCFICTEL,
-        _SUCFICCEL,
-        _SUCFICCOR,
-        _SUCFICUBI,
-        _SUCFICDIR,
-        _SUCFICOBS,
-        _SUCFICCEM,
-        _SUCFICCUS,
-        _SUCFICCIP,
-        _SUCFICCPR,
-        _SUCFICAEM,
-        _SUCFICAUS,
-        _SUCFICAIP,
-        _SUCFICAPR,
-        _SUCFICAIN) => {
+                codigo,
+                _SUCFICEST,
+                _SUCFICTSC,
+                _SUCFICEMP,
+                _SUCFICORD,
+                _SUCFICNOM,
+                _SUCFICTEL,
+                _SUCFICCEL,
+                _SUCFICCOR,
+                _SUCFICUBI,
+                _SUCFICDIR,
+                _SUCFICOBS,
+                _SUCFICAEM,
+                _SUCFICAUS,
+                _SUCFICAIP,
+                _SUCFICAPR,
+                _SUCFICAIN) => {
 
         let _code   = 200;
         let _data   = [];
@@ -245,8 +241,7 @@ const {errorBody}   = require('../utils/_json');
                                 SUCFICCOR	= ${_SUCFICCOR}, 	
                                 SUCFICUBI	= ${_SUCFICUBI}, 	   
                                 SUCFICDIR	= ${_SUCFICDIR}, 	  
-                                SUCFICOBS	= ${_SUCFICOBS},     
-                                SUCFICCEM	= ${_SUCFICCEM},          
+                                SUCFICOBS	= ${_SUCFICOBS},              
                                 SUCFICAEM	= ${_SUCFICAEM},     
                                 SUCFICAUS	= ${_SUCFICAUS},     
                                 SUCFICAIP	= ${_SUCFICAIP},     
@@ -290,6 +285,7 @@ const {errorBody}   = require('../utils/_json');
                 })
                 .catch(e => {
                     _code = 500;
+                    console.log(e);
                     errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateSUCFIC', true)
                         .then(result => _data = result);
                 })
@@ -304,26 +300,27 @@ const {errorBody}   = require('../utils/_json');
 
     const updateUSUFIC  = async(_ACCION,
         codigo,
-        _SUCFICEST,
-        _SUCFICTSC,
-        _SUCFICEMP,
-        _SUCFICORD,
-        _SUCFICNOM,
-        _SUCFICTEL,
-        _SUCFICCEL,
-        _SUCFICCOR,
-        _SUCFICUBI,
-        _SUCFICDIR,
-        _SUCFICOBS,
-        _SUCFICCEM,
-        _SUCFICCUS,
-        _SUCFICCIP,
-        _SUCFICCPR,
-        _SUCFICAEM,
-        _SUCFICAUS,
-        _SUCFICAIP,
-        _SUCFICAPR,
-        _SUCFICAIN) => {
+        _USUFICEST,
+        _USUFICEMC,
+        _USUFICSUC,
+        _USUFICORD,
+        _USUFICDOC,
+        _USUFICNOM,
+        _USUFICAPE,
+        _USUFICUSU,
+        _USUFICPAS,
+        _USUFICEMA,
+        _USUFICCEL,
+        _USUFICOBS,
+        _USUFICCEM,
+        _USUFICCUS,
+        _USUFICCIP,
+        _USUFICCPR,
+        _USUFICAEM,
+        _USUFICAUS,
+        _USUFICAIP,
+        _USUFICAPR,
+        _USUFICAIN) => {
 
         let _code   = 200;
         let _data   = [];
@@ -331,37 +328,35 @@ const {errorBody}   = require('../utils/_json');
 
         switch (_ACCION) {
             case 1:
-                query00 = `UPDATE adm.SUCFIC SET																					 
-                                SUCFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMSUCURSALESTADO' AND DOMFICPAR = ${_SUCFICEST}), 																						   
-                                SUCFICTSC	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMSUCURSALTIPO' AND DOMFICPAR = ${_SUCFICTSC}), 	  
-                                SUCFICEMP	= ${_SUCFICEMP}, 	 
-                                SUCFICORD	= ${_SUCFICORD}, 	
-                                SUCFICNOM	= ${_SUCFICNOM}, 	   
-                                SUCFICTEL	= ${_SUCFICTEL},     
-                                SUCFICCEL	= ${_SUCFICCEL}, 	 
-                                SUCFICCOR	= ${_SUCFICCOR}, 	
-                                SUCFICUBI	= ${_SUCFICUBI}, 	   
-                                SUCFICDIR	= ${_SUCFICDIR}, 	  
-                                SUCFICOBS	= ${_SUCFICOBS},     
-                                SUCFICCEM	= ${_SUCFICCEM},          
-                                SUCFICAEM	= ${_SUCFICAEM},     
-                                SUCFICAUS	= ${_SUCFICAUS},     
-                                SUCFICAIP	= ${_SUCFICAIP},     
-                                SUCFICAPR	= ${_SUCFICAPR}, 
-                                SUCFICAIN	= ${_SUCFICAIN}
-            
-                            WHERE SUCFICCOD = ${codigo}`;	
+                query00 = `UPDATE adm.USUFIC SET
+                                USUFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOESTADO' AND DOMFICEST	= ${_USUFICEST}), 
+                                USUFICEMC	= ${_USUFICEMC}, 
+                                USUFICSUC	= ${_USUFICSUC}, 
+                                USUFICORD	= ${_USUFICORD}, 
+                                USUFICDOC	= ${_USUFICDOC},  
+                                USUFICNOM	= ${_USUFICNOM},
+                                USUFICAPE	= ${_USUFICAPE}, 
+                                USUFICEMA	= ${_USUFICEMA}, 
+                                USUFICCEL	= ${_USUFICCEL}, 
+                                USUFICOBS	= ${_USUFICOBS}, 
+                                USUFICAEM	= ${_USUFICAEM}, 
+                                USUFICAUS	= ${_USUFICAUS},   
+                                USUFICAIP	= ${_USUFICAIP}, 
+                                USUFICAPR	= ${_USUFICAPR},  
+                                USUFICAIN	= ${_USUFICAIN},
+                            
+                            WHERE USUFICCOD = ${codigo}`;	
 
             break;
 
             case 2:
-                query00 = `UPDATE adm.SUCFIC SET																					 
-                                SUCFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMSUCURSALESTADO' AND DOMFICPAR = ${_SUCFICEST}), 
-                                SUCFICAEM	= ${_SUCFICAEM},     
-                                SUCFICAUS	= ${_SUCFICAUS},     
-                                SUCFICAIP	= ${_SUCFICAIP},     
-                                SUCFICAPR	= ${_SUCFICAPR}, 
-                                SUCFICAIN	= ${_SUCFICAIN}
+                query00 = `UPDATE adm.USUFIC SET
+                                USUFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOESTADO' AND DOMFICEST	= ${_USUFICEST}),      
+                                USUFICAEM	= ${_USUFICAEM}, 
+                                USUFICAUS	= ${_USUFICAUS},   
+                                USUFICAIP	= ${_USUFICAIP}, 
+                                USUFICAPR	= ${_USUFICAPR},  
+                                USUFICAIN	= ${_USUFICAIN},
 
                             WHERE SUCFICCOD =  ${codigo}`;
             break;	
@@ -373,7 +368,7 @@ const {errorBody}   = require('../utils/_json');
             .connect()
             .catch(e => {
                 _code = 401;
-                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertDOMFIC', true)
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateUSUFIC', true)
                     .then(result => _data = result);
             }
     );
@@ -387,7 +382,7 @@ const {errorBody}   = require('../utils/_json');
             })
             .catch(e => {
                 _code = 500;
-                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertDOMFIC', true)
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateUSUFIC', true)
                     .then(result => _data = result);
             })
             .then(() => {

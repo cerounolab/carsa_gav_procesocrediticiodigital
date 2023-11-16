@@ -302,7 +302,7 @@ const postUsuarioLogin   = (apiREQ, apiRES) => {
     let _USUFICAIP  = (apiREQ.body.auditoria_ip != undefined && apiREQ.body.auditoria_ip != null && apiREQ.body.auditoria_ip != '') ? "'"+apiREQ.body.auditoria_ip.trim().toUpperCase()+"'" : false; 
     let _USUFICAPR  = (apiREQ.body.auditoria_programa != undefined && apiREQ.body.auditoria_programa != null && apiREQ.body.auditoria_programa != '') ? "'"+apiREQ.body.auditoria_programa.trim()+"'" : false; 
     let _USUFICAIN  = (apiREQ.body.auditoria_incidencia != undefined && apiREQ.body.auditoria_incidencia != null && apiREQ.body.auditoria_incidencia != '') ? "'"+apiREQ.body.auditoria_incidencia.trim()+"'" : null;
-    let _password   = '';
+    let _password   = '';  
 
     if (_USUFICUSU && _USUFICPAS && _USUFICAEM && _USUFICAUS && _USUFICAIP && _USUFICAPR){
             (async () => {
@@ -310,13 +310,13 @@ const postUsuarioLogin   = (apiREQ, apiRES) => {
                 const xDATA = await selectUSUARIO(4, 0, _USUFICUSU);
                 _code       = xDATA[0];
                 _dataJSON   = xDATA[1];
-                console.log('_code=> '+_code);
 
                 if (_code == 200) {
                     _password   =  _dataJSON[0].usuario_password;
-
+                    
                     bcrypt.compare(_USUFICPAS, _password, async (err, coinciden) => {
-    
+                        
+                        //console.log(err);
                         if (coinciden){
                             _dataJSON[0].usuario_password = '';
                             _dataJSON   = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, _dataJSON);
@@ -328,11 +328,10 @@ const postUsuarioLogin   = (apiREQ, apiRES) => {
                         _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
 
                         return apiRES.status(_code).json(_dataJSON);
-                            
-                    });                  
-
+                                
+                        });
                 } else {
-                    _dataJSON   = xDATA[1];
+                    _dataJSON   = await jsonBody(_code, 'Error', null, null, 'El usuario no existe, verifique', 0, 0, 0, 0, []);
 
                     _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
         
@@ -380,10 +379,12 @@ const putUsuario    = (apiREQ, apiRES) => {
     let _USUFICAPR  = (apiREQ.body.auditoria_programa != undefined && apiREQ.body.auditoria_programa != null && apiREQ.body.auditoria_programa != '') ? "'"+apiREQ.body.auditoria_programa.trim()+"'" : false; 
     let _USUFICAIN  = (apiREQ.body.auditoria_incidencia != undefined && apiREQ.body.auditoria_incidencia != null && apiREQ.body.auditoria_incidencia != '') ? "'"+apiREQ.body.auditoria_incidencia.trim()+"'" : null;
 
+ 
     if (_ACCION && _USUFICEST && _USUFICEMC && _USUFICSUC && _USUFICDOC && _USUFICNOM && _USUFICAPE && _USUFICUSU && _USUFICPAS && _USUFICEMA && _USUFICAEM && _USUFICAUS && _USUFICAIP && _USUFICAPR) {
 
         (async () => {
-            xDATA = await updateUSUFIC(_USUFICCOD,
+            xDATA = await updateUSUFIC(_ACCION,
+                _USUFICCOD,
                 _USUFICEMC,
                 _USUFICSUC,
                 _USUFICORD,

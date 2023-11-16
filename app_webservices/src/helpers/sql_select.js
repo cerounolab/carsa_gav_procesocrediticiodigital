@@ -300,26 +300,25 @@ const selectUSUARIO = async(actionType, codigo, valor) => {
         }
     );
 
-    if (_code == 200) {
-        await connPGSQL
-            .query(query00)
-            .then(result => {
-                _code = 200;
-                _data = result.rows;
-            })
-            .catch(e => {
-                _code = 500;
-                errorBody(_code, 'Code: '+ e.code +' '+e.severity+', '+e.hint, 'Function: selectUSUARIO')
-                    .then(result => _data = result);
-            })
-            .then(() => {
-                connPGSQL.end();
-            }
-        );
-    }else{
+    await connPGSQL
+        .query(query00)
+        .then(result => {
+            _code = 200;
+            _data = result.rows;
+        })
+        .catch(e => {
+            _code = 500;
+            errorBody(_code, 'Code: '+ e.code +' '+e.severity+', '+e.hint, 'Function: selectUSUARIO')
+                .then(result => _data = result);
+        })
+        .then(() => {
+            connPGSQL.end();
+        }
+    );
+
+
+    if (_data.length == 0) {
         _code = 404;
-        errorBody(_code, 'Code: '+ e.code +' '+e.severity+', '+e.hint, 'Function: selectUSUARIO')
-            .then(result => _data = result);
     }
 
     return Array(_code, _data);
