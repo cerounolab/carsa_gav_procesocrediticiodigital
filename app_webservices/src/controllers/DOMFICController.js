@@ -126,8 +126,6 @@ const postDominio   = (apiREQ, apiRES) => {
     let _DOMFICAUS  =   (apiREQ.body.auditoria_usuario != undefined && apiREQ.body.auditoria_usuario != null && apiREQ.body.auditoria_usuario != '') ? "'"+apiREQ.body.auditoria_usuario.trim().toUpperCase()+"'" : false;
     let _DOMFICAIP  =   (apiREQ.body.auditoria_ip != undefined && apiREQ.body.auditoria_ip != null && apiREQ.body.auditoria_ip != '') ? "'"+apiREQ.body.auditoria_ip.trim().toUpperCase()+"'" : false;
     let _DOMFICAPR  =   (apiREQ.body.auditoria_programa != undefined && apiREQ.body.auditoria_programa != null && apiREQ.body.auditoria_programa != '') ? "'"+apiREQ.body.auditoria_programa.trim().toUpperCase()+"'" : false;
-  
-    console.log(apiREQ.body);
 
     if (_DOMFICEST && _DOMFICNOM && _DOMFICVAL && _DOMFICCEM && _DOMFICCUS && _DOMFICCIP && _DOMFICCPR && _DOMFICAEM && _DOMFICAUS && _DOMFICAIP && _DOMFICAPR) {
 
