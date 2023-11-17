@@ -127,7 +127,9 @@ const postDominio   = (apiREQ, apiRES) => {
     let _DOMFICAIP  =   (apiREQ.body.auditoria_ip != undefined && apiREQ.body.auditoria_ip != null && apiREQ.body.auditoria_ip != '') ? "'"+apiREQ.body.auditoria_ip.trim().toUpperCase()+"'" : false;
     let _DOMFICAPR  =   (apiREQ.body.auditoria_programa != undefined && apiREQ.body.auditoria_programa != null && apiREQ.body.auditoria_programa != '') ? "'"+apiREQ.body.auditoria_programa.trim().toUpperCase()+"'" : false;
   
-    if (_DOMFICEST && _DOMFICNOM && _DOMFICPAR && _DOMFICVAL && _DOMFICCEM && _DOMFICCUS && _DOMFICCIP && _DOMFICCPR && _DOMFICAEM && _DOMFICAUS && _DOMFICAIP && _DOMFICAPR) {
+    console.log(apiREQ.body);
+
+    if (_DOMFICEST && _DOMFICNOM && _DOMFICVAL && _DOMFICCEM && _DOMFICCUS && _DOMFICCIP && _DOMFICCPR && _DOMFICAEM && _DOMFICAUS && _DOMFICAIP && _DOMFICAPR) {
 
         (async () => {
             xDATA = await insertDOMFIC(_DOMFICEST,
@@ -204,7 +206,7 @@ const putDominio    = (apiREQ, apiRES) => {
     let _DOMFICAIP  =   (apiREQ.body.auditoria_ip != undefined && apiREQ.body.auditoria_ip != null && apiREQ.body.auditoria_ip != '') ? "'"+apiREQ.body.auditoria_ip.trim().toUpperCase()+"'" : false;
     let _DOMFICAPR  =   (apiREQ.body.auditoria_programa != undefined && apiREQ.body.auditoria_programa != null && apiREQ.body.auditoria_programa != '') ? "'"+apiREQ.body.auditoria_programa.trim().toUpperCase()+"'" : false;
   
-    if (_ACCION && _DOMFICCOD && _DOMFICEST && _DOMFICPAR && _DOMFICNOM && _DOMFICVAL && _DOMFICAEM && _DOMFICAUS && _DOMFICAIP && _DOMFICAPR) {
+    if (_ACCION && _DOMFICCOD && _DOMFICEST && _DOMFICNOM && _DOMFICVAL && _DOMFICAEM && _DOMFICAUS && _DOMFICAIP && _DOMFICAPR) {
 
         (async () => {
             xDATA = await updateDOMFIC(_ACCION,
