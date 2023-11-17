@@ -3,6 +3,7 @@ require('dotenv').config({ path:__dirname+'/./../../.env' });
 const camelcaseKeys = require('camelcase-keys');
 
 const {selectUSUARIO}= require('../helpers/sql_select');
+const {selectUSUARIOEMPRESA}= require('../helpers/sql_select');
 const {insertUSUFIC}= require('../helpers/sql_insert');
 const {updateUSUFIC}= require('../helpers/sql_update');
 const {deleteUSUFIC}= require('../helpers/sql_delete');
@@ -45,8 +46,9 @@ const getUsuarioId  = (apiREQ, apiRES) => {
             const xDATA = await selectUSUARIO(2, _codigo, '');
             _code       = xDATA[0];
             _dataJSON   = xDATA[1];
-    
+                
             if (_code == 200) {
+                
                 _dataJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, _dataJSON);
     
             } else {
@@ -179,8 +181,7 @@ const getUsuarioSucursalId = (apiREQ, apiRES) => {
     let _dataJSON   = [];
     let _codigo     = parseInt(apiREQ.params.sucursal);
 
-    if (_valor != 'undefined' && _valor != ''){
-
+    if (_codigo != 'undefined' && _codigo != '' && _codigo != null && _codigo > 0){
         (async () => {
             const xDATA = await selectUSUARIO(5, _codigo, '');
             _code       = xDATA[0];
@@ -191,6 +192,42 @@ const getUsuarioSucursalId = (apiREQ, apiRES) => {
     
             } else {
                 _dataJSON   = xDATA[1];
+            }
+    
+            _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
+    
+            return apiRES.status(_code).json(_dataJSON);
+        })();
+
+    }else{
+        (async () => {
+            _code       = 400;
+            _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
+
+            return apiRES.status(_code).json(_dataJSON);
+        })();
+        
+    }
+}
+
+const getUsuarioDocumentoEmpresa = (apiREQ, apiRES) => {
+    let _code       = 200;
+    let _dataJSON   = [];
+    let _codigo     = parseInt(apiREQ.params.empresa);
+    let _valor      = String(apiREQ.params.documento).trim().toUpperCase();
+
+    if (_codigo != 'undefined' && _codigo > 0 && _valor != 'undefined' && _valor != ''){
+
+        (async () => {
+            const xDATA = await selectUSUARIOEMPRESA(1, _codigo, _valor);
+            _code       = xDATA[0];
+            _dataJSON   = xDATA[1];
+    
+            if (_code == 200) {
+                _dataJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, _dataJSON);
+    
+            } else {
+                await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
             }
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
@@ -328,11 +365,11 @@ const postUsuarioLogin   = (apiREQ, apiRES) => {
 
                         return apiRES.status(_code).json(_dataJSON);
                                 
-                        });
+                    });
                 } else {
                     _dataJSON   = await jsonBody(_code, 'Error', null, null, 'El usuario no existe, verifique', 0, 0, 0, 0, []);
 
-                    _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
+                    _dataJSON   = camelcaseKeys(_dataJSON, {deep: true});
         
                     return apiRES.status(_code).json(_dataJSON);
                 }
@@ -506,6 +543,7 @@ module.exports  = {
     getUsuarioUsu,
     getUsuarioEmpresaId,
     getUsuarioSucursalId,
+    getUsuarioDocumentoEmpresa,
     postUsuario,
     postUsuarioLogin, 
     putUsuario,
