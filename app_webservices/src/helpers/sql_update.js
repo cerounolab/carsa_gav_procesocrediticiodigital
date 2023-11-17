@@ -405,10 +405,98 @@ const {errorBody}   = require('../utils/_json');
     return Array(_code, _data);
     }
 
+    const updateROLFIC = async(_ACCION,
+        codigo,
+        _ROLFICEST,
+        _ROLFICEMC,
+        _ROLFICORD,
+        _ROLFICNOM,
+        _ROLFICFDE,
+        _ROLFICFHA,
+        _ROLFICEQU,
+        _ROLFICOBS,
+        _ROLFICAEM,
+        _ROLFICAUS,
+        _ROLFICAIP,
+        _ROLFICAPR,
+        _ROLFICAIN) => {
+
+        let _code   = 200;
+        let _data   = [];
+        let query00 = '';
+
+        switch (_ACCION) {
+            case 1:
+                query00 = `UPDATE adm.ROLFIC SET																				
+                                ROLFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMROLESTADO' AND DOMFICPAR = ${_ROLFICEST}), 	  
+                                ROLFICEMC	= ${_ROLFICEMC}, 	  
+                                ROLFICORD	= ${_ROLFICORD}, 	
+                                ROLFICNOM	= ${_ROLFICNOM}, 		
+                                ROLFICFDE	= '${_ROLFICFDE}', 	   
+                                ROLFICFHA	= '${_ROLFICFHA}',     
+                                ROLFICEQU	= ${_ROLFICEQU},     
+                                ROLFICOBS	= ${_ROLFICOBS},    
+                                ROLFICAEM	= ${_ROLFICAEM},     
+                                ROLFICAUS	= ${_ROLFICAUS},    
+                                ROLFICAIP	= ${_ROLFICAIP},     
+                                ROLFICAPR	= ${_ROLFICAPR}, 
+                                ROLFICAIN	= ${_ROLFICAIN}
+                            
+                            WHERE ROLFICCOD = ${codigo}`;	
+
+            break;
+
+            case 2:
+                query00 = `UPDATE adm.ROLFIC SET																				
+                                ROLFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMROLESTADO' AND DOMFICPAR = ${_ROLFICEST})),       
+                                ROLFICAEM	= ${_ROLFICAEM},     
+                                ROLFICAUS	= ${_ROLFICAUS},    
+                                ROLFICAIP	= ${_ROLFICAIP},     
+                                ROLFICAPR	= ${_ROLFICAPR}, 
+                                ROLFICAIN	= ${_ROLFICAIN}
+                                
+                                WHERE ROLFICCOD = ${codigo}`;
+            break;	
+
+        }
+
+        const connPGSQL = new Client(initPGSQL);
+
+        await connPGSQL
+            .connect()
+            .catch(e => {
+                _code = 401;
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateROLFIC', true)
+                    .then(result => _data = result);
+            }
+    );
+
+    if (_code == 200) {
+        await connPGSQL
+            .query(query00)
+            .then(result => {
+                _code = 200;
+                _data = result.rows;
+            })
+            .catch(e => {
+                _code = 500;
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateROLFIC', true)
+                    .then(result => _data = result);
+            })
+            .then(() => {
+                connPGSQL.end();
+            }
+        );
+    }
+
+    return Array(_code, _data);
+    }
+
 
 module.exports = {
     updateDOMFIC,
     updateEMPFIC,
     updateSUCFIC,
-    updateUSUFIC
+    updateUSUFIC,
+    updateROLFIC
 };

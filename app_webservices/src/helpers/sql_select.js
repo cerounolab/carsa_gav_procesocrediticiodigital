@@ -1,7 +1,7 @@
 const {Pool, Client, initPGSQL} = require('../conf/database');
 const {clientMSSQL, initMSSQL01} = require('../conf/database');
 
-const {errorBody}   = require('../utils/_json');
+const {errorBody, jsonBody}   = require('../utils/_json');
 
 
 /**
@@ -321,7 +321,7 @@ const selectUSUARIO = async(actionType, codigo, valor) => {
             _code = 404;
         }
         return Array(_code, _data);
-    }
+}
    
 const selectUSUARIOEMPRESA = async(actionType, codigo, valor) => {
     let _code   = 200;
@@ -365,7 +365,6 @@ const selectUSUARIOEMPRESA = async(actionType, codigo, valor) => {
             })
             .catch(err => {
                 _code = 401;
-                console.log(err);
                 errorBody(_code, 'Code: '+ err.code + ', OriginalError: ' + err.originalError + ', Function: selectUSUARIOEMPRESA', true)
                     .then(result => _data = result);
             })
@@ -375,10 +374,81 @@ const selectUSUARIOEMPRESA = async(actionType, codigo, valor) => {
     }
 
     if (_data['rowsAffected'] == 0) {
-        _code = 204;
-        _data = await jsonBody(_code, 'Warning', 'selectUSUARIOEMPRESA', null, 'El documento ingresado no es existe', 0, 0, 0, 0, []);
+        _code   = 204;
+        _data   = await jsonBody(_code, 'Warning', 'selectUSUARIOEMPRESA', null, 'El documento ingresado no existe', 0, 0, 0, 0, []);
+    }else{
+        _data   =  _data['recordset'];
     }
+
+    console.log(_data);
    
+    return Array(_code, _data);
+}
+
+const selectROL = async(actionType, codigo, valor) => {
+    let _code   = 200;
+    let _data   = [];
+    let query00 = '';
+
+    switch (actionType) {
+        case 1:
+            query00 = `SELECT
+                            *
+                        FROM
+                            adm.ROL`;
+            break;
+
+        case 2:
+            query00 = `SELECT
+                            *
+                        FROM
+                            adm.ROL
+                        WHERE
+                            rol_codigo = ${codigo}`;
+            break;
+
+        case 3:
+            query00 = `SELECT
+                            *
+                        FROM
+                            adm.ROL
+                        WHERE
+                            empresa_codigo  = ${codigo}`;
+            break;
+
+        default:
+            break;
+    }
+
+    const connPGSQL = new Client(initPGSQL);
+    await connPGSQL
+        .connect()
+        .catch(e => {
+            _code = 401;
+            errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: selectROL', true)
+                .then(result => _data = result);
+        }
+    );
+
+    await connPGSQL
+        .query(query00)
+        .then(result => {
+            _code = 200;
+            _data = result.rows;
+        })
+        .catch(e => {
+            _code = 500;
+            errorBody(_code, 'Code: '+ e.code +' '+e.severity+', '+e.hint, 'Function: selectROL')
+                .then(result => _data = result);
+        })
+        .then(() => {
+            connPGSQL.end();
+        }
+    );
+
+    if (_data.length == 0) {
+        _code = 404;
+    }
     return Array(_code, _data);
 }
 
@@ -388,5 +458,6 @@ module.exports = {
     selectEMPRESA, 
     selectSUCURSAL,
     selectUSUARIO,
-    selectUSUARIOEMPRESA
+    selectUSUARIOEMPRESA,
+    selectROL
 };

@@ -224,21 +224,19 @@ const getUsuarioDocumentoEmpresa = (apiREQ, apiRES) => {
             _dataJSON   = xDATA[1];
     
             if (_code == 200) {
-                _dataJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, _dataJSON);
+                _dataJSON   = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, _dataJSON);
+                return apiRES.status(_code).json(_dataJSON);
     
-            } else {
-                await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
+            } else {                
+                _dataJSON   = await jsonBody(_code, 'Error', null, null, 'El documento ingresado no existe', 0, 0, 0, 0, []);
+                return apiRES.status(200).json(_dataJSON);
             }
-    
-            _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
-    
-            return apiRES.status(_code).json(_dataJSON);
         })();
 
     }else{
         (async () => {
             _code       = 400;
-            _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
+            _dataJSON   = await jsonBody(_code, 'Verifique, algún campo esta vacio.', true);
 
             return apiRES.status(_code).json(_dataJSON);
         })();
