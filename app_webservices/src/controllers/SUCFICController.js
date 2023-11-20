@@ -25,6 +25,7 @@ const getSucursal    = (apiREQ, apiRES) => {
 
         } else {
             _dataJSON   = xDATA[1];
+            _dataJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
         }
 
         _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
@@ -50,6 +51,7 @@ const getSucursalId  = (apiREQ, apiRES) => {
     
             } else {
                 _dataJSON   = xDATA[1];
+                _dataJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
             }
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
@@ -85,6 +87,7 @@ const getSucursalEmpresaId   = (apiREQ, apiRES) => {
     
             } else {
                 _dataJSON   = xDATA[1];
+                _dataJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
             }
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
@@ -120,6 +123,7 @@ const getEmpresaTipoSucursal = (apiREQ, apiRES) => {
     
             } else {
                 _dataJSON   = xDATA[1];
+                _dataJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
             }
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});

@@ -378,6 +378,61 @@ const insertCAMFIC  = async(_CAMFICEST,
     return Array(_code, _data);
 }
 
+const insertFORFIC  = async(_FORFICEST,
+    _FORFICEMC,
+    _FORFICORD,
+    _FORFICNOM,
+    _FORFICURL,
+    _FORFICOBS,
+    _FORFICCEM,
+    _FORFICCUS,
+    _FORFICCIP,
+    _FORFICCPR,
+    _FORFICAEM,
+    _FORFICAUS,
+    _FORFICAIP,
+    _FORFICAPR,
+    _FORFICAIN) => {
+
+    let _code   = 200;
+    let _data   = [];
+
+    let query00 = '';
+
+    query00 = `INSERT INTO adm.FORFIC (																				   FORFICEST, 	  FORFICEMC, 	 FORFICORD,     FORFICNOM, 	   FORFICURL, 	  FORFICCEM, 	 FORFICCUS,     FORFICCIP,     FORFICCPR, 	  FORFICAEM, 	 FORFICAUS,     FORFICAIP, 	   FORFICAPR, FORFICAIN)
+	            VALUES ((SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMFORMULARIOESTADO' AND DOMFICPAR = ${_FORFICEST}), ${_FORFICEMC}, ${_FORFICORD}, ${_FORFICNOM}, ${_FORFICURL}, ${_FORFICCEM}, ${_FORFICCUS}, ${_FORFICCIP}, ${_FORFICCPR}, ${_FORFICAEM}, ${_FORFICAUS}, ${_FORFICAIP}, ${_FORFICAPR}, ${_FORFICAIN})`;	            
+
+    const connPGSQL = new Client(initPGSQL);
+
+    await connPGSQL
+        .connect()
+        .catch(e => {
+            _code = 401;
+            errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertFORFIC', true)
+                .then(result => _data = result);
+        }
+    );
+
+    if (_code == 200) {
+        await connPGSQL
+            .query(query00)
+            .then(result => {
+                _code = 200;
+                _data = result.rows;
+            })
+            .catch(e => {
+                _code   = 500;
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertFORFIC', true)
+                    .then(result => _data = result);
+            })
+            .then(() => {
+                connPGSQL.end();
+            }
+        );
+    }
+    
+    return Array(_code, _data);
+}
 
 module.exports = {
     insertDOMFIC,
@@ -385,5 +440,6 @@ module.exports = {
     insertSUCFIC,
     insertUSUFIC,
     insertROLFIC,
-    insertCAMFIC
+    insertCAMFIC,
+    insertFORFIC
 };

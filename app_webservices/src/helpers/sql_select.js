@@ -8,6 +8,7 @@ const {errorBody, jsonBody}   = require('../utils/_json');
     * @param {integer} actionType - Tipo de accion
     * @param {integer} codigo - codigo
     * @param {Strinig} valor- valor
+    * @param {integer} codigo2 - codigo 2 
     * @returns {Array} returns
 */
 const selectDOMINIOTIPO = async(actionType, codigo, valor) => {
@@ -480,6 +481,15 @@ const selectCAMPANHA = async(actionType, codigo, valor) => {
                             empresa_codigo  = ${codigo}`;
             break;
 
+        case 4:
+            query00 = `SELECT
+                            *
+                        FROM
+                            adm.CAMPANHA
+                        WHERE
+                            tipo_campanha_codigo  = (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMCAMPANHATIPO' AND DOMFICPAR = ${codigo})`;
+            break;
+
         default:
             break;
     }
@@ -516,12 +526,80 @@ const selectCAMPANHA = async(actionType, codigo, valor) => {
     return Array(_code, _data);
 }
 
-module.exports = {
+const selectFORMULARIO = async(actionType, codigo) => {
+    let _code   = 200;
+    let _data   = [];
+    let query00 = '';
+
+    switch (actionType) {
+        case 1:
+            query00 = `SELECT
+                            *
+                        FROM
+                            adm.FORMULARIO`;
+            break;
+
+        case 2:
+            query00 = `SELECT
+                            *
+                        FROM
+                            adm.FORMULARIO
+                        WHERE
+                            formulario_codigo = ${codigo}`;
+            break;
+
+        case 3:
+            query00 = `SELECT
+                            *
+                        FROM
+                            adm.FORMULARIO
+                        WHERE
+                            empresa_codigo  = ${codigo}`;
+            break;
+
+        default:
+            break;
+    }
+
+    const connPGSQL = new Client(initPGSQL);
+    await connPGSQL
+        .connect()
+        .catch(e => {
+            _code = 401;
+            errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: selectFORMULARIO', true)
+                .then(result => _data = result);
+        }
+    );
+
+    await connPGSQL
+        .query(query00)
+        .then(result => {
+            _code = 200;
+            _data = result.rows;
+        })
+        .catch(e => {
+            _code = 500;
+            errorBody(_code, 'Code: '+ e.code +' '+e.severity+', '+e.hint, 'Function: selectFORMULARIO')
+                .then(result => _data = result);
+        })
+        .then(() => {
+            connPGSQL.end();
+        }
+    );
+
+    if (_data.length == 0) {
+        _code = 404;
+    }
+    return Array(_code, _data);
+}
+
+module.exports  = {
     selectDOMINIOTIPO,
     selectEMPRESA, 
     selectSUCURSAL,
     selectUSUARIO,
     selectUSUARIOEMPRESA,
     selectROL,
-    selectCAMPANHA
+    selectCAMPANHA,
+    selectFORMULARIO
 };
