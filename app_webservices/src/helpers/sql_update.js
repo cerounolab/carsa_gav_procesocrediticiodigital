@@ -585,6 +585,95 @@ const {errorBody}   = require('../utils/_json');
     return Array(_code, _data);
     }
 
+    
+    const updateFORFIC = async(_ACCION,
+        codigo,
+        _FORFICEST,
+        _FORFICEMC,
+        _FORFICORD,
+        _FORFICNOM,
+        _FORFICURL,
+        _FORFICOBS,
+        _FORFICCEM,
+        _FORFICCUS,
+        _FORFICCIP,
+        _FORFICCPR,
+        _FORFICAEM,
+        _FORFICAUS,
+        _FORFICAIP,
+        _FORFICAPR,
+        _FORFICAIN) => {
+
+        let _code   = 200;
+        let _data   = [];
+        let query00 = '';
+
+        switch (_ACCION) {
+            case 1:
+                query00 = `UPDATE adm.FORFIC SET
+                                FORFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMFORMULARIOESTADO' AND DOMFICPAR = ${_FORFICEST}), 	  
+                                FORFICEMC	= ${_FORFICEMC}, 	  
+                                FORFICORD	= ${_FORFICORD},     
+                                FORFICNOM	= ${_FORFICNOM}, 	
+                                FORFICURL	= ${_FORFICURL}, 	     
+                                FORFICAEM	= ${_FORFICAEM}, 	
+                                FORFICAUS	= ${_FORFICAUS},    
+                                FORFICAIP	= ${_FORFICAIP}, 	
+                                FORFICAPR	= ${_FORFICAPR}, 
+                                FORFICAIN	= ${_FORFICAIN}
+                                
+                            WHERE FORFICCOD = ${codigo}`;	
+
+            break;
+
+            case 2:
+                query00 = `UPDATE adm.FORFIC SET
+                                FORFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMFORMULARIOESTADO' AND DOMFICPAR = ${_FORFICEST}),   
+                                FORFICAEM	= ${_FORFICAEM}, 	  
+                                FORFICAUS	= ${_FORFICAUS}, 	 
+                                FORFICAIP	= ${_FORFICAIP}, 	
+                                FORFICAPR	= ${_FORFICAPR},    
+                                FORFICAIN	= ${_FORFICAIN}
+                                
+                            WHERE FORFICCOD = ${codigo}`;
+            break;	
+
+        }
+
+        const connPGSQL = new Client(initPGSQL);
+
+        await connPGSQL
+            .connect()
+            .catch(e => {
+                _code = 401;
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateFORFIC', true)
+                    .then(result => _data = result);
+            }
+    );
+
+    if (_code == 200) {
+        await connPGSQL
+            .query(query00)
+            .then(result => {
+                _code = 200;
+                _data = result.rows;
+                console.log('aqui');
+            })
+            .catch(e => {
+                _code = 500;
+                console.log(e);
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateFORFIC', true)
+                    .then(result => _data = result);
+            })
+            .then(() => {
+                connPGSQL.end();
+            }
+        );
+    }
+
+    return Array(_code, _data);
+    }
+
 
 module.exports = {
     updateDOMFIC,
@@ -592,6 +681,7 @@ module.exports = {
     updateSUCFIC,
     updateUSUFIC,
     updateROLFIC,
-    updateCAMFIC
+    updateCAMFIC,
+    updateFORFIC
 
 };

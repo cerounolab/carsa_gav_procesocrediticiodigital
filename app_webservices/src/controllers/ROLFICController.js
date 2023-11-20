@@ -25,6 +25,7 @@ const getRol    = (apiREQ, apiRES) => {
 
         } else {
             _dataJSON   = xDATA[1];
+            _dataJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
         }
 
         _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
@@ -51,6 +52,7 @@ const getRolId  = (apiREQ, apiRES) => {
     
             } else {
                 _dataJSON   = xDATA[1];
+                _dataJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
             }
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
@@ -86,6 +88,7 @@ const getRolEmpresaId = (apiREQ, apiRES) => {
     
             } else {
                 _dataJSON   = xDATA[1];
+                _dataJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
             }
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});

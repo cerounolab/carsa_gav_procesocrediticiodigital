@@ -25,6 +25,7 @@ const getCampanha   = (apiREQ, apiRES) => {
 
         } else {
             _dataJSON   = xDATA[1];
+            _dataJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
         }
 
         _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
@@ -51,6 +52,7 @@ const getCampanhaId  = (apiREQ, apiRES) => {
     
             } else {
                 _dataJSON   = xDATA[1];
+                _dataJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
             }
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
@@ -74,7 +76,7 @@ const getCampanhaTipoCampanha = (apiREQ, apiRES) => {
     let _dataJSON   = [];
     let _codigo     = parseInt(apiREQ.params.empresa);
 
-    if (_valor != 'undefined' && _valor != ''){
+    if (_codigo != 'undefined' && _codigo != '' && _codigo != null && _codigo > 0){
 
         (async () => {
             const xDATA = await selectCAMPANHA(3, _codigo, '');
@@ -86,6 +88,7 @@ const getCampanhaTipoCampanha = (apiREQ, apiRES) => {
     
             } else {
                 _dataJSON   = xDATA[1];
+                _dataJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
             }
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
@@ -109,10 +112,10 @@ const getCampanhaEmpresaId  = (apiREQ, apiRES) => {
     let _dataJSON   = [];
     let _codigo     = parseInt(apiREQ.params.empresa);
 
-    if (_valor != 'undefined' && _valor != ''){
+    if (_codigo != 'undefined' && _codigo != '' && _codigo != null && _codigo > 0){
 
         (async () => {
-            const xDATA = await selectCAMPANHA(3, _codigo, '');
+            const xDATA = await selectCAMPANHA(4, _codigo, '');
             _code       = xDATA[0];
             _dataJSON   = xDATA[1];
     
@@ -121,6 +124,7 @@ const getCampanhaEmpresaId  = (apiREQ, apiRES) => {
     
             } else {
                 _dataJSON   = xDATA[1];
+                _dataJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
             }
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});

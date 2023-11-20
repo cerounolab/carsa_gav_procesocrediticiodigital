@@ -25,6 +25,7 @@ const getDominio    = (apiREQ, apiRES) => {
 
         } else {
             _dataJSON   = xDATA[1];
+            _dataJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
         }
 
         _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
@@ -50,6 +51,7 @@ const getDominioId  = (apiREQ, apiRES) => {
 
             } else {
                 _dataJSON   = xDATA[1];
+                _dataJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
             }
 
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
@@ -85,6 +87,7 @@ const getDominioValor   = (apiREQ, apiRES) => {
 
             } else {
                 _dataJSON   = xDATA[1];
+                _dataJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
             }
 
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
