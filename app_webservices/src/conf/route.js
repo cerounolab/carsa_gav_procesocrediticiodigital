@@ -9,8 +9,7 @@ const { getEmpresa, getEmpresaId, getEmpresaRUC, getEmpresaTipoRubro, postEmpres
 const { getSucursal, getSucursalId, getSucursalEmpresaId, getEmpresaTipoSucursal, postSucursal, putSucursal, deleteSucursal } = require('../controllers/SUCFICController');
 const { getUsuario, getUsuarioId, getUsuarioEmpresaId, getUsuarioSucursalId, getUsuarioDocumento, getUsuarioUsu, getUsuarioDocumentoEmpresa, postUsuario,  postUsuarioLogin, putUsuario, deleteUsuario} = require('../controllers/USUFICController');
 const { getRol, getRolId, getRolEmpresaId, postRol, putRol, deleteRol } = require('../controllers/ROLFICController');
-
-
+const { getCampanha, getCampanhaId, getCampanhaTipoCampanha, getCampanhaEmpresaId, postCampanha, putCampanha, deleteCampanha } = require('../controllers/CAMFICController');
 
 router.group('/v1/', (routerGroup) => {
   routerGroup.get('/dominio/listado', getDominio);
@@ -54,6 +53,14 @@ router.group('/v1/', (routerGroup) => {
   routerGroup.post('/rol', postRol);
   routerGroup.put('/rol/:codigo', putRol);
   routerGroup.delete('/rol/:codigo', deleteRol);
+
+  routerGroup.get('/campanha/listado', getCampanha);
+  routerGroup.get('/campanha/codigo/:codigo', getCampanhaId);
+  routerGroup.get('/campanha/tipocampanha/:tipocampanha', getCampanhaTipoCampanha);
+  routerGroup.get('/campanha/empresa/:empresa', getCampanhaEmpresaId);
+  routerGroup.post('/campanha', postCampanha);
+  routerGroup.put('/campanha/:codigo', putCampanha);
+  routerGroup.delete('/campanha/:codigo', deleteCampanha);
 
 }); 
 

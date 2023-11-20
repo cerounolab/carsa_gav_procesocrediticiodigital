@@ -492,11 +492,106 @@ const {errorBody}   = require('../utils/_json');
     return Array(_code, _data);
     }
 
+    const updateCAMFIC = async(_ACCION,
+        codigo,
+        _CAMFICEST,
+        _CAMFICTCC,
+        _CAMFICEMC,
+        _CAMFICORD,
+        _CAMFICNOM,
+        _CAMFICFDE,
+        _CAMFICFHA,
+        _CAMFICEQU,
+        _CAMFICOBS,
+        _CAMFICCEM,
+        _CAMFICCUS,
+        _CAMFICCIP,
+        _CAMFICCPR,
+        _CAMFICAEM,
+        _CAMFICAUS,
+        _CAMFICAIP,
+        _CAMFICAPR,
+        _CAMFICAIN) => {
+
+        let _code   = 200;
+        let _data   = [];
+        let query00 = '';
+
+        switch (_ACCION) {
+            case 1:
+                query00 = `UPDATE adm.CAMFIC SET
+                                CAMFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMCAMPANHAESTADO' AND DOMFICPAR = ${_CAMFICEST}), 																						 
+                                CAMFICTCC	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMCAMPANHATIPO' AND DOMFICPAR = ${_CAMFICTCC}), 	  
+                                CAMFICEMC	= ${_CAMFICEMC}, 	 
+                                CAMFICORD	= ${_CAMFICORD}, 	
+                                CAMFICNOM	= ${_CAMFICNOM}, 	   
+                                CAMFICFDE	= '${_CAMFICFDE}',     
+                                CAMFICFHA	= '${_CAMFICFHA}',     
+                                CAMFICEQU	= ${_CAMFICEQU},     
+                                CAMFICOBS	= ${_CAMFICOBS}, 	        
+                                CAMFICAEM	= ${_CAMFICAEM}, 	  
+                                CAMFICAUS	= ${_CAMFICAUS}, 	 
+                                CAMFICAIP	= ${_CAMFICAIP}, 	
+                                CAMFICAPR	= ${_CAMFICAPR},    
+                                CAMFICAIN	= ${_CAMFICAIN}
+                                
+                            WHERE CAMFICCOD = ${codigo}`;	
+
+            break;
+
+            case 2:
+                query00 = `UPDATE adm.CAMFIC SET
+                                CAMFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMCAMPANHAESTADO' AND DOMFICPAR = ${_CAMFICEST}),     
+                                CAMFICAEM	= ${_CAMFICAEM}, 	  
+                                CAMFICAUS	= ${_CAMFICAUS}, 	 
+                                CAMFICAIP	= ${_CAMFICAIP}, 	
+                                CAMFICAPR	= ${_CAMFICAPR},    
+                                CAMFICAIN	= ${_CAMFICAIN}
+                                
+                            WHERE CAMFICCOD = ${codigo}`;
+            break;	
+
+        }
+
+        const connPGSQL = new Client(initPGSQL);
+
+        await connPGSQL
+            .connect()
+            .catch(e => {
+                _code = 401;
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateCAMFIC', true)
+                    .then(result => _data = result);
+            }
+    );
+
+    if (_code == 200) {
+        await connPGSQL
+            .query(query00)
+            .then(result => {
+                _code = 200;
+                _data = result.rows;
+            })
+            .catch(e => {
+                _code = 500;
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateCAMFIC', true)
+                    .then(result => _data = result);
+            })
+            .then(() => {
+                connPGSQL.end();
+            }
+        );
+    }
+
+    return Array(_code, _data);
+    }
+
 
 module.exports = {
     updateDOMFIC,
     updateEMPFIC,
     updateSUCFIC,
     updateUSUFIC,
-    updateROLFIC
+    updateROLFIC,
+    updateCAMFIC
+
 };
