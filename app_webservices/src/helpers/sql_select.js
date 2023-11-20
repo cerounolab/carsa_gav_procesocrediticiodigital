@@ -64,7 +64,6 @@ const selectDOMINIOTIPO = async(actionType, codigo, valor) => {
             })
             .catch(e => {
                 _code = 500;
-                console.log(e);
                 errorBody(_code, 'Code: '+ e.code +' '+e.severity+', '+e.hint, 'Function: selectDOMINIOTIPO')
                     .then(result => _data = result);
             })
@@ -331,7 +330,7 @@ const selectUSUARIOEMPRESA = async(actionType, codigo, valor) => {
     switch (actionType) {
         case 1:
             query00 = `SELECT 
-                            a.CLUSU									AS		usuario_usuario,
+                            TRIM(a.CLUSU)							AS		usuario_usuario,
                             a.CLCON									AS		usuario_password,
                         
                             TRIM(b.FUNOM) +' '+TRIM(b.FNOMB2)		AS		usuario_nombre,
@@ -379,8 +378,6 @@ const selectUSUARIOEMPRESA = async(actionType, codigo, valor) => {
     }else{
         _data   =  _data['recordset'];
     }
-
-    console.log(_data);
    
     return Array(_code, _data);
 }
@@ -452,6 +449,72 @@ const selectROL = async(actionType, codigo, valor) => {
     return Array(_code, _data);
 }
 
+const selectCAMPANHA = async(actionType, codigo, valor) => {
+    let _code   = 200;
+    let _data   = [];
+    let query00 = '';
+
+    switch (actionType) {
+        case 1:
+            query00 = `SELECT
+                            *
+                        FROM
+                            adm.CAMPANHA`;
+            break;
+
+        case 2:
+            query00 = `SELECT
+                            *
+                        FROM
+                            adm.CAMPANHA
+                        WHERE
+                            campanha_codigo = ${codigo}`;
+            break;
+
+        case 3:
+            query00 = `SELECT
+                            *
+                        FROM
+                            adm.CAMPANHA
+                        WHERE
+                            empresa_codigo  = ${codigo}`;
+            break;
+
+        default:
+            break;
+    }
+
+    const connPGSQL = new Client(initPGSQL);
+    await connPGSQL
+        .connect()
+        .catch(e => {
+            _code = 401;
+            errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: selectCAMPANHA', true)
+                .then(result => _data = result);
+        }
+    );
+
+    await connPGSQL
+        .query(query00)
+        .then(result => {
+            _code = 200;
+            _data = result.rows;
+        })
+        .catch(e => {
+            _code = 500;
+            errorBody(_code, 'Code: '+ e.code +' '+e.severity+', '+e.hint, 'Function: selectCAMPANHA')
+                .then(result => _data = result);
+        })
+        .then(() => {
+            connPGSQL.end();
+        }
+    );
+
+    if (_data.length == 0) {
+        _code = 404;
+    }
+    return Array(_code, _data);
+}
 
 module.exports = {
     selectDOMINIOTIPO,
@@ -459,5 +522,6 @@ module.exports = {
     selectSUCURSAL,
     selectUSUARIO,
     selectUSUARIOEMPRESA,
-    selectROL
+    selectROL,
+    selectCAMPANHA
 };
