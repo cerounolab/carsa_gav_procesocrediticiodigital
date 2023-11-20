@@ -26,6 +26,7 @@ const getEmpresa    = (apiREQ, apiRES) => {
 
         } else {
             _dataJSON   = xDATA[1];
+            _dataJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
         }
 
         _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
@@ -51,6 +52,7 @@ const getEmpresaId  = (apiREQ, apiRES) => {
     
             } else {
                 _dataJSON   = xDATA[1];
+                _dataJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
             }
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
@@ -86,6 +88,7 @@ const getEmpresaRUC = (apiREQ, apiRES) => {
     
             } else {
                 _dataJSON   = xDATA[1];
+                _dataJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
             }
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
@@ -121,6 +124,7 @@ const getEmpresaTipoRubro   = (apiREQ, apiRES) => {
     
             } else {
                 _dataJSON   = xDATA[1];
+                _dataJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
             }
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
