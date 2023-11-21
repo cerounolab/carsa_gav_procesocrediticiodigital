@@ -593,6 +593,73 @@ const selectFORMULARIO = async(actionType, codigo) => {
     return Array(_code, _data);
 }
 
+const selectROLFORMULARIO  = async(actionType, codigo, codigo2) => {
+    let _code   = 200;
+    let _data   = [];
+    let query00 = '';
+
+    switch (actionType) {
+        case 1:
+            query00 = `SELECT
+                            *
+                        FROM
+                            adm.ROLFORMULARIO`;
+            break;
+
+        case 2:
+            query00 = `SELECT 
+                            * 
+                        FROM 
+                            adm.ROLFORMULARIO 
+                            
+                        WHERE rol_codigo = ${codigo} AND formulario_codigo = ${codigo2}`;
+            break;
+
+        case 3:
+            query00 = `SELECT
+                            *
+                        FROM
+                            adm.ROLFORMULARIO
+                        WHERE
+                            empresa_codigo  = ${codigo}`;
+            break;
+
+        default:
+            break;
+    }
+
+    const connPGSQL = new Client(initPGSQL);
+    await connPGSQL
+        .connect()
+        .catch(e => {
+            _code = 401;
+            errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: selectFORMULARIO', true)
+                .then(result => _data = result);
+        }
+    );
+
+    await connPGSQL
+        .query(query00)
+        .then(result => {
+            _code = 200;
+            _data = result.rows;
+        })
+        .catch(e => {
+            _code = 500;
+            errorBody(_code, 'Code: '+ e.code +' '+e.severity+', '+e.hint, 'Function: selectFORMULARIO')
+                .then(result => _data = result);
+        })
+        .then(() => {
+            connPGSQL.end();
+        }
+    );
+
+    if (_data.length == 0) {
+        _code = 404;
+    }
+    return Array(_code, _data);
+}
+
 module.exports  = {
     selectDOMINIOTIPO,
     selectEMPRESA, 
@@ -601,5 +668,6 @@ module.exports  = {
     selectUSUARIOEMPRESA,
     selectROL,
     selectCAMPANHA,
-    selectFORMULARIO
+    selectFORMULARIO,
+    selectROLFORMULARIO
 };

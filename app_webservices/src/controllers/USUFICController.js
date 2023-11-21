@@ -310,7 +310,10 @@ const postUsuario   = (apiREQ, apiRES) => {
                     if (_code == 200) {
                         xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
 
-                    } else {
+                    } else if (_code == 404){
+                        xJSON   = xDATA[1];
+                        xJSON   = await jsonBody(_code, 'El usuario ya existe', null, null, null, 0, 0, 0, 0, xJSON);
+                    }else{
                         xJSON   = xDATA[1];
                         xJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
                     }
@@ -426,36 +429,39 @@ const putUsuario    = (apiREQ, apiRES) => {
         (async () => {
             bcrypt.hash(_USUFICPAS, rondasDeSal, async (err, _USUFICPAS2) => {
                 xDATA = await updateUSUFIC(_ACCION,
-                    _USUFICCOD,
-                    _USUFICEST,
-                    _USUFICEMC,
-                    _USUFICSUC,
-                    _USUFICORD,
-                    _USUFICDOC,
-                    _USUFICNOM,
-                    _USUFICAPE,
-                    _USUFICUSU,
-                    _USUFICPAS2,
-                    _USUFICEMA,
-                    _USUFICCEL,
-                    _USUFICOBS,
-                    _USUFICCEM,
-                    _USUFICCUS,
-                    _USUFICCIP,
-                    _USUFICCPR,
-                    _USUFICAEM,
-                    _USUFICAUS,
-                    _USUFICAIP,
-                    _USUFICAPR,
-                    _USUFICAIN);
+                _USUFICCOD,
+                _USUFICEST,
+                _USUFICEMC,
+                _USUFICSUC,
+                _USUFICORD,
+                _USUFICDOC,
+                _USUFICNOM,
+                _USUFICAPE,
+                _USUFICUSU,
+                _USUFICPAS2,
+                _USUFICEMA,
+                _USUFICCEL,
+                _USUFICOBS,
+                _USUFICCEM,
+                _USUFICCUS,
+                _USUFICCIP,
+                _USUFICCPR,
+                _USUFICAEM,
+                _USUFICAUS,
+                _USUFICAIP,
+                _USUFICAPR,
+                _USUFICAIN);
 
                 _code   = xDATA[0];
                 xJSON   = xDATA[1];
 
                 if (_code == 200) {
                     xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
-
-                } else {
+    
+                } else if (_code == 404){
+                    xJSON   = xDATA[1];
+                    xJSON   = await jsonBody(_code, 'El registro ya existe', null, null, null, 0, 0, 0, 0, xJSON);
+                }else{
                     xJSON   = xDATA[1];
                     xJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
                 }

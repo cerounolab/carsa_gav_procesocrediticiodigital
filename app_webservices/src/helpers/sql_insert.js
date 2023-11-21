@@ -73,28 +73,28 @@ const insertDOMFIC  = async(_DOMFICEST,
 }
 
 const insertEMPFIC  = async(_EMPFICEST,
-                        _EMPFICTRC,
-                        _EMPFICTAC,
-                        _EMPFICORD,
-                        _EMPFICNOM,
-                        _EMPFICRUC,
-                        _EMPFICTEL,
-                        _EMPFICCEL,
-                        _EMPFICWEB,
-                        _EMPFICCOR,
-                        _EMPFICUBI,
-                        _EMPFICDIR,
-                        _EMPFICLOG,
-                        _EMPFICOBS,
-                        _EMPFICCEM,
-                        _EMPFICCUS,
-                        _EMPFICCIP,
-                        _EMPFICCPR,
-                        _EMPFICAEM,
-                        _EMPFICAUS,
-                        _EMPFICAIP,
-                        _EMPFICAPR,
-                        _EMPFICAIN) => {
+    _EMPFICTRC,
+    _EMPFICTAC,
+    _EMPFICORD,
+    _EMPFICNOM,
+    _EMPFICRUC,
+    _EMPFICTEL,
+    _EMPFICCEL,
+    _EMPFICWEB,
+    _EMPFICCOR,
+    _EMPFICUBI,
+    _EMPFICDIR,
+    _EMPFICLOG,
+    _EMPFICOBS,
+    _EMPFICCEM,
+    _EMPFICCUS,
+    _EMPFICCIP,
+    _EMPFICCPR,
+    _EMPFICAEM,
+    _EMPFICAUS,
+    _EMPFICAIP,
+    _EMPFICAPR,
+    _EMPFICAIN) => {
 
     let _code   = 200;
     let _data   = [];
@@ -103,7 +103,7 @@ const insertEMPFIC  = async(_EMPFICEST,
 
     query00 = `INSERT INTO adm.EMPFIC (																						   EMPFICEST, 																						  	 EMPFICTRC, 																						   EMPFICTAC, 	  EMPFICORD, 	 EMPFICNOM, 	EMPFICRUC, 	   EMPFICTEL,     EMPFICCEL, 	 EMPFICWEB, 	EMPFICCOR, 	   EMPFICUBI, 	  EMPFICDIR, 	 EMPFICLOG,     EMPFICOBS, 	   EMPFICCEM,	  EMPFICCUS, 	 EMPFICCIP, 	EMPFICCPR,     EMPFICAEM,     EMPFICAUS,     EMPFICAIP,     EMPFICAPR)
                             SELECT (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMEMPRESAESTADO' AND DOMFICPAR = ${_EMPFICEST}), (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMEMPRESARUBRO' AND DOMFICPAR = ${_EMPFICTRC}), (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMEMPRESARUBRO' AND DOMFICPAR = ${_EMPFICTAC}), ${_EMPFICORD}, ${_EMPFICNOM}, ${_EMPFICRUC}, ${_EMPFICTEL}, ${_EMPFICCEL}, ${_EMPFICWEB}, ${_EMPFICCOR}, ${_EMPFICUBI}, ${_EMPFICDIR}, ${_EMPFICLOG}, ${_EMPFICOBS}, ${_EMPFICCEM}, ${_EMPFICCUS}, ${_EMPFICCIP}, ${_EMPFICCPR}, ${_EMPFICAEM}, ${_EMPFICAUS}, ${_EMPFICAIP}, ${_EMPFICAPR}
-                            WHERE NOT EXISTS (SELECT * FROM adm.EMPFIC WHERE EMPFICRUC = ${_EMPFICRUC})`;	            
+                            WHERE NOT EXISTS (SELECT * FROM adm.EMPFIC WHERE EMPFICRUC = ${_EMPFICRUC}) RETURNING EMPFICRUC`;	            
 
     const connPGSQL = new Client(initPGSQL);
     
@@ -132,6 +132,10 @@ const insertEMPFIC  = async(_EMPFICEST,
                 connPGSQL.end();
             }
         );
+    }
+
+    if (_data == '') {
+        _code   = 404;
     }
     
     return Array(_code, _data);
@@ -227,10 +231,10 @@ const insertUSUFIC  = async(_USUFICEST,
 
     query00 = `INSERT INTO adm.USUFIC(																					   USUFICEST, 	  USUFICEMC, 	 USUFICSUC,     USUFICORD, 	   USUFICDOC, 	  USUFICNOM, 	 USUFICAPE, 	USUFICUSU, 	  USUFICPAS, 	 USUFICEMA, 	 USUFICCEL, 	USUFICOBS, 	  USUFICCEM, 	  USUFICCUS, 	 USUFICCIP, 	USUFICCPR,     USUFICAEM,     USUFICAUS,     USUFICAIP, 	   USUFICAPR, USUFICAIN)
                         SELECT (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOESTADO' AND DOMFICPAR = ${_USUFICEST}), ${_USUFICEMC}, ${_USUFICSUC}, ${_USUFICORD}, ${_USUFICDOC}, ${_USUFICNOM}, ${_USUFICAPE}, ${_USUFICUSU}, '${_USUFICPAS}', ${_USUFICEMA}, ${_USUFICCEL}, ${_USUFICOBS}, ${_USUFICCEM}, ${_USUFICCUS}, ${_USUFICCIP}, ${_USUFICCPR}, ${_USUFICAEM}, ${_USUFICAUS}, ${_USUFICAIP}, ${_USUFICAPR}, ${_USUFICAIN}
-                        WHERE NOT EXISTS (SELECT * FROM adm.USUFIC WHERE USUFICUSU = ${_USUFICUSU})`;	            
+                        WHERE NOT EXISTS (SELECT * FROM adm.USUFIC WHERE USUFICUSU = ${_USUFICUSU} AND USUFICEMC = ${_USUFICEMC}) RETURNING USUFICUSU, USUFICEMC`;	            
 
     const connPGSQL = new Client(initPGSQL);
-//funcion FSD050
+
     await connPGSQL
         .connect()
         .catch(e => {
@@ -249,6 +253,7 @@ const insertUSUFIC  = async(_USUFICEST,
             })
             .catch(e => {
                 _code = 500;
+                console.log(e);
                 errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertUSUFIC', true)
                     .then(result => _data = result);
             })
@@ -256,6 +261,12 @@ const insertUSUFIC  = async(_USUFICEST,
                 connPGSQL.end();
             }
         );
+    }
+
+    //console.log(_data[0]);
+
+    if (_data == '') {
+        _code   = 404;
     }
     
     return Array(_code, _data);
@@ -434,6 +445,77 @@ const insertFORFIC  = async(_FORFICEST,
     return Array(_code, _data);
 }
 
+const insertROLFOR  = async(_ROLFORROC,
+    _ROLFORFOC,
+    _ROLFOREST,
+    _ROLFOREMC,
+    _ROLFORORD,
+    _ROLFORACC,
+    _ROLFORDSP,
+    _ROLFORUPD,
+    _ROLFORDLT,
+    _ROLFORINS,
+    _ROLFORXLS,
+    _ROLFORPDF,
+    _ROLFORIMP,
+    _ROLFOROBS,
+    _ROLFORCEM,
+    _ROLFORCUS,
+    _ROLFORCIP,
+    _ROLFORCPR,
+    _ROLFORAEM,
+    _ROLFORAUS,
+    _ROLFORAIP,
+    _ROLFORAPR,
+    _ROLFORAIN) => {
+
+    let _code   = 200;
+    let _data   = [];
+
+    let query00 = '';
+
+    query00 = `INSERT INTO adm.ROLFOR (ROLFORROC, 	  ROLFORFOC, 																								   ROLFOREST,     ROLFOREMC, 	ROLFORORD, 		ROLFORACC, 	   ROLFORDSP, 	  ROLFORUPD, 	 ROLFORDLT,     ROLFORINS,     ROLFORXLS,     ROLFORPDF,     ROLFORIMP, 	ROLFOROBS, 	   ROLFORCEM,     ROLFORCUS,    ROLFORCIP,      ROLFORCPR,     ROLFORAEM,     ROLFORAUS,     ROLFORAIP,    ROLFORAPR,    ROLFORAIN)
+                            SELECT ${_ROLFORROC}, ${_ROLFORFOC}, (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMROLFORMULARIOESTADO' AND DOMFICPAR = ${_ROLFOREST}), ${_ROLFOREMC}, ${_ROLFORORD}, ${_ROLFORACC}, ${_ROLFORDSP}, ${_ROLFORUPD}, ${_ROLFORDLT}, ${_ROLFORINS}, ${_ROLFORXLS}, ${_ROLFORPDF}, ${_ROLFORIMP}, ${_ROLFOROBS}, ${_ROLFORCEM}, ${_ROLFORCUS}, ${_ROLFORCIP}, ${_ROLFORCPR}, ${_ROLFORAEM}, ${_ROLFORAUS}, ${_ROLFORAIP}, ${_ROLFORAPR}, ${_ROLFORAIN}
+                            WHERE NOT EXISTS (SELECT * FROM adm.ROLFOR WHERE ROLFORROC = ${_ROLFORROC} AND ROLFORFOC = ${_ROLFORFOC}) RETURNING ROLFORROC, ROLFORFOC`;	            
+
+    const connPGSQL = new Client(initPGSQL);
+
+    await connPGSQL
+        .connect()
+        .catch(e => {
+            _code = 401;
+            errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertROLFOR', true)
+                .then(result => _data = result);
+        }
+    );
+
+    if (_code == 200) {
+        await connPGSQL
+            .query(query00)
+            .then(result => {
+                _code = 200;
+                _data = result.rows;
+            })
+            .catch(e => {
+                _code   = 500;
+                console.log(e);
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertROLFOR', true)
+                    .then(result => _data = result);
+            })
+            .then(() => {
+                connPGSQL.end();
+            }
+        );
+        
+    }
+  
+    if (_data == '') {
+        _code   = 404;
+    }
+   
+    return Array(_code, _data);
+}
+
 module.exports = {
     insertDOMFIC,
     insertEMPFIC,
@@ -441,5 +523,6 @@ module.exports = {
     insertUSUFIC,
     insertROLFIC,
     insertCAMFIC,
-    insertFORFIC
+    insertFORFIC,
+    insertROLFOR
 };

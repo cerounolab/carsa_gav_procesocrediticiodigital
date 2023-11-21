@@ -176,28 +176,28 @@ const postEmpresa   = (apiREQ, apiRES) => {
 
         (async () => {
             xDATA = await insertEMPFIC(_EMPFICEST,
-                _EMPFICTRC,
-                _EMPFICTAC,
-                _EMPFICORD,
-                _EMPFICNOM,
-                _EMPFICRUC,
-                _EMPFICTEL,
-                _EMPFICCEL,
-                _EMPFICWEB,
-                _EMPFICCOR,
-                _EMPFICUBI,
-                _EMPFICDIR,
-                _EMPFICLOG,
-                _EMPFICOBS,
-                _EMPFICCEM,
-                _EMPFICCUS,
-                _EMPFICCIP,
-                _EMPFICCPR,
-                _EMPFICAEM,
-                _EMPFICAUS,
-                _EMPFICAIP,
-                _EMPFICAPR,
-                _EMPFICAIN);
+            _EMPFICTRC,
+            _EMPFICTAC,
+            _EMPFICORD,
+            _EMPFICNOM,
+            _EMPFICRUC,
+            _EMPFICTEL,
+            _EMPFICCEL,
+            _EMPFICWEB,
+            _EMPFICCOR,
+            _EMPFICUBI,
+            _EMPFICDIR,
+            _EMPFICLOG,
+            _EMPFICOBS,
+            _EMPFICCEM,
+            _EMPFICCUS,
+            _EMPFICCIP,
+            _EMPFICCPR,
+            _EMPFICAEM,
+            _EMPFICAUS,
+            _EMPFICAIP,
+            _EMPFICAPR,
+            _EMPFICAIN);
 
             _code   = xDATA[0];
             xJSON   = xDATA[1];
@@ -205,9 +205,12 @@ const postEmpresa   = (apiREQ, apiRES) => {
             if (_code == 200) {
                 xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
 
-            } else {
+            } else if (_code == 404){
                 xJSON   = xDATA[1];
-                xJSON = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON   = await jsonBody(_code, 'El registro ya existe', null, null, null, 0, 0, 0, 0, xJSON);
+            }else{
+                xJSON   = xDATA[1];
+                xJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
             }
 
             xJSON = camelcaseKeys(xJSON, {deep: true});
@@ -263,26 +266,26 @@ const putEmpresa    = (apiREQ, apiRES) => {
 
         (async () => {
             xDATA = await updateEMPFIC(_ACCION,
-                                    _EMPFICCOD,
-                                    _EMPFICEST,
-                                    _EMPFICTRC,
-                                    _EMPFICTAC,
-                                    _EMPFICORD,
-                                    _EMPFICNOM,
-                                    _EMPFICRUC,
-                                    _EMPFICTEL,
-                                    _EMPFICCEL,
-                                    _EMPFICWEB,
-                                    _EMPFICCOR,
-                                    _EMPFICUBI,
-                                    _EMPFICDIR,
-                                    _EMPFICLOG,
-                                    _EMPFICOBS,
-                                    _EMPFICAEM,
-                                    _EMPFICAUS,
-                                    _EMPFICAIP,
-                                    _EMPFICAPR,
-                                    _EMPFICAIN);
+            _EMPFICCOD,
+            _EMPFICEST,
+            _EMPFICTRC,
+            _EMPFICTAC,
+            _EMPFICORD,
+            _EMPFICNOM,
+            _EMPFICRUC,
+            _EMPFICTEL,
+            _EMPFICCEL,
+            _EMPFICWEB,
+            _EMPFICCOR,
+            _EMPFICUBI,
+            _EMPFICDIR,
+            _EMPFICLOG,
+            _EMPFICOBS,
+            _EMPFICAEM,
+            _EMPFICAUS,
+            _EMPFICAIP,
+            _EMPFICAPR,
+            _EMPFICAIN);
 
             _code   = xDATA[0];
             xJSON   = xDATA[1];
@@ -290,7 +293,10 @@ const putEmpresa    = (apiREQ, apiRES) => {
             if (_code == 200) {
                 xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
 
-            } else {
+            } else if (_code == 404){
+                xJSON   = xDATA[1];
+                xJSON   = await jsonBody(_code, 'El registro ya existe', null, null, null, 0, 0, 0, 0, xJSON);
+            }else{
                 xJSON   = xDATA[1];
                 xJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
             }
