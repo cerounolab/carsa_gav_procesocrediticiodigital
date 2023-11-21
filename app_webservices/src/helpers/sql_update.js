@@ -3,6 +3,7 @@ const {errorBody}   = require('../utils/_json');
 
 /**
     * @param {integer} codigo - codigo
+    * @param {integer} codigo2 - codigo2
     * @returns {Array} returns
 */
 
@@ -57,7 +58,7 @@ const {errorBody}   = require('../utils/_json');
                             FROM adm.DOMFIC b
 
                             WHERE a.DOMFICCOD = ${codigo} AND
-                            NOT EXISTS (SELECT * FROM adm.DOMFIC c WHERE c.DOMFICVAL = ${_DOMFICVAL} AND b.DOMFICPAR <> c.DOMFICPAR AND c.DOMFICCOD = ${codigo})`;	
+                            NOT EXISTS (SELECT * FROM adm.DOMFIC c WHERE c.DOMFICVAL = ${_DOMFICVAL} AND b.DOMFICPAR <> c.DOMFICPAR AND c.DOMFICCOD = ${codigo}) RETURNING a.DOMFICCOD`;	
             break;
 
             case 2:
@@ -68,7 +69,7 @@ const {errorBody}   = require('../utils/_json');
                                 DOMFICAIP   = ${_DOMFICAIP},     
                                 DOMFICAPR   = ${_DOMFICAPR} 
 
-                            WHERE DOMFICCOD   = ${codigo}`;
+                            WHERE DOMFICCOD = ${codigo} RETURNING DOMFICCOD`;
             break;	
         }
 
@@ -99,6 +100,10 @@ const {errorBody}   = require('../utils/_json');
                     connPGSQL.end();
                 }
             );
+        }
+        
+        if (_data == ''){
+            _code   = 404;
         }
         
         return Array(_code, _data);
@@ -155,7 +160,7 @@ const {errorBody}   = require('../utils/_json');
                                 
                             FROM adm.EMPFIC b
                             WHERE a.EMPFICCOD   = ${codigo} AND
-                            NOT EXISTS (SELECT * FROM adm.EMPFIC c WHERE c.EMPFICRUC = ${_EMPFICRUC} AND c.EMPFICCOD <> b.EMPFICCOD)`;	
+                            NOT EXISTS (SELECT * FROM adm.EMPFIC c WHERE c.EMPFICRUC = ${_EMPFICRUC} AND c.EMPFICCOD <> b.EMPFICCOD) RETURNING a.EMPFICCOD`;	
 
             break;
 
@@ -167,7 +172,7 @@ const {errorBody}   = require('../utils/_json');
                                 EMPFICAIP	= ${_EMPFICAIP},     
                                 EMPFICAPR	= ${_EMPFICAPR} 
 
-                            WHERE EMPFICCOD =  ${codigo}`;
+                            WHERE EMPFICCOD =  ${codigo} RETURNING EMPFICCOD`;
             break;	
         }
 
@@ -198,6 +203,10 @@ const {errorBody}   = require('../utils/_json');
                     connPGSQL.end();
                 }
             );
+        }
+
+        if (_data == ''){
+            _code   = 404;
         }
         
         return Array(_code, _data);
@@ -344,7 +353,7 @@ const {errorBody}   = require('../utils/_json');
                                 USUFICAPR	= ${_USUFICAPR},  
                                 USUFICAIN	= ${_USUFICAIN}
                             
-                            WHERE USUFICCOD = ${codigo}`;	
+                            WHERE USUFICCOD = ${codigo} RETURNING USUFICCOD`;	
 
             break;
 
@@ -357,7 +366,7 @@ const {errorBody}   = require('../utils/_json');
                                 USUFICAPR	= ${_USUFICAPR},  
                                 USUFICAIN	= ${_USUFICAIN}
 
-                            WHERE USUFICCOD =  ${codigo}`;
+                            WHERE USUFICCOD =  ${codigo} RETURNING USUFICCOD`;
             break;	
 
             case 3:
@@ -369,7 +378,7 @@ const {errorBody}   = require('../utils/_json');
                                 USUFICAPR	= ${_USUFICAPR},  
                                 USUFICAIN	= ${_USUFICAIN}
 
-                            WHERE USUFICCOD =  ${codigo}`;
+                            WHERE USUFICCOD =  ${codigo} RETURNING USUFICCOD`;
             break;
         }
 
@@ -400,6 +409,10 @@ const {errorBody}   = require('../utils/_json');
                 connPGSQL.end();
             }
         );
+    }
+
+    if (_data == ''){
+        _code   = 404;
     }
 
     return Array(_code, _data);
@@ -585,7 +598,6 @@ const {errorBody}   = require('../utils/_json');
     return Array(_code, _data);
     }
 
-    
     const updateFORFIC = async(_ACCION,
         codigo,
         _FORFICEST,
@@ -657,7 +669,104 @@ const {errorBody}   = require('../utils/_json');
             .then(result => {
                 _code = 200;
                 _data = result.rows;
-                console.log('aqui');
+            })
+            .catch(e => {
+                _code = 500;
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateFORFIC', true)
+                    .then(result => _data = result);
+            })
+            .then(() => {
+                connPGSQL.end();
+            }
+        );
+    }
+
+    return Array(_code, _data);
+    }
+
+    const updateROLFOR = async(_ACCION,
+        codigo,
+        codigo2,
+        _ROLFOREST,
+        _ROLFOREMC,
+        _ROLFORORD,
+        _ROLFORACC,
+        _ROLFORDSP,
+        _ROLFORUPD,
+        _ROLFORDLT,
+        _ROLFORINS,
+        _ROLFORXLS,
+        _ROLFORPDF,
+        _ROLFORIMP,
+        _ROLFOROBS,
+        _ROLFORCEM,
+        _ROLFORCUS,
+        _ROLFORCIP,
+        _ROLFORCPR,
+        _ROLFORAEM,
+        _ROLFORAUS,
+        _ROLFORAIP,
+        _ROLFORAPR,
+        _ROLFORAIN) => {
+
+        let _code   = 200;
+        let _data   = [];
+        let query00 = '';
+
+        switch (_ACCION) {
+            case 1:
+                query00 = `UPDATE adm.ROLFOR SET  																								   
+                                ROLFOREST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMROLFORMULARIOESTADO' AND DOMFICPAR = ${_ROLFOREST}),    
+                                ROLFORORD	= ${_ROLFORORD}, 		
+                                ROLFORACC	= ${_ROLFORACC}, 	   
+                                ROLFORDSP	= ${_ROLFORDSP}, 	  
+                                ROLFORUPD	= ${_ROLFORUPD},	 
+                                ROLFORDLT	= ${_ROLFORDLT},     
+                                ROLFORINS	= ${_ROLFORINS},     
+                                ROLFORXLS	= ${_ROLFORXLS},     
+                                ROLFORPDF	= ${_ROLFORPDF},     
+                                ROLFORIMP	= ${_ROLFORIMP}, 	
+                                ROLFOROBS	= ${_ROLFOROBS}, 	        
+                                ROLFORAEM	= ${_ROLFORAEM},     
+                                ROLFORAUS	= ${_ROLFORAUS},     
+                                ROLFORAIP	= ${_ROLFORAIP},    
+                                ROLFORAPR	= ${_ROLFORAPR},    
+                                ROLFORAIN	= ${_ROLFORAIN}
+                                
+                            WHERE ROLFORROC = ${codigo} AND ROLFORFOC = ${codigo2} AND ROLFOREMC = ${_ROLFOREMC}`;	
+
+            break;
+
+            case 2:
+                query00 = `UPDATE adm.ROLFOR SET  																								   
+                                ROLFOREST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMROLFORMULARIOESTADO' AND DOMFICPAR = ${_ROLFOREST}),    
+                                ROLFORAEM	= ${_ROLFORAEM},     
+                                ROLFORAUS	= ${_ROLFORAUS},     
+                                ROLFORAIP	= ${_ROLFORAIP},    
+                                ROLFORAPR	= ${_ROLFORAPR},    
+                                ROLFORAIN	= ${_ROLFORAIN}
+                                
+                                WHERE ROLFORROC = ${codigo} AND ROLFORFOC = ${codigo2} AND ROLFOREMC = ${_ROLFOREMC}`;
+            break;	
+
+        }
+
+        const connPGSQL = new Client(initPGSQL);
+
+        await connPGSQL
+            .connect()
+            .catch(e => {
+                _code = 401;
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateFORFIC', true)
+                    .then(result => _data = result);
+            }
+    );
+
+    if (_code == 200) {
+        await connPGSQL
+            .query(query00)
+            .then(result => {
+                _code = 200;
             })
             .catch(e => {
                 _code = 500;
@@ -674,7 +783,6 @@ const {errorBody}   = require('../utils/_json');
     return Array(_code, _data);
     }
 
-
 module.exports = {
     updateDOMFIC,
     updateEMPFIC,
@@ -682,6 +790,7 @@ module.exports = {
     updateUSUFIC,
     updateROLFIC,
     updateCAMFIC,
-    updateFORFIC
+    updateFORFIC,
+    updateROLFOR
 
 };

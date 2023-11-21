@@ -134,23 +134,23 @@ const postDominio   = (apiREQ, apiRES) => {
 
         (async () => {
             xDATA = await insertDOMFIC(_DOMFICEST,
-                                    _DOMFICORD,
-                                    _DOMFICPAR,
-                                    _DOMFICNOM,
-                                    _DOMFICCSS,
-                                    _DOMFICICO,
-                                    _DOMFICPAT,
-                                    _DOMFICEQU,
-                                    _DOMFICVAL,
-                                    _DOMFICOBS,
-                                    _DOMFICCEM,
-                                    _DOMFICCUS,
-                                    _DOMFICCIP,
-                                    _DOMFICCPR,
-                                    _DOMFICAEM,
-                                    _DOMFICAUS,
-                                    _DOMFICAIP,
-                                    _DOMFICAPR);
+            _DOMFICORD,
+            _DOMFICPAR,
+            _DOMFICNOM,
+            _DOMFICCSS,
+            _DOMFICICO,
+            _DOMFICPAT,
+            _DOMFICEQU,
+            _DOMFICVAL,
+            _DOMFICOBS,
+            _DOMFICCEM,
+            _DOMFICCUS,
+            _DOMFICCIP,
+            _DOMFICCPR,
+            _DOMFICAEM,
+            _DOMFICAUS,
+            _DOMFICAIP,
+            _DOMFICAPR);
 
             _code   = xDATA[0];
             xJSON  = xDATA[1];
@@ -158,9 +158,12 @@ const postDominio   = (apiREQ, apiRES) => {
             if (_code == 200) {
                 xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
 
-            } else {
+            } else if (_code == 404){
                 xJSON   = xDATA[1];
-                xJSON = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON   = await jsonBody(_code, 'El registro ya existe', null, null, null, 0, 0, 0, 0, xJSON);
+            }else{
+                xJSON   = xDATA[1];
+                xJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
             }
 
             xJSON = camelcaseKeys(xJSON, {deep: true});
@@ -211,25 +214,25 @@ const putDominio    = (apiREQ, apiRES) => {
 
         (async () => {
             xDATA = await updateDOMFIC(_ACCION,
-                                    _DOMFICCOD,
-                                    _DOMFICEST,
-                                    _DOMFICORD,
-                                    _DOMFICPAR,
-                                    _DOMFICNOM,
-                                    _DOMFICCSS,
-                                    _DOMFICICO,
-                                    _DOMFICPAT,
-                                    _DOMFICEQU,
-                                    _DOMFICVAL,
-                                    _DOMFICOBS,
-                                    _DOMFICCEM,
-                                    _DOMFICCUS,
-                                    _DOMFICCIP,
-                                    _DOMFICCPR,
-                                    _DOMFICAEM,
-                                    _DOMFICAUS,
-                                    _DOMFICAIP,
-                                    _DOMFICAPR);
+            _DOMFICCOD,
+            _DOMFICEST,
+            _DOMFICORD,
+            _DOMFICPAR,
+            _DOMFICNOM,
+            _DOMFICCSS,
+            _DOMFICICO,
+            _DOMFICPAT,
+            _DOMFICEQU,
+            _DOMFICVAL,
+            _DOMFICOBS,
+            _DOMFICCEM,
+            _DOMFICCUS,
+            _DOMFICCIP,
+            _DOMFICCPR,
+            _DOMFICAEM,
+            _DOMFICAUS,
+            _DOMFICAIP,
+            _DOMFICAPR);
 
             _code   = xDATA[0];
             xJSON   = xDATA[1];
@@ -237,12 +240,15 @@ const putDominio    = (apiREQ, apiRES) => {
             if (_code == 200) {
                 xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
 
-            } else {
+            } else if (_code == 404){
                 xJSON   = xDATA[1];
-                xJSON = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON   = await jsonBody(_code, 'El registro ya existe', null, null, null, 0, 0, 0, 0, xJSON);
+            }else{
+                xJSON   = xDATA[1];
+                xJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
             }
 
-            xJSON1 = camelcaseKeys(xJSON, {deep: true});
+            xJSON = camelcaseKeys(xJSON, {deep: true});
 
            return apiRES.status(_code).json(xJSON);
 
