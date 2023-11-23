@@ -34,6 +34,10 @@ RUN cat /etc/os-release \
 #Set working directory
 WORKDIR /var/www/html
 RUN mkdir -p /var/www/html/admin
+RUN mkdir -p /var/www/html/admin/uploads
+
+COPY ./.env ./admin
+COPY ./composer.json ./admin
 
 #APACHE Configuration
 RUN chown -R www-data:www-data /var/www/html
