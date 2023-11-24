@@ -29,7 +29,7 @@ $(document).ready(function() {
 
         data		: dataJSON,
 		columnDefs	: [
-			{ targets			: [0],	visible : true,	searchable : true,	orderData : [0, 0] },
+			{ targets			: [0],	visible : false,searchable : true,	orderData : [0, 0] },
 			{ targets			: [1],	visible : true,	searchable : true,	orderData : [1, 0] },
 			{ targets			: [2],	visible : true,	searchable : true,	orderData : [2, 0] },
 			{ targets			: [3],	visible : true,searchable : false,	orderData : [3, 0] },
@@ -37,7 +37,7 @@ $(document).ready(function() {
 			{ targets			: [5],	visible : false,searchable : false,	orderData : [5, 0] },
 			{ targets			: [6],	visible : true,	searchable : true,	orderData : [6, 0] },
 			{ targets			: [7],	visible : false,searchable : false,	orderData : [7, 0] },
-			{ targets			: [8],	visible : false,searchable : false,	orderData : [8, 0] },
+			{ targets			: [8],	visible : true,searchable : false,	orderData : [8, 0] },
 			{ targets			: [9],	visible : true,	searchable : true,	orderData : [9, 0] },
 			{ targets			: [10],	visible : false,searchable : false,	orderData : [10, 0] },
 			{ targets			: [11],	visible : false,searchable : false,	orderData : [11, 0] },
@@ -195,7 +195,7 @@ function setUsuario(codElem, codAcc) {
 			'									<div class="col-sm-12 col-md-4">'+
 			'       					            <div class="form-group">'+
 			'       					                <label for="var03">Empresa</label>'+
-			`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresaSuc('var04','var03', 1, 0);" style="width:100%; height:40px;">`+
+			`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresaSuc('var04','var03', 1, 0); setUsu('var03', 'var08_1'); setRecuperoDatos('var05', 'var03', 'var06', 'var07', 'var08', 'var09', 'var010', 'var011');" style="width:100%; height:40px;">`+
 			'       					                    <optgroup label="Seleccionar">'+ selEmpresa +
 			'       					                    </optgroup>'+
 			'       					                </select>'+
@@ -215,46 +215,53 @@ function setUsuario(codElem, codAcc) {
 			'               					<div class="col-sm-12 col-md-4">'+
 			'               				    	<div class="form-group">'+
 			'               				        	<label for="var05">Documento</label>'+
-			'               				        	<input id="var05" name="var05" value="" class="form-control" type="text" style="height:40px;" placeholder="Documento" '+ bodyOnl +'>'+
+			`              				        		<input id="var05" name="var05" value="" onblur="setRecuperoDatos('var05', 'var03', 'var06', 'var07', 'var08', 'var09', 'var010', 'var011');"  class="form-control" type="text" style="height:40px;" placeholder="Documento" ${bodyOnl}>`+
 			'               				    	</div>'+
 			'               					</div>'+
 			''+
-			'               					<div class="col-sm-12 col-md-6">'+
+			'               					<div class="col-sm-12 col-md-6" id="row_var06">'+
 			'               				    	<div class="form-group">'+
 			'               				        	<label for="var06">Nombre</label>'+
 			'               				        	<input id="var06" name="var06" value="" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" required '+ bodyOnl +'>'+
 			'               				    	</div>'+
 			'               					</div>'+
 			''+
-			'               					<div class="col-sm-12 col-md-6">'+
+			'               					<div class="col-sm-12 col-md-6" id="row_var07">'+
 			'               					    <div class="form-group">'+
 			'               					        <label for="var07">Apellido</label>'+
 			'               					        <input id="var07" name="var07" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Apellido" '+ bodyOnl +'>'+
 			'               					    </div>'+
 			'               					</div>'+
 			''+
-			'               					<div class="col-sm-12 col-md-4">'+
+			'               					<div class="col-sm-12 col-md-2">'+
+			'               					    <div class="form-group">'+
+			'               					        <label for="var08_1">Cod</label>'+
+			'               					        <input id="var08_1" name="var08_1" value="" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="" readonly>'+
+			'               					    </div>'+
+			'               					</div>'+
+			''+
+			'               					<div class="col-sm-12 col-md-4" id="row_var08">'+
 			'               					    <div class="form-group">'+
 			'               					        <label for="var08">Usuario</label>'+ 
 			'											<input id="var08" name="var08" value="" class="form-control" placeholder="Usuario" type="text" style="text-transform:uppercase; height:40px;" '+ bodyOnl +'>'+
 			'               					    </div>'+
 			'               					</div>'+
 			''+
-			'               					<div class="col-sm-12 col-md-4">'+
+			'               					<div class="col-sm-12 col-md-6" id="row_var09">'+
 			'               					    <div class="form-group">'+
 			'               					        <label for="var09">Password</label>'+
 			'               					        <input id="var09" name="var09" value=""  class="form-control" type="password" style=" height:40px;" placeholder="Password" '+ bodyOnl +'>'+
 			'               					    </div>'+
 			'               					</div>'+
 			''+
-			'               					<div class="col-sm-12 col-md-4">'+
+			'               					<div class="col-sm-12 col-md-6" id="row_var011">'+
 			'               					    <div class="form-group">'+
 			'               					        <label for="var011">Celular</label>'+
 			'               					        <input id="var011" name="var011" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="Celular" '+ bodyOnl +'>'+
 			'               					    </div>'+
 			'               					</div>'+
 			''+
-			'               					<div class="col-sm-12 col-md-4">'+
+			'               					<div class="col-sm-12 col-md-6" id="row_var012">'+
 			'               					    <div class="form-group">'+
 			'               					        <label for="var010">Email</label>'+
 			'               					        <input id="var010" name="var010" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="Email" '+ bodyOnl +'>'+
@@ -332,9 +339,9 @@ function setUsuario(codElem, codAcc) {
 				var usuarioCelular		= (element.usuarioCelular == null) ? '' : element.usuarioCelular;
 				var usuarioEmail		= (element.usuarioEmail == null) ? '' : element.usuarioEmail;
 				var usuarioObservacion	= (element.usuarioObservacion == null) ? '' : element.usuarioObservacion;
-				codSuc				= (element.sucursalCodigo == null) ? 0 : element.sucursalCodigo;
+				codSuc					= (element.sucursalCodigo == null) ? 0 : element.sucursalCodigo;
 
-				
+				usuarioUsuario			= usuarioUsuario.substr(4);
 
 				codEmpr	= element.empresaCodigo;
 
@@ -371,7 +378,7 @@ function setUsuario(codElem, codAcc) {
 				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
 				'       					                <label for="var03">Empresa</label>'+
-				`       					                <select id="var03" name="var03" class="select2 form-control custom-select" onchange="selectEmpresaSuc('var04','var03', 1, 0);"  style="width:100%; height:40px;" ${bodyOnl}>`+
+				`       					                <select id="var03" name="var03" class="select2 form-control custom-select" onchange="selectEmpresaSuc('var04','var03', 1, 0); setUsu('var03', 'var08_1'); setRecuperoDatos('var05', 'var03', 'var06', 'var07', 'var08', 'var09', 'var010', 'var011');"  style="width:100%; height:40px;" ${bodyOnl}>`+
 				'       					                    <optgroup label="Seleccionar">'+selEmpresa +
 				'       					                    </optgroup>'+
 				'       					                </select>'+
@@ -391,7 +398,7 @@ function setUsuario(codElem, codAcc) {
 				'               					<div class="col-sm-12 col-md-4">'+
 				'               				    	<div class="form-group">'+
 				'               				        	<label for="var05">Documento</label>'+
-				'               				        	<input id="var05" name="var05" value="'+ usuarioDocumento +'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="" required '+ bodyOnl +'>'+
+				`               				        	<input id="var05" name="var05" value="${usuarioDocumento}" onblur="setRecuperoDatos('var05', 'var03', 'var06', 'var07', 'var08', 'var09', 'var010', 'var011');" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="" required  ${bodyOnl}>`+
 				'               				    	</div>'+
 				'               					</div>'+
 				''+
@@ -409,6 +416,13 @@ function setUsuario(codElem, codAcc) {
 				'               				    	</div>'+
 				'               					</div>'+
 				''+
+				'               					<div class="col-sm-12 col-md-2">'+
+				'               					    <div class="form-group">'+
+				'               					        <label for="var08_1">Cod</label>'+
+				'               					        <input id="var08_1" name="var08_1" value="" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="" readonly>'+
+				'               					    </div>'+
+				'               					</div>'+
+				''+
 				'               					<div class="col-sm-12 col-md-4">'+
 				'               					    <div class="form-group">'+
 				'               					        <label for="var08">Usuario</label>'+
@@ -423,14 +437,14 @@ function setUsuario(codElem, codAcc) {
 				'               					    </div>'+
 				'               					</div>'+
 				''+
-				'               					<div class="col-sm-12 col-md-4">'+
+				'               					<div class="col-sm-12 col-md-6">'+
 				'               					    <div class="form-group">'+
 				'               					        <label for="var010">Celular</label>'+
 				'               					        <input id="var010" name="var010" value="'+ usuarioCelular +'" class="form-control" type="text" style="height:40px;" placeholder="" '+ bodyOnl +'>'+
 				'               					    </div>'+
 				'               					</div>'+
 				''+
-				'               					<div class="col-sm-12 col-md-4">'+
+				'               					<div class="col-sm-12 col-md-6">'+
 				'               					    <div class="form-group">'+
 				'               					        <label for="var011">Email</label>'+
 				'               					        <input id="var011" name="var011" value="'+ usuarioEmail +'" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="" '+ bodyOnl +'>'+
@@ -469,4 +483,74 @@ function setUsuario(codElem, codAcc) {
 	$("#modal-content").append(html);
 
 	selectEmpresaSuc('var04','var03', 1, codSuc);
+	setUsu('var03', 'var08_1');
+}
+
+function setRecuperoDatos(parm01, parm02, parm03, parm04, parm05, parm06,  parm07, parm08) {
+	var codDoc		= document.getElementById(parm01);
+	var codEmp		= document.getElementById(parm02);
+	var usuNom		= document.getElementById(parm03);
+	var usuApe		= document.getElementById(parm04);
+	var usuUSu		= document.getElementById(parm05);
+	var usuPass		= document.getElementById(parm06);
+	var usuCel		= document.getElementById(parm07);
+	var usuEmail	= document.getElementById(parm08);
+
+	usuNom.value	= '';
+	usuApe.value	= '';
+	usuUSu.value	= '';
+	usuPass.value	= '';
+	usuCel.value	= '';
+	usuEmail.value	= '';
+
+	// usuNom.disabled 	= false;			
+	// usuApe.disabled		= false;		
+	// usuUSu.disabled 	= false;			
+	// usuPass.disabled	= false;			
+	// usuCel.disabled		= false;		
+	// usuEmail.disabled	= false;
+	var xJSON       	= [];
+    var xJSON       	= getUsuDocumento(codDoc.value, codEmp.value);
+
+	if (xJSON != [] || xJSON != null || xJSON != '') {
+		xJSON.forEach(element => {
+			usuNom.value		= element.usuario_nombre;
+			usuApe.value		= element.usuario_apellido;
+			usuUSu.value		= element.usuario_usuario;
+			usuPass.value		= element.usuario_password;
+			usuCel.value		= element.usuario_celular;
+			usuEmail.value		= element.usuario_mail;
+
+			// usuNom.disabled 	= true;			
+			// usuApe.disabled		= true;		
+			// usuUSu.disabled 	= true;			
+			// usuPass.disabled	= true;			
+			// usuCel.disabled		= true;		
+			// usuEmail.disabled	= true;	
+        });
+	} else {
+		usuNom.value		= '';
+		usuApe.value		= '';
+		usuUSu.value		= '';
+		usuPass.value		= '';
+		usuCel.value		= '';
+		usuEmail.value		= '';
+
+		// usuNom.disabled 	= false;			
+		// usuApe.disabled		= false;		
+		// usuUSu.disabled 	= false;			
+		// usuPass.disabled	= false;			
+		// usuCel.disabled		= false;		
+		// usuEmail.disabled	= false;	
+	}
+}
+
+function setUsu(parm01, parm02) {
+	var codEmp   	= document.getElementById(parm01).value;
+	var codUsuE  	= document.getElementById(parm02);
+
+	var rowInp01	=	(codEmp.length > 0 && codEmp.length < 2) ? '00' : ((codEmp.length > 1 && codEmp.length < 3) ? '0' : '') ;
+
+	codUsuE.value	= rowInp01 +''+ codEmp+'_';
+
 }

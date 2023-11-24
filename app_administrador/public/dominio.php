@@ -81,7 +81,7 @@
 												<div class="table-responsive">
 												<table id="tableLoads" class="text-fade table table-bordered display" style="width:100%">
 													<thead id="tableCodigo" class="<?php echo $valueDominio; ?>">
-														<tr class="text-dark" style="text-align:center;">
+														<tr class="btn-primary" style="text-align:center;">
 															<th >C&Oacute;DIGO</th>
 															<th >ORDEN</th>
 															<th class="border-top-0">PAR&Aacute;METRO</th>

@@ -33,6 +33,13 @@
 			h1, h2, h3, h4, h5, h6, .light-logo {
 				font-family: 'Museo Sans 500', sans-serif !important;
 			}
+			
+			.bg-warning1 {
+				color:#fff5e8;
+				background-color:#fff5e8;
+				border-color:#fff5e8
+			}
+
 		</style>
 
         <script>
