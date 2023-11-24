@@ -7,7 +7,7 @@ require('express-group-routes');
 const { getDominio, getDominioId, getDominioValor, postDominio, putDominio, deleteDominio} = require('../controllers/DOMFICController');
 const { getEmpresa, getEmpresaId, getEmpresaRUC, getEmpresaTipoRubro, postEmpresa, putEmpresa, deleteEmpresa } = require('../controllers/EMPFICController');
 const { getSucursal, getSucursalId, getSucursalEmpresaId, getEmpresaTipoSucursal, postSucursal, putSucursal, deleteSucursal } = require('../controllers/SUCFICController');
-const { getUsuario, getUsuarioId, getUsuarioEmpresaId, getUsuarioSucursalId, getUsuarioDocumento, getUsuarioUsu, getUsuarioDocumentoEmpresa, postUsuario,  postUsuarioLogin, putUsuario, deleteUsuario} = require('../controllers/USUFICController');
+const { getUsuario, getUsuarioId, getUsuarioEmpresaId, getUsuarioSucursalId, getUsuarioDocumento, getUsuarioUsu, getUsuarioDashboardEmpresa, getUsuarioDocumentoEmpresa, postUsuario,  postUsuarioLogin, putUsuario, deleteUsuario} = require('../controllers/USUFICController');
 const { getRol, getRolId, getRolEmpresaId, postRol, putRol, deleteRol } = require('../controllers/ROLFICController');
 const { getCampanha, getCampanhaId, getCampanhaTipoCampanha, getCampanhaEmpresaId, postCampanha, putCampanha, deleteCampanha } = require('../controllers/CAMFICController');
 const { getFormulario, getFormularioId, getFormularioEmpresaId, postFormulario, putFormulario, deleteFormulario } = require('../controllers/FORFICController');
@@ -40,11 +40,12 @@ router.group('/v1/', (routerGroup) => {
 
   routerGroup.get('/usuario/listado', getUsuario);
   routerGroup.get('/usuario/codigo/:codigo', getUsuarioId);
+  routerGroup.get('/usuario/documento/:documento', getUsuarioDocumento);
+  routerGroup.get('/usuario/usuario/:usuario', getUsuarioUsu);
   routerGroup.get('/usuario/empresa/:empresa', getUsuarioEmpresaId);
   routerGroup.get('/usuario/sucursal/:sucursal', getUsuarioSucursalId);
-  routerGroup.get('/usuario/documento/:documento', getUsuarioDocumento);
   routerGroup.get('/usuario/documento/:documento/empresa/:empresa', getUsuarioDocumentoEmpresa);
-  routerGroup.get('/usuario/usuario/:usuario', getUsuarioUsu);
+  routerGroup.get('/usuario/dashboard/empresa/:empresa', getUsuarioDashboardEmpresa);
   routerGroup.post('/usuario/registro', postUsuario);
   routerGroup.post('/usuario/login', postUsuarioLogin);
   routerGroup.put('/usuario/:codigo', putUsuario);
@@ -77,7 +78,7 @@ router.group('/v1/', (routerGroup) => {
   routerGroup.get('/rolformulario/codigorol/:codigorol/codigoformulario/:codigoformulario', getRolFormularioId);
   routerGroup.post('/rolformulario', postRolFormulario);
   routerGroup.put('/rolformulario/codigorol/:codigorol/codigoformulario/:codigoformulario', putRolFormulario);
-  routerGroup.delete('/rolformulario/:codigo', deleteRolFormulario);
+  routerGroup.delete('/rolformulario/codigorol/:codigorol/codigoformulario/:codigoformulario', deleteRolFormulario);
 
 }); 
 
