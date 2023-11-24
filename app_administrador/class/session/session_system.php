@@ -8,22 +8,18 @@
     $log_03 = $_SESSION['log_03'];
     $log_04 = $_SESSION['log_04'];
     
-    $usu_01 = $_SESSION['login_usuario'];
-    $usu_02 = $_SESSION['login_funcionario_codigo'];
-    $usu_03 = $_SESSION['login_funcionario_nombre'];
-    $usu_04 = $_SESSION['login_ejecutivo_codigo'];
-    $usu_05 = $_SESSION['login_cargo_codigo'];
-    $usu_06 = $_SESSION['login_cargo_nombre'];
-    $usu_07 = $_SESSION['login_gerencia_codigo'];
-    $usu_08 = $_SESSION['login_gerencia_nombre'];
-    $usu_09 = $_SESSION['login_departamento_codigo'];
-    $usu_10 = $_SESSION['login_departamento_nombre'];
-    $usu_11 = $_SESSION['login_unidad_codigo'];
-    $usu_12 = $_SESSION['login_unidad_nombre'];
-    $usu_13 = $_SESSION['login_supervision_codigo'];
-    $usu_14 = $_SESSION['login_supervision_nombre'];
-    $usu_15 = $_SESSION['login_foto'];
-    $usu_16 = $_SESSION['login_email'];
+    $usu_01 = $_SESSION['usuarioUsuario'];
+    $usu_02 = $_SESSION['usuarioDocumento'];
+    $usu_03 = $_SESSION['usuarioNombre'];
+    $usu_04 = $_SESSION['usuarioApellido'];
+    $usu_05 = $_SESSION['usuarioEmail'];
+    $usu_06 = $_SESSION['empresaCodigo'];
+    $usu_07 = $_SESSION['empresaNombre'];
+    $usu_08 = $_SESSION['empresaRuc'];
+    $usu_09 = $_SESSION['sucursalCodigo'];
+    $usu_10 = $_SESSION['sucursalNombre'];
+    $usu_11 = $_SESSION['sucursalCelular'];
+    $usu_12 = $_SESSION['sucursalCorreo'];
 
     $expire = $_SESSION['expire'];
 
