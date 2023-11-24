@@ -232,6 +232,7 @@ const selectUSUARIO = async(actionType, codigo, valor) => {
         let _data   = [];
         let query00 = '';
         let _empresaCodigo = parseInt(valor.trim().substring(1, 4));
+        let _empresaCodigo2   = (codigo == 1) ? ` a.empresa_codigo <> 0 ` : ` a.empresa_codigo = ${codigo}`;
 
         switch (actionType) {
             case 1:
@@ -287,6 +288,20 @@ const selectUSUARIO = async(actionType, codigo, valor) => {
                                 sucursal_codigo  = ${codigo}`;
                 break;
 
+            case 7:
+                query00 = `SELECT
+                                COUNT (*)           AS  cantidad_usuario,
+                                a.tipo_estado_codigo,
+                                a.tipo_estado_nombre
+                                
+                            FROM adm.USUARIO a
+                            INNER JOIN adm.EMPRESA b ON a.empresa_codigo    = b.empresa_codigo
+                            WHERE ${_empresaCodigo2}
+                            
+                            GROUP BY a.tipo_estado_codigo, a.tipo_estado_nombre
+                            ORDER BY a.tipo_estado_codigo `;
+                break;
+
             default:
                 break;
         }
@@ -309,6 +324,7 @@ const selectUSUARIO = async(actionType, codigo, valor) => {
             })
             .catch(e => {
                 _code = 500;
+                console.log(e);
                 errorBody(_code, 'Code: '+ e.code +' '+e.severity+', '+e.hint, 'Function: selectUSUARIO')
                     .then(result => _data = result);
             })
