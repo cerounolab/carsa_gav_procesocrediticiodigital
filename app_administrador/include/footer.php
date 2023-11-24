@@ -37,7 +37,7 @@
 	<!-- InvestX App -->
 	<script src="./../src/js/demo.js?<?php echo date('Ymd'); ?>"></script>
 	<script src="./../src/js/template.js?<?php echo date('Ymd'); ?>"></script>	
-	<script src="./../src/js/pages/demo.calendar.js?<?php echo date('Ymd'); ?>"></script>
+	<!-- <script src="./../src/js/pages/demo.calendar.js?<?php //echo date('Ymd'); ?>"></script> -->
 
         <!-- fin -->
 

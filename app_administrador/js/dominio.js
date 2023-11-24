@@ -31,7 +31,7 @@ $(document).ready(function() {
 
         data		: dataJSON,
 		columnDefs	: [
-			{ targets			: [0],	visible : true,	searchable : true,	orderData : [0, 0] },
+			{ targets			: [0],	visible : false,searchable : true,	orderData : [0, 0] },
 			{ targets			: [1],	visible : true,	searchable : true,	orderData : [1, 0] },
 			{ targets			: [2],	visible : true,	searchable : true,	orderData : [2, 0] },
 			{ targets			: [3],	visible : false,searchable : false,	orderData : [3, 0] },

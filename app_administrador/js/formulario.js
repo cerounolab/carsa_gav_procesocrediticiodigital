@@ -29,7 +29,7 @@ $(document).ready(function() {
 
         data		: dataJSON,
 		columnDefs	: [
-			{ targets			: [0],	visible : true,	searchable : true,	orderData : [0, 0] },
+			{ targets			: [0],	visible : false,searchable : true,	orderData : [0, 0] },
 			{ targets			: [1],	visible : false,searchable : true,	orderData : [1, 0] },
 			{ targets			: [2],	visible : true,	searchable : true,	orderData : [2, 0] },
 			{ targets			: [3],	visible : true, searchable : false,	orderData : [3, 0] },
@@ -177,14 +177,14 @@ function setFormulario(codElem, codAcc) {
 			'       					            </div>'+
 			'       					        </div>'+
 			''+
-			'               					<div class="col-sm-12 col-md-8">'+
+			'               					<div class="col-sm-12 col-md-6">'+
 			'               				    	<div class="form-group">'+
 			'               				        	<label for="var04">Nombre</label>'+
 			'               				        	<input id="var04" name="var04" value="" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="Nombre" required '+ bodyOnl +'>'+
 			'               				    	</div>'+
 			'               					</div>'+
 			''+
-			'               					<div class="col-sm-12 col-md-4">'+
+			'               					<div class="col-sm-12 col-md-6">'+
 			'               					    <div class="form-group">'+
 			'               					        <label for="var05">Url</label>'+ 
 			'											<input id="var05" name="var05" value="" class="form-control" placeholder="Url" type="text" style="text-transform:lowercase; height:40px;" '+ bodyOnl +'>'+
@@ -287,14 +287,14 @@ function setFormulario(codElem, codAcc) {
 				'       					            </div>'+
 				'       					        </div>'+
 				''+
-				'               					<div class="col-sm-12 col-md-8">'+
+				'               					<div class="col-sm-12 col-md-6">'+
 				'               				    	<div class="form-group">'+
 				'               				        	<label for="var04">Nombre</label>'+
 				'               				        	<input id="var04" name="var04" value="'+formularioNombre+'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" required '+ bodyOnl +'>'+
 				'               				    	</div>'+
 				'               					</div>'+
 				''+
-				'               					<div class="col-sm-12 col-md-4">'+
+				'               					<div class="col-sm-12 col-md-6">'+
 				'               					    <div class="form-group">'+
 				'               					        <label for="var05">Url</label>'+ 
 				'											<input id="var05" name="var05" value="'+formularioUrl+'" class="form-control" placeholder="Url" type="text" style="text-transform:uppercase; height:40px;" '+ bodyOnl +'>'+
