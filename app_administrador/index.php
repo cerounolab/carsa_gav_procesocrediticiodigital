@@ -77,8 +77,7 @@
 								</div>
 
 								<div class="p-40">
-									<form>
-									<!-- <form action="./class/session/session_index.php" method="post"> -->
+									<form action="./class/session/session_index.php" method="post">
 										<div class="form-group">
 											<div class="input-group mb-3">
 												<span class="input-group-text bg-transparent"><i class="text-fade ti-user"></i></span>
@@ -95,9 +94,8 @@
 
 										<div class="row">
 											<div class="col-12 text-center">
-												<!-- <button type="submit" name="submit" class="btn btn-primary w-p100 mt-10"> Iniciar </button> -->
-												<a href="./public/home.php" type="button" class="btn btn-primary w-p100 mt-10">Iniciar</a>
-
+												<button type="submit" name="submit" class="btn btn-primary w-p100 mt-10"> Iniciar </button>
+												<!-- <a href="./public/home.php" type="button" class="btn btn-primary w-p100 mt-10">Iniciar</a> -->
 											</div>
 										</div>
 									</form>
