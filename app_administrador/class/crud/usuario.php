@@ -7,26 +7,26 @@
     
 	require '../../class/function/curl_api.php';
 	
-    $val01          = intval($_POST['var01']); //estado
-    $val02          = intval($_POST['var02']); // orden
-    $val03          = intval($_POST['var03']); //empresa
-	$val04          = intval($_POST['var04']); //sucursal
-	$val05          = strtoupper(strtolower(trim($_POST['var05']))); // documento
-	$val06          = strtoupper(strtolower(trim($_POST['var06']))); // nombre
-    $val07          = strtoupper(strtolower(trim($_POST['var07']))); // apellido
-	$val08          = trim($_POST['var08']); // usuario
-	$val09          = trim($_POST['var09']); // password
-	$val010         = trim($_POST['var010']); //  celular
+    $val01          = intval($_POST['var01']);
+    $val02          = intval($_POST['var02']); 
+    $val03          = intval($_POST['var03']); 
+	$val04          = intval($_POST['var04']); 
+	$val05          = strtoupper(strtolower(trim($_POST['var05']))); 
+	$val06          = strtoupper(strtolower(trim($_POST['var06']))); 
+    $val07          = strtoupper(strtolower(trim($_POST['var07']))); 
+	$val08          = trim($_POST['var08']); 
+	$val08          = trim($_POST['var08_1'].''.$_POST['var08']);
+	$val09          = trim($_POST['var09']); 
+	$val010         = trim($_POST['var010']); 
 
-	$val011         = trim($_POST['var011']); //email
-	$val012         = trim($_POST['var012']); //observacion
+	$val011         = trim($_POST['var011']); 
+	$val012         = trim($_POST['var012']); 
 
     $work01         = $_POST['workCodigo'];
 	$work02         = $_POST['workModo'];
 	$work03         = $_POST['workPage'];
 	$work04         = $_POST['workPrograma'];
 	$work05         = 1;
-	echo $val05;
 
 	$usu_03         = 'HOLIX'; //strtoupper($_SESSION['usu_03']);
 

@@ -900,3 +900,41 @@ function getRolFormularioId(codigorol, codigoformulario){
 
     return xDATA;
 }
+
+function getUsuDocumento(codDoc, codEmp){
+    localStorage.removeItem('usuDocumentoJSON');
+
+    if (localStorage.getItem('usuDocumentoJSON') === null){
+        getJSON('usuDocumentoJSON', 'usuario/documento/'+codDoc+'/empresa/'+codEmp);
+    }
+
+    var xJSON = JSON.parse(localStorage.getItem('usuDocumentoJSON'));
+    var xDATA = [];
+
+    if (xJSON['code'] == 200) {
+        xJSON['data'].forEach(element => {
+            xDATA.push(element);
+        });
+    }
+
+    return xDATA;
+}
+
+function getUsuDashboard(codEmp){
+    localStorage.removeItem('usuDashboardJSON');
+
+    if (localStorage.getItem('usuDashboardJSON') === null){
+        getJSON('usuDashboardJSON', 'usuario/dashboard/empresa/'+codEmp);
+    }
+
+    var xJSON = JSON.parse(localStorage.getItem('usuDashboardJSON'));
+    var xDATA = [];
+
+    if (xJSON['code'] == 200) {
+        xJSON['data'].forEach(element => {
+            xDATA.push(element);
+        });
+    }
+
+    return xDATA;
+}

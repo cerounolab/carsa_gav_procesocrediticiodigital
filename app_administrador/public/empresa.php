@@ -34,7 +34,7 @@
 								<div class="d-inline-block align-items-center">
 									<nav>
 										<ol class="breadcrumb">
-											<li class="breadcrumb-item"><a href="./../public/dashboardv1.php"><i class="mdi mdi-home-outline"></i> Dashboard </a></li>
+											<li class="breadcrumb-item"><a href="./../public/home.php"><i class="mdi mdi-home-outline"></i> Dashboard </a></li>
 											<li class="breadcrumb-item active" aria-current="page"> <?php echo $pageTitleNav; ?> </li>
 										</ol>
 									</nav>
@@ -62,7 +62,7 @@
 												<div class="table-responsive">
 													<table id="tableLoads" class="text-fade table table-bordered display" style="width:100%">
 														<thead>
-															<tr class="text-dark" style="text-align:center;">
+															<tr class="btn-primary" style="text-align:center;">
 																<th class="border-top-0">C&Oacute;DIGO</th>
 																<th class="border-top-0">ORDEN</th>
 																<th class="border-top-0">ESTADO</th>
