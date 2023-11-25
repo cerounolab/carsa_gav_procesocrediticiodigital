@@ -76,7 +76,7 @@ const getRolEmpresaId = (apiREQ, apiRES) => {
     let _dataJSON   = [];
     let _codigo     = parseInt(apiREQ.params.empresa);
 
-    if (_valor != 'undefined' && _valor != ''){
+    if (_codigo != 'undefined' && _codigo != '' && _codigo != null && _codigo > 0){
 
         (async () => {
             const xDATA = await selectROL(3, _codigo, '');
