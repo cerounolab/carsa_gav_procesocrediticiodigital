@@ -284,9 +284,12 @@ const deleteRol = (apiREQ, apiRES) => {
             if (_code == 200) {
                 xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
 
-            } else {
+            } else if (_code == 404){
                 xJSON   = xDATA[1];
-                xJSON = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON   = await jsonBody(_code, 'Error: El codigo de rol pertenece a un conjunto de datos, verifique', null, null, null, 0, 0, 0, 0, []);
+            }else{
+                xJSON   = xDATA[1];
+                xJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
             }
 
             xJSON = camelcaseKeys(xJSON, {deep: true});
