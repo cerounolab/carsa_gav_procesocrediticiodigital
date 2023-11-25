@@ -770,7 +770,6 @@ const {errorBody}   = require('../utils/_json');
             })
             .catch(e => {
                 _code = 500;
-                console.log(e);
                 errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateFORFIC', true)
                     .then(result => _data = result);
             })
