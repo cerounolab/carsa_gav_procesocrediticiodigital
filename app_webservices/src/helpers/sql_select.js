@@ -324,7 +324,6 @@ const selectUSUARIO = async(actionType, codigo, valor) => {
             })
             .catch(e => {
                 _code = 500;
-                console.log(e);
                 errorBody(_code, 'Code: '+ e.code +' '+e.severity+', '+e.hint, 'Function: selectUSUARIO')
                     .then(result => _data = result);
             })

@@ -175,6 +175,7 @@ const deleteROLFIC  = async(codigo) => {
 
     let _code   = 200;
     let _data   = [];
+    let _error  = 0 ;
    
     let query00 = '';
 
@@ -200,6 +201,7 @@ const deleteROLFIC  = async(codigo) => {
             })
             .catch(e => {
                 _code = 500;
+                _error  = e.code;
                 errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: deleteROLFIC', true)
                     .then(result => _data = result);
             })
@@ -208,7 +210,11 @@ const deleteROLFIC  = async(codigo) => {
             }
         );
     }
-    
+
+    if (_error == 23503){
+        _code   = 404;
+    }
+
     return Array(_code, _data);
 }
 
@@ -257,6 +263,7 @@ const deleteFORFIC  = async(codigo) => {
 
     let _code   = 200;
     let _data   = [];
+    let _error  = 0;
    
     let query00 = '';
 
@@ -281,7 +288,8 @@ const deleteFORFIC  = async(codigo) => {
                 _data = result.rows;
             })
             .catch(e => {
-                _code = 500;
+                _code   = 500;
+                _error  = e.code; 
                 errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: deleteFORFIC', true)
                     .then(result => _data = result);
             })
@@ -289,6 +297,10 @@ const deleteFORFIC  = async(codigo) => {
                 connPGSQL.end();
             }
         );
+    }
+
+    if (_error == 23503){
+        _code   = 404;
     }
     
     return Array(_code, _data);

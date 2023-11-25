@@ -253,7 +253,6 @@ const insertUSUFIC  = async(_USUFICEST,
             })
             .catch(e => {
                 _code = 500;
-                console.log(e);
                 errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertUSUFIC', true)
                     .then(result => _data = result);
             })
@@ -262,8 +261,6 @@ const insertUSUFIC  = async(_USUFICEST,
             }
         );
     }
-
-    //console.log(_data[0]);
 
     if (_data == '') {
         _code   = 404;
@@ -498,7 +495,6 @@ const insertROLFOR  = async(_ROLFORROC,
             })
             .catch(e => {
                 _code   = 500;
-                console.log(e);
                 errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertROLFOR', true)
                     .then(result => _data = result);
             })
