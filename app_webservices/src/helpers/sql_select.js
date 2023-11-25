@@ -398,7 +398,7 @@ const selectUSUARIOEMPRESA = async(actionType, codigo, valor) => {
     return Array(_code, _data);
 }
 
-const selectROL = async(actionType, codigo, valor) => {
+const selectROL = async(actionType, codigo) => {
     let _code   = 200;
     let _data   = [];
     let query00 = '';

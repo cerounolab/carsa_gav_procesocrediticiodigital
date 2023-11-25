@@ -733,7 +733,7 @@ const {errorBody}   = require('../utils/_json');
                                 ROLFORAPR	= ${_ROLFORAPR},    
                                 ROLFORAIN	= ${_ROLFORAIN}
                                 
-                            WHERE ROLFORROC = ${codigo} AND ROLFORFOC = ${codigo2} AND ROLFOREMC = ${_ROLFOREMC}`;	
+                            WHERE ROLFORROC = ${codigo} AND ROLFORFOC = ${codigo2} AND ROLFOREMC = ${_ROLFOREMC}`;
 
             break;
 
