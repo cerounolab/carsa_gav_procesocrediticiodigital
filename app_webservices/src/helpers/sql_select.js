@@ -675,6 +675,67 @@ const selectROLFORMULARIO  = async(actionType, codigo, codigo2) => {
     return Array(_code, _data);
 }
 
+const selectUSUARIOROL  = async(actionType, codigo, codigo2, codigo3) => {
+    let _code   = 200;
+    let _data   = [];
+    let query00 = '';
+
+    switch (actionType) {
+        case 1:
+            query00 = `SELECT
+                            *
+                        FROM
+                            adm.USUARIOROL
+                        WHERE empresa_codigo  = ${codigo}`;
+            break;
+
+        case 2:
+            query00 = `SELECT
+                            *
+                        FROM
+                            adm.USUARIOROL
+                        WHERE
+                            usuario_codigo = ${codigo} AND rol_codigo = ${codigo2} AND empresa_codigo  = ${codigo3}`;
+            break;
+
+        default:
+            break;
+    }
+
+    const connPGSQL = new Client(initPGSQL);
+    await connPGSQL
+        .connect()
+        .catch(e => {
+            _code = 401;
+            errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: selectUSUARIOROL', true)
+                .then(result => _data = result);
+        }
+    );
+
+    await connPGSQL
+        .query(query00)
+        .then(result => {
+            _code = 200;
+            _data = result.rows;
+        })
+        .catch(e => {
+            _code = 500;
+            errorBody(_code, 'Code: '+ e.code +' '+e.severity+', '+e.hint, 'Function: selectUSUARIOROL')
+                .then(result => _data = result);
+        })
+        .then(() => {
+            connPGSQL.end();
+        }
+
+    );
+
+    if (_data.length == 0) {
+        _code = 404;
+    }
+
+    return Array(_code, _data);
+}
+
 module.exports  = {
     selectDOMINIOTIPO,
     selectEMPRESA, 
@@ -684,5 +745,6 @@ module.exports  = {
     selectROL,
     selectCAMPANHA,
     selectFORMULARIO,
-    selectROLFORMULARIO
+    selectROLFORMULARIO,
+    selectUSUARIOROL
 };
