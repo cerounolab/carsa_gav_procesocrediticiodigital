@@ -264,7 +264,7 @@ const selectUSUARIO = async(actionType, codigo, valor) => {
                     query00 = `SELECT
                                     *
                                 FROM
-                                    adm.USUARIO
+                                    adm.USUARIOROL
                                 WHERE
                                     usuario_usuario   = ${valor} AND empresa_codigo = ${_empresaCodigo}`;
                                
