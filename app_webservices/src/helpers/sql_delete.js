@@ -389,6 +389,47 @@ const deleteUSUROL  = async(codigo, codigo2) => {
     return Array(_code, _data);
 }
 
+const deleteUSUCAM  = async(codigo, codigo2) => {
+
+    let _code   = 200;
+    let _data   = [];
+   
+    let query00 = '';
+
+    query00 = `DELETE FROM adm.USUCAM WHERE USUCAMUSC =  ${codigo} AND USUCAMCAC = ${codigo2}`;	
+    const connPGSQL = new Client(initPGSQL);
+    
+    await connPGSQL
+        .connect()
+        .catch(e => {
+            _code = 401;
+            errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: deleteUSUCAM', true)
+                .then(result => _data = result);
+        }
+    );
+
+    if (_code == 200) {
+        await connPGSQL
+            .query(query00)
+            .then(result => {
+                _code = 200;
+                _data = result.rows;
+            })
+            .catch(e => {
+                _code = 500;
+                console.log(e);
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: deleteUSUCAM', true)
+                    .then(result => _data = result);
+            })
+            .then(() => {
+                connPGSQL.end();
+            }
+        );
+    }
+    
+    return Array(_code, _data);
+}
+
 module.exports = {
     deleteDOMFIC,
     deleteEMPFIC,
@@ -398,5 +439,6 @@ module.exports = {
     deleteCAMFIC,
     deleteFORFIC, 
     deleteROLFOR,
-    deleteUSUROL
+    deleteUSUROL,
+    deleteUSUCAM
 };
