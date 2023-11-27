@@ -343,7 +343,6 @@ const {errorBody}   = require('../utils/_json');
                                 USUFICNOM	= ${_USUFICNOM},
                                 USUFICAPE	= ${_USUFICAPE}, 
                                 USUFICUSU   = ${_USUFICUSU},
-                                USUFICPAS   = '${_USUFICPAS}',
                                 USUFICEMA	= ${_USUFICEMA}, 
                                 USUFICCEL	= ${_USUFICCEL}, 
                                 USUFICOBS	= ${_USUFICOBS}, 
@@ -353,7 +352,7 @@ const {errorBody}   = require('../utils/_json');
                                 USUFICAPR	= ${_USUFICAPR},  
                                 USUFICAIN	= ${_USUFICAIN}
                             
-                            WHERE USUFICCOD = ${codigo} RETURNING USUFICCOD`;	
+                            WHERE USUFICCOD = ${codigo} AND USUFICEMC = ${_USUFICEMC} RETURNING USUFICCOD`;	
 
             break;
 
@@ -366,7 +365,7 @@ const {errorBody}   = require('../utils/_json');
                                 USUFICAPR	= ${_USUFICAPR},  
                                 USUFICAIN	= ${_USUFICAIN}
 
-                            WHERE USUFICCOD =  ${codigo} RETURNING USUFICCOD`;
+                            WHERE USUFICCOD =  ${codigo} AND USUFICEMC = ${_USUFICEMC} RETURNING USUFICCOD`;
             break;	
 
             case 3:
@@ -378,7 +377,7 @@ const {errorBody}   = require('../utils/_json');
                                 USUFICAPR	= ${_USUFICAPR},  
                                 USUFICAIN	= ${_USUFICAIN}
 
-                            WHERE USUFICCOD =  ${codigo} RETURNING USUFICCOD`;
+                            WHERE USUFICCOD =  ${codigo}  AND USUFICEMC = ${_USUFICEMC} RETURNING USUFICCOD`;
             break;
         }
 
@@ -782,6 +781,91 @@ const {errorBody}   = require('../utils/_json');
     return Array(_code, _data);
     }
 
+    const updateUSUROL = async(_ACCION,
+        _USUROLUSC,
+        _USUROLROC,
+        _USUROLEST,
+        _USUROLEMC,
+        _USUROLORD,
+        _USUROLFDE,
+        _USUROLFHA,
+        _USUROLOBS,
+        _USUROLCEM,
+        _USUROLCUS,
+        _USUROLCIP,
+        _USUROLCPR,
+        _USUROLAEM,
+        _USUROLAUS,
+        _USUROLAIP,
+        _USUROLAPR,
+        _USUROLAIN) => {
+
+        let _code   = 200;
+        let _data   = [];
+        let query00 = '';
+
+        switch (_ACCION) {
+            case 1:
+                query00 = `UPDATE adm.USUROL SET 
+                                USUROLEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOROLESTADO' AND DOMFICPAR = ${_USUROLEST}), 
+                                USUROLORD	= ${_USUROLORD},     
+                                USUROLFDE	= '${_USUROLFDE}',     
+                                USUROLFHA	= '${_USUROLFHA}',     
+                                USUROLOBS	= ${_USUROLOBS},     
+                                USUROLAEM	= ${_USUROLAEM},     
+                                USUROLAUS	= ${_USUROLAUS},    
+                                USUROLAIP	= ${_USUROLAIP},      
+                                USUROLAPR	= ${_USUROLAPR},    
+                                USUROLAIN	= ${_USUROLAIN}
+                                            
+                            WHERE USUROLUSC = ${_USUROLUSC} AND USUROLROC = ${_USUROLROC}`;
+            break;
+
+            case 2:
+                query00 = `UPDATE adm.USUROL SET 
+                                USUROLEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOROLESTADO' AND DOMFICPAR = ${_USUROLEST}),  
+                                USUROLAEM	= ${_USUROLAEM},     
+                                USUROLAUS	= ${_USUROLAUS},    
+                                USUROLAIP	= ${_USUROLAIP},      
+                                USUROLAPR	= ${_USUROLAPR},    
+                                USUROLAIN	= ${_USUROLAIN}
+                                            
+                            WHERE USUROLUSC = ${_USUROLUSC} AND USUROLROC = ${_USUROLROC}`;
+            break;	
+
+        }
+
+        const connPGSQL = new Client(initPGSQL);
+
+        await connPGSQL
+            .connect()
+            .catch(e => {
+                _code = 401;
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateUSUROL', true)
+                    .then(result => _data = result);
+            }
+    );
+
+    if (_code == 200) {
+        await connPGSQL
+            .query(query00)
+            .then(result => {
+                _code = 200;
+            })
+            .catch(e => {
+                _code = 500;
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateUSUROL', true)
+                    .then(result => _data = result);
+            })
+            .then(() => {
+                connPGSQL.end();
+            }
+        );
+    }
+
+    return Array(_code, _data);
+    }
+
 module.exports = {
     updateDOMFIC,
     updateEMPFIC,
@@ -790,6 +874,7 @@ module.exports = {
     updateROLFIC,
     updateCAMFIC,
     updateFORFIC,
-    updateROLFOR
+    updateROLFOR,
+    updateUSUROL
 
 };

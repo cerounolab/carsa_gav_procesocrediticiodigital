@@ -512,6 +512,69 @@ const insertROLFOR  = async(_ROLFORROC,
     return Array(_code, _data);
 }
 
+const insertUSUROL  = async(_USUROLUSC,
+    _USUROLROC,
+    _USUROLEST,
+    _USUROLEMC,
+    _USUROLORD,
+    _USUROLFDE,
+    _USUROLFHA,
+    _USUROLOBS,
+    _USUROLCEM,
+    _USUROLCUS,
+    _USUROLCIP,
+    _USUROLCPR,
+    _USUROLAEM,
+    _USUROLAUS,
+    _USUROLAIP,
+    _USUROLAPR,
+    _USUROLAIN) => {
+
+    let _code   = 200;
+    let _data   = [];
+
+    let query00 = '';
+
+    query00 = `INSERT INTO adm.USUROL(USUROLUSC,    USUROLROC, 																							       USUROLEST,     USUROLEMC,     USUROLORD,       USUROLFDE,       USUROLFHA,     USUROLOBS,     USUROLCEM,     USUROLCUS,     USUROLCIP,     USUROLCPR,     USUROLAEM,     USUROLAUS,    USUROLAIP,      USUROLAPR,    USUROLAIN)
+                           SELECT ${_USUROLUSC}, ${_USUROLROC}, (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOROLESTADO' AND DOMFICPAR = ${_USUROLEST}), ${_USUROLEMC}, ${_USUROLORD}, '${_USUROLFDE}', '${_USUROLFHA}', ${_USUROLOBS}, ${_USUROLCEM}, ${_USUROLCUS}, ${_USUROLCIP}, ${_USUROLCPR}, ${_USUROLAEM}, ${_USUROLAUS}, ${_USUROLAIP}, ${_USUROLAPR}, ${_USUROLAIN}
+                        WHERE NOT EXISTS (SELECT * FROM adm.USUROL WHERE USUROLUSC = ${_USUROLUSC} AND USUROLROC = ${_USUROLROC}) RETURNING USUROLUSC, USUROLROC`;	            
+
+    const connPGSQL = new Client(initPGSQL);
+
+    await connPGSQL
+        .connect()
+        .catch(e => {
+            _code = 401;
+            errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertUSUARIOROL', true)
+                .then(result => _data = result);
+        }
+    );
+
+    if (_code == 200) {
+        await connPGSQL
+            .query(query00)
+            .then(result => {
+                _code = 200;
+                _data = result.rows;
+            })
+            .catch(e => {
+                _code   = 500;
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertUSUARIOROL', true)
+                    .then(result => _data = result);
+            })
+            .then(() => {
+                connPGSQL.end();
+            }
+        );
+        
+    }
+  
+    if (_data == '') {
+        _code   = 404;
+    }
+   
+    return Array(_code, _data);
+}
 module.exports = {
     insertDOMFIC,
     insertEMPFIC,
@@ -520,5 +583,7 @@ module.exports = {
     insertROLFIC,
     insertCAMFIC,
     insertFORFIC,
-    insertROLFOR
+    insertROLFOR,
+    insertUSUROL
+
 };
