@@ -575,6 +575,69 @@ const insertUSUROL  = async(_USUROLUSC,
    
     return Array(_code, _data);
 }
+
+const insertUSUCAM  = async(_USUCAMUSC,
+    _USUCAMCAC,
+    _USUCAMEST,
+    _USUCAMEMC,
+    _USUCAMORD,
+    _USUCAMOBS,
+    _USUCAMCEM,
+    _USUCAMCUS,
+    _USUCAMCIP,
+    _USUCAMCPR,
+    _USUCAMAEM,
+    _USUCAMAUS,
+    _USUCAMAIP,
+    _USUCAMAPR,
+    _USUCAMAIN) => {
+
+    let _code   = 200;
+    let _data   = [];
+
+    let query00 = '';
+
+    query00 = `INSERT INTO adm.USUCAM (USUCAMUSC, 	  USUCAMCAC,																						             USUCAMEST, 	 USUCAMEMC,    USUCAMORD,     USUCAMOBS,     USUCAMCEM,     USUCAMCUS,     USUCAMCIP,     USUCAMCPR,     USUCAMAEM,     USUCAMAUS,     USUCAMAIP,     USUCAMAPR,    USUCAMAIN)
+			                SELECT ${_USUCAMUSC}, ${_USUCAMCAC}, (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOCAMPANHAESTADO' AND DOMFICPAR = ${_USUCAMEST}), ${_USUCAMEMC}, ${_USUCAMORD}, ${_USUCAMOBS}, ${_USUCAMCEM}, ${_USUCAMCUS}, ${_USUCAMCIP}, ${_USUCAMCPR}, ${_USUCAMAEM}, ${_USUCAMAUS}, ${_USUCAMAIP}, ${_USUCAMAPR}, ${_USUCAMAIN}
+			                WHERE NOT EXISTS (SELECT * FROM adm.USUCAM WHERE USUCAMUSC = ${_USUCAMUSC} AND USUCAMCAC = ${_USUCAMCAC}) RETURNING USUCAMUSC, USUCAMCAC`;	            
+                            
+    const connPGSQL = new Client(initPGSQL);
+
+    await connPGSQL
+        .connect()
+        .catch(e => {
+            _code = 401;
+            errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertUSUCAM', true)
+                .then(result => _data = result);
+        }
+    );
+
+    if (_code == 200) {
+        await connPGSQL
+            .query(query00)
+            .then(result => {
+                _code = 200;
+                _data = result.rows;
+            })
+            .catch(e => {
+                _code   = 500;
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertUSUCAM', true)
+                    .then(result => _data = result);
+            })
+            .then(() => {
+                connPGSQL.end();
+            }
+        );
+        
+    }
+  
+    if (_data == '') {
+        _code   = 404;
+    }
+   
+    return Array(_code, _data);
+}
+
 module.exports = {
     insertDOMFIC,
     insertEMPFIC,
@@ -584,6 +647,7 @@ module.exports = {
     insertCAMFIC,
     insertFORFIC,
     insertROLFOR,
-    insertUSUROL
+    insertUSUROL,
+    insertUSUCAM
 
 };
