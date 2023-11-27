@@ -866,6 +866,85 @@ const {errorBody}   = require('../utils/_json');
     return Array(_code, _data);
     }
 
+    const updateUSUCAM = async(_ACCION,
+        _USUCAMUSC,
+        _USUCAMCAC,
+        _USUCAMEST,
+        _USUCAMEMC,
+        _USUCAMORD,
+        _USUCAMOBS,
+        _USUCAMCEM,
+        _USUCAMCUS,
+        _USUCAMCIP,
+        _USUCAMCPR,
+        _USUCAMAEM,
+        _USUCAMAUS,
+        _USUCAMAIP,
+        _USUCAMAPR,
+        _USUCAMAIN) => {
+
+        let _code   = 200;
+        let _data   = [];
+        let query00 = '';
+
+        switch (_ACCION) {
+            case 1:
+                query00 = `UPDATE adm.USUCAM SET 
+                                USUCAMEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOCAMPANHAESTADO' AND DOMFICPAR = ${_USUCAMEST}), 
+                                USUCAMORD	= ${_USUCAMORD}, 
+                                USUCAMOBS	= ${_USUCAMOBS}, 
+                                USUCAMAEM	= ${_USUCAMAEM}, 
+                                USUCAMAIP	= ${_USUCAMAIP}, 
+                                USUCAMAPR	= ${_USUCAMAPR}, 
+                                USUCAMAIN	= ${_USUCAMAIN}
+                            
+                            WHERE USUCAMUSC = ${_USUCAMUSC} AND USUCAMCAC = ${_USUCAMCAC}`;
+            break;
+
+            case 2:
+                query00 = `UPDATE adm.USUCAM SET 
+                                USUCAMEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOCAMPANHAESTADO' AND DOMFICPAR = ${_USUCAMEST}), 
+                                USUCAMAEM	= ${_USUCAMAEM}, 
+                                USUCAMAIP	= ${_USUCAMAIP}, 
+                                USUCAMAPR	= ${_USUCAMAPR}, 
+                                USUCAMAIN	= ${_USUCAMAIN}
+                            
+                            WHERE USUCAMUSC = ${_USUCAMUSC} AND USUCAMCAC = ${_USUCAMCAC}`;
+            break;	
+
+        }
+
+        const connPGSQL = new Client(initPGSQL);
+
+        await connPGSQL
+            .connect()
+            .catch(e => {
+                _code = 401;
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateUSUCAM', true)
+                    .then(result => _data = result);
+            }
+    );
+
+    if (_code == 200) {
+        await connPGSQL
+            .query(query00)
+            .then(result => {
+                _code = 200;
+            })
+            .catch(e => {
+                _code = 500;
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateUSUCAM', true)
+                    .then(result => _data = result);
+            })
+            .then(() => {
+                connPGSQL.end();
+            }
+        );
+    }
+
+    return Array(_code, _data);
+    }
+
 module.exports = {
     updateDOMFIC,
     updateEMPFIC,
@@ -875,6 +954,7 @@ module.exports = {
     updateCAMFIC,
     updateFORFIC,
     updateROLFOR,
-    updateUSUROL
+    updateUSUROL,
+    updateUSUCAM
 
 };
