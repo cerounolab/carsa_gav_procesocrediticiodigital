@@ -42,9 +42,9 @@
         $_SESSION['empresaRuc']             = trim(strtoupper(strtolower($resultJSON['data']['0']['empresaRuc'])));
         $_SESSION['rolCodigo']              = intval($resultJSON['data']['0']['rolCodigo']);
         $_SESSION['rolNombre']              = trim(strtoupper(strtolower($resultJSON['data']['0']['rolNombre'])));
-        $_SESSION['empresaSitoWeb']         = intval($resultJSON['data']['0']['empresaSitoWeb']);
-        $_SESSION['empresaCorreo']          = trim(strtoupper(strtolower($resultJSON['data']['0']['empresaCorreo'])));
-        $_SESSION['empresaDireccion']       = trim(strtoupper(strtolower($resultJSON['data']['0']['empresaDireccion'])));
+        $_SESSION['empresaSitoWeb']         = trim($resultJSON['data']['0']['empresaSitoWeb']);
+        $_SESSION['empresaCorreo']          = trim(strtolower($resultJSON['data']['0']['empresaCorreo']));
+        $_SESSION['empresaDireccion']       = trim($resultJSON['data']['0']['empresaDireccion']);
 
 
         $_SESSION['expire'] = time() + 1800;
