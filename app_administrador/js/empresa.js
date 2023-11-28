@@ -335,7 +335,7 @@ function setEmpresa(codElem, codAcc) {
 
 				xJSON2.forEach(element1 => {
 					if (element1.tipoEstadoParametro == 1) {
-						if (element1.tipoParametro == element.tipoEstadoParametro) {
+						if (element1.tipoParametro == element.tipoRubroParametro) {
 							selRubro = selRubro + '            			<option value="'+ element1.tipoParametro +'" selected>'+ element1.tipoNombre +'</option>';
 						} else {
 							selRubro = selRubro + '            			<option value="'+ element1.tipoParametro +'">'+ element1.tipoNombre +'</option>';
@@ -345,7 +345,7 @@ function setEmpresa(codElem, codAcc) {
 
 				xJSON3.forEach(element1 => {
 					if (element1.tipoEstadoParametro == 1) {
-						if (element1.tipoParametro == element.tipoEstadoParametro) {
+						if (element1.tipoParametro == element.tipoAccesoParametro) {
 							selAcceso = selAcceso + '            			<option value="'+ element1.tipoParametro +'" selected>'+ element1.tipoNombre +'</option>';
 						} else {
 							selAcceso = selAcceso + '            			<option value="'+ element1.tipoParametro +'">'+ element1.tipoNombre +'</option>';

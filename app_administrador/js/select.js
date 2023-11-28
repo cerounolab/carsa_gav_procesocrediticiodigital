@@ -890,3 +890,67 @@ function selectEmpresaSuc(parm01, parm02, parm03, parm04) {
     }
     
 }
+
+function selectEmpresaRol(parm01, parm02, parm03, parm04) {
+    var selOption   = document.getElementById(parm01);
+    var codEmp      = document.getElementById(parm02);
+    var codRol      = document.getElementById(parm01);
+ 
+    while (selOption.length > 0) {
+        selOption.remove(0);
+    }
+    xJSON           = getRolEmp(codEmp.value);
+
+    switch (parm02) {
+        case 1:
+            var option      = document.createElement('option');
+            option.value    = 0;
+            option.text     = 'SELECCIONAR';
+            option.selected = true;
+            option.disabled = true;
+            selOption.add(option, null);
+            break;
+
+        case 2:
+            var option      = document.createElement('option');
+            option.value    = 0;
+            option.text     = 'TODOS';
+            option.selected = true;
+            option.disabled = false;
+            selOption.add(option, null);
+            break;
+    }
+    
+    if (parm03 == 1) {
+        xJSON.forEach(element => {
+            var option      = document.createElement('option');
+            option.value    = element.rolCodigo;
+            option.text     = element.rolCodigo +' - '+ element.rolNombre;
+            
+            if (element.rolCodigo ==  parm04) {
+                option.selected = true;
+            } else {
+                option.selected = false;
+            }
+            selOption.add(option, null);
+    
+           
+        });
+    } else {
+        xJSON.forEach(element => {
+            var option      = document.createElement('option');
+            option.value    = element.rolCodigo;
+            option.text     = element.rolCodigo +' - '+ element.rolCodigo;
+
+            if (element.empresaCodigo == codEmp) {
+                option.selected = true;
+            } else {
+                option.selected = false;
+            }
+            selOption.add(option, null);
+
+        
+        });
+    }
+    
+}
