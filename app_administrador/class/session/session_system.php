@@ -16,10 +16,12 @@
     $usu_06 = $_SESSION['empresaCodigo'];
     $usu_07 = $_SESSION['empresaNombre'];
     $usu_08 = $_SESSION['empresaRuc'];
-    $usu_09 = $_SESSION['sucursalCodigo'];
-    $usu_10 = $_SESSION['sucursalNombre'];
-    $usu_11 = $_SESSION['sucursalCelular'];
-    $usu_12 = $_SESSION['sucursalCorreo'];
+    $usu_09 = $_SESSION['rolCodigo'];
+    $usu_10 = $_SESSION['rolNombre'];
+    $usu_11 = $_SESSION['empresaSitoWeb'];
+    $usu_12 = $_SESSION['empresaCorreo'];
+    $usu_13 = $_SESSION['empresaDireccion'];
+
 
     $expire = $_SESSION['expire'];
 

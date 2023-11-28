@@ -16,10 +16,12 @@
     unset($_SESSION['empresaCodigo']);
     unset($_SESSION['empresaNombre']);
     unset($_SESSION['empresaRuc']);
-    unset($_SESSION['sucursalCodigo']);
-    unset($_SESSION['sucursalNombre']);
-    unset($_SESSION['sucursalCelular']);
-    unset($_SESSION['sucursalCorreo']);
+    unset($_SESSION['rolCodigo']);
+    unset($_SESSION['rolNombre']);
+    unset($_SESSION['empresaSitoWeb']);
+    unset($_SESSION['empresaCorreo']);
+    unset($_SESSION['empresaDireccion']);
+
 
     unset($_SESSION['expire']);
 
