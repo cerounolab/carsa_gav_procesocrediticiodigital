@@ -195,7 +195,7 @@ function setUsuario(codElem, codAcc) {
 			'									<div class="col-sm-12 col-md-4">'+
 			'       					            <div class="form-group">'+
 			'       					                <label for="var03">Empresa</label>'+
-			`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresaSuc('var04','var03', 1, 0); setUsu('var03', 'var08_1'); setRecuperoDatos('var05', 'var03', 'var06', 'var07', 'var08', 'var09', 'var010', 'var011');" style="width:100%; height:40px;">`+
+			`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresa('var04','var03', 1, 0); setUsu('var03', 'var08_1'); setRecuperoDatos('var05', 'var03', 'var06', 'var07', 'var08', 'var09', 'var010', 'var011');" style="width:100%; height:40px;">`+
 			'       					                    <optgroup label="Seleccionar">'+ selEmpresa +
 			'       					                    </optgroup>'+
 			'       					                </select>'+
@@ -439,15 +439,15 @@ function setUsuario(codElem, codAcc) {
 				''+
 				'               					<div class="col-sm-12 col-md-6">'+
 				'               					    <div class="form-group">'+
-				'               					        <label for="var010">Celular</label>'+
-				'               					        <input id="var010" name="var010" value="'+ usuarioCelular +'" class="form-control" type="text" style="height:40px;" placeholder="" '+ bodyOnl +'>'+
+				'               					        <label for="var011">Celular</label>'+
+				'               					        <input id="var011" name="var011" value="'+ usuarioCelular +'" class="form-control" type="text" style="height:40px;" placeholder="" '+ bodyOnl +'>'+
 				'               					    </div>'+
 				'               					</div>'+
 				''+
 				'               					<div class="col-sm-12 col-md-6">'+
 				'               					    <div class="form-group">'+
-				'               					        <label for="var011">Email</label>'+
-				'               					        <input id="var011" name="var011" value="'+ usuarioEmail +'" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="" '+ bodyOnl +'>'+
+				'               					        <label for="var010">Email</label>'+
+				'               					        <input id="var010" name="var010" value="'+ usuarioEmail +'" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="" '+ bodyOnl +'>'+
 				'               					    </div>'+
 				'               					</div>'+
 				''+

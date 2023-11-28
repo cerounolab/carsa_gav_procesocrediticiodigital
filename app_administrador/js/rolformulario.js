@@ -194,27 +194,27 @@ function setRolFormulario(codRol, codForm, codAcc) {
 		'               					<div class="col-sm-12 col-md-4">'+
 		'               					</div>'+
 		''+
-		'									<div class="col-sm-12 col-md-4">'+
+		'									<div class="col-sm-12 col-md-6">'+
 		'       					            <div class="form-group">'+
 		'       					                <label for="var03">Empresa</label>'+
-		'       					                <select id="var03" name="var03" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
+		`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresaRol('var04','var03', 1, 0);" style="width:100%; height:40px;">`+
 		'       					                    <optgroup label="Seleccionar">'+ selEmpresa +
 		'       					                    </optgroup>'+
 		'       					                </select>'+
 		'       					            </div>'+
 		'       					        </div>'+
 		''+
-		'									<div class="col-sm-12 col-md-4">'+
+		'									<div class="col-sm-12 col-md-6">'+
 		'       					            <div class="form-group">'+
 		'       					                <label for="var04">Rol</label>'+
 		'       					                <select id="var04" name="var04" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
-		'       					                    <optgroup label="Seleccionar">'+ selRol +
+		'       					                    <optgroup label="Seleccionar">'+
 		'       					                    </optgroup>'+
 		'       					                </select>'+
 		'       					            </div>'+
 		'       					        </div>'+
 		''+
-		'									<div class="col-sm-12 col-md-4">'+
+		'									<div class="col-sm-12 col-md-6">'+
 		'       					            <div class="form-group">'+
 		'       					                <label for="var05">Formulario</label>'+
 		'       					                <select id="var05" name="var05" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
@@ -226,7 +226,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 		''+
 		'									<div class="col-sm-12 col-md-4">'+
 		'       					            <div class="form-group">'+
-		'       					                <label for="var06">Acceso </label>'+
+		'       					                <label for="var06">Acceso Plataforma</label>'+
 		'       					                <select id="var06" name="var06" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
 		'       					                    <optgroup label="Seleccionar">'+
 		'													<option value="S">SI</option>'+
@@ -238,7 +238,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 		''+
 		'									<div class="col-sm-12 col-md-4">'+
 		'       					            <div class="form-group">'+
-		'       					                <label for="var07">Acceso DSP</label>'+
+		'       					                <label for="var07">Acceso Visualizar</label>'+
 		'       					                <select id="var07" name="var07" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
 		'       					                    <optgroup label="Seleccionar">'+
 		'													<option value="S">SI</option>'+
@@ -250,7 +250,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 		''+
 		'									<div class="col-sm-12 col-md-4">'+
 		'       					            <div class="form-group">'+
-		'       					                <label for="var08">Acceso UPD</label>'+
+		'       					                <label for="var08">Acceso Editar</label>'+
 		'       					                <select id="var08" name="var08" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
 		'       					                    <optgroup label="Seleccionar">'+
 		'													<option value="S">SI</option>'+
@@ -262,7 +262,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 		''+
 		'									<div class="col-sm-12 col-md-4">'+
 		'       					            <div class="form-group">'+
-		'       					                <label for="var09">Acceso DLT</label>'+
+		'       					                <label for="var09">Acceso Eliminar</label>'+
 		'       					                <select id="var09" name="var09" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
 		'       					                    <optgroup label="Seleccionar">'+
 		'													<option value="S">SI</option>'+
@@ -274,7 +274,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 		''+
 		'									<div class="col-sm-12 col-md-4">'+
 		'       					            <div class="form-group">'+
-		'       					                <label for="var010">Acceso INS</label>'+
+		'       					                <label for="var010">Acceso Insertar</label>'+
 		'       					                <select id="var010" name="var010" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
 		'       					                    <optgroup label="Seleccionar">'+
 		'													<option value="S">SI</option>'+
@@ -286,7 +286,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 		''+
 		'									<div class="col-sm-12 col-md-4">'+
 		'       					            <div class="form-group">'+
-		'       					                <label for="var011">Acceso XLS</label>'+
+		'       					                <label for="var011">Acceso Exportar Excel</label>'+
 		'       					                <select id="var011" name="var011" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
 		'       					                    <optgroup label="Seleccionar">'+
 		'													<option value="S">SI</option>'+
@@ -298,7 +298,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 		''+
 		'									<div class="col-sm-12 col-md-4">'+
 		'       					            <div class="form-group">'+
-		'       					                <label for="var012">Acceso PDF</label>'+
+		'       					                <label for="var012">Acceso Exportar PDF</label>'+
 		'       					                <select id="var012" name="var012" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
 		'       					                    <optgroup label="Seleccionar">'+
 		'													<option value="S">SI</option>'+
@@ -310,7 +310,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 		''+
 		'									<div class="col-sm-12 col-md-4">'+
 		'       					            <div class="form-group">'+
-		'       					                <label for="var013">Acceso IMP</label>'+
+		'       					                <label for="var013">Acceso Imprimir</label>'+
 		'       					                <select id="var013" name="var013" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
 		'       					                    <optgroup label="Seleccionar">'+
 		'													<option value="S">SI</option>'+
@@ -365,9 +365,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 					if (element1.tipoEstadoParametro == 1) {
 						if (element1.empresaCodigo == element.empresaCodigo) {
 							selEmpresa = selEmpresa + '            			<option value="'+ element1.empresaCodigo +'" selected>'+ element1.empresaNombre +'</option>';
-						} else {
-							selEmpresa = selEmpresa + '            			<option value="'+ element1.empresaCodigo +'">'+ element1.empresaNombre +'</option>';
-						}
+						} 
 					}
 				});
 
@@ -376,9 +374,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 					if (element1.tipoEstadoParametro == 1) {
 						if (element1.rolCodigo == element.rolCodigo) {
 							selRol = selRol + '            			<option value="'+ element1.rolCodigo +'" selected>'+ element1.rolNombre +'</option>';
-						} else {
-							selRol = selRol + '            			<option value="'+ element1.rolCodigo +'">'+ element1.rolNombre +'</option>';
-						}
+						} 
 					}
 				});
 
@@ -386,8 +382,6 @@ function setRolFormulario(codRol, codForm, codAcc) {
 					if (element1.tipoEstadoParametro == 1) {
 						if (element1.formularioCodigo == element.formularioCodigo) {
 							selForm = selForm + '            		<option value="'+ element1.formularioCodigo +'" selected>'+ element1.formularioNombre +'</option>';
-						} else {
-							selForm = selForm + '            		<option value="'+ element1.formularioCodigo +'">'+ element1.formularioNombre +'</option>';
 						}
 					}
 				});
@@ -516,7 +510,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
 				'       					                <label for="var03">Empresa</label>'+
-				'       					                <select id="var03" name="var03" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
+				`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresaRol('var04','var03', 1, 0);" style="width:100%; height:40px;">`+
 				'       					                    <optgroup label="Seleccionar">'+ selEmpresa +
 				'       					                    </optgroup>'+
 				'       					                </select>'+
@@ -527,7 +521,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 				'       					            <div class="form-group">'+
 				'       					                <label for="var04">Rol</label>'+
 				'       					                <select id="var04" name="var04" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
-				'       					                    <optgroup label="Seleccionar">'+ selEmpresa +
+				'       					                    <optgroup label="Seleccionar">'+
 				'       					                    </optgroup>'+
 				'       					                </select>'+
 				'       					            </div>'+
@@ -545,7 +539,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 				''+
 				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var06">Acceso </label>'+
+				'       					                <label for="var06">Acceso Plataforma</label>'+
 				'       					                <select id="var06" name="var06" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Seleccionar">'+selAcceso+
 				'       					                    </optgroup>'+
@@ -555,7 +549,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 				''+
 				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var07">Acceso DSP</label>'+
+				'       					                <label for="var07">Acceso Visualizar</label>'+
 				'       					                <select id="var07" name="var07" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Seleccionar">'+selAccesoDsp +
 				'       					                    </optgroup>'+
@@ -565,7 +559,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 				''+
 				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var08">Acceso UPD</label>'+
+				'       					                <label for="var08">Acceso Editar</label>'+
 				'       					                <select id="var08" name="var08" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Seleccionar">'+selAccesoUpd +
 				'       					                    </optgroup>'+
@@ -575,7 +569,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 				''+
 				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var09">Acceso DLT</label>'+
+				'       					                <label for="var09">Acceso Eliminar</label>'+
 				'       					                <select id="var09" name="var09" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Seleccionar">'+selAccesoDlt +
 				'       					                    </optgroup>'+
@@ -585,7 +579,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 				''+
 				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var010">Acceso INS</label>'+
+				'       					                <label for="var010">Acceso Insertar</label>'+
 				'       					                <select id="var010" name="var010" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Seleccionar">'+selAccesoIns +
 				'       					                    </optgroup>'+
@@ -595,7 +589,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 				''+
 				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var011">Acceso XLS</label>'+
+				'       					                <label for="var011">Acceso Exportar Excel</label>'+
 				'       					                <select id="var011" name="var011" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Seleccionar">'+selAccesoXls +
 				'       					                    </optgroup>'+
@@ -605,7 +599,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 				''+
 				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var012">Acceso PDF</label>'+
+				'       					                <label for="var012">Acceso Exportar PDF</label>'+
 				'       					                <select id="var012" name="var012" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Seleccionar">'+selAccesoPdf +
 				'       					                    </optgroup>'+
@@ -615,7 +609,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 				''+
 				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var013">Acceso IMP</label>'+
+				'       					                <label for="var013">Acceso Imprimir</label>'+
 				'       					                <select id="var013" name="var013" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Seleccionar">'+selAccesoImpre +
 				'       					                    </optgroup>'+

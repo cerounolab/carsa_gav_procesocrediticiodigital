@@ -40,10 +40,12 @@
         $_SESSION['empresaCodigo']          = intval($resultJSON['data']['0']['empresaCodigo']);
         $_SESSION['empresaNombre']          = trim(strtoupper(strtolower($resultJSON['data']['0']['empresaNombre'])));
         $_SESSION['empresaRuc']             = trim(strtoupper(strtolower($resultJSON['data']['0']['empresaRuc'])));
-        $_SESSION['sucursalCodigo']         = intval($resultJSON['data']['0']['sucursalCodigo']);
-        $_SESSION['sucursalNombre']         = trim(strtoupper(strtolower($resultJSON['data']['0']['sucursalNombre'])));
-        $_SESSION['sucursalCelular']        = intval($resultJSON['data']['0']['sucursalCelular']);
-        $_SESSION['sucursalCorreo']         = trim(strtoupper(strtolower($resultJSON['data']['0']['sucursalCorreo'])));
+        $_SESSION['rolCodigo']              = intval($resultJSON['data']['0']['rolCodigo']);
+        $_SESSION['rolNombre']              = trim(strtoupper(strtolower($resultJSON['data']['0']['rolNombre'])));
+        $_SESSION['empresaSitoWeb']         = intval($resultJSON['data']['0']['empresaSitoWeb']);
+        $_SESSION['empresaCorreo']          = trim(strtoupper(strtolower($resultJSON['data']['0']['empresaCorreo'])));
+        $_SESSION['empresaDireccion']       = trim(strtoupper(strtolower($resultJSON['data']['0']['empresaDireccion'])));
+
 
         $_SESSION['expire'] = time() + 1800;
 
