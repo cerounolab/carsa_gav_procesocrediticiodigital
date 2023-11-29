@@ -45,8 +45,8 @@
 				'usuario_apellido'			=> $val07,
 				'usuario_usuario'			=> $val08,
 				'usuario_password'			=> $val09,
-				'usuario_celular'           => $val010,
-				'usuario_correo'            => $val011,
+				'usuario_celular'           => $val011,
+				'usuario_correo'            => $val010,
 				'usuario_observacion'       => $val012,
 
 				'alta_empresa_codigo'		=> $work05,

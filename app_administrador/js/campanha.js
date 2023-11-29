@@ -84,7 +84,7 @@ function setcampanha(codElem, codAcc) {
 	var bodyBot     = '';
 	var selEstado   = '';
 	var selEmpresa  = '';
-	var selTipCargo	= '';
+	var selTipCamp	= '';
 
 	switch (codAcc) {
 		case 1:
@@ -150,7 +150,7 @@ function setcampanha(codElem, codAcc) {
 
 		xJSON3.forEach(element1 => {
 			if (element1.tipoEstadoParametro == 1) {
-				selTipCargo = selTipCargo + '                               			<option value="'+ element1.tipoParametro +'">'+ element1.tipoNombre +'</option>';
+				selTipCamp = selTipCamp + '                               			<option value="'+ element1.tipoParametro +'">'+ element1.tipoNombre +'</option>';
 			}
 		});
 
@@ -188,7 +188,7 @@ function setcampanha(codElem, codAcc) {
 			'       					            <div class="form-group">'+
 			'       					                <label for="var04">Tipo Campaña</label>'+
 			'       					                <select id="var04" name="var04" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
-			'       					                    <optgroup label="Seleccionar">'+ selTipCargo +
+			'       					                    <optgroup label="Seleccionar">'+ selTipCamp +
 			'       					                    </optgroup>'+
 			'       					                </select>'+
 			'       					            </div>'+
@@ -277,10 +277,10 @@ function setcampanha(codElem, codAcc) {
 
 				xJSON3.forEach(element1 => {
 					if (element1.tipoEstadoParametro == 1) {
-						if (element1.tipoParametro == element.tipoEstadoParametro) {
-							selTipCargo = selTipCargo + '            			<option value="'+ element1.tipoParametro +'" selected>'+ element1.tipoNombre +'</option>';
+						if (element1.tipoParametro == element.tipoCampanhaParametro) {
+							selTipCamp = selTipCamp + '            			<option value="'+ element1.tipoParametro +'" selected>'+ element1.tipoNombre +'</option>';
 						} else {
-							selTipCargo = selTipCargo + '            			<option value="'+ element1.tipoParametro +'">'+ element1.tipoNombre +'</option>';
+							selTipCamp = selTipCamp + '            			<option value="'+ element1.tipoParametro +'">'+ element1.tipoNombre +'</option>';
 						}
 					}
 				});
@@ -326,7 +326,7 @@ function setcampanha(codElem, codAcc) {
 				'       					            <div class="form-group">'+
 				'       					                <label for="var04">Tipo Campaña</label>'+
 				'       					                <select id="var04" name="var04" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
-				'       					                    <optgroup label="Seleccionar">'+ selTipCargo +
+				'       					                    <optgroup label="Seleccionar">'+ selTipCamp +
 				'       					                    </optgroup>'+
 				'       					                </select>'+
 				'       					            </div>'+

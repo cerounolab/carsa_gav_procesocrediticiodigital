@@ -787,6 +787,26 @@ function getRolId(codElem){
     return xDATA;
 }
 
+function getRolEmp(codElem){
+    localStorage.removeItem('rolEmpresaJSON');
+
+    if (localStorage.getItem('rolEmpresaJSON') === null){
+        getJSON('rolEmpresaJSON', 'rol/empresa/' + codElem);
+    }
+    var xJSON = [];
+
+    var xJSON = JSON.parse(localStorage.getItem('rolEmpresaJSON'));
+    var xDATA = [];
+
+    if (xJSON['code'] == 200) {
+        xJSON['data'].forEach(element => {
+            xDATA.push(element);
+        });
+    }
+
+    return xDATA;
+}
+
 function getcampanhaList(codElem){
     localStorage.removeItem('campanhaListJSON');
 

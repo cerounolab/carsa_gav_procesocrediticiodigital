@@ -292,7 +292,7 @@ function setEmpSucursal(codElem, codAcc) {
 					
 				xJSON2.forEach(element1 => {
 					if (element1.tipoEstadoParametro == 1) {
-						if (element1.tipoParametro == element.tipoEstadoParametro) {
+						if (element1.tipoParametro == element.tipoSucursalParametro) {
 							selTipSuc = selTipSuc + '            			<option value="'+ element1.tipoParametro +'" selected>'+ element1.tipoNombre +'</option>';
 						} else {
 							selTipSuc = selTipSuc + '            			<option value="'+ element1.tipoParametro +'">'+ element1.tipoNombre +'</option>';
@@ -435,9 +435,6 @@ function setEmpSucursal(codElem, codAcc) {
 		});
 	}
 
-	// if (codAcc == 2 || codAcc == 3) {
-		// selectEmpresa2('var03', 1, 0);
-	// }
 
 	$("#modal-content").empty();
 	$("#modal-content").append(html);
