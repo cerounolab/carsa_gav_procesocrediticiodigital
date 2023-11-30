@@ -231,8 +231,8 @@ const selectUSUARIO = async(actionType, codigo, valor) => {
         let _code   = 200;
         let _data   = [];
         let query00 = '';
-        let _empresaCodigo = parseInt(valor.trim().substring(1, 4));
-        let _empresaCodigo2   = (codigo == 1) ? ` a.empresa_codigo <> 0 ` : ` a.empresa_codigo = ${codigo}`;
+        let _empresaCodigo  = parseInt(valor.trim().substring(1, 4));
+        let _empresaCodigo2 = (codigo == 1) ? ` a.empresa_codigo <> 0 ` : ` a.empresa_codigo = ${codigo}`;
 
         switch (actionType) {
             case 1:
@@ -679,14 +679,15 @@ const selectUSUARIOROL  = async(actionType, codigo, codigo2, codigo3) => {
     let _code   = 200;
     let _data   = [];
     let query00 = '';
+    let _empresaCodigo2   = (codigo == 1) ? `empresa_codigo <> 0 ` : `empresa_codigo = ${codigo}`;
 
     switch (actionType) {
-        case 1:
+        case 1: 
             query00 = `SELECT
                             *
                         FROM
                             adm.USUARIOROL
-                        WHERE empresa_codigo  = ${codigo}`;
+                        WHERE ${_empresaCodigo2}`;
             break;
 
         case 2:

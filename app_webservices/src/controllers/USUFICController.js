@@ -150,7 +150,7 @@ const getUsuarioEmpresaId = (apiREQ, apiRES) => {
     let _dataJSON   = [];
     let _codigo     = parseInt(apiREQ.params.empresa);
 
-    if (_valor != 'undefined' && _valor != ''){
+    if (_codigo != 'undefined' && _codigo != ''){
 
         (async () => {
             const xDATA = await selectUSUARIO(5, _codigo, '');
