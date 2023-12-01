@@ -638,6 +638,71 @@ const insertUSUCAM  = async(_USUCAMUSC,
     return Array(_code, _data);
 }
 
+const insertUSUFLU  = async(_USUFLUUSC, 
+    _USUFLUROC, 
+    _USUFLUEMC, 
+    _USUFLURO1, 
+    _USUFLUUS1, 
+    _USUFLUEST, 
+    _USUFLUORD, 
+    _USUFLUOBS, 
+    _USUFLUCEM, 
+    _USUFLUCUS, 
+    _USUFLUCIP, 
+    _USUFLUCPR, 
+    _USUFLUAEM, 
+    _USUFLUAUS, 
+    _USUFLUAIP, 
+    _USUFLUAPR, 
+    _USUFLUAIN) => {
+
+    let _code   = 200;
+    let _data   = [];
+
+    let query00 = '';
+
+    query00 = `INSERT INTO adm.USUFLU (USUFLUUSC,     USUFLUROC,     USUFLUEMC,     USUFLURO1,     USUFLUUS1, 																							       USUFLUEST, 	  USUFLUORD,     USUFLUOBS,     USUFLUCEM, 	   USUFLUCUS,     USUFLUCIP,     USUFLUCPR,     USUFLUAEM,     USUFLUAUS,     USUFLUAIP,     USUFLUAPR, USUFLUAIN)
+                            SELECT ${_USUFLUUSC}, ${_USUFLUROC}, ${_USUFLUEMC}, ${_USUFLURO1}, ${_USUFLUUS1}, (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOFLUJOESTADO' AND DOMFICPAR = ${_USUFLUEST}), ${_USUFLUORD}, ${_USUFLUOBS}, ${_USUFLUCEM}, ${_USUFLUCUS}, ${_USUFLUCIP}, ${_USUFLUCPR}, ${_USUFLUAEM}, ${_USUFLUAUS}, ${_USUFLUAIP}, ${_USUFLUAPR}, ${_USUFLUAIN}
+                            WHERE NOT EXISTS (SELECT * FROM adm.USUFLU WHERE USUFLUUSC = ${_USUFLUUSC} AND USUFLUROC = ${_USUFLUROC} AND USUFLURO1 = ${_USUFLURO1} AND USUFLUUS1 = ${_USUFLUUS1})
+                            RETURNING USUFLUUSC, USUFLUROC, USUFLURO1, USUFLUUS1`;	            
+                  
+    const connPGSQL = new Client(initPGSQL);
+
+    await connPGSQL
+        .connect()
+        .catch(e => {
+            _code = 401;
+            errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertUSUFLU', true)
+                .then(result => _data = result);
+        }
+    );
+
+    if (_code == 200) {
+        await connPGSQL
+            .query(query00)
+            .then(result => {
+                _code = 200;
+                _data = result.rows;
+            })
+            .catch(e => {
+                _code   = 500;
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', detail: '+e.detail+', Function: insertUSUFLU', true)
+                    .then(result => _data = result);
+            })
+            .then(() => {
+                connPGSQL.end();
+            }
+        );
+        
+    }
+  
+    if (_data == '') {
+        _code   = 404;
+    }
+   
+    return Array(_code, _data);
+}
+
 module.exports = {
     insertDOMFIC,
     insertEMPFIC,
@@ -648,6 +713,7 @@ module.exports = {
     insertFORFIC,
     insertROLFOR,
     insertUSUROL,
-    insertUSUCAM
+    insertUSUCAM,
+    insertUSUFLU
 
 };
