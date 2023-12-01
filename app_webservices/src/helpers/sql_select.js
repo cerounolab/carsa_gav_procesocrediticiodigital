@@ -156,13 +156,15 @@ const selectSUCURSAL    = async(actionType, codigo, valor) => {
     let _code   = 200;
     let _data   = [];
     let query00 = '';
+    let _empresaCodigo2 = (codigo == 1) ? `empresa_codigo <> 0 ` : `empresa_codigo = ${codigo}`;
 
     switch (actionType) {
         case 1:
             query00 = `SELECT
                             *
                         FROM
-                            adm.SUCURSAL`;
+                            adm.SUCURSAL
+                        WHERE ${_empresaCodigo2}`;
             break;
 
         case 2:
@@ -233,13 +235,15 @@ const selectUSUARIO = async(actionType, codigo, valor) => {
         let query00 = '';
         let _empresaCodigo  = parseInt(valor.trim().substring(1, 4));
         let _empresaCodigo2 = (codigo == 1) ? ` a.empresa_codigo <> 0 ` : ` a.empresa_codigo = ${codigo}`;
+        let _empresaCodigo3 = (codigo == 1) ? `empresa_codigo <> 0 ` : ` empresa_codigo = ${codigo}`;
 
         switch (actionType) {
             case 1:
                 query00 = `SELECT
                                 *
                             FROM
-                                adm.USUARIO`;
+                                adm.USUARIO
+                            WHERE ${_empresaCodigo3}`;
                 break;
 
             case 2:
@@ -402,13 +406,14 @@ const selectROL = async(actionType, codigo) => {
     let _code   = 200;
     let _data   = [];
     let query00 = '';
+    let _empresaCodigo2 = (codigo == 1) ? `empresa_codigo <> 0 ` : ` empresa_codigo = ${codigo}`;
 
     switch (actionType) {
         case 1:
             query00 = `SELECT
                             *
-                        FROM
-                            adm.ROL`;
+                        FROM adm.ROL
+                        WHERE ${_empresaCodigo2}`;
             break;
 
         case 2:
@@ -469,13 +474,15 @@ const selectCAMPANHA = async(actionType, codigo, valor) => {
     let _code   = 200;
     let _data   = [];
     let query00 = '';
+    let _empresaCodigo2 = (codigo == 1) ? `empresa_codigo <> 0 ` : ` empresa_codigo = ${codigo}`;
 
     switch (actionType) {
         case 1:
             query00 = `SELECT
                             *
                         FROM
-                            adm.CAMPANHA`;
+                            adm.CAMPANHA
+                        WHERE ${_empresaCodigo2}`;
             break;
 
         case 2:
@@ -545,13 +552,15 @@ const selectFORMULARIO = async(actionType, codigo) => {
     let _code   = 200;
     let _data   = [];
     let query00 = '';
+    let _empresaCodigo2   = (codigo == 1) ? `empresa_codigo <> 0 ` : `empresa_codigo = ${codigo}`;
 
     switch (actionType) {
         case 1:
             query00 = `SELECT
                             *
                         FROM
-                            adm.FORMULARIO`;
+                            adm.FORMULARIO
+                        WHERE ${_empresaCodigo2}`;
             break;
 
         case 2:
@@ -612,13 +621,15 @@ const selectROLFORMULARIO  = async(actionType, codigo, codigo2) => {
     let _code   = 200;
     let _data   = [];
     let query00 = '';
+    let _empresaCodigo2 = (codigo == 1) ? `empresa_codigo <> 0 ` : ` empresa_codigo = ${codigo}`;
 
     switch (actionType) {
         case 1:
             query00 = `SELECT
                             *
                         FROM
-                            adm.ROLFORMULARIO`;
+                            adm.ROLFORMULARIO
+                        WHERE ${_empresaCodigo2}`;
             break;
 
         case 2:
