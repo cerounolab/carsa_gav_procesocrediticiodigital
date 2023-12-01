@@ -417,7 +417,7 @@ const {errorBody}   = require('../utils/_json');
     return Array(_code, _data);
     }
 
-    const updateROLFIC = async(_ACCION,
+    const updateROLFIC  = async(_ACCION,
         codigo,
         _ROLFICEST,
         _ROLFICEMC,
@@ -504,7 +504,7 @@ const {errorBody}   = require('../utils/_json');
     return Array(_code, _data);
     }
 
-    const updateCAMFIC = async(_ACCION,
+    const updateCAMFIC  = async(_ACCION,
         codigo,
         _CAMFICEST,
         _CAMFICTCC,
@@ -597,7 +597,7 @@ const {errorBody}   = require('../utils/_json');
     return Array(_code, _data);
     }
 
-    const updateFORFIC = async(_ACCION,
+    const updateFORFIC  = async(_ACCION,
         codigo,
         _FORFICEST,
         _FORFICEMC,
@@ -683,7 +683,7 @@ const {errorBody}   = require('../utils/_json');
     return Array(_code, _data);
     }
 
-    const updateROLFOR = async(_ACCION,
+    const updateROLFOR  = async(_ACCION,
         codigo,
         codigo2,
         _ROLFOREST,
@@ -781,7 +781,7 @@ const {errorBody}   = require('../utils/_json');
     return Array(_code, _data);
     }
 
-    const updateUSUROL = async(_ACCION,
+    const updateUSUROL  = async(_ACCION,
         _USUROLUSC,
         _USUROLROC,
         _USUROLEST,
@@ -866,7 +866,7 @@ const {errorBody}   = require('../utils/_json');
     return Array(_code, _data);
     }
 
-    const updateUSUCAM = async(_ACCION,
+    const updateUSUCAM  = async(_ACCION,
         _USUCAMUSC,
         _USUCAMCAC,
         _USUCAMEST,
@@ -944,6 +944,90 @@ const {errorBody}   = require('../utils/_json');
 
     return Array(_code, _data);
     }
+    
+    const updateUSUFLU  = async(_ACCION,
+        _USUFLUUSC, 
+        _USUFLUROC, 
+        _USUFLUEMC, 
+        _USUFLURO1, 
+        _USUFLUUS1, 
+        _USUFLUEST, 
+        _USUFLUORD, 
+        _USUFLUOBS, 
+        _USUFLUCEM, 
+        _USUFLUCUS, 
+        _USUFLUCIP, 
+        _USUFLUCPR, 
+        _USUFLUAEM, 
+        _USUFLUAUS, 
+        _USUFLUAIP, 
+        _USUFLUAPR, 
+        _USUFLUAIN) => {
+
+        let _code   = 200;
+        let _data   = [];
+        let query00 = '';
+
+        switch (_ACCION) {
+            case 1:
+                query00 = `UPDATE adm.USUFLU SET 
+                                USUFLUEST   = (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOFLUJOESTADO' AND DOMFICPAR = ${_USUFLUEST}),  
+                                USUFLUEMC   = ${_USUFLUEMC},
+                                USUFLUORD	= ${_USUFLUORD},  
+                                USUFLUOBS   = ${_USUFLUOBS}, 
+                                USUFLUAEM   = ${_USUFLUAEM}, 
+                                USUFLUAUS   = ${_USUFLUAUS}, 
+                                USUFLUAIP   = ${_USUFLUAIP},
+                                USUFLUAPR   = ${_USUFLUAPR}, 
+                                USUFLUAIN   = ${_USUFLUAIN}
+                            
+                            WHERE USUFLUUSC = ${_USUFLUUSC} AND USUFLUROC = ${_USUFLUROC} AND USUFLURO1 =  ${_USUFLURO1} AND USUFLUUS1 = ${_USUFLUUS1}`;
+            break;
+
+            case 2:
+                query00 = `UPDATE adm.USUFLU SET 
+                                USUFLUEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOFLUJOESTADO' AND DOMFICPAR = ${_USUFLUEST}), 
+                                USUFLUAEM	= ${_USUFLUAEM}, 
+                                USUFLUAIP	= ${_USUFLUAIP}, 
+                                USUFLUAPR	= ${_USUFLUAPR}, 
+                                USUFLUAIN	= ${_USUFLUAIN}
+                            
+                            WHERE USUFLUUSC = ${_USUFLUUSC} AND USUFLUROC = ${_USUFLUROC} AND USUFLURO1 =  ${_USUFLURO1} AND USUFLUUS1 = ${_USUFLUUS1}`;
+            break;	
+
+        }
+
+        const connPGSQL = new Client(initPGSQL);
+
+        await connPGSQL
+            .connect()
+            .catch(e => {
+                _code = 401;
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateUSUFLU', true)
+                    .then(result => _data = result);
+            }
+    );
+
+    if (_code == 200) {
+        await connPGSQL
+            .query(query00)
+            .then(result => {
+                _code = 200;
+            })
+            .catch(e => {
+                _code = 500;
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateUSUFLU', true)
+                    .then(result => _data = result);
+            })
+            .then(() => {
+                connPGSQL.end();
+            }
+        );
+    }
+
+    return Array(_code, _data);
+    }
+
 
 module.exports = {
     updateDOMFIC,
@@ -955,6 +1039,7 @@ module.exports = {
     updateFORFIC,
     updateROLFOR,
     updateUSUROL,
-    updateUSUCAM
+    updateUSUCAM,
+    updateUSUFLU
 
 };
