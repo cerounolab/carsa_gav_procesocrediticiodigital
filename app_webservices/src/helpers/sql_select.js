@@ -798,6 +798,103 @@ const selectUSUARIOCAMPANHA  = async(actionType, codigo, codigo2, codigo3) => {
     return Array(_code, _data);
 }
 
+const selectUSUARIOFLUJO  = async(actionType, codigo, codigo2, codigo3, codigo4) => {
+    let _code   = 200;
+    let _data   = [];
+    let query00 = '';
+    let _empresaCodigo2   = (codigo == 1) ? `empresa_codigo <> 0 ` : `empresa_codigo = ${codigo}`;
+
+    switch (actionType) {
+        case 1:
+            query00 = `SELECT
+                            *
+                        FROM
+                            adm.USUARIOFLUJO
+                        WHERE ${_empresaCodigo2}`;
+            break;
+        
+        case 2:
+            query00 = `SELECT
+                            *
+                        FROM
+                            adm.USUARIOFLUJO
+                        WHERE usuario_superior_codigo = ${codigo}`;
+            break;
+
+        case 3:
+            query00 = `SELECT
+                            *
+                        FROM
+                            adm.USUARIOFLUJO
+                        WHERE usuario_subordinado_codigo = ${codigo}`;
+
+                break;
+
+        case 4:
+
+            query00 = `SELECT
+                        *
+                    FROM
+                        adm.USUARIOFLUJO
+                    WHERE rol_superior_codigo = ${codigo}`;
+            break;
+
+        case 5:
+
+            query00 = `SELECT
+                        *
+                    FROM
+                        adm.USUARIOFLUJO
+                    WHERE rol_subordinado_codigo = ${codigo}`;
+            break;
+
+        case 6:
+
+            query00 = `SELECT
+                        *
+                    FROM
+                        adm.USUARIOFLUJO	
+                    WHERE usuario_superior_codigo = ${codigo} AND rol_superior_codigo = ${codigo2} AND usuario_subordinado_codigo = ${codigo3} AND rol_subordinado_codigo = ${codigo4}`;
+            break;
+
+        default:
+            break;
+    }
+
+    const connPGSQL = new Client(initPGSQL);
+    await connPGSQL
+        .connect()
+        .catch(e => {
+            _code = 401;
+            errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: selectUSUARIOFLUJO', true)
+                .then(result => _data = result);
+        }
+    );
+
+    await connPGSQL
+        .query(query00)
+        .then(result => {
+            _code = 200;
+            _data = result.rows;
+        })
+        .catch(e => {
+            _code = 500;
+            errorBody(_code, 'Code: '+ e.code +' '+e.severity+', '+e.hint, 'Function: selectUSUARIOFLUJO')
+                .then(result => _data = result);
+        })
+        .then(() => {
+            connPGSQL.end();
+        }
+
+    );
+
+    if (_data.length == 0) {
+        _code = 404;
+    }
+
+    return Array(_code, _data);
+}
+
 module.exports  = {
     selectDOMINIOTIPO,
     selectEMPRESA, 
@@ -809,5 +906,6 @@ module.exports  = {
     selectFORMULARIO,
     selectROLFORMULARIO,
     selectUSUARIOROL,
-    selectUSUARIOCAMPANHA
+    selectUSUARIOCAMPANHA,
+    selectUSUARIOFLUJO
 };

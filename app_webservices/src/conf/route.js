@@ -14,8 +14,7 @@ const { getFormulario, getFormularioId, getFormularioEmpresaId, postFormulario, 
 const { getRolFormulario, getRolFormularioId, getRolFormularioEmpresaId, postRolFormulario, putRolFormulario, deleteRolFormulario } = require('../controllers/ROLFORController');
 const { getUsuarioRol, getUsuarioRolId, postUsuarioRol, putUsuarioRol, deleteUsuarioRol } = require('../controllers/USUROLController');
 const { getUsuarioCampanha, getUsuarioCampanhaId, postUsuarioCampanha, putUsuarioCampanha, deleteUsuarioCampanha } = require('../controllers/USUCAMController');
-
-
+const { getUsuarioFlujo, getUsuarioFlujoUsuarioSup, getUsuarioFlujoUsuarioSub, getUsuarioFlujoRolSup, getUsuarioFlujoRolSub, getUsuarioFlujoId, postUsuarioFlujo, putUsuarioFlujo, deleteUsuarioFlujo } = require('../controllers/USUFLUController');
 
 router.group('/v1/', (routerGroup) => {
   routerGroup.get('/dominio/listado', getDominio);
@@ -94,6 +93,17 @@ router.group('/v1/', (routerGroup) => {
   routerGroup.post('/usuariocampanha', postUsuarioCampanha);
   routerGroup.put('/usuariocampanha/codigousuario/:codigousuario/codigocampanha/:codigocampanha', putUsuarioCampanha);
   routerGroup.delete('/usuariocampanha/codigousuario/:codigousuario/codigocampanha/:codigocampanha', deleteUsuarioCampanha);
+
+  routerGroup.get('/usuarioflujo/listado/empresa/:empresa', getUsuarioFlujo);
+  routerGroup.get('/usuarioflujo/usuariosuperior/:usuariosuperior', getUsuarioFlujoUsuarioSup);
+  routerGroup.get('/usuarioflujo/usuariosubordinado/:usuariosubordinado', getUsuarioFlujoUsuarioSub);
+  routerGroup.get('/usuarioflujo/rolsuperior/:rolsuperior', getUsuarioFlujoRolSup);
+  routerGroup.get('/usuarioflujo/rolsubordinado/:rolsubordinado', getUsuarioFlujoRolSub);
+  routerGroup.get('/usuarioflujo/usuariosuperior/:usuariosuperior/rolsuperior/:rolsuperior/usuariosubordinado/:usuariosubordinado/rolsubordinado/:rolsubordinado', getUsuarioFlujoId);
+  routerGroup.post('/usuarioflujo', postUsuarioFlujo);
+  routerGroup.put('/usuarioflujo/usuariosuperior/:usuariosuperior/rolsuperior/:rolsuperior/usuariosubordinado/:usuariosubordinado/rolsubordinado/:rolsubordinado', putUsuarioFlujo);
+  routerGroup.delete('/usuarioflujo/usuariosuperior/:usuariosuperior/rolsuperior/:rolsuperior/usuariosubordinado/:usuariosubordinado/rolsubordinado/:rolsubordinado', deleteUsuarioFlujo);
+
 
 
 }); 
