@@ -13,25 +13,39 @@ const {errorBody}   = require('../utils/_json');
 
 const getCampanha   = (apiREQ, apiRES) => {
     let _code       = 200;
-    let _dataJSON   = [];     
+    let _dataJSON   = [];    
+    let _codigo     = parseInt(apiREQ.params.empresa);  
+    if (_codigo != 'undefined' && _codigo != '' && _codigo != null && _codigo > 0){
 
-    (async () => {
-        const xDATA = await selectCAMPANHA(1, 0, '');
-        _code       = xDATA[0];
-        _dataJSON   = xDATA[1];
-
-        if (_code == 200) {
-            _dataJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, _dataJSON);
-
-        } else {
+        (async () => {
+            const xDATA = await selectCAMPANHA(1, _codigo, '');
+            _code       = xDATA[0];
             _dataJSON   = xDATA[1];
-            _dataJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
-        }
 
-        _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
+            if (_code == 200) {
+                _dataJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, _dataJSON);
 
-        return apiRES.status(_code).json(_dataJSON);
-    })();
+            } else if (_code == 404){
+                _dataJSON   = xDATA[1];
+                _dataJSON   = await jsonBody(_code, 'No hay registros', null, null, null, 0, 0, 0, 0, []);
+            }else{
+                _dataJSON   = xDATA[1];
+                _dataJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
+            }
+
+            _dataJSON   = camelcaseKeys(_dataJSON, {deep: true});
+
+            return apiRES.status(_code).json(_dataJSON);
+        })();
+
+    }else{
+        (async () => {
+            _code       = 400;
+            _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
+
+            return apiRES.status(_code).json(_dataJSON);
+        })();
+    }
 }
 
 const getCampanhaId  = (apiREQ, apiRES) => {

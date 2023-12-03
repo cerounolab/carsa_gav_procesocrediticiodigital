@@ -32,7 +32,7 @@ router.group('/v1/', (routerGroup) => {
   routerGroup.put('/empresa/:codigo', putEmpresa);
   routerGroup.delete('/empresa/:codigo', deleteEmpresa);
 
-  routerGroup.get('/sucursal/listado', getSucursal);
+  routerGroup.get('/sucursal/listado/empresa/:empresa', getSucursal);
   routerGroup.get('/sucursal/codigo/:codigo', getSucursalId);
   routerGroup.get('/sucursal/empresa/:empresa', getSucursalEmpresaId);
   routerGroup.get('/sucursal/tiposucursal/:tiposucursal', getEmpresaTipoSucursal);
@@ -40,7 +40,7 @@ router.group('/v1/', (routerGroup) => {
   routerGroup.put('/sucursal/:codigo', putSucursal);
   routerGroup.delete('/sucursal/:codigo', deleteSucursal);
 
-  routerGroup.get('/usuario/listado', getUsuario);
+  routerGroup.get('/usuario/listado/empresa/:empresa', getUsuario);
   routerGroup.get('/usuario/codigo/:codigo', getUsuarioId);
   routerGroup.get('/usuario/documento/:documento', getUsuarioDocumento);
   routerGroup.get('/usuario/usuario/:usuario', getUsuarioUsu);
@@ -53,14 +53,14 @@ router.group('/v1/', (routerGroup) => {
   routerGroup.put('/usuario/:codigo', putUsuario);
   routerGroup.delete('/usuario/:codigo', deleteUsuario);
 
-  routerGroup.get('/rol/listado', getRol);
+  routerGroup.get('/rol/listado/empresa/:empresa', getRol);
   routerGroup.get('/rol/codigo/:codigo', getRolId);
   routerGroup.get('/rol/empresa/:empresa', getRolEmpresaId);
   routerGroup.post('/rol', postRol);
   routerGroup.put('/rol/:codigo', putRol);
   routerGroup.delete('/rol/:codigo', deleteRol);
 
-  routerGroup.get('/campanha/listado', getCampanha);
+  routerGroup.get('/campanha/listado/empresa/:empresa', getCampanha);
   routerGroup.get('/campanha/codigo/:codigo', getCampanhaId);
   routerGroup.get('/campanha/tipocampanha/:tipocampanha', getCampanhaTipoCampanha);
   routerGroup.get('/campanha/empresa/:empresa', getCampanhaEmpresaId);
@@ -68,14 +68,14 @@ router.group('/v1/', (routerGroup) => {
   routerGroup.put('/campanha/:codigo', putCampanha);
   routerGroup.delete('/campanha/:codigo', deleteCampanha);
 
-  routerGroup.get('/formulario/listado', getFormulario);
+  routerGroup.get('/formulario/listado/empresa/:empresa', getFormulario);
   routerGroup.get('/formulario/codigo/:codigo', getFormularioId);
   routerGroup.get('/formulario/empresa/:empresa', getFormularioEmpresaId);
   routerGroup.post('/formulario', postFormulario);
   routerGroup.put('/formulario/:codigo', putFormulario);
   routerGroup.delete('/formulario/:codigo', deleteFormulario);
 
-  routerGroup.get('/rolformulario/listado', getRolFormulario);
+  routerGroup.get('/rolformulario/listado/empresa/:empresa', getRolFormulario);
   routerGroup.get('/rolformulario/empresa/:empresa', getRolFormularioEmpresaId);
   routerGroup.get('/rolformulario/codigorol/:codigorol/codigoformulario/:codigoformulario', getRolFormularioId);
   routerGroup.post('/rolformulario', postRolFormulario);
