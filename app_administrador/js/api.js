@@ -1,6 +1,6 @@
-const urlBASE   = localStorage.getItem('urlBASE');
-const autBASE   = localStorage.getItem('autBASE');
-const xHTTP	    = new XMLHttpRequest();
+urlBASE   = localStorage.getItem('urlBASE');
+autBASE   = localStorage.getItem('autBASE');
+xHTTP	    = new XMLHttpRequest();
 
 function getJSON(codJSON, codURL) {
     var urlJSON = urlBASE + '/' + codURL;
@@ -807,7 +807,7 @@ function getRolEmp(codElem){
     return xDATA;
 }
 
-function getcampanhaList(codElem){
+function getcampanhaList(){
     localStorage.removeItem('campanhaListJSON');
 
     if (localStorage.getItem('campanhaListJSON') === null){
@@ -844,6 +844,27 @@ function getcampanhaId(codElem){
 
     return xDATA;
 }
+
+function getcampanhaEmp(codElem){
+    localStorage.removeItem('campanhaEmpresaJSON');
+
+    if (localStorage.getItem('campanhaEmpresaJSON') === null){
+        getJSON('campanhaEmpresaJSON', 'campanha/empresa/' + codElem);
+    }
+    var xJSON = [];
+
+    var xJSON = JSON.parse(localStorage.getItem('campanhaEmpresaJSON'));
+    var xDATA = [];
+
+    if (xJSON['code'] == 200) {
+        xJSON['data'].forEach(element => {
+            xDATA.push(element);
+        });
+    }
+
+    return xDATA;
+}
+
 
 function getFormularioList(codElem){
     localStorage.removeItem('formularioListJSON');
@@ -923,7 +944,6 @@ function getRolFormularioId(codigorol, codigoformulario){
 
 function getUsuDocumento(codDoc, codEmp){
     localStorage.removeItem('usuDocumentoJSON');
-
     if (localStorage.getItem('usuDocumentoJSON') === null){
         getJSON('usuDocumentoJSON', 'usuario/documento/'+codDoc+'/empresa/'+codEmp);
     }
@@ -957,4 +977,82 @@ function getUsuDashboard(codEmp){
     }
 
     return xDATA;
+}
+
+function getUsuarioRolList(codEmp){
+    localStorage.removeItem('usuRolListJSON');
+
+    if (localStorage.getItem('usuRolListJSON') === null){
+        getJSON('usuRolListJSON', 'usuariorol/listado/empresa/'+codEmp);
+    }
+
+    var xJSON = JSON.parse(localStorage.getItem('usuRolListJSON'));
+    var xDATA = [];
+
+    if (xJSON['code'] == 200) {
+        xJSON['data'].forEach(element => {
+            xDATA.push(element);
+        });
+    }
+
+    return xDATA;
+}
+
+
+function getUsuarioRolId(codUsu, codRol, codEmp){
+    localStorage.removeItem('usuRolIdJSON');
+
+    if (localStorage.getItem('usuRolIdJSON') === null){
+        getJSON('usuRolIdJSON', 'usuariorol/codigousuario/'+codUsu+'/codigorol/'+codRol+'/empresa/'+codEmp);
+    }
+
+    var xJSON = JSON.parse(localStorage.getItem('usuRolIdJSON'));
+    var xDATA = [];
+
+    if (xJSON['code'] == 200) {
+        xJSON['data'].forEach(element => {
+            xDATA.push(element);
+        });
+    }
+
+    return xDATA;
+    
+}
+
+function getUsuarioCampanhaList(codEmp){
+    localStorage.removeItem('usuCampanhaListJSON');
+  
+    if (localStorage.getItem('usuCampanhaListJSON') === null){
+        getJSON('usuCampanhaListJSON', 'usuariocampanha/listado/empresa/'+codEmp);
+    }
+
+    var xJSON = JSON.parse(localStorage.getItem('usuCampanhaListJSON'));
+    var xDATA = [];
+  
+    if (xJSON['code'] == 200) {
+        xJSON['data'].forEach(element => {
+            xDATA.push(element);
+        });
+    }
+
+    return xDATA; 
+}
+
+function getUsuarioCampanhaId(codUsu, codCamp, codEmp){
+    localStorage.removeItem('usuCampanhaIdJSON');
+
+    if (localStorage.getItem('usuCampanhaIdJSON') === null){
+        getJSON('usuCampanhaIdJSON', 'usuariocampanha/codigousuario/'+codUsu+'/codigocampanha/'+codCamp+'/empresa/'+codEmp);
+    }
+
+    var xJSON = JSON.parse(localStorage.getItem('usuCampanhaIdJSON'));
+    var xDATA = [];
+
+    if (xJSON['code'] == 200) {
+        xJSON['data'].forEach(element => {
+            xDATA.push(element);
+        });
+    }
+
+    return xDATA; 
 }

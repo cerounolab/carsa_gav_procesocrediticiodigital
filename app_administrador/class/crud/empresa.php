@@ -8,11 +8,7 @@
 	require '../../class/function/curl_api.php';
 	require '../../class/function/function.php';
 
-
-
-	echo 'asdf';
     $val01          = intval($_POST['var01']);
-	echo 'val=>'.$_POST['var01'];
     $val02          = intval($_POST['var02']);
     $val03          = intval($_POST['var03']);
 	$val04          = intval($_POST['var04']);
@@ -32,10 +28,10 @@
 	$work02         = $_POST['workModo'];
 	$work03         = $_POST['workPage'];
 	$work04         = $_POST['workPrograma'];
-	$work05         = 1;
 
-	$usu_03         = 'HOLIX'; //strtoupper($_SESSION['usu_03']);
-	$log_03         = '0.0.0.0';//$_SESSION['log_03'];
+	$usu_03         = strtoupper($_SESSION['log_01']);
+	$log_03         = $_SESSION['log_03'];
+	$usu_06         = $_SESSION['empresaCodigo'];
 
 	$fileTarget01	= '../../uploads/empresa/';
 	$fileSize		= 20000001;
@@ -70,12 +66,12 @@
 				'empresa_logo'          	=> $val013,
 				'empresa_observacion'       => $val015,
 
-				'alta_empresa_codigo' 		=> $work05,
+				'alta_empresa_codigo' 		=> $usu_06,
 				'alta_programa'        		=> $work04,
 				'alta_usuario'         		=> $usu_03,
                 'alta_ip'        	    	=> $log_03,
 
-				'auditoria_empresa_codigo'  => $work05,
+				'auditoria_empresa_codigo'  => $usu_06,
 				'auditoria_programa'        => $work04,
 				'auditoria_usuario'         => $usu_03,
                 'auditoria_ip'        	    => $log_03
