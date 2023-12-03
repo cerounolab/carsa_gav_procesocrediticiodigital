@@ -95,7 +95,7 @@ function setRol(codElem, codAcc) {
 			bodyTit = 'VER';
 			bodyCol = '#6929d5;';
 			bodyMod = 'R';
-			bodyOnl = 'readonly';
+			bodyOnl = 'disabled';
 			bodyBot = '';
 			break;
 

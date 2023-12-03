@@ -3,9 +3,9 @@
 	require './../class/function/function.php';
 	require './../class/session/session_system.php';
 	
-	$pageTitle		= 'Formulario';
+	$pageTitle		= 'Usuario Campaña';
 	$pageTitleNav	= '';
-	$NavTitle		= 'Formulario';
+	$NavTitle		= 'Usuario Campaña';
 
 ?>
 <!DOCTYPE html>
@@ -52,10 +52,7 @@
 										<div class="row">
 											<h4 class="col-10 card-title"> <?php echo $NavTitle; ?> </h4>
 											<h4 class="col-2 card-title" style="text-align: right;">
-												<!-- <a class="btn btn-info" style="background-color:#163562; border-color:#163562;" href="./dominioABM.php?mode=C&codigo=0" role="button" data-toggle="modal" data-target="#modaldiv" title="Nueva Solicitud"><i class="ti-plus"></i>AGREGAR</a> -->
-												<!-- <a class="btn btn-info" style="background-color:#163562; border-color:#163562;" id="btn-new-event"  role="button" data-toggle="modal" data-target="#modaldiv" title="Nueva Solicitud"><i class="ti-plus"></i>AGREGAR</a> -->
-												<a class="btn btn-info" style="background-color:#163562; border-color:#163562;" role="button" onclick="setFormulario(0, 1);" data-bs-toggle="modal" data-bs-target="#modal-dialog" title="Nuevo Dominio" aria-hidden="true"><i class="ti-plus"></i> AGREGAR</a>
-
+												<a class="btn btn-info" style="background-color:#163562; border-color:#163562;" role="button" onclick="setUsuarioCampanha(0, 0, 0, 1);" data-bs-toggle="modal" data-bs-target="#modal-dialog" title="Nuevo" aria-hidden="true"><i class="ti-plus"></i> AGREGAR</a>
 											</h4>
 										</div><br>
 									</div>
@@ -66,11 +63,11 @@
 													<table id="tableLoads" class="text-fade table table-bordered display" style="width:100%">
 														<thead>
 															<tr class="btn-primary" style="text-align:center;">
-																<th class="border-top-0">C&Oacute;DIGO</th>
 																<th class="border-top-0">ORDEN</th>
 																<th class="border-top-0">ESTADO</th>
 																<th class="border-top-0">EMPRESA</th>
-																<th class="border-top-0">FORMULARIO</th>
+																<th class="border-top-0">CAMPAÑA</th>
+																<th class="border-top-0">USUARIO</th>
 																<th class="border-top-0">OBSERVACI&Oacute;N</th>
 																<th class="border-top-0">USUARIO</th>
 																<th class="border-top-0">IP</th>
@@ -112,13 +109,15 @@
 			const _parm01BASE   = '<?php echo trim($usu_01); ?>';
             const _parm02BASE   = '<?php echo date('Y-m-d H:i:s'); ?>';
             const _parm03BASE   = '<?php echo trim($log_03); ?>';
-			const _parm04BASE	= 'public/formulario.php?';
+			const _parm04BASE	= 'public/usuariocampanha.php?';
 			const _parm05BASE   = '<?php echo trim($usu_05); ?>';
             const _parm06BASE   = <?php echo trim($usu_06); ?>;
+            const _parm07BASE   = 'usuariocampanha';
+
 		</script>
 
 		<script src="./../js/api.js?<?php echo date('Ymd');?>"></script>
-		<script src="./../js/formulario.js?<?php echo date('Ymd');?>"></script>
+		<script src="./../js/usuariocampanha.js?<?php echo date('YmdHis');?>"></script>
 		<script src="./../js/select.js?<?php echo date('Ymd');?>"></script>
 		
 

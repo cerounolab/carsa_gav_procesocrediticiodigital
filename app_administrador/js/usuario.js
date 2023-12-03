@@ -110,7 +110,7 @@ function setUsuario(codElem, codAcc) {
 			bodyTit = 'VER';
 			bodyCol = '#6929d5;';
 			bodyMod = 'R';
-			bodyOnl = 'readonly';
+			bodyOnl = 'disabled';
 			bodyBot = '';
 			break;
 
@@ -195,7 +195,7 @@ function setUsuario(codElem, codAcc) {
 			'									<div class="col-sm-12 col-md-4">'+
 			'       					            <div class="form-group">'+
 			'       					                <label for="var03">Empresa</label>'+
-			`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresa('var04','var03', 1, 0); setUsu('var03', 'var08_1'); setRecuperoDatos('var05', 'var03', 'var06', 'var07', 'var08', 'var09', 'var010', 'var011');" style="width:100%; height:40px;">`+
+			`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresaSuc('var04','var03', 1, 0); setUsu('var03', 'var08_1'); setRecuperoDatos('var05', 'var03', 'var06', 'var07', 'var08', 'var09', 'var010', 'var011');" style="width:100%; height:40px;">`+
 			'       					                    <optgroup label="Seleccionar">'+ selEmpresa +
 			'       					                    </optgroup>'+
 			'       					                </select>'+
@@ -482,8 +482,11 @@ function setUsuario(codElem, codAcc) {
 	$("#modal-content").empty();
 	$("#modal-content").append(html);
 
-	selectEmpresaSuc('var04','var03', 1, codSuc);
-	setUsu('var03', 'var08_1');
+	if (codAcc > 1) {
+		selectEmpresaSuc('var04','var03', 1, codSuc);
+		setUsu('var03', 'var08_1');
+	}
+	
 }
 
 function setRecuperoDatos(parm01, parm02, parm03, parm04, parm05, parm06,  parm07, parm08) {
@@ -504,15 +507,17 @@ function setRecuperoDatos(parm01, parm02, parm03, parm04, parm05, parm06,  parm0
 	usuEmail.value	= '';
 
 	// usuNom.disabled 	= false;			
-	// usuApe.disabled		= false;		
+	// usuApe.disabled	= false;		
 	// usuUSu.disabled 	= false;			
 	// usuPass.disabled	= false;			
 	// usuCel.disabled		= false;		
 	// usuEmail.disabled	= false;
 	var xJSON       	= [];
+    // var xJSON       	= (codDoc.value > 0) ? getUsuDocumento(codDoc.value, codEmp.value) : null;
     var xJSON       	= getUsuDocumento(codDoc.value, codEmp.value);
 
-	if (xJSON != [] || xJSON != null || xJSON != '') {
+
+	if ((xJSON != []) || (xJSON != null) || xJSON != '') {
 		xJSON.forEach(element => {
 			usuNom.value		= element.usuario_nombre;
 			usuApe.value		= element.usuario_apellido;
