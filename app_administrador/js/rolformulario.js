@@ -106,7 +106,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 			bodyTit = 'VER';
 			bodyCol = '#6929d5;';
 			bodyMod = 'R';
-			bodyOnl = 'readonly';
+			bodyOnl = 'disabled';
 			bodyBot = '';
 			break;
 
@@ -154,13 +154,13 @@ function setRolFormulario(codRol, codForm, codAcc) {
 
 		xJSON3.forEach(element1 => {
 			if (element1.tipoEstadoParametro == 1) {
-				selRol = selRol + '            								<option value="'+ element1.rolCodigo +'">'+ element1.rolNombre +'</option>';
+				selRol = selRol + '            										<option value="'+ element1.rolCodigo +'">'+ element1.rolNombre +'</option>';
 			}
 		});
 
 		xJSON4.forEach(element1 => {
 			if (element1.tipoEstadoParametro == 1) {
-				selForm = selForm + '            								<option value="'+ element1.formularioCodigo +'">'+ element1.formularioNombre +'</option>';
+				selForm = selForm + '            									<option value="'+ element1.formularioCodigo +'">'+ element1.formularioNombre +'</option>';
 			}
 		});
 
@@ -521,7 +521,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 				'       					            <div class="form-group">'+
 				'       					                <label for="var04">Rol</label>'+
 				'       					                <select id="var04" name="var04" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
-				'       					                    <optgroup label="Seleccionar">'+
+				'       					                    <optgroup label="Seleccionar">'+ selRol +
 				'       					                    </optgroup>'+
 				'       					                </select>'+
 				'       					            </div>'+

@@ -19,11 +19,10 @@
 	$work02         = $_POST['workModo'];
 	$work03         = $_POST['workPage'];
 	$work04         = $_POST['workPrograma'];
-	$work05         = 1;
 	
-	$usu_03         = 'HOLIX'; //strtoupper($_SESSION['usu_03']);
-	$log_03         = '0.0.0.0';//$_SESSION['log_03'];
-
+	$usu_03         = strtoupper($_SESSION['log_01']);
+	$log_03         = $_SESSION['log_03'];
+	$usu_06         = $_SESSION['empresaCodigo'];
 
     if (isset($val01) && isset($val03)) {
         $dataJSON = json_encode(
@@ -38,12 +37,12 @@
 				'formulario_url'				=> $val05,
 				'formulario_observacion'		=> $val06,
 
-				'alta_empresa_codigo'			=> $work05,
+				'alta_empresa_codigo'			=> $usu_06,
 				'alta_usuario'					=> $usu_03,
 				'alta_ip'						=> $log_03,
 				'alta_programa'					=> $work04,
 
-				'auditoria_empresa_codigo'		=> $work05,
+				'auditoria_empresa_codigo'		=> $usu_06,
 				'auditoria_usuario'				=> $usu_03,
 				'auditoria_ip'					=> $log_03,
 				'auditoria_programa'			=> $work04,

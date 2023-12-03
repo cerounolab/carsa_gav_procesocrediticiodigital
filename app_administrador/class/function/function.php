@@ -1,4 +1,7 @@
 <?php
+    $dotenv         = Dotenv\Dotenv::createImmutable(__DIR__.'./../../');
+    $dotenv->load();
+
     function getKey() {
         global $api;
         global $aut;
@@ -95,15 +98,12 @@
     }
 
     function uploadAttached(int $code, string $target, array $file, bool $submit, int $size) {
-        echo 'vieme';
-
         $target_ban     = false;
         $target_msn     = '';
         $target_nam     = $code.'_'.getFechaHora(2).'_'.rand(100, 999);
         $target_for     = '';
         
         if (!empty($file['tmp_name'])) {
-            echo 'entra';
             $target_file    = $target.basename($file['name']);
             $imageFileType  = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
             $target_file	= $target_nam.'.'.$imageFileType;
