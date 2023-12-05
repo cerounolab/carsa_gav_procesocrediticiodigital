@@ -188,25 +188,25 @@ const postSucursal   = (apiREQ, apiRES) => {
 
         (async () => {
             xDATA = await insertSUCFIC(_SUCFICEST,
-                _SUCFICTSC,
-                _SUCFICEMP,
-                _SUCFICORD,
-                _SUCFICNOM,
-                _SUCFICTEL,
-                _SUCFICCEL,
-                _SUCFICCOR,
-                _SUCFICUBI,
-                _SUCFICDIR,
-                _SUCFICOBS,
-                _SUCFICCEM,
-                _SUCFICCUS,
-                _SUCFICCIP,
-                _SUCFICCPR,
-                _SUCFICAEM,
-                _SUCFICAUS,
-                _SUCFICAIP,
-                _SUCFICAPR,
-                _SUCFICAIN);
+            _SUCFICTSC,
+            _SUCFICEMP,
+            _SUCFICORD,
+            _SUCFICNOM,
+            _SUCFICTEL,
+            _SUCFICCEL,
+            _SUCFICCOR,
+            _SUCFICUBI,
+            _SUCFICDIR,
+            _SUCFICOBS,
+            _SUCFICCEM,
+            _SUCFICCUS,
+            _SUCFICCIP,
+            _SUCFICCPR,
+            _SUCFICAEM,
+            _SUCFICAUS,
+            _SUCFICAIP,
+            _SUCFICAPR,
+            _SUCFICAIN);
 
             _code   = xDATA[0];
             xJSON   = xDATA[1];
@@ -219,7 +219,7 @@ const postSucursal   = (apiREQ, apiRES) => {
                 xJSON = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
             }
 
-            xJSON1 = camelcaseKeys(xJSON, {deep: true});
+            xJSON = camelcaseKeys(xJSON, {deep: true});
 
            return apiRES.status(_code).json(xJSON);
 
@@ -264,29 +264,27 @@ const putSucursal    = (apiREQ, apiRES) => {
     let _SUCFICAPR  = (apiREQ.body.auditoria_programa != undefined && apiREQ.body.auditoria_programa != null && apiREQ.body.auditoria_programa != '') ? "'"+apiREQ.body.auditoria_programa.trim()+"'" : false; 
     let _SUCFICAIN  = (apiREQ.body.auditoria_incidencia != undefined && apiREQ.body.auditoria_incidencia != null && apiREQ.body.auditoria_incidencia != '') ? "'"+apiREQ.body.auditoria_incidencia.trim()+"'" : null;
 
-    
-
     if (_ACCION && _SUCFICCOD && _SUCFICEST && _SUCFICTSC && _SUCFICEMP && _SUCFICNOM && _SUCFICCOR && _SUCFICAEM && _SUCFICAUS && _SUCFICAIP && _SUCFICAPR) {
 
         (async () => {
             xDATA = await updateSUCFIC(_ACCION,
-                _SUCFICCOD,
-                _SUCFICEST,
-                _SUCFICTSC,
-                _SUCFICEMP,
-                _SUCFICORD,
-                _SUCFICNOM,
-                _SUCFICTEL,
-                _SUCFICCEL,
-                _SUCFICCOR,
-                _SUCFICUBI,
-                _SUCFICDIR,
-                _SUCFICOBS,
-                _SUCFICAEM,
-                _SUCFICAUS,
-                _SUCFICAIP,
-                _SUCFICAPR,
-                _SUCFICAIN);
+            _SUCFICCOD,
+            _SUCFICEST,
+            _SUCFICTSC,
+            _SUCFICEMP,
+            _SUCFICORD,
+            _SUCFICNOM,
+            _SUCFICTEL,
+            _SUCFICCEL,
+            _SUCFICCOR,
+            _SUCFICUBI,
+            _SUCFICDIR,
+            _SUCFICOBS,
+            _SUCFICAEM,
+            _SUCFICAUS,
+            _SUCFICAIP,
+            _SUCFICAPR,
+            _SUCFICAIN);
 
             _code   = xDATA[0];
             xJSON   = xDATA[1];
@@ -299,7 +297,7 @@ const putSucursal    = (apiREQ, apiRES) => {
                 xJSON = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
             }
 
-            xJSON1 = camelcaseKeys(xJSON, {deep: true});
+            xJSON = camelcaseKeys(xJSON, {deep: true});
 
            return apiRES.status(_code).json(xJSON);
 
@@ -348,7 +346,7 @@ const deleteSucursal = (apiREQ, apiRES) => {
     if (_SUCFICCOD && _SUCFICEST && _SUCFICTSC && _SUCFICEMP && _SUCFICNOM && _SUCFICCOR && _SUCFICAEM && _SUCFICAUS && _SUCFICAIP && _SUCFICAPR) {
 
         (async () => {
-            xDATA = await deleteSUCFIC(_EMPFICCOD);
+            xDATA = await deleteSUCFIC(_SUCFICCOD);
 
             _code   = xDATA[0];
             xJSON   = xDATA[1];

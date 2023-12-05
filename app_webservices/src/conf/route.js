@@ -14,7 +14,8 @@ const { getFormulario, getFormularioId, getFormularioEmpresaId, postFormulario, 
 const { getRolFormulario, getRolFormularioId, getRolFormularioEmpresaId, postRolFormulario, putRolFormulario, deleteRolFormulario } = require('../controllers/ROLFORController');
 const { getUsuarioRol, getUsuarioRolId, postUsuarioRol, putUsuarioRol, deleteUsuarioRol } = require('../controllers/USUROLController');
 const { getUsuarioCampanha, getUsuarioCampanhaId, postUsuarioCampanha, putUsuarioCampanha, deleteUsuarioCampanha } = require('../controllers/USUCAMController');
-const { getUsuarioFlujo, getUsuarioFlujoUsuarioSup, getUsuarioFlujoUsuarioSub, getUsuarioFlujoRolSup, getUsuarioFlujoRolSub, getUsuarioFlujoId, postUsuarioFlujo, putUsuarioFlujo, deleteUsuarioFlujo } = require('../controllers/USUFLUController');
+const { getUsuarioFlujo, getUsuarioFlujoUsuarioSup, getUsuarioFlujoUsuarioSub, getUsuarioFlujoRolSup, getUsuarioFlujoRolSub, getUsuarioFlujoRolSubEmpresa,
+  getUsuarioFlujoRolSupEmpresa, getUsuarioFlujoId, postUsuarioFlujo, putUsuarioFlujo, deleteUsuarioFlujo } = require('../controllers/USUFLUController');
 
 router.group('/v1/', (routerGroup) => {
   routerGroup.get('/dominio/listado', getDominio);
@@ -99,6 +100,8 @@ router.group('/v1/', (routerGroup) => {
   routerGroup.get('/usuarioflujo/usuariosubordinado/:usuariosubordinado', getUsuarioFlujoUsuarioSub);
   routerGroup.get('/usuarioflujo/rolsuperior/:rolsuperior', getUsuarioFlujoRolSup);
   routerGroup.get('/usuarioflujo/rolsubordinado/:rolsubordinado', getUsuarioFlujoRolSub);
+  routerGroup.get('/usuarioflujo/rolsubordinado/:rolsubordinado/empresa/:empresa', getUsuarioFlujoRolSubEmpresa);
+  routerGroup.get('/usuarioflujo/rolsuperior/:rolsuperior/empresa/:empresa', getUsuarioFlujoRolSupEmpresa);
   routerGroup.get('/usuarioflujo/usuariosuperior/:usuariosuperior/rolsuperior/:rolsuperior/usuariosubordinado/:usuariosubordinado/rolsubordinado/:rolsubordinado', getUsuarioFlujoId);
   routerGroup.post('/usuarioflujo', postUsuarioFlujo);
   routerGroup.put('/usuarioflujo/usuariosuperior/:usuariosuperior/rolsuperior/:rolsuperior/usuariosubordinado/:usuariosubordinado/rolsubordinado/:rolsubordinado', putUsuarioFlujo);

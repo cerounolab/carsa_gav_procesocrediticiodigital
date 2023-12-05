@@ -85,7 +85,7 @@ const getCampanhaId  = (apiREQ, apiRES) => {
     }
 }
 
-const getCampanhaTipoCampanha = (apiREQ, apiRES) => {
+const getCampanhaEmpresaId  = (apiREQ, apiRES) => {
     let _code       = 200;
     let _dataJSON   = [];
     let _codigo     = parseInt(apiREQ.params.empresa);
@@ -121,10 +121,10 @@ const getCampanhaTipoCampanha = (apiREQ, apiRES) => {
     }
 }
 
-const getCampanhaEmpresaId  = (apiREQ, apiRES) => {
+const getCampanhaTipoCampanha = (apiREQ, apiRES) => {
     let _code       = 200;
     let _dataJSON   = [];
-    let _codigo     = parseInt(apiREQ.params.empresa);
+    let _codigo     = parseInt(apiREQ.params.tipocampanha);
 
     if (_codigo != 'undefined' && _codigo != '' && _codigo != null && _codigo > 0){
 
@@ -182,41 +182,42 @@ const postCampanha  = (apiREQ, apiRES) => {
 
     if (_CAMFICEST && _CAMFICTCC && _CAMFICEMC && _CAMFICNOM && _CAMFICFDE && _CAMFICCEM && _CAMFICCUS && _CAMFICCIP && _CAMFICCPR && _CAMFICAEM && _CAMFICAUS && _CAMFICAIP && _CAMFICAPR){
 
-            (async () => {
-                    xDATA = await insertCAMFIC(_CAMFICEST,
-                        _CAMFICTCC,
-                        _CAMFICEMC,
-                        _CAMFICORD,
-                        _CAMFICNOM,
-                        _CAMFICFDE,
-                        _CAMFICFHA,
-                        _CAMFICEQU,
-                        _CAMFICOBS,
-                        _CAMFICCEM,
-                        _CAMFICCUS,
-                        _CAMFICCIP,
-                        _CAMFICCPR,
-                        _CAMFICAEM,
-                        _CAMFICAUS,
-                        _CAMFICAIP,
-                        _CAMFICAPR,
-                        _CAMFICAIN);
+        (async () => {
+            xDATA = await insertCAMFIC(_CAMFICEST,
+            _CAMFICTCC,
+            _CAMFICEMC,
+            _CAMFICORD,
+            _CAMFICNOM,
+            _CAMFICFDE,
+            _CAMFICFHA,
+            _CAMFICEQU,
+            _CAMFICOBS,
+            _CAMFICCEM,
+            _CAMFICCUS,
+            _CAMFICCIP,
+            _CAMFICCPR,
+            _CAMFICAEM,
+            _CAMFICAUS,
+            _CAMFICAIP,
+            _CAMFICAPR,
+            _CAMFICAIN);
 
-                    _code   = xDATA[0];
-                    xJSON   = xDATA[1];
+            _code   = xDATA[0];
+            xJSON   = xDATA[1];
 
-                    if (_code == 200) {
-                        xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
+            if (_code == 200) {
+                xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
 
-                    } else {
-                        xJSON   = xDATA[1];
-                        xJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
-                    }
+            } else {
+                xJSON   = xDATA[1];
+                xJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
+            }
 
-                    xJSON = camelcaseKeys(xJSON, {deep: true});
+            xJSON = camelcaseKeys(xJSON, {deep: true});
 
-                    return apiRES.status(_code).json(xJSON);
-                })();       
+            return apiRES.status(_code).json(xJSON);
+
+        })();       
     }else{
         (async () => {
             _code   = 400;
@@ -256,43 +257,43 @@ const putCampanha    = (apiREQ, apiRES) => {
     let _CAMFICAIN  = (apiREQ.body.auditoria_incidencia != undefined && apiREQ.body.auditoria_incidencia != null && apiREQ.body.auditoria_incidencia != '') ? "'"+apiREQ.body.auditoria_incidencia.trim()+"'" : null;
 
     if (_ACCION && _CAMFICCOD && _CAMFICEST && _CAMFICTCC && _CAMFICEMC && _CAMFICNOM && _CAMFICFDE && _CAMFICAEM && _CAMFICAUS && _CAMFICAIP && _CAMFICAPR){
-            (async () => {
-                    xDATA = await updateCAMFIC(_ACCION,
-                        _CAMFICCOD,
-                        _CAMFICEST,
-                        _CAMFICTCC,
-                        _CAMFICEMC,
-                        _CAMFICORD,
-                        _CAMFICNOM,
-                        _CAMFICFDE,
-                        _CAMFICFHA,
-                        _CAMFICEQU,
-                        _CAMFICOBS,
-                        _CAMFICCEM,
-                        _CAMFICCUS,
-                        _CAMFICCIP,
-                        _CAMFICCPR,
-                        _CAMFICAEM,
-                        _CAMFICAUS,
-                        _CAMFICAIP,
-                        _CAMFICAPR,
-                        _CAMFICAIN);
+        (async () => {
+            xDATA = await updateCAMFIC(_ACCION,
+            _CAMFICCOD,
+            _CAMFICEST,
+            _CAMFICTCC,
+            _CAMFICEMC,
+            _CAMFICORD,
+            _CAMFICNOM,
+            _CAMFICFDE,
+            _CAMFICFHA,
+            _CAMFICEQU,
+            _CAMFICOBS,
+            _CAMFICCEM,
+            _CAMFICCUS,
+            _CAMFICCIP,
+            _CAMFICCPR,
+            _CAMFICAEM,
+            _CAMFICAUS,
+            _CAMFICAIP,
+            _CAMFICAPR,
+            _CAMFICAIN);
 
-                _code   = xDATA[0];
+            _code   = xDATA[0];
+            xJSON   = xDATA[1];
+
+            if (_code == 200) {
+                xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
+
+            } else {
                 xJSON   = xDATA[1];
+                xJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
+            }
 
-                if (_code == 200) {
-                    xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
+            xJSON = camelcaseKeys(xJSON, {deep: true});
 
-                } else {
-                    xJSON   = xDATA[1];
-                    xJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
-                }
-
-                xJSON = camelcaseKeys(xJSON, {deep: true});
-
-                return apiRES.status(_code).json(xJSON);
-            })();  
+            return apiRES.status(_code).json(xJSON);
+        })();  
 
     }else{
         (async () => {
@@ -302,7 +303,7 @@ const putCampanha    = (apiREQ, apiRES) => {
             return apiRES.status(_code).json(xJSON);
         })();
 
-}       
+    }       
 
 }
 

@@ -46,10 +46,7 @@ const {errorBody}   = require('../utils/_json');
                                 DOMFICEQU   = ${_DOMFICEQU},     
                                 DOMFICVAL   = ${_DOMFICVAL},
                                 DOMFICOBS   = ${_DOMFICOBS},    
-                                DOMFICCEM   = ${_DOMFICCEM},   
-                                DOMFICCUS   = ${_DOMFICCUS},    
-                                DOMFICCIP   = ${_DOMFICCIP},     
-                                DOMFICCPR   = ${_DOMFICCPR},     
+                                DOMFICAFH   = NOW(),   
                                 DOMFICAEM   = ${_DOMFICAEM},     
                                 DOMFICAUS   = ${_DOMFICAUS},     
                                 DOMFICAIP   = ${_DOMFICAIP},     
@@ -64,6 +61,7 @@ const {errorBody}   = require('../utils/_json');
             case 2:
                 query00 = `UPDATE adm.DOMFIC SET  
                                 DOMFICEST   = (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMDOMINIOESTADO' AND DOMFICPAR = ${_DOMFICEST}), 
+                                DOMFICAFH   = NOW(),
                                 DOMFICAEM   = ${_DOMFICAEM},     
                                 DOMFICAUS   = ${_DOMFICAUS},     
                                 DOMFICAIP   = ${_DOMFICAIP},     
@@ -151,7 +149,8 @@ const {errorBody}   = require('../utils/_json');
                                 EMPFICUBI	= ${_EMPFICUBI}, 	  
                                 EMPFICDIR	= ${_EMPFICDIR}, 	 
                                 EMPFICLOG	= ${_EMPFICLOG}, 	    
-                                EMPFICOBS	= ${_EMPFICOBS}, 	     
+                                EMPFICOBS	= ${_EMPFICOBS},
+                                EMPFICAFH   = NOW(), 	     
                                 EMPFICAEM	= ${_EMPFICAEM},     
                                 EMPFICAUS	= ${_EMPFICAUS},     
                                 EMPFICAIP	= ${_EMPFICAIP},     
@@ -167,6 +166,7 @@ const {errorBody}   = require('../utils/_json');
             case 2:
                 query00 = `UPDATE adm.EMPFIC SET 
                                 EMPFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMEMPRESAESTADO' AND DOMFICPAR  = ${_EMPFICEST}), 
+                                EMPFICAFH   = NOW(), 
                                 EMPFICAEM	= ${_EMPFICAEM},     
                                 EMPFICAUS	= ${_EMPFICAUS},     
                                 EMPFICAIP	= ${_EMPFICAIP},     
@@ -248,7 +248,8 @@ const {errorBody}   = require('../utils/_json');
                                 SUCFICCOR	= ${_SUCFICCOR}, 	
                                 SUCFICUBI	= ${_SUCFICUBI}, 	   
                                 SUCFICDIR	= ${_SUCFICDIR}, 	  
-                                SUCFICOBS	= ${_SUCFICOBS},              
+                                SUCFICOBS	= ${_SUCFICOBS}, 
+                                SUCFICAFH   =  NOW(),            
                                 SUCFICAEM	= ${_SUCFICAEM},     
                                 SUCFICAUS	= ${_SUCFICAUS},     
                                 SUCFICAIP	= ${_SUCFICAIP},     
@@ -262,6 +263,7 @@ const {errorBody}   = require('../utils/_json');
             case 2:
                 query00 = `UPDATE adm.SUCFIC SET																					 
                                 SUCFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMSUCURSALESTADO' AND DOMFICPAR = ${_SUCFICEST}), 
+                                SUCFICAFH   =  NOW(), 
                                 SUCFICAEM	= ${_SUCFICAEM},     
                                 SUCFICAUS	= ${_SUCFICAUS},     
                                 SUCFICAIP	= ${_SUCFICAIP},     
@@ -346,6 +348,7 @@ const {errorBody}   = require('../utils/_json');
                                 USUFICEMA	= ${_USUFICEMA}, 
                                 USUFICCEL	= ${_USUFICCEL}, 
                                 USUFICOBS	= ${_USUFICOBS}, 
+                                USUFICAFH   = NOW(), 
                                 USUFICAEM	= ${_USUFICAEM}, 
                                 USUFICAUS	= ${_USUFICAUS},   
                                 USUFICAIP	= ${_USUFICAIP}, 
@@ -359,6 +362,7 @@ const {errorBody}   = require('../utils/_json');
             case 2:
                 query00 = `UPDATE adm.USUFIC SET
                                 USUFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOESTADO' AND DOMFICPAR	= ${_USUFICEST}),       
+                                USUFICAFH   = NOW(),
                                 USUFICAEM	= ${_USUFICAEM}, 
                                 USUFICAUS	= ${_USUFICAUS},   
                                 USUFICAIP	= ${_USUFICAIP}, 
@@ -370,7 +374,8 @@ const {errorBody}   = require('../utils/_json');
 
             case 3:
                 query00 = `UPDATE adm.USUFIC SET
-                                USUFICPAS   = '${_USUFICPAS}',    
+                                USUFICPAS   = '${_USUFICPAS}',
+                                USUFICAFH   = NOW(),    
                                 USUFICAEM	= ${_USUFICAEM}, 
                                 USUFICAUS	= ${_USUFICAUS},   
                                 USUFICAIP	= ${_USUFICAIP}, 
@@ -447,7 +452,8 @@ const {errorBody}   = require('../utils/_json');
                                 ROLFICFDE	= '${_ROLFICFDE}', 	   
                                 ROLFICFHA	= '${_ROLFICFHA}',     
                                 ROLFICEQU	= ${_ROLFICEQU},     
-                                ROLFICOBS	= ${_ROLFICOBS},    
+                                ROLFICOBS	= ${_ROLFICOBS},
+                                ROLFICAFH   = NOW(),    
                                 ROLFICAEM	= ${_ROLFICAEM},     
                                 ROLFICAUS	= ${_ROLFICAUS},    
                                 ROLFICAIP	= ${_ROLFICAIP},     
@@ -461,6 +467,7 @@ const {errorBody}   = require('../utils/_json');
             case 2:
                 query00 = `UPDATE adm.ROLFIC SET																				
                                 ROLFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMROLESTADO' AND DOMFICPAR = ${_ROLFICEST})),       
+                                ROLFICAFH   = NOW(), 
                                 ROLFICAEM	= ${_ROLFICAEM},     
                                 ROLFICAUS	= ${_ROLFICAUS},    
                                 ROLFICAIP	= ${_ROLFICAIP},     
@@ -541,20 +548,21 @@ const {errorBody}   = require('../utils/_json');
                                 CAMFICFHA	= '${_CAMFICFHA}',     
                                 CAMFICEQU	= ${_CAMFICEQU},     
                                 CAMFICOBS	= ${_CAMFICOBS}, 	        
-                                CAMFICAEM	= ${_CAMFICAEM}, 	  
+                                CAMFICAEM	= ${_CAMFICAEM}, 
+                                CAMFICAFH   = NOW(),	  
                                 CAMFICAUS	= ${_CAMFICAUS}, 	 
                                 CAMFICAIP	= ${_CAMFICAIP}, 	
                                 CAMFICAPR	= ${_CAMFICAPR},    
                                 CAMFICAIN	= ${_CAMFICAIN}
                                 
                             WHERE CAMFICCOD = ${codigo}`;	
-
             break;
 
             case 2:
                 query00 = `UPDATE adm.CAMFIC SET
                                 CAMFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMCAMPANHAESTADO' AND DOMFICPAR = ${_CAMFICEST}),     
-                                CAMFICAEM	= ${_CAMFICAEM}, 	  
+                                CAMFICAEM	= ${_CAMFICAEM}, 
+                                CAMFICAFH   = NOW(),	  
                                 CAMFICAUS	= ${_CAMFICAUS}, 	 
                                 CAMFICAIP	= ${_CAMFICAIP}, 	
                                 CAMFICAPR	= ${_CAMFICAPR},    
@@ -627,6 +635,7 @@ const {errorBody}   = require('../utils/_json');
                                 FORFICORD	= ${_FORFICORD},     
                                 FORFICNOM	= ${_FORFICNOM}, 	
                                 FORFICURL	= ${_FORFICURL}, 	     
+                                FORFICAFH   = NOW(),
                                 FORFICAEM	= ${_FORFICAEM}, 	
                                 FORFICAUS	= ${_FORFICAUS},    
                                 FORFICAIP	= ${_FORFICAIP}, 	
@@ -640,6 +649,7 @@ const {errorBody}   = require('../utils/_json');
             case 2:
                 query00 = `UPDATE adm.FORFIC SET
                                 FORFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMFORMULARIOESTADO' AND DOMFICPAR = ${_FORFICEST}),   
+                                FORFICAFH   = NOW(),
                                 FORFICAEM	= ${_FORFICAEM}, 	  
                                 FORFICAUS	= ${_FORFICAUS}, 	 
                                 FORFICAIP	= ${_FORFICAIP}, 	
@@ -725,7 +735,8 @@ const {errorBody}   = require('../utils/_json');
                                 ROLFORXLS	= ${_ROLFORXLS},     
                                 ROLFORPDF	= ${_ROLFORPDF},     
                                 ROLFORIMP	= ${_ROLFORIMP}, 	
-                                ROLFOROBS	= ${_ROLFOROBS}, 	        
+                                ROLFOROBS	= ${_ROLFOROBS},
+                                ROLFORAFH   = NOW(),   	        
                                 ROLFORAEM	= ${_ROLFORAEM},     
                                 ROLFORAUS	= ${_ROLFORAUS},     
                                 ROLFORAIP	= ${_ROLFORAIP},    
@@ -739,6 +750,7 @@ const {errorBody}   = require('../utils/_json');
             case 2:
                 query00 = `UPDATE adm.ROLFOR SET  																								   
                                 ROLFOREST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMROLFORMULARIOESTADO' AND DOMFICPAR = ${_ROLFOREST}),    
+                                ROLFORAFH   = NOW(),
                                 ROLFORAEM	= ${_ROLFORAEM},     
                                 ROLFORAUS	= ${_ROLFORAUS},     
                                 ROLFORAIP	= ${_ROLFORAIP},    
@@ -811,7 +823,8 @@ const {errorBody}   = require('../utils/_json');
                                 USUROLORD	= ${_USUROLORD},     
                                 USUROLFDE	= '${_USUROLFDE}',     
                                 USUROLFHA	= '${_USUROLFHA}',     
-                                USUROLOBS	= ${_USUROLOBS},     
+                                USUROLOBS	= ${_USUROLOBS},   
+                                USUROLAFH   = NOW(),  
                                 USUROLAEM	= ${_USUROLAEM},     
                                 USUROLAUS	= ${_USUROLAUS},    
                                 USUROLAIP	= ${_USUROLAIP},      
@@ -824,6 +837,7 @@ const {errorBody}   = require('../utils/_json');
             case 2:
                 query00 = `UPDATE adm.USUROL SET 
                                 USUROLEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOROLESTADO' AND DOMFICPAR = ${_USUROLEST}),  
+                                USUROLAFH   = NOW(), 
                                 USUROLAEM	= ${_USUROLAEM},     
                                 USUROLAUS	= ${_USUROLAUS},    
                                 USUROLAIP	= ${_USUROLAIP},      
@@ -893,6 +907,7 @@ const {errorBody}   = require('../utils/_json');
                                 USUCAMEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOCAMPANHAESTADO' AND DOMFICPAR = ${_USUCAMEST}), 
                                 USUCAMORD	= ${_USUCAMORD}, 
                                 USUCAMOBS	= ${_USUCAMOBS}, 
+                                USUCAMAFH   = NOW(),
                                 USUCAMAEM	= ${_USUCAMAEM}, 
                                 USUCAMAIP	= ${_USUCAMAIP}, 
                                 USUCAMAPR	= ${_USUCAMAPR}, 
@@ -904,6 +919,7 @@ const {errorBody}   = require('../utils/_json');
             case 2:
                 query00 = `UPDATE adm.USUCAM SET 
                                 USUCAMEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOCAMPANHAESTADO' AND DOMFICPAR = ${_USUCAMEST}), 
+                                USUCAMAFH   = NOW(),
                                 USUCAMAEM	= ${_USUCAMAEM}, 
                                 USUCAMAIP	= ${_USUCAMAIP}, 
                                 USUCAMAPR	= ${_USUCAMAPR}, 
@@ -974,7 +990,8 @@ const {errorBody}   = require('../utils/_json');
                                 USUFLUEST   = (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOFLUJOESTADO' AND DOMFICPAR = ${_USUFLUEST}),  
                                 USUFLUEMC   = ${_USUFLUEMC},
                                 USUFLUORD	= ${_USUFLUORD},  
-                                USUFLUOBS   = ${_USUFLUOBS}, 
+                                USUFLUOBS   = ${_USUFLUOBS},
+                                USUFLUAFH   = NOW(), 
                                 USUFLUAEM   = ${_USUFLUAEM}, 
                                 USUFLUAUS   = ${_USUFLUAUS}, 
                                 USUFLUAIP   = ${_USUFLUAIP},
@@ -987,6 +1004,7 @@ const {errorBody}   = require('../utils/_json');
             case 2:
                 query00 = `UPDATE adm.USUFLU SET 
                                 USUFLUEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOFLUJOESTADO' AND DOMFICPAR = ${_USUFLUEST}), 
+                                USUFLUAFH   = NOW(),
                                 USUFLUAEM	= ${_USUFLUAEM}, 
                                 USUFLUAIP	= ${_USUFLUAIP}, 
                                 USUFLUAPR	= ${_USUFLUAPR}, 
@@ -1027,7 +1045,6 @@ const {errorBody}   = require('../utils/_json');
 
     return Array(_code, _data);
     }
-
 
 module.exports = {
     updateDOMFIC,
