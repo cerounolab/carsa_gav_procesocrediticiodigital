@@ -47,21 +47,19 @@ const getRolFormulario    = (apiREQ, apiRES) => {
     }
 }
 
-const getRolFormularioId  = (apiREQ, apiRES) => {
+const getRolFormularioEmpresaId = (apiREQ, apiRES) => {
     let _code       = 200;
     let _dataJSON   = [];
-    let _codigorol          = parseInt(apiREQ.params.codigorol);
-    let _codigoformulario   = parseInt(apiREQ.params.codigoformulario);
+    let _codigo     = parseInt(apiREQ.params.empresa);
 
-    if (_codigorol != 'undefined' && _codigorol != '' && _codigorol != null && _codigorol > 0 && _codigoformulario != 'undefined' && _codigoformulario != '' && _codigoformulario != null && _codigoformulario > 0){
+    if (_codigo != 'undefined' && _codigo != ''){
 
         (async () => {
-            const xDATA = await selectROLFORMULARIO(2, _codigorol, _codigoformulario);
+            const xDATA = await selectROLFORMULARIO(2, _codigo, '');
             _code       = xDATA[0];
             _dataJSON   = xDATA[1];
-                
+    
             if (_code == 200) {
-                
                 _dataJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, _dataJSON);
     
             } else {
@@ -85,19 +83,59 @@ const getRolFormularioId  = (apiREQ, apiRES) => {
     }
 }
 
-const getRolFormularioEmpresaId = (apiREQ, apiRES) => {
-    let _code       = 200;
-    let _dataJSON   = [];
-    let _codigo     = parseInt(apiREQ.params.empresa);
+const getRolFormularioRolId  = (apiREQ, apiRES) => {
+    let _code           = 200;
+    let _dataJSON       = [];
+    let _codigorol      = parseInt(apiREQ.params.codigorol);
+    let _codigoempresa  = parseInt(apiREQ.params.empresa);
 
-    if (_valor != 'undefined' && _valor != ''){
-
+    if (_codigorol != 'undefined' && _codigorol != '' && _codigorol != null && _codigorol > 0 && _codigoempresa != 'undefined' && _codigoempresa != '' && _codigoempresa != null && _codigoempresa > 0){
         (async () => {
-            const xDATA = await selectROL(3, _codigo, '');
+            const xDATA = await selectROLFORMULARIO(3, _codigorol, _codigoempresa);
             _code       = xDATA[0];
             _dataJSON   = xDATA[1];
-    
+                
             if (_code == 200) {
+                _dataJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, _dataJSON);
+
+            } else if (_code == 404){
+                _dataJSON   = xDATA[1];
+                _dataJSON   = await jsonBody(_code, 'No hay registros', null, null, null, 0, 0, 0, 0, []);
+            }else{
+                _dataJSON   = xDATA[1];
+                _dataJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
+            }
+            _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
+    
+            return apiRES.status(_code).json(_dataJSON);
+        })();
+
+    }else{
+        (async () => {
+            _code       = 400;
+            _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
+
+            return apiRES.status(_code).json(_dataJSON);
+        })();
+        
+    }
+}
+
+const getRolFormularioId  = (apiREQ, apiRES) => {
+    let _code       = 200;
+    let _dataJSON   = [];
+    let _codigorol          = parseInt(apiREQ.params.codigorol);
+    let _codigoformulario   = parseInt(apiREQ.params.codigoformulario);
+
+    if (_codigorol != 'undefined' && _codigorol != '' && _codigorol != null && _codigorol > 0 && _codigoformulario != 'undefined' && _codigoformulario != '' && _codigoformulario != null && _codigoformulario > 0){
+
+        (async () => {
+            const xDATA = await selectROLFORMULARIO(4, _codigorol, _codigoformulario);
+            _code       = xDATA[0];
+            _dataJSON   = xDATA[1];
+                
+            if (_code == 200) {
+                
                 _dataJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, _dataJSON);
     
             } else {
@@ -360,8 +398,9 @@ const deleteRolFormulario    = (apiREQ, apiRES) => {
 
 module.exports  = {
     getRolFormulario,
-    getRolFormularioId,
     getRolFormularioEmpresaId,
+    getRolFormularioRolId,
+    getRolFormularioId,
     postRolFormulario,
     putRolFormulario,
     deleteRolFormulario

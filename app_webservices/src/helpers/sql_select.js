@@ -3,12 +3,15 @@ const {clientMSSQL, initMSSQL01} = require('../conf/database');
 
 const {errorBody, jsonBody}   = require('../utils/_json');
 
-
 /**
     * @param {integer} actionType - Tipo de accion
     * @param {integer} codigo - codigo
-    * @param {Strinig} valor- valor
     * @param {integer} codigo2 - codigo 2 
+    * @param {Strinig} valor- valor
+    * @param {Strinig} valor2- valor2
+    * @param {Strinig} valor3- valor3
+    * @param {Strinig} valor4- valor4
+    * @param {Strinig} valor5- valor5
     * @returns {Array} returns
 */
 const selectDOMINIOTIPO = async(actionType, codigo, valor) => {
@@ -633,15 +636,6 @@ const selectROLFORMULARIO  = async(actionType, codigo, codigo2) => {
             break;
 
         case 2:
-            query00 = `SELECT 
-                            * 
-                        FROM 
-                            adm.ROLFORMULARIO 
-                            
-                        WHERE rol_codigo = ${codigo} AND formulario_codigo = ${codigo2}`;
-            break;
-
-        case 3:
             query00 = `SELECT
                             *
                         FROM
@@ -649,6 +643,26 @@ const selectROLFORMULARIO  = async(actionType, codigo, codigo2) => {
                         WHERE
                             empresa_codigo  = ${codigo}`;
             break;
+
+        case 3:
+            query00 = `SELECT
+                            *
+                        FROM
+                            adm.ROLFORMULARIO
+                        WHERE 
+                            rol_codigo  = ${codigo} AND empresa_codigo  = ${codigo2}`;
+            break;
+
+        case 4:
+            query00 = `SELECT 
+                            * 
+                        FROM 
+                            adm.ROLFORMULARIO 
+
+                        WHERE 
+                            rol_codigo = ${codigo} AND formulario_codigo = ${codigo2}`;
+            break;
+
 
         default:
             break;
@@ -659,7 +673,7 @@ const selectROLFORMULARIO  = async(actionType, codigo, codigo2) => {
         .connect()
         .catch(e => {
             _code = 401;
-            errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: selectFORMULARIO', true)
+            errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: selectROLFORMULARIO', true)
                 .then(result => _data = result);
         }
     );
@@ -672,7 +686,7 @@ const selectROLFORMULARIO  = async(actionType, codigo, codigo2) => {
         })
         .catch(e => {
             _code = 500;
-            errorBody(_code, 'Code: '+ e.code +' '+e.severity+', '+e.hint, 'Function: selectFORMULARIO')
+            errorBody(_code, 'Code: '+ e.code +' '+e.severity+', '+e.hint, 'Function: selectROLFORMULARIO')
                 .then(result => _data = result);
         })
         .then(() => {
