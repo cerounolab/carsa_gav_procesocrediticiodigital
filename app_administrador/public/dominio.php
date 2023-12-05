@@ -131,12 +131,16 @@
 ?>
 
 		<script>
-
+			const _parm01BASE   = '<?php echo trim($usu_01); ?>';
+            const _parm02BASE   = '<?php echo date('Y-m-d H:i:s'); ?>';
+            const _parm03BASE   = '<?php echo trim($log_03); ?>';
 			const _parm04BASE	= 'public/dominio.php?dominio=<?php echo trim(strtoupper($valueDominio)); ?>&';
-			const _parm07BASE = '<?php echo trim(strtoupper($valueDominio)); ?>';
-            const _parm08BASE = '<?php echo trim(strtoupper($groupDominio)); ?>';
-            const _parm09BASE = '<?php echo intval($groupParametro); ?>';
-			const _parm10BASE = '<?php echo intval($groupSeleccion); ?>';
+			const _parm05BASE   = '<?php echo trim($usu_05); ?>';
+            const _parm06BASE   = <?php echo trim($usu_06); ?>;
+			const _parm07BASE	= '<?php echo trim(strtoupper($valueDominio)); ?>';
+            const _parm08BASE	= '<?php echo trim(strtoupper($groupDominio)); ?>';
+            const _parm09BASE	= '<?php echo intval($groupParametro); ?>';
+			const _parm10BASE	= '<?php echo intval($groupSeleccion); ?>';
 		</script>
 
 		<script src="./../js/dominio.js?<?php echo date('Ymd');?>"></script>

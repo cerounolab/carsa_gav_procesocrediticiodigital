@@ -9,10 +9,10 @@
     $log_04 = $_SESSION['log_04'];
     
     $usu_01 = $_SESSION['usuarioUsuario'];
-    $usu_02 = $_SESSION['usuarioDocumento'];
+    $usu_02 = $_SESSION['usuarioEmail'];
     $usu_03 = $_SESSION['usuarioNombre'];
     $usu_04 = $_SESSION['usuarioApellido'];
-    $usu_05 = $_SESSION['usuarioEmail'];
+    $usu_05 = $_SESSION['usuarioDocumento'];
     $usu_06 = $_SESSION['empresaCodigo'];
     $usu_07 = $_SESSION['empresaNombre'];
     $usu_08 = $_SESSION['empresaRuc'];

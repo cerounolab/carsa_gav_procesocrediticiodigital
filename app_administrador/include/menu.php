@@ -96,7 +96,7 @@
                                 <li class="treeview">
                                     <a href="#">
                                         <i data-feather="lock"></i>
-                                        <span>Parametros</span>
+                                        <span>Parámetros</span>
                                         <span class="pull-right-container">
                                         <i class="fa fa-angle-right pull-right"></i>
                                         </span>
@@ -109,7 +109,10 @@
                                                 </span>
                                             </a>
                                             <ul class="treeview-menu">
-                                                <li><a href="./../public/dominio.php?dominio=ADMUSUARIOESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Usuario Estado</a></li>                                            
+                                                <li><a href="./../public/dominio.php?dominio=ADMUSUARIOESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Usuario Estado</a></li>
+                                                <li><a href="./../public/dominio.php?dominio=ADMUSUARIOROLESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Usuario Rol Estado</a></li>                                            
+                                                <li><a href="./../public/dominio.php?dominio=ADMUSUARIOCAMPANHAESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Usuario Campaña Estado</a></li>                                            
+                                                <li><a href="./../public/dominio.php?dominio=ADMUSUARIOFLUJOESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Usuario Flujo Estado</a></li>                                            
                                             </ul>
                                         </li>
 
@@ -209,7 +212,7 @@
                                     </a>
                                     <ul class="treeview-menu">
                                         <li><a href="./../public/rol.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Rol</a></li>
-                                        <!-- <li><a href="./../public/sucursal.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Alta Sucursal</a></li> -->
+                                        <li><a href="./../public/usuariorol.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Usuario Rol</a></li>
                                     </ul>
                                 </li>
 
@@ -223,7 +226,7 @@
                                     </a>
                                     <ul class="treeview-menu">
                                         <li><a href="./../public/campanha.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Campaña</a></li>
-                                        <!-- <li><a href="./../public/sucursal.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Alta Sucursal</a></li> -->
+                                        <li><a href="./../public/usuarioCampanha.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Usuario Campaña</a></li>
                                     </ul>
                                 </li>
 

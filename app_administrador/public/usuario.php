@@ -114,12 +114,17 @@
 ?>
 
 		<script>
-			const _parm04BASE = 'public/usuario.php?';
+			const _parm01BASE   = '<?php echo trim($usu_01); ?>';
+            const _parm02BASE   = '<?php echo date('Y-m-d H:i:s'); ?>';
+            const _parm03BASE   = '<?php echo trim($log_03); ?>';
+			const _parm04BASE	= 'public/usuario.php?';
+			const _parm05BASE   = '<?php echo trim($usu_05); ?>';
+            const _parm06BASE   = <?php echo trim($usu_06); ?>;
 		</script>
 
-		<script src="./../js/api.js?<?php echo date('Ymd');?>"></script>
-		<script src="./../js/select.js?<?php echo date('Ymd');?>"></script>
-		<script src="./../js/usuario.js?<?php echo date('Ymd');?>"></script>
+		<script src="./../js/api.js?<?php echo date('YmdHis');?>"></script>
+		<script src="./../js/select.js?<?php echo date('YmdHis');?>"></script>
+		<script src="./../js/usuario.js?<?php echo date('YmdHis');?>"></script>
 
 
 	</body>
