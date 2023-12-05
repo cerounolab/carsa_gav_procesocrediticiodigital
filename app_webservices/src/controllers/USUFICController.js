@@ -388,7 +388,6 @@ const postUsuario   = (apiREQ, apiRES) => {
 
 const postUsuarioLogin   = (apiREQ, apiRES) => {
 
-    let  xDATA      =   []; 
     let _USUFICUSU  = (apiREQ.body.usuario_usuario != undefined && apiREQ.body.usuario_usuario != null && apiREQ.body.usuario_usuario != '') ? "'"+apiREQ.body.usuario_usuario.trim().toUpperCase()+"'" : false;
     let _USUFICPAS  = (apiREQ.body.usuario_password != undefined && apiREQ.body.usuario_password != null && apiREQ.body.usuario_password != '') ? "'"+apiREQ.body.usuario_password.trim()+"'" : false;
 
@@ -397,7 +396,13 @@ const postUsuarioLogin   = (apiREQ, apiRES) => {
     let _USUFICAIP  = (apiREQ.body.auditoria_ip != undefined && apiREQ.body.auditoria_ip != null && apiREQ.body.auditoria_ip != '') ? "'"+apiREQ.body.auditoria_ip.trim().toUpperCase()+"'" : false; 
     let _USUFICAPR  = (apiREQ.body.auditoria_programa != undefined && apiREQ.body.auditoria_programa != null && apiREQ.body.auditoria_programa != '') ? "'"+apiREQ.body.auditoria_programa.trim()+"'" : false; 
     let _USUFICAIN  = (apiREQ.body.auditoria_incidencia != undefined && apiREQ.body.auditoria_incidencia != null && apiREQ.body.auditoria_incidencia != '') ? "'"+apiREQ.body.auditoria_incidencia.trim()+"'" : null;
-    let _password   = '';  
+   
+    //let _USULOGHOS  = (apiREQ.body.usuario_log_host != undefined && apiREQ.body.usuario_log_host != null && apiREQ.body.usuario_log_host != '') ? "'"+apiREQ.body.usuario_log_host.trim()+"'" : false;   
+    //let _USULOGAGE  = (apiREQ.body.usuario_log_age != undefined && apiREQ.body.usuario_log_age != null && apiREQ.body.usuario_log_age != '') ? "'"+apiREQ.body.usuario_log_age.trim()+"'" : false;     
+    //let _USULOGREF  = (apiREQ.body.usuario_log_referencia != undefined && apiREQ.body.usuario_log_referencia != null && apiREQ.body.usuario_log_referencia != '') ? "'"+apiREQ.body.usuario_log_referencia.trim()+"'" : false;     
+    let _password   = '';
+    let _USULOGEST  = '';  
+    
 
     if (_USUFICUSU && _USUFICPAS && _USUFICAEM && _USUFICAUS && _USUFICAIP && _USUFICAPR){
             (async () => {
@@ -412,10 +417,12 @@ const postUsuarioLogin   = (apiREQ, apiRES) => {
                     bcrypt.compare(_USUFICPAS, _password, async (err, coinciden) => {
                         
                         if (coinciden){
+                            _USULOGEST  = 'CORRECTO';
                             _dataJSON[0].usuario_password = '';
                             _dataJSON   = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, _dataJSON);
         
                         } else {
+                            _USULOGEST  = 'ERROR_PAS';
                             _dataJSON   = await jsonBody(_code, 'Error', null, null, 'La contraseña no coincide, verifique', 0, 0, 0, 0, []);
                         }
 
@@ -425,13 +432,16 @@ const postUsuarioLogin   = (apiREQ, apiRES) => {
                                 
                     });
                 } else {
+                    _USULOGEST  = 'ERROR_USER';
                     _dataJSON   = await jsonBody(_code, 'Error', null, null, 'El usuario no existe, verifique', 0, 0, 0, 0, []);
 
                     _dataJSON   = camelcaseKeys(_dataJSON, {deep: true});
         
                     return apiRES.status(_code).json(_dataJSON);
                 }
-            })();    
+            })();   
+            
+            //selectUSUARIO(4, 1, _USUFICUSU, _password, _USULOGHOS, _USULOGAGE, _USULOGREF);
     }else{
         (async () => {
             _code   = 400;

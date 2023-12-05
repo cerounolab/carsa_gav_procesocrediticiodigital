@@ -11,7 +11,7 @@ const { getUsuario, getUsuarioId, getUsuarioEmpresaId, getUsuarioSucursalId, get
 const { getRol, getRolId, getRolEmpresaId, postRol, putRol, deleteRol } = require('../controllers/ROLFICController');
 const { getCampanha, getCampanhaId, getCampanhaTipoCampanha, getCampanhaEmpresaId, postCampanha, putCampanha, deleteCampanha } = require('../controllers/CAMFICController');
 const { getFormulario, getFormularioId, getFormularioEmpresaId, postFormulario, putFormulario, deleteFormulario } = require('../controllers/FORFICController');
-const { getRolFormulario, getRolFormularioId, getRolFormularioEmpresaId, postRolFormulario, putRolFormulario, deleteRolFormulario } = require('../controllers/ROLFORController');
+const { getRolFormulario, getRolFormularioEmpresaId, getRolFormularioRolId, getRolFormularioId, postRolFormulario, putRolFormulario, deleteRolFormulario } = require('../controllers/ROLFORController');
 const { getUsuarioRol, getUsuarioRolId, postUsuarioRol, putUsuarioRol, deleteUsuarioRol } = require('../controllers/USUROLController');
 const { getUsuarioCampanha, getUsuarioCampanhaId, postUsuarioCampanha, putUsuarioCampanha, deleteUsuarioCampanha } = require('../controllers/USUCAMController');
 const { getUsuarioFlujo, getUsuarioFlujoUsuarioSup, getUsuarioFlujoUsuarioSub, getUsuarioFlujoRolSup, getUsuarioFlujoRolSub, getUsuarioFlujoRolSubEmpresa,
@@ -78,6 +78,7 @@ router.group('/v1/', (routerGroup) => {
 
   routerGroup.get('/rolformulario/listado/empresa/:empresa', getRolFormulario);
   routerGroup.get('/rolformulario/empresa/:empresa', getRolFormularioEmpresaId);
+  routerGroup.get('/rolformulario/codigorol/:codigorol/empresa/:empresa', getRolFormularioRolId);
   routerGroup.get('/rolformulario/codigorol/:codigorol/codigoformulario/:codigoformulario', getRolFormularioId);
   routerGroup.post('/rolformulario', postRolFormulario);
   routerGroup.put('/rolformulario/codigorol/:codigorol/codigoformulario/:codigoformulario', putRolFormulario);
