@@ -24,11 +24,13 @@ const getEmpresa    = (apiREQ, apiRES) => {
         if (_code == 200) {
             _dataJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, _dataJSON);
 
-        } else {
+        } else if (_code == 404){
+            _dataJSON   = xDATA[1];
+            _dataJSON   = await jsonBody(_code, 'No hay registros', null, null, null, 0, 0, 0, 0, []);
+        }else{
             _dataJSON   = xDATA[1];
             _dataJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
         }
-
         _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
 
         return apiRES.status(_code).json(_dataJSON);
@@ -49,8 +51,11 @@ const getEmpresaId  = (apiREQ, apiRES) => {
     
             if (_code == 200) {
                 _dataJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, _dataJSON);
-    
-            } else {
+
+            } else if (_code == 404){
+                _dataJSON   = xDATA[1];
+                _dataJSON   = await jsonBody(_code, 'No hay registros', null, null, null, 0, 0, 0, 0, []);
+            }else{
                 _dataJSON   = xDATA[1];
                 _dataJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
             }
@@ -85,8 +90,11 @@ const getEmpresaRUC = (apiREQ, apiRES) => {
     
             if (_code == 200) {
                 _dataJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, _dataJSON);
-    
-            } else {
+
+            } else if (_code == 404){
+                _dataJSON   = xDATA[1];
+                _dataJSON   = await jsonBody(_code, 'No hay registros', null, null, null, 0, 0, 0, 0, []);
+            }else{
                 _dataJSON   = xDATA[1];
                 _dataJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
             }
@@ -121,8 +129,11 @@ const getEmpresaTipoRubro   = (apiREQ, apiRES) => {
     
             if (_code == 200) {
                 _dataJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, _dataJSON);
-    
-            } else {
+
+            } else if (_code == 404){
+                _dataJSON   = xDATA[1];
+                _dataJSON   = await jsonBody(_code, 'No hay registros', null, null, null, 0, 0, 0, 0, []);
+            }else{
                 _dataJSON   = xDATA[1];
                 _dataJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
             }
