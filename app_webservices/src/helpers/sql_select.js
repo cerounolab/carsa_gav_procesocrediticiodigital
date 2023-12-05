@@ -844,28 +844,46 @@ const selectUSUARIOFLUJO  = async(actionType, codigo, codigo2, codigo3, codigo4)
         case 4:
 
             query00 = `SELECT
-                        *
-                    FROM
-                        adm.USUARIOFLUJO
-                    WHERE rol_superior_codigo = ${codigo}`;
+                            *
+                        FROM
+                            adm.USUARIOFLUJO
+                        WHERE rol_superior_codigo = ${codigo}`;
             break;
 
         case 5:
 
             query00 = `SELECT
-                        *
-                    FROM
-                        adm.USUARIOFLUJO
-                    WHERE rol_subordinado_codigo = ${codigo}`;
+                            *
+                        FROM
+                            adm.USUARIOFLUJO
+                        WHERE rol_subordinado_codigo = ${codigo}`;
             break;
 
         case 6:
 
             query00 = `SELECT
-                        *
-                    FROM
-                        adm.USUARIOFLUJO	
-                    WHERE usuario_superior_codigo = ${codigo} AND rol_superior_codigo = ${codigo2} AND usuario_subordinado_codigo = ${codigo3} AND rol_subordinado_codigo = ${codigo4}`;
+                            *
+                        FROM
+                            adm.USUARIOFLUJO
+                        WHERE rol_subordinado_codigo = ${codigo} AND empresa_codigo = ${codigo2}`;
+            break;
+
+        case 7:
+
+            query00 = `SELECT
+                            *
+                        FROM
+                            adm.USUARIOFLUJO
+                        WHERE rol_superior_codigo = ${codigo} AND empresa_codigo = ${codigo2}`;
+            break;
+
+        case 8:
+
+            query00 = `SELECT
+                            *
+                        FROM
+                            adm.USUARIOFLUJO	
+                        WHERE usuario_superior_codigo = ${codigo} AND rol_superior_codigo = ${codigo2} AND usuario_subordinado_codigo = ${codigo3} AND rol_subordinado_codigo = ${codigo4}`;
             break;
 
         default:
