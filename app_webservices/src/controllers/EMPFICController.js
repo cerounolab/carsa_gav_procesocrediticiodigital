@@ -33,7 +33,7 @@ const getEmpresa    = (apiREQ, apiRES) => {
         }
         _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
 
-        return apiRES.status(_code).json(_dataJSON);
+         return apiRES.status(200).json(_dataJSON);
     })();
 }
 
@@ -62,7 +62,7 @@ const getEmpresaId  = (apiREQ, apiRES) => {
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
     
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
 
     }else{
@@ -70,7 +70,7 @@ const getEmpresaId  = (apiREQ, apiRES) => {
             _code       = 400;
             _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
         
     }
@@ -101,7 +101,7 @@ const getEmpresaRUC = (apiREQ, apiRES) => {
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
     
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
 
     }else{
@@ -109,7 +109,7 @@ const getEmpresaRUC = (apiREQ, apiRES) => {
             _code       = 400;
             _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
         
     }
@@ -140,7 +140,7 @@ const getEmpresaTipoRubro   = (apiREQ, apiRES) => {
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
     
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
 
     }else{
@@ -148,7 +148,7 @@ const getEmpresaTipoRubro   = (apiREQ, apiRES) => {
             _code       = 400;
             _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
         
     }

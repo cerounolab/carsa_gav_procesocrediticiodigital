@@ -97,13 +97,14 @@ router.group('/v1/', (routerGroup) => {
   routerGroup.delete('/usuariocampanha/codigousuario/:codigousuario/codigocampanha/:codigocampanha', deleteUsuarioCampanha);
 
   routerGroup.get('/usuarioflujo/listado/empresa/:empresa', getUsuarioFlujo);
-  routerGroup.get('/usuarioflujo/usuariosuperior/:usuariosuperior', getUsuarioFlujoUsuarioSup);
-  routerGroup.get('/usuarioflujo/usuariosubordinado/:usuariosubordinado', getUsuarioFlujoUsuarioSub);
-  routerGroup.get('/usuarioflujo/rolsuperior/:rolsuperior', getUsuarioFlujoRolSup);
-  routerGroup.get('/usuarioflujo/rolsubordinado/:rolsubordinado', getUsuarioFlujoRolSub);
+  routerGroup.get('/usuarioflujo/usuariosuperior/:usuariosuperior/empresa/:empresa', getUsuarioFlujoUsuarioSup);
+  routerGroup.get('/usuarioflujo/usuariosubordinado/:usuariosubordinado/empresa/:empresa', getUsuarioFlujoUsuarioSub);
+  routerGroup.get('/usuarioflujo/rolsuperior/:rolsuperior/empresa/:empresa', getUsuarioFlujoRolSup);
+  routerGroup.get('/usuarioflujo/rolsubordinado/:rolsubordinado/empresa/:empresa', getUsuarioFlujoRolSub);
   routerGroup.get('/usuarioflujo/rolsubordinado/:rolsubordinado/empresa/:empresa', getUsuarioFlujoRolSubEmpresa);
   routerGroup.get('/usuarioflujo/rolsuperior/:rolsuperior/empresa/:empresa', getUsuarioFlujoRolSupEmpresa);
-  routerGroup.get('/usuarioflujo/usuariosuperior/:usuariosuperior/rolsuperior/:rolsuperior/usuariosubordinado/:usuariosubordinado/rolsubordinado/:rolsubordinado', getUsuarioFlujoId);
+  
+  routerGroup.get('/usuarioflujo/usuariosuperior/:usuariosuperior/rolsuperior/:rolsuperior/usuariosubordinado/:usuariosubordinado/rolsubordinado/:rolsubordinado/empresa/:empresa', getUsuarioFlujoId);
   routerGroup.post('/usuarioflujo', postUsuarioFlujo);
   routerGroup.put('/usuarioflujo/usuariosuperior/:usuariosuperior/rolsuperior/:rolsuperior/usuariosubordinado/:usuariosubordinado/rolsubordinado/:rolsubordinado', putUsuarioFlujo);
   routerGroup.delete('/usuarioflujo/usuariosuperior/:usuariosuperior/rolsuperior/:rolsuperior/usuariosubordinado/:usuariosubordinado/rolsubordinado/:rolsubordinado', deleteUsuarioFlujo);

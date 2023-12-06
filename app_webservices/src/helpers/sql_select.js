@@ -823,7 +823,7 @@ const selectUSUARIOCAMPANHA  = async(actionType, codigo, codigo2, codigo3) => {
     return Array(_code, _data);
 }
 
-const selectUSUARIOFLUJO  = async(actionType, codigo, codigo2, codigo3, codigo4) => {
+const selectUSUARIOFLUJO  = async(actionType, codigo, codigo2, codigo3, codigo4, codigo5) => {
     let _code   = 200;
     let _data   = [];
     let query00 = '';
@@ -843,7 +843,7 @@ const selectUSUARIOFLUJO  = async(actionType, codigo, codigo2, codigo3, codigo4)
                             *
                         FROM
                             adm.USUARIOFLUJO
-                        WHERE usuario_superior_codigo = ${codigo}`;
+                        WHERE usuario_superior_codigo = ${codigo} AND empresa_codigo = ${codigo2}`;
             break;
 
         case 3:
@@ -897,7 +897,7 @@ const selectUSUARIOFLUJO  = async(actionType, codigo, codigo2, codigo3, codigo4)
                             *
                         FROM
                             adm.USUARIOFLUJO	
-                        WHERE usuario_superior_codigo = ${codigo} AND rol_superior_codigo = ${codigo2} AND usuario_subordinado_codigo = ${codigo3} AND rol_subordinado_codigo = ${codigo4}`;
+                        WHERE usuario_superior_codigo = ${codigo} AND rol_superior_codigo = ${codigo2} AND usuario_subordinado_codigo = ${codigo3} AND rol_subordinado_codigo = ${codigo4} AND empresa_codigo = ${codigo5}`;
             break;
 
         default:

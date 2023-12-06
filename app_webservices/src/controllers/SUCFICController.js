@@ -36,7 +36,7 @@ const getSucursal    = (apiREQ, apiRES) => {
 
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
 
     }else{
@@ -44,7 +44,7 @@ const getSucursal    = (apiREQ, apiRES) => {
             _code       = 400;
             _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
     }
     
@@ -75,7 +75,7 @@ const getSucursalId  = (apiREQ, apiRES) => {
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
     
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
 
     }else{
@@ -83,7 +83,7 @@ const getSucursalId  = (apiREQ, apiRES) => {
             _code       = 400;
             _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
         
     }
@@ -114,7 +114,7 @@ const getSucursalEmpresaId   = (apiREQ, apiRES) => {
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
     
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
 
     }else{
@@ -122,7 +122,7 @@ const getSucursalEmpresaId   = (apiREQ, apiRES) => {
             _code       = 400;
             _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
         
     }
@@ -153,7 +153,7 @@ const getEmpresaTipoSucursal = (apiREQ, apiRES) => {
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
     
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
 
     }else{
@@ -161,7 +161,7 @@ const getEmpresaTipoSucursal = (apiREQ, apiRES) => {
             _code       = 400;
             _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
         
     }
