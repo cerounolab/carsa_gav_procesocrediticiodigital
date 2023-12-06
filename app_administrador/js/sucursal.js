@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    var dataJSON	= getSucursalList();
+    var dataJSON	= getSucursalList(_parm06BASE);
 
 	$('#tableLoads').DataTable({
 		processing	: true,
@@ -52,7 +52,22 @@ $(document).ready(function() {
 		columns		: [
 			{ data				: 'sucursalCodigo', name : 'sucursalCodigo'},
 			{ data				: 'sucursalOrden', name : 'sucursalOrden'},
-			{ data				: 'tipoEstadoNombre', name : 'tipoEstadoNombre'},
+			{ render			:
+				function (data, type, full, meta) {
+					var rowEST = '';
+					if (full.tipoEstadoParametro == 1) {
+						rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
+					} else if (full.tipoEstadoParametro == 2){
+					 	rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
+					} else if (full.tipoEstadoParametro == 3){
+						rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
+					} else {
+						rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
+					}
+					
+					return rowEST;
+				}
+			},
 			{ data				: 'tipoSucursalNombre', name : 'tipoSucursalNombre'},
 			{ data				: 'empresaNombre', name : 'empresaNombre'},
 			{ data				: 'sucursalNombre', name : 'sucursalNombre'},
@@ -71,6 +86,11 @@ $(document).ready(function() {
 					var btnUPD	= '<button onclick="setEmpSucursal('+ full.sucursalCodigo +', 3);" title="Editar" type="button" class="btn btn-success btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-edit"></i></button>';
 					var btnDLT	= '<button onclick="setEmpSucursal('+ full.sucursalCodigo +', 4);" title="Eliminar" type="button" class="btn btn-danger btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-eraser"></i></button>';
 					var btnAUD	= '<button onclick="setEmpSucursal('+ full.sucursalCodigo +', 5);" title="Auditoria" type="button" class="btn btn-warning btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-user-secret"></i></button>';
+					
+					if (full.tipoEstadoParametro != 1) {
+						btnUPD	= '';
+						btnDLT	= '';
+					}
 
 					return (btnDSP + '&nbsp;' + btnUPD + '&nbsp;' + btnDLT + '&nbsp;');
 				}

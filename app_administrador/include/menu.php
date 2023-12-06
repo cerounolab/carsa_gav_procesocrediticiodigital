@@ -198,7 +198,7 @@
                                     </a>
                                     <ul class="treeview-menu">
                                         <li><a href="./../public/usuario.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Usuario</a></li>
-                                        <!-- <li><a href="./../public/sucursal.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Alta Sucursal</a></li> -->
+                                        <li><a href="./../public/usuarioflujo.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Usuario Flujo</a></li>
                                     </ul>
                                 </li>
 

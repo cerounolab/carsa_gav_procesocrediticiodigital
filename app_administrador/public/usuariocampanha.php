@@ -116,9 +116,9 @@
 
 		</script>
 
-		<script src="./../js/api.js?<?php echo date('Ymd');?>"></script>
+		<script src="./../js/api.js?<?php echo date('YmdHis');?>"></script>
 		<script src="./../js/usuariocampanha.js?<?php echo date('YmdHis');?>"></script>
-		<script src="./../js/select.js?<?php echo date('Ymd');?>"></script>
+		<script src="./../js/select.js?<?php echo date('YmdHis');?>"></script>
 		
 
 	</body>

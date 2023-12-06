@@ -7,10 +7,7 @@
     
 	require '../../class/function/curl_api.php';
 	require '../../class/function/function.php';
-	// require './../class/session/session_system.php';
 
-
-	
     $val01          = intval($_POST['var01']);
     $val02          = intval($_POST['var02']);
     $val03          = intval($_POST['var03']);
@@ -26,17 +23,19 @@
 
 	$work02         = $_POST['workModo'];
 	$work03         = $_POST['workPage'];
-	$work04         = $_POST['workPrograma'];
+	$work04         = $_POST['workPrograma']; 
+	$work05         = $_POST['workAccion']; 
 	
-	$usu_03         = strtoupper($_SESSION['usu_03']);
+	$usu_03         = strtoupper($_SESSION['log_01']);
 	$log_03         = $_SESSION['log_03'];
-	$usu_06         = $_SESSION['usu_06'];
+	$usu_06         = $_SESSION['empresaCodigo'];
 
+	$val01			= ($work05 == 1) ? $val01 : 2;
 
-    if (isset($val01) && isset($val03)) {
+	if (isset($val01) && isset($val03)) {
         $dataJSON = json_encode(
             array(
-				'tipo_accion_codigo'     			=> 1,
+				'tipo_accion_codigo'     			=> $work05,
 				'tipo_estado_parametro'				=> $val01,
 				'usuario_rol_orden'					=> $val02,
 				'empresa_codigo'					=> $val03,

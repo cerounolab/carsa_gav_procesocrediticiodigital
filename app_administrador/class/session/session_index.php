@@ -10,16 +10,18 @@
     $val_02     = $_POST['txtPass'];
 
     $val_03     = $_SERVER['REMOTE_ADDR'];
-    
+  
+    $codEmp     = substr( $val_01, 0, 3);
+
     $dataJSON   = json_encode(
         array(
             'usuario_usuario'               => $val_01,
             'usuario_password'              => $val_02,
 
-            'auditoria_empresa_codigo'		=> 1,
-            'auditoria_usuario'				=> 'HOLIX',
-            'auditoria_ip'					=> '0.0.0.0',
-            'auditoria_programa'			=> 'PRG'
+            'auditoria_empresa_codigo'		=> $codEmp,
+            'auditoria_usuario'				=> $val_01,
+            'auditoria_ip'					=> $val_03,
+            'auditoria_programa'			=> 'PROCREDIG'
         ));
         
         $resultJSON = post_curl('usuario/login', $dataJSON);
