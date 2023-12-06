@@ -16,9 +16,9 @@ const getUsuarioFlujo   = (apiREQ, apiRES) => {
     let _dataJSON   = [];     
     let _codigo     = parseInt(apiREQ.params.empresa);
 
-    if (_codigo != 'undefined' && _codigo != '' && _codigo != null && _codigo > 0){
+    if (_codigo != 'undefined' && _codigo != null && _codigo > 0){
         (async () => {
-            const xDATA = await selectUSUARIOFLUJO(1, _codigo, 0, 0, 0);
+            const xDATA = await selectUSUARIOFLUJO(1, _codigo, 0, 0, 0, 0);
             _code       = xDATA[0];
             _dataJSON   = xDATA[1];
 
@@ -35,7 +35,7 @@ const getUsuarioFlujo   = (apiREQ, apiRES) => {
 
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
 
     }else{
@@ -43,7 +43,7 @@ const getUsuarioFlujo   = (apiREQ, apiRES) => {
             _code       = 400;
             _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
     }
 }
@@ -52,10 +52,11 @@ const getUsuarioFlujoUsuarioSup    = (apiREQ, apiRES) => {
     let _code       = 200;
     let _dataJSON   = [];
     let _codigo     = parseInt(apiREQ.params.usuariosuperior);
+    let _codigo2    = parseInt(apiREQ.params.empresa);
 
-    if (_codigo != 'undefined' && _codigo != '' && _codigo != null && _codigo > 0){
+    if (_codigo != 'undefined' && _codigo != null && _codigo > 0 && _codigo2 != 'undefined' && _codigo2 != null && _codigo2 > 0){
         (async () => {
-            const xDATA = await selectUSUARIOFLUJO(2, _codigo, 0, 0, 0);
+            const xDATA = await selectUSUARIOFLUJO(2, _codigo, _codigo2, 0, 0, 0);
             _code       = xDATA[0];
             _dataJSON   = xDATA[1];
                 
@@ -72,7 +73,7 @@ const getUsuarioFlujoUsuarioSup    = (apiREQ, apiRES) => {
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
     
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
 
     }else{
@@ -80,7 +81,7 @@ const getUsuarioFlujoUsuarioSup    = (apiREQ, apiRES) => {
             _code       = 400;
             _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
         
     }
@@ -90,10 +91,11 @@ const getUsuarioFlujoUsuarioSub    = (apiREQ, apiRES) => {
     let _code       = 200;
     let _dataJSON   = [];
     let _codigo     = parseInt(apiREQ.params.usuariosubordinado);
+    let _codigo2    = parseInt(apiREQ.params.empresa);
 
-    if (_codigo != 'undefined' && _codigo != '' && _codigo != null && _codigo > 0){
+    if (_codigo != 'undefined' && _codigo != null && _codigo > 0 && _codigo2 != 'undefined' && _codigo2 != null && _codigo2 > 0){
         (async () => {
-            const xDATA = await selectUSUARIOFLUJO(3, _codigo, 0, 0, 0);
+            const xDATA = await selectUSUARIOFLUJO(3, _codigo, 0, 0, 0, 0);
             _code       = xDATA[0];
             _dataJSON   = xDATA[1];
                 
@@ -110,7 +112,7 @@ const getUsuarioFlujoUsuarioSub    = (apiREQ, apiRES) => {
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
     
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
 
     }else{
@@ -118,7 +120,7 @@ const getUsuarioFlujoUsuarioSub    = (apiREQ, apiRES) => {
             _code       = 400;
             _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
         
     }
@@ -128,10 +130,11 @@ const getUsuarioFlujoRolSup    = (apiREQ, apiRES) => {
     let _code       = 200;
     let _dataJSON   = [];
     let _codigo     = parseInt(apiREQ.params.rolsuperior);
+    let _codigo2    = parseInt(apiREQ.params.empresa);
 
-    if (_codigo != 'undefined' && _codigo != '' && _codigo != null && _codigo > 0){
+    if (_codigo != 'undefined' && _codigo != null && _codigo > 0 && _codigo2 != 'undefined' && _codigo2 != null && _codigo2 > 0){
         (async () => {
-            const xDATA = await selectUSUARIOFLUJO(4, _codigo, 0, 0, 0);
+            const xDATA = await selectUSUARIOFLUJO(4, _codigo, _codigo2, 0, 0, 0);
             _code       = xDATA[0];
             _dataJSON   = xDATA[1];
                 
@@ -148,7 +151,7 @@ const getUsuarioFlujoRolSup    = (apiREQ, apiRES) => {
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
     
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
 
     }else{
@@ -156,7 +159,7 @@ const getUsuarioFlujoRolSup    = (apiREQ, apiRES) => {
             _code       = 400;
             _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
         
     }
@@ -166,10 +169,11 @@ const getUsuarioFlujoRolSub    = (apiREQ, apiRES) => {
     let _code       = 200;
     let _dataJSON   = [];
     let _codigo     = parseInt(apiREQ.params.rolsubordinado);
+    let _codigo2    = parseInt(apiREQ.params.empresa);
 
-    if (_codigo != 'undefined' && _codigo != '' && _codigo != null && _codigo > 0){
+    if (_codigo != 'undefined' && _codigo != null && _codigo > 0 && _codigo2 != 'undefined' && _codigo2 != null && _codigo2 > 0){
         (async () => {
-            const xDATA = await selectUSUARIOFLUJO(5, _codigo, 0, 0, 0);
+            const xDATA = await selectUSUARIOFLUJO(5, _codigo, _codigo2, 0, 0, 0);
             _code       = xDATA[0];
             _dataJSON   = xDATA[1];
                 
@@ -186,7 +190,7 @@ const getUsuarioFlujoRolSub    = (apiREQ, apiRES) => {
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
     
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
 
     }else{
@@ -194,7 +198,7 @@ const getUsuarioFlujoRolSub    = (apiREQ, apiRES) => {
             _code       = 400;
             _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
         
     }
@@ -206,9 +210,9 @@ const getUsuarioFlujoRolSubEmpresa  = (apiREQ, apiRES) => {
     let _codigo     = parseInt(apiREQ.params.rolsubordinado);
     let _codigo2    = parseInt(apiREQ.params.empresa);
 
-    if (_codigo != 'undefined' && _codigo != '' && _codigo != null && _codigo > 0 && _codigo2 != 'undefined' && _codigo2 != '' && _codigo2 != null && _codigo2 > 0){
+    if (_codigo != 'undefined' && _codigo != null && _codigo > 0 && _codigo2 != 'undefined' && _codigo2 != null && _codigo2 > 0){
         (async () => {
-            const xDATA = await selectUSUARIOFLUJO(6, _codigo, _codigo2, 0, 0);
+            const xDATA = await selectUSUARIOFLUJO(6, _codigo, _codigo2, 0, 0, 0);
             _code       = xDATA[0];
             _dataJSON   = xDATA[1];
                 
@@ -225,7 +229,7 @@ const getUsuarioFlujoRolSubEmpresa  = (apiREQ, apiRES) => {
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
     
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
 
     }else{
@@ -233,7 +237,7 @@ const getUsuarioFlujoRolSubEmpresa  = (apiREQ, apiRES) => {
             _code       = 400;
             _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
         
     }
@@ -245,9 +249,9 @@ const getUsuarioFlujoRolSupEmpresa  = (apiREQ, apiRES) => {
     let _codigo     = parseInt(apiREQ.params.rolsuperior);
     let _codigo2    = parseInt(apiREQ.params.empresa);
 
-    if (_codigo != 'undefined' && _codigo != '' && _codigo != null && _codigo > 0 && _codigo2 != 'undefined' && _codigo2 != '' && _codigo2 != null && _codigo2 > 0){
+    if (_codigo != 'undefined' && _codigo != null && _codigo > 0 && _codigo2 != 'undefined' && _codigo2 != null && _codigo2 > 0){
         (async () => {
-            const xDATA = await selectUSUARIOFLUJO(7, _codigo, _codigo2, 0, 0);
+            const xDATA = await selectUSUARIOFLUJO(7, _codigo, _codigo2, 0, 0, 0);
             _code       = xDATA[0];
             _dataJSON   = xDATA[1];
                 
@@ -264,7 +268,7 @@ const getUsuarioFlujoRolSupEmpresa  = (apiREQ, apiRES) => {
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
     
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
 
     }else{
@@ -272,7 +276,7 @@ const getUsuarioFlujoRolSupEmpresa  = (apiREQ, apiRES) => {
             _code       = 400;
             _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
         
     }
@@ -285,14 +289,13 @@ const getUsuarioFlujoId   = (apiREQ, apiRES) => {
     let _codigo2    = parseInt(apiREQ.params.rolsuperior);
     let _codigo3    = parseInt(apiREQ.params.usuariosubordinado);
     let _codigo4    = parseInt(apiREQ.params.rolsubordinado);
+    let _codigo5    = parseInt(apiREQ.params.empresa);
 
-    if (_codigo > 0 && _codigo != 'undefined' && _codigo != '' && _codigo != null && _codigo > 0 &&
-        _codigo2 != 'undefined' && _codigo2 != '' && _codigo2 != null && _codigo2 > 0 &&
-        _codigo3 != 'undefined' && _codigo3 != '' && _codigo3 != null && _codigo3 > 0 &&
-        _codigo4 != '' && _codigo4 != null && _codigo4 > 0){
+    if (_codigo > 0 && _codigo != 'undefined' && _codigo != null && _codigo > 0 && _codigo2 != 'undefined' && _codigo2 != null && _codigo2 > 0 &&
+        _codigo3 != 'undefined' && _codigo3 != null && _codigo3 > 0 && _codigo4 != null && _codigo4 > 0 && _codigo5 != null && _codigo5 > 0){
 
         (async () => {
-            const xDATA = await selectUSUARIOFLUJO(8, _codigo, _codigo2, _codigo3, _codigo4);
+            const xDATA = await selectUSUARIOFLUJO(8, _codigo, _codigo2, _codigo3, _codigo4, _codigo5);
             _code       = xDATA[0];
             _dataJSON   = xDATA[1];
                 
@@ -309,7 +312,7 @@ const getUsuarioFlujoId   = (apiREQ, apiRES) => {
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
     
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
 
     }else{
@@ -317,7 +320,7 @@ const getUsuarioFlujoId   = (apiREQ, apiRES) => {
             _code       = 400;
             _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
         
     }
@@ -332,7 +335,7 @@ const postUsuarioFlujo  = (apiREQ, apiRES) => {
     let _USUFLUEMC  = (apiREQ.body.empresa_codigo != undefined && apiREQ.body.empresa_codigo != null && apiREQ.body.empresa_codigo != '' && apiREQ.body.empresa_codigo > 0) ? Number.parseInt(apiREQ.body.empresa_codigo) : false;   
     let _USUFLUEST  = (apiREQ.body.tipo_estado_parametro != undefined && apiREQ.body.tipo_estado_parametro != null && apiREQ.body.tipo_estado_parametro != '' && apiREQ.body.tipo_estado_parametro > 0) ? Number.parseInt(apiREQ.body.tipo_estado_parametro) : false; 
     let _USUFLUORD  = (apiREQ.body.usuario_flujo_orden != undefined && apiREQ.body.usuario_flujo_orden != null && apiREQ.body.usuario_flujo_orden != '') ? Number.parseInt(apiREQ.body.usuario_flujo_orden) : 999; 
-    let _USUFLUOBS  =  (apiREQ.body.usuario_flujo_observacion != undefined && apiREQ.body.usuario_flujo_observacion != null && apiREQ.body.usuario_flujo_observacion != '') ? "'"+apiREQ.body.usuario_flujo_observacion.trim()+"'" : null;
+    let _USUFLUOBS  = (apiREQ.body.usuario_flujo_observacion != undefined && apiREQ.body.usuario_flujo_observacion != null && apiREQ.body.usuario_flujo_observacion != '') ? "'"+apiREQ.body.usuario_flujo_observacion.trim()+"'" : null;
 
     let _USUFLUCEM  = (apiREQ.body.alta_empresa_codigo != undefined && apiREQ.body.alta_empresa_codigo != null && apiREQ.body.alta_empresa_codigo != '' && apiREQ.body.alta_empresa_codigo > 0) ? Number.parseInt(apiREQ.body.alta_empresa_codigo) : false; 
     let _USUFLUCUS  = (apiREQ.body.alta_usuario != undefined && apiREQ.body.alta_usuario != null && apiREQ.body.alta_usuario != '') ? "'"+apiREQ.body.alta_usuario.trim().toUpperCase()+"'" : false;

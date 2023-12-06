@@ -35,14 +35,14 @@ const getRolFormulario    = (apiREQ, apiRES) => {
 
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
     }else{
         (async () => {
             _code       = 400;
             _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
     }
 }
@@ -72,7 +72,7 @@ const getRolFormularioEmpresaId = (apiREQ, apiRES) => {
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
     
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
 
     }else{
@@ -80,7 +80,7 @@ const getRolFormularioEmpresaId = (apiREQ, apiRES) => {
             _code       = 400;
             _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
         
     }
@@ -110,7 +110,7 @@ const getRolFormularioRolId  = (apiREQ, apiRES) => {
             }
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
     
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
 
     }else{
@@ -118,7 +118,7 @@ const getRolFormularioRolId  = (apiREQ, apiRES) => {
             _code       = 400;
             _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
         
     }
@@ -150,7 +150,7 @@ const getRolFormularioId  = (apiREQ, apiRES) => {
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
     
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
 
     }else{
@@ -158,7 +158,7 @@ const getRolFormularioId  = (apiREQ, apiRES) => {
             _code       = 400;
             _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
         
     }

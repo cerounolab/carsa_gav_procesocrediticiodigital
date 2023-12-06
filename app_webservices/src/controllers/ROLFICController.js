@@ -35,7 +35,7 @@ const getRol    = (apiREQ, apiRES) => {
             
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
 
-            return apiRES.status(_code).json(_dataJSON);
+            return apiRES.status(200).json(_dataJSON);
         })();
 
     }else{
@@ -43,7 +43,7 @@ const getRol    = (apiREQ, apiRES) => {
             _code       = 400;
             _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
     }
 }
@@ -73,7 +73,7 @@ const getRolId  = (apiREQ, apiRES) => {
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
     
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
 
     }else{
@@ -81,7 +81,7 @@ const getRolId  = (apiREQ, apiRES) => {
             _code       = 400;
             _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
         
     }
@@ -112,7 +112,7 @@ const getRolEmpresaId = (apiREQ, apiRES) => {
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
     
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
 
     }else{
@@ -120,7 +120,7 @@ const getRolEmpresaId = (apiREQ, apiRES) => {
             _code       = 400;
             _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
         
     }
