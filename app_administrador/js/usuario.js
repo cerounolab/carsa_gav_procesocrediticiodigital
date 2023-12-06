@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var dataJSON	= getUsuarioList();
+    var dataJSON	= getUsuarioList(_parm06BASE);
 
 	$('#tableLoads').DataTable({
 		processing	: true,
@@ -30,7 +30,7 @@ $(document).ready(function() {
         data		: dataJSON,
 		columnDefs	: [
 			{ targets			: [0],	visible : false,searchable : true,	orderData : [0, 0] },
-			{ targets			: [1],	visible : true,	searchable : true,	orderData : [1, 0] },
+			{ targets			: [1],	visible : false,searchable : true,	orderData : [1, 0] },
 			{ targets			: [2],	visible : true,	searchable : true,	orderData : [2, 0] },
 			{ targets			: [3],	visible : true,searchable : false,	orderData : [3, 0] },
 			{ targets			: [4],	visible : true,	searchable : true,	orderData : [4, 0] },
@@ -50,7 +50,22 @@ $(document).ready(function() {
 		columns		: [
 			{ data				: 'usuarioCodigo', name : 'usuarioCodigo'},
 			{ data				: 'usuarioOrden', name : 'usuarioOrden'},
-			{ data				: 'tipoEstadoNombre', name : 'tipoEstadoNombre'},
+			{ render			:
+				function (data, type, full, meta) {
+					var rowEST = '';
+					if (full.tipoEstadoParametro == 1) {
+						rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
+					} else if (full.tipoEstadoParametro == 2){
+					 	rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
+					} else if (full.tipoEstadoParametro == 3){
+						rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
+					} else {
+						rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
+					}
+					
+					return rowEST;
+				}
+			},
 			{ data				: 'empresaNombre', name : 'empresaNombre'},
 			{ data				: 'sucursalNombre', name : 'sucursalNombre'},
 			{ data				: 'usuarioDocumento', name : 'usuarioDocumento'},
@@ -70,6 +85,11 @@ $(document).ready(function() {
 					var btnDLT	= '<button onclick="setUsuario('+ full.usuarioCodigo +', 4);" title="Eliminar" type="button" class="btn btn-danger btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-eraser"></i></button>';
 					var btnAUD	= '<button onclick="setUsuario('+ full.usuarioCodigo +', 5);" title="Auditoria" type="button" class="btn btn-warning btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-user-secret"></i></button>';
 
+					if (full.tipoEstadoParametro != 1) {
+						btnUPD	= '';
+						btnDLT	= '';
+					} 
+
 					return (btnDSP + '&nbsp;' + btnUPD + '&nbsp;' + btnDLT + '&nbsp;');
 				}
 			},
@@ -82,7 +102,7 @@ function setUsuario(codElem, codAcc) {
 	var xJSON       = [];
 	var xJSON1     	= getDominioValor('ADMUSUARIOESTADO');
 	var xJSON3     	= getEmpresaList();
-	var xJSON4     	= getSucursalList();
+	var xJSON4     	= getSucursalList(_parm06BASE);
 
 	var html		= '';
 	var bodyCol     = '';

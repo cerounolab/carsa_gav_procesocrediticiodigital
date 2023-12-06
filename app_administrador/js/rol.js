@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var dataJSON	= getRolList();
+    var dataJSON	= getRolList(_parm06BASE);
 
 	$('#tableLoads').DataTable({
 		processing	: true,
@@ -30,7 +30,7 @@ $(document).ready(function() {
         data		: dataJSON,
 		columnDefs	: [
 			{ targets			: [0],	visible : false,searchable : true,	orderData : [0, 0] },
-			{ targets			: [1],	visible : true,	searchable : true,	orderData : [1, 0] },
+			{ targets			: [1],	visible : false, searchable : true,	orderData : [1, 0] },
 			{ targets			: [2],	visible : true,	searchable : true,	orderData : [2, 0] },
 			{ targets			: [3],	visible : true, searchable : false,	orderData : [3, 0] },
 			{ targets			: [4],	visible : true,	searchable : true,	orderData : [4, 0] },

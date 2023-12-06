@@ -831,7 +831,6 @@ function selectEmpresaSuc(parm01, parm02, parm03, parm04) {
     var codEmp      = document.getElementById(parm02);
     var codSuc      = document.getElementById(parm01);
  
-    xJSON           = getSucursalEmp(codEmp.value);
 
     while (selOption.length > 0) {
         selOption.remove(0);
@@ -856,6 +855,8 @@ function selectEmpresaSuc(parm01, parm02, parm03, parm04) {
             selOption.add(option, null);
             break;
     }
+    
+    xJSON           = getSucursalEmp(codEmp.value);
 
     if (parm03 == 1) {
         xJSON.forEach(element => {
@@ -899,9 +900,8 @@ function selectEmpresaRol(parm01, parm02, parm03, parm04) {
     while (selOption.length > 0) {
         selOption.remove(0);
     }
-    xJSON           = getRolEmp(codEmp.value);
 
-    switch (parm02) {
+    switch (parm03) {
         case 1:
             var option      = document.createElement('option');
             option.value    = 0;
@@ -920,8 +920,10 @@ function selectEmpresaRol(parm01, parm02, parm03, parm04) {
             selOption.add(option, null);
             break;
     }
-    
-    if (parm03 == 1) {
+
+    xJSON           = getRolEmp(codEmp.value);
+
+    if (parm04 == 1) {
         xJSON.forEach(element => {
             var option      = document.createElement('option');
             option.value    = element.rolCodigo;
@@ -936,22 +938,35 @@ function selectEmpresaRol(parm01, parm02, parm03, parm04) {
     
            
         });
-    } else {
+    } else if (parm04 == 2) {
         xJSON.forEach(element => {
             var option      = document.createElement('option');
             option.value    = element.rolCodigo;
-            option.text     = element.rolCodigo +' - '+ element.rolCodigo;
-
-            if (element.empresaCodigo == codEmp) {
-                option.selected = true;
-            } else {
-                option.selected = false;
-            }
-            selOption.add(option, null);
-
-        
+            option.text     = element.rolCodigo +' - '+ element.rolNombre;
+            
+            if (element.rolCodigo !=  codRol) {
+                selOption.add(option, null);
+            } 
+    
+           
         });
     }
+    // else {
+    //     xJSON.forEach(element => {
+    //         var option      = document.createElement('option');
+    //         option.value    = element.rolCodigo;
+    //         option.text     = element.rolCodigo +' - '+ element.rolCodigo;
+
+    //         if (element.empresaCodigo == codEmp) {
+    //             option.selected = true;
+    //         } else {
+    //             option.selected = false;
+    //         }
+    //         selOption.add(option, null);
+
+        
+    //     });
+    // }
     
 }
 
@@ -963,9 +978,8 @@ function selectEmpresaCampanha(parm01, parm02, parm03, parm04) {
     while (selOption.length > 0) {
         selOption.remove(0);
     }
-    xJSON           = getcampanhaEmp(codEmp.value);
 
-    switch (parm02) {
+    switch (parm03) {
         case 1:
             var option      = document.createElement('option');
             option.value    = 0;
@@ -984,8 +998,10 @@ function selectEmpresaCampanha(parm01, parm02, parm03, parm04) {
             selOption.add(option, null);
             break;
     }
-    
-    if (parm03 == 1) {
+
+    xJSON           = getcampanhaEmp(codEmp.value);
+
+    if (parm04 == 1) {
         xJSON.forEach(element => {
             var option      = document.createElement('option');
             option.value    = element.campanhaCodigo;
@@ -1014,5 +1030,160 @@ function selectEmpresaCampanha(parm01, parm02, parm03, parm04) {
         
         });
     }
+    
+}
+
+function selectEmpresaRolUsuario(parm01, parm02, parm03, parm04, parm05) {
+    var selOption   = document.getElementById(parm01);
+    var codEmp      = document.getElementById(parm02);
+    var codRol      = document.getElementById(parm01);
+ 
+    while (selOption.length > 0) {
+        selOption.remove(0);
+    }
+    xJSON           = getRolEmp(codEmp.value);
+
+    switch (parm03) {
+        case 1:
+            var option      = document.createElement('option');
+            option.value    = 0;
+            option.text     = 'SELECCIONAR';
+            option.selected = true;
+            option.disabled = true;
+            selOption.add(option, null);
+            break;
+
+        case 2:
+            var option      = document.createElement('option');
+            option.value    = 0;
+            option.text     = 'TODOS';
+            option.selected = true;
+            option.disabled = false;
+            selOption.add(option, null);
+            break;
+    }
+    
+    if (parm04 == 1) {
+        xJSON.forEach(element => {
+            var option      = document.createElement('option');
+            option.value    = element.rolCodigo;
+            option.text     = element.rolCodigo +' - '+ element.rolNombre;
+            
+            if (element.rolCodigo ==  parm04) {
+                option.selected = true;
+            } else {
+                option.selected = false;
+            }
+            selOption.add(option, null);
+    
+           
+        });
+    } else if (parm04 == 2) {
+        xJSON.forEach(element => {
+            var option      = document.createElement('option');
+            option.value    = element.rolCodigo;
+            option.text     = element.rolCodigo +' - '+ element.rolNombre;
+            
+            if (element.rolCodigo !=  codRol) {
+                selOption.add(option, null);
+            } 
+    
+           
+        });
+    } else {
+        xJSON.forEach(element => {
+            var option      = document.createElement('option');
+            option.value    = element.rolCodigo;
+            option.text     = element.rolCodigo +' - '+ element.rolCodigo;
+
+            if (element.empresaCodigo == codEmp) {
+                option.selected = true;
+            } else {
+                option.selected = false;
+            }
+            selOption.add(option, null);
+
+        
+        });
+    }
+    
+}
+
+function selectEmpresaUsuario(parm01, parm02, parm03, parm04) {
+    var selOption   = document.getElementById(parm01);
+    var codEmp      = document.getElementById(parm02);
+    var codUsu      = document.getElementById(parm01);
+ 
+        
+    while (selOption.length > 0) {
+        selOption.remove(0);
+    }
+
+    switch (parm03) {
+        case 1:
+            var option      = document.createElement('option');
+            option.value    = 0;
+            option.text     = 'SELECCIONAR';
+            option.selected = true;
+            option.disabled = true;
+            selOption.add(option, null);
+            break;
+
+        case 2:
+            var option      = document.createElement('option');
+            option.value    = 0;
+            option.text     = 'TODOS';
+            option.selected = true;
+            option.disabled = false;
+            selOption.add(option, null);
+            break;
+    }
+
+    xJSON   = getUsuarioEmp(codEmp.value);
+
+    if (parm04 == 1) {
+        xJSON.forEach(element => {
+            var option      = document.createElement('option');
+            option.value    = element.usuarioCodigo;
+            option.text     = element.usuarioCodigo +' - '+ element.usuarioNombre;
+            
+            if (element.usuarioCodigo ==  parm04) {
+                option.selected = true;
+            } else {
+                option.selected = false;
+            }
+            selOption.add(option, null);
+    
+           
+        });
+    } else if (parm04 == 2) {
+        xJSON.forEach(element => {
+            var option      = document.createElement('option');
+            option.value    = element.usuarioCodigo;
+            option.text     = element.usuarioCodigo +' - '+ element.usuarioNombre;
+            
+            if (element.usuarioCodigo !=  codUsu) {
+                selOption.add(option, null);
+            } 
+    
+           
+        });
+    }
+    // else {
+    //     xJSON.forEach(element => {
+    //         var option      = document.createElement('option');
+    //         option.value    = element.rolCodigo;
+    //         option.text     = element.rolCodigo +' - '+ element.rolCodigo;
+
+    //         if (element.empresaCodigo == codEmp) {
+    //             option.selected = true;
+    //         } else {
+    //             option.selected = false;
+    //         }
+    //         selOption.add(option, null);
+
+        
+    //     });
+    // }
     
 }
