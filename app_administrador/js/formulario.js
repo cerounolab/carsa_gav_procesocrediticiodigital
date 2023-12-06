@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var dataJSON	= getFormularioList();
+    var dataJSON	= getFormularioList(_parm06BASE);
 
 	$('#tableLoads').DataTable({
 		processing	: true,

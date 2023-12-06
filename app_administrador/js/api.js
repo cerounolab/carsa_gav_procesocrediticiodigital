@@ -639,7 +639,7 @@ function getSucursalList(codElem){
     localStorage.removeItem('sucursalListJSON');
 
     if (localStorage.getItem('sucursalListJSON') === null){
-        getJSON('sucursalListJSON', 'sucursal/listado');
+        getJSON('sucursalListJSON', 'sucursal/listado/empresa/' + codElem);
     }
 
     var xJSON = JSON.parse(localStorage.getItem('sucursalListJSON'));
@@ -696,12 +696,12 @@ function getUsuarioList(codElem){
     localStorage.removeItem('UsuarioListJSON');
 
     if (localStorage.getItem('UsuarioListJSON') === null){
-        getJSON('UsuarioListJSON', 'usuario/listado');
+        getJSON('UsuarioListJSON', 'usuario/listado/empresa/'+ codElem);
     }
 
     var xJSON = JSON.parse(localStorage.getItem('UsuarioListJSON'));
     var xDATA = [];
-
+    
     if (xJSON['code'] == 200) {
         xJSON['data'].forEach(element => {
             xDATA.push(element);
@@ -749,11 +749,32 @@ function geUsuarioUsu(codElem){
     return xDATA;
 }
 
+function getUsuarioEmp(codElem){
+    localStorage.removeItem('usuarioEmpresaJSON');
+
+    if (localStorage.getItem('usuarioEmpresaJSON') === null){
+        getJSON('usuarioEmpresaJSON', 'usuario/empresa/' + codElem);
+    }
+    var xJSON = [];
+
+    var xJSON = JSON.parse(localStorage.getItem('usuarioEmpresaJSON'));
+    var xDATA = [];
+
+    if (xJSON['code'] == 200) {
+        xJSON['data'].forEach(element => {
+            xDATA.push(element);
+        });
+    }
+
+    return xDATA;
+}
+
+
 function getRolList(codElem){
     localStorage.removeItem('rolListJSON');
 
     if (localStorage.getItem('rolListJSON') === null){
-        getJSON('rolListJSON', 'rol/listado');
+        getJSON('rolListJSON', 'rol/listado/empresa/'+codElem);
     }
 
     var xJSON = JSON.parse(localStorage.getItem('rolListJSON'));
@@ -791,13 +812,13 @@ function getRolEmp(codElem){
     localStorage.removeItem('rolEmpresaJSON');
 
     if (localStorage.getItem('rolEmpresaJSON') === null){
-        getJSON('rolEmpresaJSON', 'rol/empresa/' + codElem);
+        getJSON('rolEmpresaJSON', 'rol/listado/empresa/'+ codElem);
     }
     var xJSON = [];
 
     var xJSON = JSON.parse(localStorage.getItem('rolEmpresaJSON'));
     var xDATA = [];
-
+ 
     if (xJSON['code'] == 200) {
         xJSON['data'].forEach(element => {
             xDATA.push(element);
@@ -807,11 +828,11 @@ function getRolEmp(codElem){
     return xDATA;
 }
 
-function getcampanhaList(){
+function getcampanhaList(codElem){
     localStorage.removeItem('campanhaListJSON');
 
     if (localStorage.getItem('campanhaListJSON') === null){
-        getJSON('campanhaListJSON', 'campanha/listado');
+        getJSON('campanhaListJSON', 'campanha/listado/empresa/'+codElem);
     }
 
     var xJSON = JSON.parse(localStorage.getItem('campanhaListJSON'));
@@ -870,7 +891,7 @@ function getFormularioList(codElem){
     localStorage.removeItem('formularioListJSON');
 
     if (localStorage.getItem('formularioListJSON') === null){
-        getJSON('formularioListJSON', 'formulario/listado');
+        getJSON('formularioListJSON', 'formulario/listado/empresa/' + codElem);
     }
 
     var xJSON = JSON.parse(localStorage.getItem('formularioListJSON'));
@@ -908,7 +929,7 @@ function getRolFormularioList(codElem){
     localStorage.removeItem('rolformularioListJSON');
 
     if (localStorage.getItem('rolformularioListJSON') === null){
-        getJSON('rolformularioListJSON', 'rolformulario/listado');
+        getJSON('rolformularioListJSON', 'rolformulario/listado/empresa/' + codElem);
     }
 
     var xJSON = JSON.parse(localStorage.getItem('rolformularioListJSON'));
@@ -1046,6 +1067,45 @@ function getUsuarioCampanhaId(codUsu, codCamp, codEmp){
     }
 
     var xJSON = JSON.parse(localStorage.getItem('usuCampanhaIdJSON'));
+    var xDATA = [];
+
+    if (xJSON['code'] == 200) {
+        xJSON['data'].forEach(element => {
+            xDATA.push(element);
+        });
+    }
+
+    return xDATA; 
+}
+
+function getusuarioFlujoList(codEmp){
+    localStorage.removeItem('usuarioflujoListJSON');
+
+    if (localStorage.getItem('usuarioflujoListJSON') === null){
+        getJSON('usuarioflujoListJSON', 'usuarioflujo/listado/empresa/'+codEmp);
+    }
+
+    var xJSON = JSON.parse(localStorage.getItem('usuarioflujoListJSON'));
+    var xDATA = [];
+
+    if (xJSON['code'] == 200) {
+        xJSON['data'].forEach(element => {
+            xDATA.push(element);
+        });
+    }
+
+    return xDATA; 
+}
+
+function getUsuarioFlujoId(codRolC, codUsuC, codRolS, codUsuS, codEmp){
+    localStorage.removeItem('usuarioflujoIdJSON');
+
+    if (localStorage.getItem('usuarioflujoIdJSON') === null){
+
+        getJSON('usuarioflujoIdJSON', 'usuarioflujo/usuariosuperior/'+codUsuS+'/rolsuperior/'+codRolS+'/usuariosubordinado/'+codUsuC+'/rolsubordinado/'+ codRolC +'/empresa/'+codEmp);
+    }
+
+    var xJSON = JSON.parse(localStorage.getItem('usuarioflujoIdJSON'));
     var xDATA = [];
 
     if (xJSON['code'] == 200) {

@@ -5,7 +5,6 @@
     
     ob_start();
     
-	// require '../../class/function/curl_api.php';
 	require '../../class/function/curl_api.php';
 
 	
