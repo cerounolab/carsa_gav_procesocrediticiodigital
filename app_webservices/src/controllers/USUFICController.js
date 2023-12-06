@@ -4,7 +4,7 @@ const camelcaseKeys = require('camelcase-keys');
 
 const {selectUSUARIO}= require('../helpers/sql_select');
 const {selectUSUARIOEMPRESA}= require('../helpers/sql_select');
-const {insertUSUFIC}= require('../helpers/sql_insert');
+const {insertUSUFIC, insertUSULOG}= require('../helpers/sql_insert');
 const {updateUSUFIC}= require('../helpers/sql_update');
 const {deleteUSUFIC}= require('../helpers/sql_delete');
 const {jsonBody}    = require('../utils/_json');
@@ -37,7 +37,7 @@ const getUsuario    = (apiREQ, apiRES) => {
             
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
 
     }else{
@@ -45,7 +45,7 @@ const getUsuario    = (apiREQ, apiRES) => {
             _code       = 400;
             _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
     }
 }
@@ -75,7 +75,7 @@ const getUsuarioId  = (apiREQ, apiRES) => {
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
     
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
 
     }else{
@@ -83,7 +83,7 @@ const getUsuarioId  = (apiREQ, apiRES) => {
             _code       = 400;
             _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
         
     }
@@ -114,7 +114,7 @@ const getUsuarioDocumento   = (apiREQ, apiRES) => {
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
     
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
 
     }else{
@@ -122,7 +122,7 @@ const getUsuarioDocumento   = (apiREQ, apiRES) => {
             _code       = 400;
             _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
         
     }
@@ -153,7 +153,7 @@ const getUsuarioUsu = (apiREQ, apiRES) => {
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
     
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
 
     }else{
@@ -161,7 +161,7 @@ const getUsuarioUsu = (apiREQ, apiRES) => {
             _code       = 400;
             _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
         
     }
@@ -192,7 +192,7 @@ const getUsuarioEmpresaId = (apiREQ, apiRES) => {
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
     
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
 
     }else{
@@ -200,7 +200,7 @@ const getUsuarioEmpresaId = (apiREQ, apiRES) => {
             _code       = 400;
             _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
         
     }
@@ -230,7 +230,7 @@ const getUsuarioSucursalId = (apiREQ, apiRES) => {
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
     
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
 
     }else{
@@ -238,7 +238,7 @@ const getUsuarioSucursalId = (apiREQ, apiRES) => {
             _code       = 400;
             _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
         
     }
@@ -269,7 +269,7 @@ const getUsuarioDashboardEmpresa  = (apiREQ, apiRES) => {
     
             _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
     
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
 
     }else{
@@ -277,7 +277,7 @@ const getUsuarioDashboardEmpresa  = (apiREQ, apiRES) => {
             _code       = 400;
             _dataJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
         
     }
@@ -298,7 +298,7 @@ const getUsuarioDocumentoEmpresa = (apiREQ, apiRES) => {
     
             if (_code == 200) {
                 _dataJSON   = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, _dataJSON);
-                return apiRES.status(_code).json(_dataJSON);
+                 return apiRES.status(200).json(_dataJSON);
     
             } else {                
                 _dataJSON   = await jsonBody(_code, 'Error', null, null, 'El documento ingresado no existe', 0, 0, 0, 0, []);
@@ -311,7 +311,7 @@ const getUsuarioDocumentoEmpresa = (apiREQ, apiRES) => {
             _code       = 400;
             _dataJSON   = await jsonBody(_code, 'Verifique, algún campo esta vacio.', true);
 
-            return apiRES.status(_code).json(_dataJSON);
+             return apiRES.status(200).json(_dataJSON);
         })();
         
     }
@@ -413,9 +413,9 @@ const postUsuarioLogin   = (apiREQ, apiRES) => {
     let _USUFICAPR  = (apiREQ.body.auditoria_programa != undefined && apiREQ.body.auditoria_programa != null && apiREQ.body.auditoria_programa != '') ? "'"+apiREQ.body.auditoria_programa.trim()+"'" : false; 
     let _USUFICAIN  = (apiREQ.body.auditoria_incidencia != undefined && apiREQ.body.auditoria_incidencia != null && apiREQ.body.auditoria_incidencia != '') ? "'"+apiREQ.body.auditoria_incidencia.trim()+"'" : null;
    
-    //let _USULOGHOS  = (apiREQ.body.usuario_log_host != undefined && apiREQ.body.usuario_log_host != null && apiREQ.body.usuario_log_host != '') ? "'"+apiREQ.body.usuario_log_host.trim()+"'" : false;   
-    //let _USULOGAGE  = (apiREQ.body.usuario_log_age != undefined && apiREQ.body.usuario_log_age != null && apiREQ.body.usuario_log_age != '') ? "'"+apiREQ.body.usuario_log_age.trim()+"'" : false;     
-    //let _USULOGREF  = (apiREQ.body.usuario_log_referencia != undefined && apiREQ.body.usuario_log_referencia != null && apiREQ.body.usuario_log_referencia != '') ? "'"+apiREQ.body.usuario_log_referencia.trim()+"'" : false;     
+    let _USULOGHOS  = (apiREQ.body.usuario_log_host != undefined && apiREQ.body.usuario_log_host != null && apiREQ.body.usuario_log_host != '') ? "'"+apiREQ.body.usuario_log_host.trim()+"'" : false;   
+    let _USULOGAGE  = (apiREQ.body.usuario_log_age != undefined && apiREQ.body.usuario_log_age != null && apiREQ.body.usuario_log_age != '') ? "'"+apiREQ.body.usuario_log_age.trim()+"'" : false;     
+    let _USULOGREF  = (apiREQ.body.usuario_log_referencia != undefined && apiREQ.body.usuario_log_referencia != null && apiREQ.body.usuario_log_referencia != '') ? "'"+apiREQ.body.usuario_log_referencia.trim()+"'" : false;     
     let _password   = '';
     let _USULOGEST  = '';  
     
@@ -438,26 +438,30 @@ const postUsuarioLogin   = (apiREQ, apiRES) => {
                             _dataJSON   = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, _dataJSON);
         
                         } else {
+                            _code       = 201;
                             _USULOGEST  = 'ERROR_PAS';
                             _dataJSON   = await jsonBody(_code, 'Error', null, null, 'La contraseña no coincide, verifique', 0, 0, 0, 0, []);
                         }
 
+                        insertUSULOG(_USULOGEST, _USUFICUSU, _password, _USUFICAIP, _USULOGHOS, _USULOGAGE, _USULOGREF, _USUFICAEM, _USUFICAUS, _USUFICAIP, _USUFICAPR);
                         _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
 
-                        return apiRES.status(_code).json(_dataJSON);
+                         return apiRES.status(200).json(_dataJSON);
                                 
                     });
                 } else {
+                    _code       = 201;
                     _USULOGEST  = 'ERROR_USER';
+                    insertUSULOG(_USULOGEST, _USUFICUSU, _password, _USUFICAIP, _USULOGHOS, _USULOGAGE, _USULOGREF, _USUFICAEM, _USUFICAUS, _USUFICAIP, _USUFICAPR);
                     _dataJSON   = await jsonBody(_code, 'Error', null, null, 'El usuario no existe, verifique', 0, 0, 0, 0, []);
 
                     _dataJSON   = camelcaseKeys(_dataJSON, {deep: true});
         
-                    return apiRES.status(_code).json(_dataJSON);
+                     return apiRES.status(200).json(_dataJSON);
                 }
             })();   
             
-            //selectUSUARIO(4, 1, _USUFICUSU, _password, _USULOGHOS, _USULOGAGE, _USULOGREF);
+            
     }else{
         (async () => {
             _code   = 400;

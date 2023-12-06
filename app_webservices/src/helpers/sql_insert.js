@@ -703,6 +703,59 @@ const insertUSUFLU  = async(_USUFLUUSC,
     return Array(_code, _data);
 }
 
+const insertUSULOG  = async(_USULOGEST, 
+    _USULOGCOR, 
+    _USULOGPAS, 
+    _USULOGDIP, 
+    _USULOGHOS, 
+    _USULOGAGE, 
+    _USULOGREF, 
+    _USULOGAEM, 
+    _USULOGAUS,  
+    _USULOGAIP, 
+    _USULOGAPR) => {
+
+    let _code   = 200;
+    let _data   = [];
+
+    let query00 = '';
+
+    query00 = 	`INSERT INTO adm.USULOG( USULOGEST,       USULOGCOR,       USULOGPAS,     USULOGDIP,     USULOGHOS,     USULOGAGE,     USULOGREF,     USULOGAEM,     USULOGAUS,     USULOGAIP, USULOGAPR)
+	                         VALUES ('${_USULOGEST}', ${_USULOGCOR}, '${_USULOGPAS}', ${_USULOGDIP}, ${_USULOGHOS}, ${_USULOGAGE}, ${_USULOGREF}, ${_USULOGAEM}, ${_USULOGAUS}, ${_USULOGAIP}, ${_USULOGAPR})`;	            
+
+    const connPGSQL = new Client(initPGSQL);
+
+    await connPGSQL
+        .connect()
+        .catch(e => {
+            _code = 401;
+            errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertUSULOG', true)
+                .then(result => _data = result);
+        }
+    );
+
+    if (_code == 200) {
+        await connPGSQL
+            .query(query00)
+            .then(result => {
+                _code = 200;
+                _data = result.rows;
+            })
+            .catch(e => {
+                _code   = 500;
+                console.log(e);
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertUSULOG', true)
+                    .then(result => _data = result);
+            })
+            .then(() => {
+                connPGSQL.end();
+            }
+        );
+    }
+    
+    return Array(_code, _data);
+}
+
 module.exports = {
     insertDOMFIC,
     insertEMPFIC,
@@ -714,6 +767,7 @@ module.exports = {
     insertROLFOR,
     insertUSUROL,
     insertUSUCAM,
-    insertUSUFLU
+    insertUSUFLU, 
+    insertUSULOG
 
 };
