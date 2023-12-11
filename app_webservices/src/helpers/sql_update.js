@@ -322,11 +322,8 @@ const {errorBody}   = require('../utils/_json');
         _USUFICPAS,
         _USUFICEMA,
         _USUFICCEL,
+        _USUFICIPA,
         _USUFICOBS,
-        _USUFICCEM,
-        _USUFICCUS,
-        _USUFICCIP,
-        _USUFICCPR,
         _USUFICAEM,
         _USUFICAUS,
         _USUFICAIP,
@@ -364,7 +361,8 @@ const {errorBody}   = require('../utils/_json');
 
             case 2:
                 query00 = `UPDATE adm.USUFIC SET
-                                USUFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOESTADO' AND DOMFICPAR	= ${_USUFICEST}),   
+                                USUFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOESTADO' AND DOMFICPAR	= ${_USUFICEST}), 
+                                USUFICIPAS  = 0,  
                                 USUFICOBS	= ${_USUFICOBS},     
                                 USUFICAFH   = NOW(),
                                 USUFICAEM	= ${_USUFICAEM}, 
@@ -379,6 +377,7 @@ const {errorBody}   = require('../utils/_json');
             case 3:
                 query00 = `UPDATE adm.USUFIC SET
                                 USUFICPAS   = '${_USUFICPAS}',
+                                USUFICIPAS  = 0,
                                 USUFICAFH   = NOW(),    
                                 USUFICAEM	= ${_USUFICAEM}, 
                                 USUFICAUS	= ${_USUFICAUS},   
@@ -426,6 +425,91 @@ const {errorBody}   = require('../utils/_json');
     return Array(_code, _data);
     }
 
+    const updateintentoUSUFIC  = async(_ACCION,
+        _USUFICUSU, 
+        _USUFICIPA, 
+        _USUFICAEM, 
+        _USUFICAUS, 
+        _USUFICAIP, 
+        _USUFICAPR, 
+        _USUFICAIN) => {
+
+        let _code   = 200;
+        let _data   = [];
+        let query00 = '';
+        switch (_ACCION) {
+            case 1:
+                if (_USUFICIPA == 0){
+                    query00 = `UPDATE adm.USUFIC SET
+                                    USUFICIPA   = ${_USUFICIPA},
+                                    USUFICAFH   = NOW(),    
+                                    USUFICAEM	= ${_USUFICAEM}, 
+                                    USUFICAUS	= ${_USUFICAUS},   
+                                    USUFICAIP	= ${_USUFICAIP}, 
+                                    USUFICAPR	= ${_USUFICAPR},  
+                                    USUFICAIN	= ${_USUFICAIN}
+
+                                WHERE USUFICUSU =  ${_USUFICUSU}  AND USUFICEMC = ${_USUFICAEM} RETURNING USUFICCOD`;
+                }else{
+                    query00 = `UPDATE adm.USUFIC SET
+                                    USUFICIPA   = USUFICIPA + 1,
+                                    USUFICAFH   = NOW(),    
+                                    USUFICAEM	= ${_USUFICAEM}, 
+                                    USUFICAUS	= ${_USUFICAUS},   
+                                    USUFICAIP	= ${_USUFICAIP}, 
+                                    USUFICAPR	= ${_USUFICAPR},  
+                                    USUFICAIN	= ${_USUFICAIN}
+
+                                WHERE USUFICUSU =  ${_USUFICUSU}  AND USUFICEMC = ${_USUFICAEM} RETURNING USUFICCOD`;
+                }
+            break;
+
+            case 2:
+                query00 = `UPDATE adm.USUFIC SET
+                                USUFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOESTADO' AND DOMFICPAR	= 3),      
+                                USUFICAFH   = NOW(),
+                                USUFICAEM	= ${_USUFICAEM}, 
+                                USUFICAUS	= ${_USUFICAUS},   
+                                USUFICAIP	= ${_USUFICAIP}, 
+                                USUFICAPR	= ${_USUFICAPR},  
+                                USUFICAIN	= ${_USUFICAIN}
+
+                            WHERE USUFICUSU =  ${_USUFICUSU}  AND USUFICEMC = ${_USUFICAEM} RETURNING USUFICCOD`;
+            break;	
+        }    
+
+        const connPGSQL = new Client(initPGSQL);
+
+        await connPGSQL
+            .connect()
+            .catch(e => {
+                _code = 401;
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateROLFIC', true)
+                    .then(result => _data = result);
+            }
+        );
+
+        if (_code == 200) {
+            await connPGSQL
+                .query(query00)
+                .then(result => {
+                    _code = 200;
+                    _data = result.rows;
+                })
+                .catch(e => {
+                    _code = 500;
+                    errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateROLFIC', true)
+                        .then(result => _data = result);
+                })
+                .then(() => {
+                    connPGSQL.end();
+                }
+            );
+        }
+
+        return Array(_code, _data);
+    }
+    
     const updateROLFIC  = async(_ACCION,
         codigo,
         _ROLFICEST,
@@ -493,7 +577,7 @@ const {errorBody}   = require('../utils/_json');
                 errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateROLFIC', true)
                     .then(result => _data = result);
             }
-    );
+        );
 
     if (_code == 200) {
         await connPGSQL
@@ -1024,8 +1108,6 @@ const {errorBody}   = require('../utils/_json');
                             
                             WHERE USUFLUUSC = ${_USUFLUUSC} AND USUFLUROC = ${_USUFLUROC} AND USUFLURO1 =  ${_USUFLURO1} AND USUFLUUS1 = ${_USUFLUUS1}`;
 
-                            console.log(query00);
-
             break;	
 
         }
@@ -1049,7 +1131,6 @@ const {errorBody}   = require('../utils/_json');
             })
             .catch(e => {
                 _code = 500;
-                console.log(e);
                 errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateUSUFLU', true)
                     .then(result => _data = result);
             })
@@ -1067,6 +1148,7 @@ module.exports = {
     updateEMPFIC,
     updateSUCFIC,
     updateUSUFIC,
+    updateintentoUSUFIC,
     updateROLFIC,
     updateCAMFIC,
     updateFORFIC,
