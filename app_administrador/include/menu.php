@@ -1,25 +1,28 @@
-            <header class="main-header">
-				<div class="d-flex align-items-center logo-box justify-content-start">
-					<a href="./../public/home.php" class="logo">
-                        <div class="logo-mini w-40">
-			                <span class="light-logo"><img src="./../images/wscheduov1/logo-letter.png" alt="logo"></span>
-			                <span class="dark-logo"><img src="./../images/wscheduov1/logo-letter-white.png" alt="logo"></span>
-		                </div>                   
-                        <div class="logo-lg">
-							<span class="light-logo"><img src="./../images/wscheduov1/logoMenu.png" style="height: 50px;" alt="CheDÚO Digital"></span>
-			  				<span class="dark-logo"><img src="./../images/wscheduov1/logoMenu.png" style="height: 50px;" alt="CheDÚO Digital"></span>
-                        </div>
-					</a>	
-				</div>
 
-				<nav class="navbar navbar-static-top">
+    <body class="light-skin sidebar-mini theme-primary fixed">
+        <div class="wrapper">
+            <header class="main-header">
+                <div class="d-flex align-items-center logo-box justify-content-start">
+                    <a href="./../public/home.php" class="logo">
+                        <div class="logo-mini w-40">
+                            <span class="light-logo"><img src="./../images/wscheduov1/logo-letter.png" alt="logo"></span>
+                            <span class="dark-logo"><img src="./../images/wscheduov1/logo-letter-white.png" alt="logo"></span>
+                        </div>                   
+                        <div class="logo-lg">
+                            <span class="light-logo"><img src="./../images/wscheduov1/logoMenu.png" style="height: 50px;" alt="CheDÚO Digital"></span>
+                            <span class="dark-logo"><img src="./../images/wscheduov1/logoMenu.png" style="height: 50px;" alt="CheDÚO Digital"></span>
+                        </div>
+                    </a>	
+                </div>
+
+                <nav class="navbar navbar-static-top">
                     <div class="app-menu">
                         <ul class="header-megamenu nav">
                             <li class="btn-group nav-item">
-				                <a href="#" class="waves-effect waves-light nav-link push-btn btn-primary-light" data-toggle="push-menu" role="button">
-					                <i data-feather="menu"></i>
-			                    </a>
-			                </li>
+                                <a href="#" class="waves-effect waves-light nav-link push-btn btn-primary-light" data-toggle="push-menu" role="button">
+                                    <i data-feather="menu"></i>
+                                </a>
+                            </li>
 
                             <li class="btn-group d-lg-inline-flex d-none">
                                 <div class="app-menu">
@@ -37,7 +40,7 @@
                             </li>
                         </ul> 
                     </div>
-					
+                    
                     <div class="navbar-custom-menu r-side">
                         <ul class="nav navbar-nav">
                             <li class="btn-group d-md-inline-flex d-none">
@@ -67,32 +70,23 @@
                             </li>
                         </ul>
                     </div>
-				</nav>
-			</header>
+                </nav>
+            </header>
 
             <aside class="main-sidebar">
                 <!-- sidebar-->
-                <section class="sidebar position-relative"> 
-	  	            <div class="multinav">
-		                <div class="multinav-scroll" style="height: 97%;">	
-			                <!-- sidebar menu-->
-			                <ul class="sidebar-menu" data-widget="tree">				
-				                <li>
-				                    <a href="./../../admin/public/home.php">
-					                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-					                    <span>Dashboard</span>
-				                    </a>
-				                </li>
-                                <!-- 
-                                <li>
-				                    <a href="./../../admin/public/operacionsolicitud_crud.php">
-                                        <i data-feather="edit"></i><span>Alta de Solicitud</span>
+                <section class="sidebar "> 
+                    <div class="multinav">
+                        <div class="multinav-scroll ps" style="height: 97%;">	
+                            <!-- sidebar menu-->
+                            <ul class="sidebar-menu tree" data-widget="tree">				
+                                <li class="treeview">
+                                    <a href="./../public/home.php">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                                        <span>Dashboard</span>
                                     </a>
-				                </li> -->
+                                </li>
 
-                                    <!-- <a href="./../../app_administrador/public/dominio.php">
-                                        <i data-feather="edit"></i><span>Parametros</span>
-                                    </a> -->
                                 <li class="treeview">
                                     <a href="#">
                                         <i data-feather="lock"></i>
@@ -101,7 +95,7 @@
                                         <i class="fa fa-angle-right pull-right"></i>
                                         </span>
                                     </a>					
-				                    <ul class="treeview-menu">	
+                                    <ul class="treeview-menu">	
                                         <li class="treeview">
                                             <a href="#">
                                                 <i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Usuario
@@ -248,3 +242,5 @@
                     </div>
                 </section>
             </aside>
+        </div>
+    </body>
