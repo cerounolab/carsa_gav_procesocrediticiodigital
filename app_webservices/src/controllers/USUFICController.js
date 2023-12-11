@@ -5,7 +5,7 @@ const camelcaseKeys = require('camelcase-keys');
 const {selectUSUARIO}= require('../helpers/sql_select');
 const {selectUSUARIOEMPRESA}= require('../helpers/sql_select');
 const {insertUSUFIC, insertUSULOG}= require('../helpers/sql_insert');
-const {updateUSUFIC}= require('../helpers/sql_update');
+const {updateUSUFIC, updateintentoUSUFIC}= require('../helpers/sql_update');
 const {deleteUSUFIC}= require('../helpers/sql_delete');
 const {jsonBody}    = require('../utils/_json');
 const {errorBody}   = require('../utils/_json');
@@ -418,47 +418,71 @@ const postUsuarioLogin   = (apiREQ, apiRES) => {
     let _USULOGREF  = (apiREQ.body.usuario_log_referencia != undefined && apiREQ.body.usuario_log_referencia != null && apiREQ.body.usuario_log_referencia != '') ? "'"+apiREQ.body.usuario_log_referencia.trim()+"'" : false;     
     let _password   = '';
     let _USULOGEST  = '';  
+    let _USUFICIPAS = 0;
     
-
     if (_USUFICUSU && _USUFICPAS && _USUFICAEM && _USUFICAUS && _USUFICAIP && _USUFICAPR){
             (async () => {
-
-                const xDATA = await selectUSUARIO(4, 0, _USUFICUSU);
+                const xDATA = await selectUSUARIO(8, 0, _USUFICUSU);
                 _code       = xDATA[0];
                 _dataJSON   = xDATA[1];
-
                 if (_code == 200) {
-                    _password   =  _dataJSON[0].usuario_password;
-                    
-                    bcrypt.compare(_USUFICPAS, _password, async (err, coinciden) => {
-                        
-                        if (coinciden){
-                            _USULOGEST  = 'CORRECTO';
-                            _dataJSON[0].usuario_password = '';
-                            _dataJSON   = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, _dataJSON);
-        
+                    _USUFICIPAS   =  _dataJSON[0].usuario_intento_password;
+
+                    if (_USUFICIPAS < 3){
+                        const xDATA = await selectUSUARIO(4, 0, _USUFICUSU);
+                        _code       = xDATA[0];
+                        _dataJSON   = xDATA[1];
+
+                        if (_code == 200) {
+                            _password   =  _dataJSON[0].usuario_password;
+                            
+                            bcrypt.compare(_USUFICPAS, _password, async (err, coinciden) => {
+                                
+                                if (coinciden){
+                                    _USULOGEST  = 'CORRECTO';
+                                    _dataJSON[0].usuario_password = '';
+                                    _dataJSON   = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, _dataJSON);
+
+                                    updateintentoUSUFIC(1, _USUFICUSU, 0, _USUFICAEM, _USUFICAUS, _USUFICAIP, _USUFICAPR, _USUFICAIN);
+                
+                                } else {
+                                    _code       = 201;
+                                    _USULOGEST  = 'ERROR_PAS';
+                                    _dataJSON   = await jsonBody(_code, 'Error', null, null, 'La contraseña no coincide, verifique', 0, 0, 0, 0, []);
+                                    updateintentoUSUFIC(1, _USUFICUSU, 1, _USUFICAEM, _USUFICAUS, _USUFICAIP, _USUFICAPR, _USUFICAIN);
+                                    
+                                }
+
+                                insertUSULOG(_USULOGEST, _USUFICUSU, _password, _USUFICAIP, _USULOGHOS, _USULOGAGE, _USULOGREF, _USUFICAEM, _USUFICAUS, _USUFICAIP, _USUFICAPR);
+                                _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
+
+                                return apiRES.status(200).json(_dataJSON);
+                                        
+                            });
                         } else {
                             _code       = 201;
-                            _USULOGEST  = 'ERROR_PAS';
-                            _dataJSON   = await jsonBody(_code, 'Error', null, null, 'La contraseña no coincide, verifique', 0, 0, 0, 0, []);
+                            _USULOGEST  = 'ERROR_USER';
+                            insertUSULOG(_USULOGEST, _USUFICUSU, _password, _USUFICAIP, _USULOGHOS, _USULOGAGE, _USULOGREF, _USUFICAEM, _USUFICAUS, _USUFICAIP, _USUFICAPR);
+                            _dataJSON   = await jsonBody(_code, 'Error', null, null, 'El usuario no existe o se encuentra inactivo, verifique', 0, 0, 0, 0, []);
+
+                            _dataJSON   = camelcaseKeys(_dataJSON, {deep: true});
+                
+                            return apiRES.status(200).json(_dataJSON);
                         }
-
+                    } else {
+                        _code       = 201;
+                        _USULOGEST  = 'USER_LOCKED';
+                        updateintentoUSUFIC(2, _USUFICUSU, 0, _USUFICAEM, _USUFICAUS, _USUFICAIP, _USUFICAPR, _USUFICAIN);
+                                    
                         insertUSULOG(_USULOGEST, _USUFICUSU, _password, _USUFICAIP, _USULOGHOS, _USULOGAGE, _USULOGREF, _USUFICAEM, _USUFICAUS, _USUFICAIP, _USUFICAPR);
-                        _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
+                        _dataJSON   = await jsonBody(_code, 'Error', null, null, 'El usuario se encuentra bloqueado, verifique', 0, 0, 0, 0, []);
 
-                         return apiRES.status(200).json(_dataJSON);
-                                
-                    });
-                } else {
-                    _code       = 201;
-                    _USULOGEST  = 'ERROR_USER';
-                    insertUSULOG(_USULOGEST, _USUFICUSU, _password, _USUFICAIP, _USULOGHOS, _USULOGAGE, _USULOGREF, _USUFICAEM, _USUFICAUS, _USUFICAIP, _USUFICAPR);
-                    _dataJSON   = await jsonBody(_code, 'Error', null, null, 'El usuario no existe, verifique', 0, 0, 0, 0, []);
+                        _dataJSON   = camelcaseKeys(_dataJSON, {deep: true});
+            
+                        return apiRES.status(200).json(_dataJSON);
+                    } 
 
-                    _dataJSON   = camelcaseKeys(_dataJSON, {deep: true});
-        
-                     return apiRES.status(200).json(_dataJSON);
-                }
+                }   
             })();   
             
             
@@ -522,11 +546,8 @@ const putUsuario    = (apiREQ, apiRES) => {
                 _USUFICPAS2,
                 _USUFICEMA,
                 _USUFICCEL,
+                _USUFICIPA,
                 _USUFICOBS,
-                _USUFICCEM,
-                _USUFICCUS,
-                _USUFICCIP,
-                _USUFICCPR,
                 _USUFICAEM,
                 _USUFICAUS,
                 _USUFICAIP,
