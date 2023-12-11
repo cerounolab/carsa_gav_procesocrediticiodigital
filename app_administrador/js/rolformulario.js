@@ -219,7 +219,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 		'									<div class="col-sm-12 col-md-6">'+
 		'       					            <div class="form-group">'+
 		'       					                <label for="var03">Empresa</label>'+
-		`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresaRol('var04','var03', 1, 1); selectEmpresaUsuario('var05','var03', 1, 1);" style="width:100%; height:40px;">`+
+		`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresaRol('var04','var03', 1, 1); selectEmpresaForm('var05','var03', 1, 1);" style="width:100%; height:40px;">`+
 		'       					                    <optgroup label="Seleccionar">'+ selEmpresa +
 		'       					                    </optgroup>'+
 		'       					                </select>'+
@@ -671,5 +671,10 @@ function setRolFormulario(codRol, codForm, codAcc) {
 
 	$("#modal-content").empty();
 	$("#modal-content").append(html);
+
+	if (codAcc == 1) {
+		selectEmpresaRol('var04','var03', 1, 1); 
+		selectEmpresaForm('var05','var03', 1, 1);	
+	}
 		
 }

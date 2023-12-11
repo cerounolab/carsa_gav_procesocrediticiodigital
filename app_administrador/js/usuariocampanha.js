@@ -398,4 +398,8 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 	$("#modal-content").empty();
 	$("#modal-content").append(html);
 		
+	if (codAcc == 1) {
+		selectEmpresaCampanha('var04','var03', 1, 1); 
+		selectEmpresaUsuario('var05','var03', 1, 1);	
+	}
 }

@@ -151,6 +151,39 @@ function getFile(urlPath){
     return data;
 }
 
+function getValidarFecha(var01, var02, var03){
+    var fecDesde    = document.getElementById(var01);
+    var fecHasta    = document.getElementById(var02);
+    var fec1        = new Date(fecDesde.value.substring(0, 4), (fecDesde.value.substring(5, 7) - 1), fecDesde.value.substring(8, 10));
+    var fec2        = new Date(fecHasta.value.substring(0, 4), (fecHasta.value.substring(5, 7) - 1), fecHasta.value.substring(8, 10));
+
+    if (fec1 <= fec2) {
+        var diffDays    = ((fec2.getTime() - fec1.getTime()) / (1000 * 3600 * 24));
+        var cantDays    = 0;
+
+        for (var i=0; i < diffDays; i++) {
+            var fecAux = fec1.getFullYear() + '-' + (fec1.getMonth()+1) + '-' + fec1.getDate();
+
+            if (fecAux != '2020-1-1' && fecAux != '2020-3-1' && fecAux != '2020-4-9' && fecAux != '2020-4-10' && fecAux != '2020-5-1' && fecAux != '2020-5-14' && fecAux != '2020-5-15' && fecAux != '2020-6-12' && fecAux != '2020-8-15' && fecAux != '2020-9-29' && fecAux != '2020-12-8' && fecAux != '2020-12-24' && fecAux != '2020-12-25' && fecAux != '2020-12-28' && fecAux != '2020-12-29' && fecAux != '2020-12-30' && fecAux != '2020-12-31' && fecAux != '2021-1-1') {
+                if (fec1.getDay() != 0 && fec1.getDay() != 6) {
+                    cantDays++;
+                }
+            }
+
+            fec1.setDate(fec1.getDate() + 1);
+        }
+
+        if (cantDays == 0) {
+            cantDays = 1;
+        }
+
+    } else {
+        if (fec1.toLocaleDateString() !='30/11/1899' && fec2.toLocaleDateString() != '30/11/1899') {
+           swal('La fecha '+var03+' no puede ser menor que ' + fecDesde.value); 
+        }
+    }
+}
+
 // function getDominio(parm01){
 //     localStorage.removeItem('dominioJSON');
 //     if (localStorage.getItem('dominioJSON') === null){
