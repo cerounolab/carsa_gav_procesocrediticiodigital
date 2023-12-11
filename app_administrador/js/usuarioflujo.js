@@ -35,10 +35,10 @@ $(document).ready(function() {
 			{ targets			: [3],	visible : true, searchable : false,	orderData : [3, 0] },
 			{ targets			: [4],	visible : true,	searchable : true,	orderData : [4, 0] },
 			{ targets			: [5],	visible : true, searchable : true,	orderData : [5, 0] },
-			{ targets			: [6],	visible : false,searchable : true,	orderData : [6, 0] },
-			{ targets			: [7],	visible : false,searchable : false,	orderData : [7, 0] },
-			{ targets			: [8],	visible : true ,searchable : false,	orderData : [8, 0] },
-			{ targets			: [9],	visible : true ,searchable : false,	orderData : [9, 0] },
+			{ targets			: [6],	visible : true, searchable : true,	orderData : [6, 0] },
+			{ targets			: [7],	visible : true, searchable : false,	orderData : [7, 0] },
+			{ targets			: [8],	visible : false,searchable : false,	orderData : [8, 0] },
+			{ targets			: [9],	visible : false,searchable : false,	orderData : [9, 0] },
 			{ targets			: [10],	visible : true ,searchable : false,	orderData : [10, 0] },
 
 		],
@@ -167,6 +167,12 @@ function setUsuarioFlujo(codRolC, codUsuC, codRolS, codUsuS, codEmp, codAcc) {
 			}
 		});
 
+		selEmpresa  = selEmpresa + '                            <option value="" selected disabled> SELECCIONAR... </option>';
+		selRolS    	= selRolS + '                               <option value="" selected disabled> SELECCIONAR... </option>';
+		selUsuS    	= selUsuS + '                               <option value="" selected disabled> SELECCIONAR... </option>';
+		selUsuC    	= selUsuC + '                               <option value="" selected disabled> SELECCIONAR... </option>';
+		selRolC    	= selRolC + '                               <option value="" selected disabled> SELECCIONAR... </option>';
+
 		xJSON2.forEach(element1 => {
 			if (element1.tipoEstadoParametro == 1) {
 				selEmpresa = selEmpresa + '            								<option value="'+ element1.empresaCodigo +'">'+ element1.empresaNombre +'</option>';
@@ -175,13 +181,20 @@ function setUsuarioFlujo(codRolC, codUsuC, codRolS, codUsuS, codEmp, codAcc) {
 
 		// xJSON3.forEach(element1 => {
 		// 	if (element1.tipoEstadoParametro == 1) {
-		// 		selCamp = selCamp + '            									<option value="'+ element1.campanhaCodigo +'">'+ element1.campanhaNombre +'</option>';
+		// 		selRolS = selRolS + '            									<option value="'+ element1.rolCodigo +'">'+ element1.rolNombre +'</option>';
 		// 	}
 		// });
 
+		
 		// xJSON4.forEach(element1 => {
 		// 	if (element1.tipoEstadoParametro == 1) {
-		// 		selUsu = selUsu + '            										<option value="'+ element1.usuarioCodigo +'">'+ element1.usuarioDocumento +' - '+element1.usuarioNombre +'</option>';
+		// 		selUsuS = selUsuS + '            						<option value="'+ element1.usuarioCodigo +'" selected>'+ element1.usuarioDocumento +' - '+element1.usuarioNombre +'</option>';
+		// 	}
+		// });
+
+		// xJSON4.forEach(element2 => {
+		// 	if (element2.tipoEstadoParametro == 1) {
+		// 		selUsuC = selUsuC + '            						<option value="'+ element2.usuarioCodigo +'" selected>'+ element2.usuarioDocumento +' - '+element2.usuarioNombre +'</option>';
 		// 	}
 		// });
 
@@ -218,7 +231,7 @@ function setUsuarioFlujo(codRolC, codUsuC, codRolS, codUsuS, codEmp, codAcc) {
 		'									<div class="col-sm-12 col-md-4">'+
 		'       					            <div class="form-group">'+
 		'       					                <label for="var03">Empresa</label>'+ 
-		`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresaRol('var04','var03', 1, 1); selectEmpresaUsuario('var05','var03', 1, 1);" style="width:100%; height:40px;">`+
+		`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresaRol('var04','var03', 1, 1, 'var06'); selectEmpresaUsuario('var05','var03', 1, 1, 'var07');" style="width:100%; height:40px;">`+
 		'       					                    <optgroup label="Seleccionar">'+ selEmpresa +
 		'       					                    </optgroup>'+
 		'       					                </select>'+
@@ -228,8 +241,8 @@ function setUsuarioFlujo(codRolC, codUsuC, codRolS, codUsuS, codEmp, codAcc) {
 		'									<div class="col-sm-12 col-md-6">'+
 		'       					            <div class="form-group">'+
 		'       					                <label for="var04">Rol Superior</label>'+
-		'       					                <select id="var04" name="var04" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
-		'       					                    <optgroup label="Seleccionar">'+
+		`       					                <select id="var04" name="var04" class="select2 form-control custom-select" onchange="selectEmpresaRol('var06','var03', 1, 2, 'var04');" style="width:100%; height:40px;" '+ bodyOnl +'>`+
+		'       					                    <optgroup label="Seleccionar">'+ selRolS +
 		'       					                    </optgroup>'+
 		'       					                </select>'+
 		'       					            </div>'+
@@ -238,8 +251,8 @@ function setUsuarioFlujo(codRolC, codUsuC, codRolS, codUsuS, codEmp, codAcc) {
 		'									<div class="col-sm-12 col-md-6">'+
 		'       					            <div class="form-group">'+
 		'       					                <label for="var05">Usuario Superior</label>'+
-		`       					                <select id="var05" name="var05" value="" class="select2 form-control custom-select" onchange="" style="width:100%; height:40px;">`+
-		'       					                    <optgroup label="Seleccionar">'+ selUsu +
+		`       					                <select id="var05" name="var05" value="" class="select2 form-control custom-select" onchange="selectEmpresaUsuario('var07','var03', 1, 2, 'var05');" style="width:100%; height:40px;">`+
+		'       					                    <optgroup label="Seleccionar">'+ selUsuS +
 		'       					                    </optgroup>'+
 		'       					                </select>'+
 		'       					            </div>'+
@@ -248,8 +261,8 @@ function setUsuarioFlujo(codRolC, codUsuC, codRolS, codUsuS, codEmp, codAcc) {
 		'									<div class="col-sm-12 col-md-6">'+
 		'       					            <div class="form-group">'+
 		'       					                <label for="var06">Rol Colaborador</label>'+
-		`       					                <select id="var06" name="var06" value="" class="select2 form-control custom-select" onchange="selectEmpresaRolUsuario('var04','var03', 'var05', 1, 2);" style="width:100%; height:40px;">`+
-		'       					                    <optgroup label="Seleccionar">'+
+		`       					                <select id="var06" name="var06" value="" class="select2 form-control custom-select" style="width:100%; height:40px;">`+
+		'       					                    <optgroup label="Seleccionar">'+ selRolC +
 		'       					                    </optgroup>'+
 		'       					                </select>'+
 		'       					            </div>'+
@@ -259,7 +272,7 @@ function setUsuarioFlujo(codRolC, codUsuC, codRolS, codUsuS, codEmp, codAcc) {
 		'       					            <div class="form-group">'+
 		'       					                <label for="var07">Usuario Colaborador</label>'+
 		'       					                <select id="var07" name="var07" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
-		'       					                    <optgroup label="Seleccionar">'+ selUsu +
+		'       					                    <optgroup label="Seleccionar">'+ selUsuC +
 		'       					                    </optgroup>'+
 		'       					                </select>'+
 		'       					            </div>'+
@@ -467,4 +480,10 @@ function setUsuarioFlujo(codRolC, codUsuC, codRolS, codUsuS, codEmp, codAcc) {
 	$("#modal-content").empty();
 	$("#modal-content").append(html);
 		
+	// if (codAcc == 1) {
+		//selectEmpresaRol('var04','var03', 1, 1); 
+		//selectEmpresaUsuario('var05','var03', 1, 1);
+
+		//selectEmpresaRolUsuario('var04','var03', 'var05', 1, 2);
+	// }
 }
