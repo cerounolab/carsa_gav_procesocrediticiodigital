@@ -434,6 +434,7 @@ const {errorBody}   = require('../utils/_json');
         _USUFICAPR, 
         _USUFICAIN) => {
 
+        let _empresaCodigo  = parseInt(_USUFICUSU.trim().substring(1, 4));
         let _code   = 200;
         let _data   = [];
         let query00 = '';
@@ -449,7 +450,7 @@ const {errorBody}   = require('../utils/_json');
                                     USUFICAPR	= ${_USUFICAPR},  
                                     USUFICAIN	= ${_USUFICAIN}
 
-                                WHERE USUFICUSU =  ${_USUFICUSU}  AND USUFICEMC = ${_USUFICAEM} RETURNING USUFICCOD`;
+                                WHERE USUFICUSU =  ${_USUFICUSU}  AND USUFICEMC = ${_empresaCodigo} RETURNING USUFICCOD`;
                 }else{
                     query00 = `UPDATE adm.USUFIC SET
                                     USUFICIPA   = USUFICIPA + 1,
@@ -460,7 +461,7 @@ const {errorBody}   = require('../utils/_json');
                                     USUFICAPR	= ${_USUFICAPR},  
                                     USUFICAIN	= ${_USUFICAIN}
 
-                                WHERE USUFICUSU =  ${_USUFICUSU}  AND USUFICEMC = ${_USUFICAEM} RETURNING USUFICCOD`;
+                                WHERE USUFICUSU =  ${_USUFICUSU}  AND USUFICEMC = ${_empresaCodigo} RETURNING USUFICCOD`;
                 }
             break;
 
@@ -474,7 +475,7 @@ const {errorBody}   = require('../utils/_json');
                                 USUFICAPR	= ${_USUFICAPR},  
                                 USUFICAIN	= ${_USUFICAIN}
 
-                            WHERE USUFICUSU =  ${_USUFICUSU}  AND USUFICEMC = ${_USUFICAEM} RETURNING USUFICCOD`;
+                            WHERE USUFICUSU =  ${_USUFICUSU}  AND USUFICEMC = ${_empresaCodigo} RETURNING USUFICCOD`;
             break;	
         }    
 
