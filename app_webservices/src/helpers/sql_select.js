@@ -273,7 +273,8 @@ const selectUSUARIO = async(actionType, codigo, valor) => {
                                 FROM
                                     adm.USUARIOROL
                                 WHERE
-                                    usuario_usuario   = ${valor} AND empresa_codigo = ${_empresaCodigo}`;
+                                    usuario_usuario   = ${valor} AND empresa_codigo = ${_empresaCodigo}
+                                    AND tipo_estado_usuario_codigo IN (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOESTADO' AND DOMFICPAR = 1)`;
                                
                     break;
 

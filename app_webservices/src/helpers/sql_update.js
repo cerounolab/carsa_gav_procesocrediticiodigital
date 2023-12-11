@@ -1023,6 +1023,9 @@ const {errorBody}   = require('../utils/_json');
                                 USUFLUAIN	= ${_USUFLUAIN}
                             
                             WHERE USUFLUUSC = ${_USUFLUUSC} AND USUFLUROC = ${_USUFLUROC} AND USUFLURO1 =  ${_USUFLURO1} AND USUFLUUS1 = ${_USUFLUUS1}`;
+
+                            console.log(query00);
+
             break;	
 
         }
@@ -1046,6 +1049,7 @@ const {errorBody}   = require('../utils/_json');
             })
             .catch(e => {
                 _code = 500;
+                console.log(e);
                 errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateUSUFLU', true)
                     .then(result => _data = result);
             })
