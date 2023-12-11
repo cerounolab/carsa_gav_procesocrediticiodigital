@@ -151,6 +151,39 @@ function getFile(urlPath){
     return data;
 }
 
+function getValidarFecha(var01, var02, var03){
+    var fecDesde    = document.getElementById(var01);
+    var fecHasta    = document.getElementById(var02);
+    var fec1        = new Date(fecDesde.value.substring(0, 4), (fecDesde.value.substring(5, 7) - 1), fecDesde.value.substring(8, 10));
+    var fec2        = new Date(fecHasta.value.substring(0, 4), (fecHasta.value.substring(5, 7) - 1), fecHasta.value.substring(8, 10));
+
+    if (fec1 <= fec2) {
+        var diffDays    = ((fec2.getTime() - fec1.getTime()) / (1000 * 3600 * 24));
+        var cantDays    = 0;
+
+        for (var i=0; i < diffDays; i++) {
+            var fecAux = fec1.getFullYear() + '-' + (fec1.getMonth()+1) + '-' + fec1.getDate();
+
+            if (fecAux != '2020-1-1' && fecAux != '2020-3-1' && fecAux != '2020-4-9' && fecAux != '2020-4-10' && fecAux != '2020-5-1' && fecAux != '2020-5-14' && fecAux != '2020-5-15' && fecAux != '2020-6-12' && fecAux != '2020-8-15' && fecAux != '2020-9-29' && fecAux != '2020-12-8' && fecAux != '2020-12-24' && fecAux != '2020-12-25' && fecAux != '2020-12-28' && fecAux != '2020-12-29' && fecAux != '2020-12-30' && fecAux != '2020-12-31' && fecAux != '2021-1-1') {
+                if (fec1.getDay() != 0 && fec1.getDay() != 6) {
+                    cantDays++;
+                }
+            }
+
+            fec1.setDate(fec1.getDate() + 1);
+        }
+
+        if (cantDays == 0) {
+            cantDays = 1;
+        }
+
+    } else {
+        if (fec1.toLocaleDateString() !='30/11/1899' && fec2.toLocaleDateString() != '30/11/1899') {
+           swal('La fecha '+var03+' no puede ser menor que ' + fecDesde.value); 
+        }
+    }
+}
+
 // function getDominio(parm01){
 //     localStorage.removeItem('dominioJSON');
 //     if (localStorage.getItem('dominioJSON') === null){
@@ -639,7 +672,7 @@ function getSucursalList(codElem){
     localStorage.removeItem('sucursalListJSON');
 
     if (localStorage.getItem('sucursalListJSON') === null){
-        getJSON('sucursalListJSON', 'sucursal/listado');
+        getJSON('sucursalListJSON', 'sucursal/listado/empresa/' + codElem);
     }
 
     var xJSON = JSON.parse(localStorage.getItem('sucursalListJSON'));
@@ -696,12 +729,12 @@ function getUsuarioList(codElem){
     localStorage.removeItem('UsuarioListJSON');
 
     if (localStorage.getItem('UsuarioListJSON') === null){
-        getJSON('UsuarioListJSON', 'usuario/listado');
+        getJSON('UsuarioListJSON', 'usuario/listado/empresa/'+ codElem);
     }
 
     var xJSON = JSON.parse(localStorage.getItem('UsuarioListJSON'));
     var xDATA = [];
-
+    
     if (xJSON['code'] == 200) {
         xJSON['data'].forEach(element => {
             xDATA.push(element);
@@ -749,11 +782,32 @@ function geUsuarioUsu(codElem){
     return xDATA;
 }
 
+function getUsuarioEmp(codElem){
+    localStorage.removeItem('usuarioEmpresaJSON');
+
+    if (localStorage.getItem('usuarioEmpresaJSON') === null){
+        getJSON('usuarioEmpresaJSON', 'usuario/empresa/' + codElem);
+    }
+    var xJSON = [];
+
+    var xJSON = JSON.parse(localStorage.getItem('usuarioEmpresaJSON'));
+    var xDATA = [];
+
+    if (xJSON['code'] == 200) {
+        xJSON['data'].forEach(element => {
+            xDATA.push(element);
+        });
+    }
+
+    return xDATA;
+}
+
+
 function getRolList(codElem){
     localStorage.removeItem('rolListJSON');
 
     if (localStorage.getItem('rolListJSON') === null){
-        getJSON('rolListJSON', 'rol/listado');
+        getJSON('rolListJSON', 'rol/listado/empresa/'+codElem);
     }
 
     var xJSON = JSON.parse(localStorage.getItem('rolListJSON'));
@@ -791,13 +845,13 @@ function getRolEmp(codElem){
     localStorage.removeItem('rolEmpresaJSON');
 
     if (localStorage.getItem('rolEmpresaJSON') === null){
-        getJSON('rolEmpresaJSON', 'rol/empresa/' + codElem);
+        getJSON('rolEmpresaJSON', 'rol/listado/empresa/'+ codElem);
     }
     var xJSON = [];
 
     var xJSON = JSON.parse(localStorage.getItem('rolEmpresaJSON'));
     var xDATA = [];
-
+ 
     if (xJSON['code'] == 200) {
         xJSON['data'].forEach(element => {
             xDATA.push(element);
@@ -807,11 +861,11 @@ function getRolEmp(codElem){
     return xDATA;
 }
 
-function getcampanhaList(){
+function getcampanhaList(codElem){
     localStorage.removeItem('campanhaListJSON');
 
     if (localStorage.getItem('campanhaListJSON') === null){
-        getJSON('campanhaListJSON', 'campanha/listado');
+        getJSON('campanhaListJSON', 'campanha/listado/empresa/'+codElem);
     }
 
     var xJSON = JSON.parse(localStorage.getItem('campanhaListJSON'));
@@ -870,7 +924,7 @@ function getFormularioList(codElem){
     localStorage.removeItem('formularioListJSON');
 
     if (localStorage.getItem('formularioListJSON') === null){
-        getJSON('formularioListJSON', 'formulario/listado');
+        getJSON('formularioListJSON', 'formulario/listado/empresa/' + codElem);
     }
 
     var xJSON = JSON.parse(localStorage.getItem('formularioListJSON'));
@@ -908,7 +962,7 @@ function getRolFormularioList(codElem){
     localStorage.removeItem('rolformularioListJSON');
 
     if (localStorage.getItem('rolformularioListJSON') === null){
-        getJSON('rolformularioListJSON', 'rolformulario/listado');
+        getJSON('rolformularioListJSON', 'rolformulario/listado/empresa/' + codElem);
     }
 
     var xJSON = JSON.parse(localStorage.getItem('rolformularioListJSON'));
@@ -1046,6 +1100,45 @@ function getUsuarioCampanhaId(codUsu, codCamp, codEmp){
     }
 
     var xJSON = JSON.parse(localStorage.getItem('usuCampanhaIdJSON'));
+    var xDATA = [];
+
+    if (xJSON['code'] == 200) {
+        xJSON['data'].forEach(element => {
+            xDATA.push(element);
+        });
+    }
+
+    return xDATA; 
+}
+
+function getusuarioFlujoList(codEmp){
+    localStorage.removeItem('usuarioflujoListJSON');
+
+    if (localStorage.getItem('usuarioflujoListJSON') === null){
+        getJSON('usuarioflujoListJSON', 'usuarioflujo/listado/empresa/'+codEmp);
+    }
+
+    var xJSON = JSON.parse(localStorage.getItem('usuarioflujoListJSON'));
+    var xDATA = [];
+
+    if (xJSON['code'] == 200) {
+        xJSON['data'].forEach(element => {
+            xDATA.push(element);
+        });
+    }
+
+    return xDATA; 
+}
+
+function getUsuarioFlujoId(codRolC, codUsuC, codRolS, codUsuS, codEmp){
+    localStorage.removeItem('usuarioflujoIdJSON');
+
+    if (localStorage.getItem('usuarioflujoIdJSON') === null){
+
+        getJSON('usuarioflujoIdJSON', 'usuarioflujo/usuariosuperior/'+codUsuS+'/rolsuperior/'+codRolS+'/usuariosubordinado/'+codUsuC+'/rolsubordinado/'+ codRolC +'/empresa/'+codEmp);
+    }
+
+    var xJSON = JSON.parse(localStorage.getItem('usuarioflujoIdJSON'));
     var xDATA = [];
 
     if (xJSON['code'] == 200) {

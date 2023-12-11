@@ -58,7 +58,6 @@
                     $urlAnt = substr($urlAnt, 0, ($ulrPos * -1));
                 }
             } else {
-                // header('Location: ./../class/session/session_logout.php');
                 header('Location: ./../../../class/session/session_logout.php');
             }
         }

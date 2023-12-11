@@ -44,7 +44,22 @@ $(document).ready(function() {
 		
 		columns		: [
 			{ data				: 'usuarioRolOrden', name : 'usuarioRolOrden'},
-			{ data				: 'tipoEstadoNombre', name : 'tipoEstadoNombre'},
+			{ render			:
+				function (data, type, full, meta) {
+					var rowEST = '';
+					if (full.tipoEstadoParametro == 1) {
+						rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
+					} else if (full.tipoEstadoParametro == 2){
+					 	rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
+					} else if (full.tipoEstadoParametro == 3){
+						rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
+					} else {
+						rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
+					}
+					
+					return rowEST;
+				}
+			},
 			{ data				: 'empresaNombre', name : 'empresaNombre'},
 			{ data				: 'rolNombre', name : 'rolNombre'},
 			{ data				: 'usuarioUsuario', name : 'usuarioUsuario'},
@@ -57,8 +72,13 @@ $(document).ready(function() {
 				function (data, type, full, meta) {
 					var btnDSP	= '<button onclick="setUsuarioRol('+ full.usuarioCodigo +', '+ full.rolCodigo +','+ full.empresaCodigo +', 2);" title="Ver" type="button" class="btn btn-primary btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-eye"></i></button>';
 					var btnUPD	= '<button onclick="setUsuarioRol('+ full.usuarioCodigo +', '+ full.rolCodigo +','+ full.empresaCodigo +', 3);" title="Editar" type="button" class="btn btn-success btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-edit"></i></button>';
-					var btnDLT	= '<button onclick="setUsuarioRol('+ full.usuarioCodigo +', '+ full.rolCodigo +','+ full.empresaCodigo +', 4);" title="Eliminar" type="button" class="btn btn-danger btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-eraser"></i></button>';
+					var btnDLT	= '<button onclick="setUsuarioRol('+ full.usuarioCodigo +', '+ full.rolCodigo +','+ full.empresaCodigo +', 4);" title="Anular" type="button" class="btn btn-danger btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-eraser"></i></button>';
 					var btnAUD	= '<button onclick="setUsuarioRol('+ full.usuarioCodigo +', '+ full.rolCodigo +','+ full.empresaCodigo +', 5);" title="Auditoria" type="button" class="btn btn-warning btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-user-secret"></i></button>';
+					
+					if (full.tipoEstadoParametro != 1) {
+						btnUPD	= '';
+						btnDLT	= '';
+					} 
 
 					return (btnDSP + '&nbsp;' + btnUPD + '&nbsp;' + btnDLT + '&nbsp;');
 				}
@@ -72,14 +92,15 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 	var xJSON       	= [];
 	var xJSON1     		= getDominioValor('ADMUSUARIOROLESTADO');
 	var xJSON2     		= getEmpresaList();
-	var xJSON3     		= getRolList();
-	var xJSON4     		= getUsuarioList();
+	var xJSON3     		= getRolList(_parm06BASE);
+	var xJSON4     		= getUsuarioList(_parm06BASE);
 	var html			= '';
 	var bodyCol     	= '';
 	var bodyTit     	= '';
 	var bodyMod     	= '';
 	var bodyOnl     	= '';
 	var bodyBot     	= '';
+	var bodAcc			= '';
 	var selEstado   	= '';
 	var selEmpresa  	= '';
 	var selRol			= '';
@@ -92,6 +113,7 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 			bodyMod = 'C';
 			bodyOnl = '';
 			bodyBot = '           <button type="submit" class="btn btn-info">Agregar</button>';
+			bodAcc	= 1;
 			break;
 
 		case 2:
@@ -100,6 +122,7 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 			bodyMod = 'R';
 			bodyOnl = 'disabled';
 			bodyBot = '';
+			bodAcc	= 1;
 			break;
 
 		case 3:
@@ -108,14 +131,17 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 			bodyMod = 'U';
 			bodyOnl = '';
 			bodyBot = '           <button type="submit" class="btn btn-success">Actualizar</button>';
+			bodAcc	= 1;
 			break;
 
 		case 4:
-			bodyTit = 'ELIMINAR';
+			bodyTit = 'Anular';
 			bodyCol = '#ff2924;';
-			bodyMod = 'D';
+			bodyMod = 'U';
 			bodyOnl = 'readonly';
-			bodyBot = '           <button type="submit" class="btn btn-danger">Eliminar</button>';
+			bodyBot = '           <button type="submit" class="btn btn-danger">Anular</button>';
+			bodAcc	= 2;
+
 			break;
 	
 		case 5:
@@ -124,6 +150,7 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 			bodyMod = 'A';
 			bodyOnl = 'readonly';
 			bodyBot = '';
+			bodAcc	= 1;
 			break;
 
 		default:
@@ -189,7 +216,7 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 		'									<div class="col-sm-12 col-md-6">'+
 		'       					            <div class="form-group">'+
 		'       					                <label for="var03">Empresa</label>'+
-		`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresaRol('var04','var03', 1, 0);" style="width:100%; height:40px;">`+
+		`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresaRol('var04','var03', 1, 1);" style="width:100%; height:40px;">`+
 		'       					                    <optgroup label="Seleccionar">'+ selEmpresa +
 		'       					                    </optgroup>'+
 		'       					                </select>'+
@@ -244,6 +271,7 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 		'           				    <input class="form-control" type="hidden" id="workModo"			name="workModo"				value="'+ bodyMod +'"					required readonly>'+
 		'           				    <input class="form-control" type="hidden" id="workPage"			name="workPage"				value="public/usuariorol.php?"			required readonly>'+
 		'           				    <input class="form-control" type="hidden" id="workPrograma"		name="workPrograma"			value="usuariorol"						required readonly>'+
+		'           				    <input class="form-control" type="hidden" id="workAccion"		name="workAccion"			value="'+ bodAcc+'"						required readonly>'+
 		'           				</div>'+
 		'						</div>'+
 		''+
@@ -389,6 +417,7 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 				'           				    <input class="form-control" type="hidden" id="workModo"			name="workModo"			value="'+ bodyMod +'"					required readonly>'+
 				'           				    <input class="form-control" type="hidden" id="workPage"			name="workPage"			value="public/usuariorol.php?"			required readonly>'+
 				'           				    <input class="form-control" type="hidden" id="workPrograma"		name="workPrograma"		value="usuariorol"						required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="workAccion"		name="workAccion"		value="'+bodAcc+'"						required readonly>'+
 				'							</div>'+
 				''+
 				'						<div class="col-12 text-end">'+

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var dataJSON	= getcampanhaList();
+    var dataJSON	= getcampanhaList(_parm06BASE);
 
 	$('#tableLoads').DataTable({
 		processing	: true,
