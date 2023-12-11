@@ -310,6 +310,15 @@ const selectUSUARIO = async(actionType, codigo, valor) => {
                             ORDER BY a.tipo_estado_codigo `;
                 break;
 
+            case 8:
+                query00 = `SELECT
+                                *
+                            FROM
+                                adm.USUARIO
+                            WHERE
+                                usuario_usuario   = ${valor} AND empresa_codigo = ${_empresaCodigo}`;
+                break;
+
             default:
                 break;
         }
