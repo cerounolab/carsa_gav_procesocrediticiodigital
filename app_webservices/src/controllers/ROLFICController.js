@@ -8,6 +8,7 @@ const {updateROLFIC}= require('../helpers/sql_update');
 const {deleteROLFIC}= require('../helpers/sql_delete');
 const {jsonBody}    = require('../utils/_json');
 const {errorBody}   = require('../utils/_json');
+const {formatDateTime}  = require('../utils/_json_date');
 
 //const affiliateId = process.env.ENV_AFFILIATEID;
 
@@ -132,8 +133,9 @@ const postRol   = (apiREQ, apiRES) => {
     let _ROLFICEMC  = (apiREQ.body.empresa_codigo != undefined && apiREQ.body.empresa_codigo != null && apiREQ.body.empresa_codigo != '' && apiREQ.body.empresa_codigo > 0) ? Number.parseInt(apiREQ.body.empresa_codigo) : false;  
     let _ROLFICORD  = (apiREQ.body.rol_orden != undefined && apiREQ.body.rol_orden != null && apiREQ.body.rol_orden != '') ? Number.parseInt(apiREQ.body.rol_orden) : 999;
     let _ROLFICNOM  = (apiREQ.body.rol_nombre != undefined && apiREQ.body.rol_nombre != null && apiREQ.body.rol_nombre != '') ? "'"+apiREQ.body.rol_nombre.trim()+"'" : false; 
-    let _ROLFICFDE  = (apiREQ.body.rol_fecha_desde != '') ? apiREQ.body.rol_fecha_desde: false; 
-    let _ROLFICFHA  = (apiREQ.body.rol_fecha_hasta != '') ? apiREQ.body.rol_fecha_hasta: null;
+    let _ROLFICFDE  = (apiREQ.body.rol_fecha_desde == undefined || apiREQ.body.rol_fecha_desde == null || apiREQ.body.rol_fecha_desde == '') ? false: new Date(apiREQ.body.rol_fecha_desde);
+    let _ROLFICFHA  = (apiREQ.body.rol_fecha_hasta == undefined || apiREQ.body.rol_fecha_hasta == null || apiREQ.body.rol_fecha_hasta == '') ? null: new Date(apiREQ.body.rol_fecha_hasta);
+
     let _ROLFICEQU  = (apiREQ.body.rol_equivalencia != undefined && apiREQ.body.rol_equivalencia != null && apiREQ.body.rol_equivalencia != '') ? "'"+apiREQ.body.rol_equivalencia.trim()+"'" : null;
     let _ROLFICOBS  = (apiREQ.body.rol_observacion != undefined && apiREQ.body.rol_observacion != null && apiREQ.body.rol_observacion != '') ? "'"+apiREQ.body.rol_observacion.trim()+"'" : null;
 
@@ -148,42 +150,46 @@ const postRol   = (apiREQ, apiRES) => {
     let _ROLFICAPR  = (apiREQ.body.auditoria_programa != undefined && apiREQ.body.auditoria_programa != null && apiREQ.body.auditoria_programa != '') ? "'"+apiREQ.body.auditoria_programa.trim()+"'" : false; 
     let _ROLFICAIN  = (apiREQ.body.auditoria_incidencia != undefined && apiREQ.body.auditoria_incidencia != null && apiREQ.body.auditoria_incidencia != '') ? "'"+apiREQ.body.auditoria_incidencia.trim()+"'" : null;
 
-    if (_ROLFICEST && _ROLFICEMC && _ROLFICNOM && _ROLFICCEM && _ROLFICCUS && _ROLFICCIP && _ROLFICCPR && _ROLFICAEM && _ROLFICAUS && _ROLFICAIP && _ROLFICAPR){
+    if (_ROLFICEST && _ROLFICEMC && _ROLFICNOM && _ROLFICCEM && _ROLFICFDE && _ROLFICCUS && _ROLFICCIP && _ROLFICCPR && _ROLFICAEM && _ROLFICAUS && _ROLFICAIP && _ROLFICAPR){
             
             (async () => {
-                    xDATA = await insertROLFIC(_ROLFICEST,
-                    _ROLFICEMC,
-                    _ROLFICORD,
-                    _ROLFICNOM,
-                    _ROLFICFDE,
-                    _ROLFICFHA,
-                    _ROLFICEQU,
-                    _ROLFICOBS,
-                    _ROLFICCEM,
-                    _ROLFICCUS,
-                    _ROLFICCIP,
-                    _ROLFICCPR,
-                    _ROLFICAEM,
-                    _ROLFICAUS,
-                    _ROLFICAIP,
-                    _ROLFICAPR,
-                    _ROLFICAIN);
+                
+                _ROLFICFHA  = (_ROLFICFHA != null) ? `'${await formatDateTime(1, _ROLFICFHA)}'`: null;
+                _ROLFICFDE  = (_ROLFICFDE != null) ? `'${await formatDateTime(1, _ROLFICFDE)}'`: null;
+            
+                xDATA   = await insertROLFIC(_ROLFICEST,
+                _ROLFICEMC,
+                _ROLFICORD,
+                _ROLFICNOM,
+                _ROLFICFDE,
+                _ROLFICFHA,
+                _ROLFICEQU,
+                _ROLFICOBS,
+                _ROLFICCEM,
+                _ROLFICCUS,
+                _ROLFICCIP,
+                _ROLFICCPR,
+                _ROLFICAEM,
+                _ROLFICAUS,
+                _ROLFICAIP,
+                _ROLFICAPR,
+                _ROLFICAIN);
 
-                    _code   = xDATA[0];
+                _code   = xDATA[0];
+                xJSON   = xDATA[1];
+
+                if (_code == 200) {
+                    xJSON   = await jsonBody(_code, 'Success', null, 'Correcto', null, 0, 0, 0, 0, xJSON);
+
+                } else {
                     xJSON   = xDATA[1];
+                    xJSON   = await jsonBody(_code, 'Error', xJSON.reference, null, xJSON.message, 0, 0, 0, 0, []);
+                }
 
-                    if (_code == 200) {
-                        xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON = camelcaseKeys(xJSON, {deep: true});
 
-                    } else {
-                        xJSON   = xDATA[1];
-                        xJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
-                    }
-
-                    xJSON = camelcaseKeys(xJSON, {deep: true});
-
-                    return apiRES.status(_code).json(xJSON);
-                })();       
+                return apiRES.status(_code).json(xJSON);
+            })();       
     }else{
         (async () => {
             _code   = 400;
@@ -205,8 +211,8 @@ const putRol    = (apiREQ, apiRES) => {
     let _ROLFICEMC  = (apiREQ.body.empresa_codigo != undefined && apiREQ.body.empresa_codigo != null && apiREQ.body.empresa_codigo != '' && apiREQ.body.empresa_codigo > 0) ? Number.parseInt(apiREQ.body.empresa_codigo) : false;  
     let _ROLFICORD  = (apiREQ.body.rol_orden != undefined && apiREQ.body.rol_orden != null && apiREQ.body.rol_orden != '') ? Number.parseInt(apiREQ.body.rol_orden) : 999;
     let _ROLFICNOM  = (apiREQ.body.rol_nombre != undefined && apiREQ.body.rol_nombre != null && apiREQ.body.rol_nombre != '') ? "'"+apiREQ.body.rol_nombre.trim()+"'" : false; 
-    let _ROLFICFDE  = (apiREQ.body.rol_fecha_desde != '') ? apiREQ.body.rol_fecha_desde: null; 
-    let _ROLFICFHA  = (apiREQ.body.rol_fecha_hasta != '') ? apiREQ.body.rol_fecha_hasta: null;
+    let _ROLFICFDE  = (apiREQ.body.rol_fecha_desde == undefined || apiREQ.body.rol_fecha_desde == null || apiREQ.body.rol_fecha_desde == '') ? false: new Date(apiREQ.body.rol_fecha_desde);
+    let _ROLFICFHA  = (apiREQ.body.rol_fecha_hasta == undefined || apiREQ.body.rol_fecha_hasta == null || apiREQ.body.rol_fecha_hasta == '') ? null: new Date(apiREQ.body.rol_fecha_hasta);
     let _ROLFICEQU  = (apiREQ.body.rol_equivalencia != undefined && apiREQ.body.rol_equivalencia != null && apiREQ.body.rol_equivalencia != '') ? "'"+apiREQ.body.rol_equivalencia.trim()+"'" : null;
     let _ROLFICOBS  = (apiREQ.body.rol_observacion != undefined && apiREQ.body.rol_observacion != null && apiREQ.body.rol_observacion != '') ? "'"+apiREQ.body.rol_observacion.trim()+"'" : null;
 
@@ -224,31 +230,35 @@ const putRol    = (apiREQ, apiRES) => {
     if (_ACCION && _ROLFICEST && _ROLFICEMC && _ROLFICNOM && _ROLFICFDE && _ROLFICCEM && _ROLFICCUS && _ROLFICCIP && _ROLFICCPR && _ROLFICAEM && _ROLFICAUS && _ROLFICAIP && _ROLFICAPR){
 
         (async () => {
-                xDATA = await updateROLFIC(_ACCION,
-                    _ROLFICCOD,
-                    _ROLFICEST,
-                    _ROLFICEMC,
-                    _ROLFICORD,
-                    _ROLFICNOM,
-                    _ROLFICFDE,
-                    _ROLFICFHA,
-                    _ROLFICEQU,
-                    _ROLFICOBS,
-                    _ROLFICAEM,
-                    _ROLFICAUS,
-                    _ROLFICAIP,
-                    _ROLFICAPR,
-                    _ROLFICAIN);
+
+            _ROLFICFHA  = (_ROLFICFHA != null) ? `'${await formatDateTime(1, _ROLFICFHA)}'`: null;
+            _ROLFICFDE  = (_ROLFICFDE != null) ? `'${await formatDateTime(1, _ROLFICFDE)}'`: null;
+
+                xDATA   = await updateROLFIC(_ACCION,
+                _ROLFICCOD,
+                _ROLFICEST,
+                _ROLFICEMC,
+                _ROLFICORD,
+                _ROLFICNOM,
+                _ROLFICFDE,
+                _ROLFICFHA,
+                _ROLFICEQU,
+                _ROLFICOBS,
+                _ROLFICAEM,
+                _ROLFICAUS,
+                _ROLFICAIP,
+                _ROLFICAPR,
+                _ROLFICAIN);
 
                 _code   = xDATA[0];
                 xJSON   = xDATA[1];
 
                 if (_code == 200) {
-                    xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
+                    xJSON = await jsonBody(_code, 'Success', null, 'Correcto', null, 0, 0, 0, 0, xJSON);
 
                 } else {
                     xJSON   = xDATA[1];
-                    xJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
+                       xJSON   = await jsonBody(_code, 'Error', xJSON.reference, null, xJSON.message, 0, 0, 0, 0, []);
                 }
 
                 xJSON = camelcaseKeys(xJSON, {deep: true});
@@ -276,8 +286,8 @@ const deleteRol = (apiREQ, apiRES) => {
     let _ROLFICEMC  = (apiREQ.body.empresa_codigo != undefined && apiREQ.body.empresa_codigo != null && apiREQ.body.empresa_codigo != '' && apiREQ.body.empresa_codigo > 0) ? Number.parseInt(apiREQ.body.empresa_codigo) : false;  
     let _ROLFICORD  = (apiREQ.body.rol_orden != undefined && apiREQ.body.rol_orden != null && apiREQ.body.rol_orden != '') ? Number.parseInt(apiREQ.body.rol_orden) : 999;
     let _ROLFICNOM  = (apiREQ.body.rol_nombre != undefined && apiREQ.body.rol_nombre != null && apiREQ.body.rol_nombre != '') ? "'"+apiREQ.body.rol_nombre.trim()+"'" : false; 
-    let _ROLFICFDE  = (apiREQ.body.rol_fecha_desde != '') ? apiREQ.body.rol_fecha_desde: null; 
-    let _ROLFICFHA  = (apiREQ.body.rol_fecha_hasta != '') ? apiREQ.body.rol_fecha_hasta: null;
+    let _ROLFICFDE  = (apiREQ.body.rol_fecha_desde == undefined || apiREQ.body.rol_fecha_desde == null || apiREQ.body.rol_fecha_desde == '') ? false: new Date(apiREQ.body.rol_fecha_desde);
+    let _ROLFICFHA  = (apiREQ.body.rol_fecha_hasta == undefined || apiREQ.body.rol_fecha_hasta == null || apiREQ.body.rol_fecha_hasta == '') ? null: new Date(apiREQ.body.rol_fecha_hasta);
     let _ROLFICEQU  = (apiREQ.body.rol_equivalencia != undefined && apiREQ.body.rol_equivalencia != null && apiREQ.body.rol_equivalencia != '') ? "'"+apiREQ.body.rol_equivalencia.trim()+"'" : null;
     let _ROLFICOBS  = (apiREQ.body.rol_observacion != undefined && apiREQ.body.rol_observacion != null && apiREQ.body.rol_observacion != '') ? "'"+apiREQ.body.rol_observacion.trim()+"'" : null;
 
@@ -301,14 +311,14 @@ const deleteRol = (apiREQ, apiRES) => {
             xJSON   = xDATA[1];
 
             if (_code == 200) {
-                xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON = await jsonBody(_code, 'Success', null, 'Correcto', null, 0, 0, 0, 0, xJSON);
 
             } else if (_code == 404){
                 xJSON   = xDATA[1];
-                xJSON   = await jsonBody(_code, 'Error: El codigo de rol pertenece a un conjunto de datos, verifique', null, null, null, 0, 0, 0, 0, []);
+                xJSON   = await jsonBody(_code, 'Error', 'deleteRol', 'Error: El código de rol pertenece a un conjunto de datos', null, 0, 0, 0, 0, []);
             }else{
                 xJSON   = xDATA[1];
-                xJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
+                xJSON   = await jsonBody(_code, 'Error', xJSON.reference, null, xJSON.message, 0, 0, 0, 0, []);
             }
 
             xJSON = camelcaseKeys(xJSON, {deep: true});
