@@ -214,14 +214,14 @@ const postEmpresa   = (apiREQ, apiRES) => {
             xJSON   = xDATA[1];
 
             if (_code == 200) {
-                xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON = await jsonBody(_code, 'Success', null, 'Correcto', null, 0, 0, 0, 0, xJSON);
 
             } else if (_code == 404){
                 xJSON   = xDATA[1];
-                xJSON   = await jsonBody(_code, 'El registro ya existe', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON   = await jsonBody(_code, 'Error', 'postEmpresa', 'Error: El registro ya existe', null, 0, 0, 0, 0, xJSON);
             }else{
                 xJSON   = xDATA[1];
-                xJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON   = await jsonBody(_code, 'Error', xJSON.reference, null, xJSON.message, 0, 0, 0, 0, []);
             }
 
             xJSON = camelcaseKeys(xJSON, {deep: true});
@@ -302,14 +302,14 @@ const putEmpresa    = (apiREQ, apiRES) => {
             xJSON   = xDATA[1];
 
             if (_code == 200) {
-                xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON = await jsonBody(_code, 'Success', null, 'Correcto', null, 0, 0, 0, 0, xJSON);
 
             } else if (_code == 404){
                 xJSON   = xDATA[1];
-                xJSON   = await jsonBody(_code, 'El registro ya existe', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON   = await jsonBody(_code, 'Error', 'Eror: El registro ya existe', null, null, 0, 0, 0, 0, xJSON);
             }else{
                 xJSON   = xDATA[1];
-                xJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON   = await jsonBody(_code, 'Error', xJSON.reference, null, xJSON.message, 0, 0, 0, 0, []);
             }
 
             xJSON = camelcaseKeys(xJSON, {deep: true});
@@ -370,11 +370,11 @@ const deleteEmpresa = (apiREQ, apiRES) => {
             xJSON   = xDATA[1];
 
             if (_code == 200) {
-                xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON = await jsonBody(_code, 'Success', null, 'Correcto', null, 0, 0, 0, 0, xJSON);
 
             } else {
                 xJSON   = xDATA[1];
-                xJSON = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON   = await jsonBody(_code, 'Error', xJSON.reference, null, xJSON.message, 0, 0, 0, 0, []);
             }
 
             xJSON = camelcaseKeys(xJSON, {deep: true});
