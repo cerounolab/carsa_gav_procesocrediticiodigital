@@ -483,12 +483,6 @@
 
         switch ($var01) {
             //PARAMETRO COMPROBANTE
-            case 'ADMUSUARIOESTADO':
-                $result = 'Usuario Estado';
-                $grupoDom   = '';
-                $grupoParm  = 0;
-                break;
-
             case 'ADMEMPRESAESTADO':
                 $result = 'Empresa Estado';
                 $grupoDom   = '';
@@ -519,8 +513,56 @@
                 $grupoParm  = 0;
                 break;
 
+            case 'ADMCAMPANHAESTADO':
+                $result = 'Campaña Estado';
+                $grupoDom   = '';
+                $grupoParm  = 0;
+                break;
+
+            case 'ADMCAMPANHATIPO':
+                $result = 'Campaña Tipo';
+                $grupoDom   = '';
+                $grupoParm  = 0;
+                break;
+
             case 'ADMROLESTADO':
                 $result = 'Rol Estado';
+                $grupoDom   = '';
+                $grupoParm  = 0;
+                break;
+
+            case 'ADMFORMULARIOESTADO':
+                $result = 'Formulario Estado';
+                $grupoDom   = '';
+                $grupoParm  = 0;
+                break;
+
+            case 'ADMUSUARIOESTADO':
+                $result = 'Usuario Estado';
+                $grupoDom   = '';
+                $grupoParm  = 0;
+                break;
+
+            case 'ADMUSUARIOROLESTADO':
+                $result = 'Usuario/Rol Estado';
+                $grupoDom   = '';
+                $grupoParm  = 0;
+                break;
+
+            case 'ADMUSUARIOFLUJOESTADO':
+                $result = 'Usuario/Flujo Estado';
+                $grupoDom   = '';
+                $grupoParm  = 0;
+                break;
+
+            case 'ADMUSUARIOCAMPANHAESTADO':
+                $result = 'Usuario/Campaña Estado';
+                $grupoDom   = '';
+                $grupoParm  = 0;
+                break;
+
+            case 'ADMROLFORMULARIOESTADO':
+                $result = 'Rol/Formulario Estado';
                 $grupoDom   = '';
                 $grupoParm  = 0;
                 break;

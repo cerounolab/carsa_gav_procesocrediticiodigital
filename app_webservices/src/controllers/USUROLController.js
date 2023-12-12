@@ -8,7 +8,7 @@ const {updateUSUROL}= require('../helpers/sql_update');
 const {deleteUSUROL}= require('../helpers/sql_delete');
 const {jsonBody}    = require('../utils/_json');
 const {errorBody}   = require('../utils/_json');
-
+const {formatDateTime}  = require('../utils/_json_date');
 //const affiliateId = process.env.ENV_AFFILIATEID;
 
 const getUsuarioRol     = (apiREQ, apiRES) => {
@@ -91,14 +91,14 @@ const getUsuarioRolId   = (apiREQ, apiRES) => {
 }
 
 const postUsuarioRol    = (apiREQ, apiRES) => {
-    let  xDATA      =   []; 
+    let  xDATA      = []; 
     let _USUROLUSC  = (apiREQ.body.usuario_codigo != undefined && apiREQ.body.usuario_codigo != null && apiREQ.body.usuario_codigo != '' && apiREQ.body.usuario_codigo > 0) ? Number.parseInt(apiREQ.body.usuario_codigo) : false; 
     let _USUROLROC  = (apiREQ.body.rol_codigo != undefined && apiREQ.body.rol_codigo != null && apiREQ.body.rol_codigo != '' && apiREQ.body.rol_codigo > 0) ? Number.parseInt(apiREQ.body.rol_codigo) : false; 
     let _USUROLEST  = (apiREQ.body.tipo_estado_parametro != undefined && apiREQ.body.tipo_estado_parametro != null && apiREQ.body.tipo_estado_parametro != '' && apiREQ.body.tipo_estado_parametro > 0) ? Number.parseInt(apiREQ.body.tipo_estado_parametro) : false; 
     let _USUROLEMC  = (apiREQ.body.empresa_codigo != undefined && apiREQ.body.empresa_codigo != null && apiREQ.body.empresa_codigo != '' && apiREQ.body.empresa_codigo > 0) ? Number.parseInt(apiREQ.body.empresa_codigo) : false;   
     let _USUROLORD  = (apiREQ.body.usuario_rol_orden != undefined && apiREQ.body.usuario_rol_orden != null && apiREQ.body.usuario_rol_orden != '') ? Number.parseInt(apiREQ.body.usuario_rol_orden) : 999; 
-    let _USUROLFDE  = (apiREQ.body.usuario_rol_fecha_desde != '') ? apiREQ.body.usuario_rol_fecha_desde: false;  
-    let _USUROLFHA  = (apiREQ.body.usuario_rol_fecha_hasta != '') ? apiREQ.body.usuario_rol_fecha_hasta: false;
+    let _USUROLFDE  = (apiREQ.body.usuario_rol_fecha_desde == undefined || apiREQ.body.usuario_rol_fecha_desde == null || apiREQ.body.usuario_rol_fecha_desde == '') ? false: new Date(apiREQ.body.usuario_rol_fecha_desde);
+    let _USUROLFHA  = (apiREQ.body.usuario_rol_fecha_hasta == undefined || apiREQ.body.usuario_rol_fecha_hasta == null || apiREQ.body.usuario_rol_fecha_hasta == '') ? null: new Date(apiREQ.body.usuario_rol_fecha_hasta);
     let _USUROLOBS  = (apiREQ.body.usuario_rol_observacion != undefined && apiREQ.body.usuario_rol_observacion != null && apiREQ.body.usuario_rol_observacion != '') ? "'"+apiREQ.body.usuario_rol_observacion.trim()+"'" : null;
     
     let _USUROLCEM  = (apiREQ.body.alta_empresa_codigo != undefined && apiREQ.body.alta_empresa_codigo != null && apiREQ.body.alta_empresa_codigo != '' && apiREQ.body.alta_empresa_codigo > 0) ? Number.parseInt(apiREQ.body.alta_empresa_codigo) : false; 
@@ -114,6 +114,10 @@ const postUsuarioRol    = (apiREQ, apiRES) => {
 
     if (_USUROLUSC && _USUROLROC && _USUROLEST && _USUROLFDE && _USUROLEMC && _USUROLCEM && _USUROLCUS && _USUROLCIP && _USUROLCPR && _USUROLAEM && _USUROLAUS && _USUROLAIP && _USUROLAPR){
             (async () => {
+                
+                _USUROLFDE  = (_USUROLFDE != null) ? `'${await formatDateTime(1, _USUROLFDE)}'`: null;
+                _USUROLFHA  = (_USUROLFHA != null) ? `'${await formatDateTime(1, _USUROLFHA)}'`: null;
+
                 xDATA = await insertUSUROL(_USUROLUSC,
                 _USUROLROC,
                 _USUROLEST,
@@ -136,14 +140,14 @@ const postUsuarioRol    = (apiREQ, apiRES) => {
                 xJSON   = xDATA[1];
 
                 if (_code == 200) {
-                    xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
+                    xJSON = await jsonBody(_code, 'Success', null, 'Correcto', null, 0, 0, 0, 0, xJSON);
 
                 } else if (_code == 404){
                     xJSON   = xDATA[1];
-                    xJSON   = await jsonBody(_code, 'El registro ya existe', null, null, null, 0, 0, 0, 0, xJSON);
+                    xJSON   = await jsonBody(_code, 'Error', 'postUsuarioRol', 'Error: El registro ya existe', null, 0, 0, 0, 0, xJSON);
                 }else{
                     xJSON   = xDATA[1];
-                    xJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
+                    xJSON   = await jsonBody(_code, 'Error', xJSON.reference, null, xJSON.message, 0, 0, 0, 0, []);
                 }
 
                 xJSON = camelcaseKeys(xJSON, {deep: true});
@@ -172,8 +176,8 @@ const putUsuarioRol     = (apiREQ, apiRES) => {
     let _USUROLEST  = (apiREQ.body.tipo_estado_parametro != undefined && apiREQ.body.tipo_estado_parametro != null && apiREQ.body.tipo_estado_parametro != '' && apiREQ.body.tipo_estado_parametro > 0) ? Number.parseInt(apiREQ.body.tipo_estado_parametro) : false; 
     let _USUROLEMC  = (apiREQ.body.empresa_codigo != undefined && apiREQ.body.empresa_codigo != null && apiREQ.body.empresa_codigo != '' && apiREQ.body.empresa_codigo > 0) ? Number.parseInt(apiREQ.body.empresa_codigo) : false;   
     let _USUROLORD  = (apiREQ.body.usuario_rol_orden != undefined && apiREQ.body.usuario_rol_orden != null && apiREQ.body.usuario_rol_orden != '') ? Number.parseInt(apiREQ.body.usuario_rol_orden) : 999; 
-    let _USUROLFDE  = (apiREQ.body.usuario_rol_fecha_desde != '') ? apiREQ.body.usuario_rol_fecha_desde: false;  
-    let _USUROLFHA  = (apiREQ.body.usuario_rol_fecha_hasta != '') ? apiREQ.body.usuario_rol_fecha_hasta: false;
+    let _USUROLFDE  = (apiREQ.body.usuario_rol_fecha_desde == undefined || apiREQ.body.usuario_rol_fecha_desde == null || apiREQ.body.usuario_rol_fecha_desde == '') ? false: new Date(apiREQ.body.usuario_rol_fecha_desde);
+    let _USUROLFHA  = (apiREQ.body.usuario_rol_fecha_hasta == undefined || apiREQ.body.usuario_rol_fecha_hasta == null || apiREQ.body.usuario_rol_fecha_hasta == '') ? null: new Date(apiREQ.body.usuario_rol_fecha_hasta);
     let _USUROLOBS  = (apiREQ.body.usuario_rol_observacion != undefined && apiREQ.body.usuario_rol_observacion != null && apiREQ.body.usuario_rol_observacion != '') ? "'"+apiREQ.body.usuario_rol_observacion.trim()+"'" : null;
     
     let _USUROLCEM  = (apiREQ.body.alta_empresa_codigo != undefined && apiREQ.body.alta_empresa_codigo != null && apiREQ.body.alta_empresa_codigo != '' && apiREQ.body.alta_empresa_codigo > 0) ? Number.parseInt(apiREQ.body.alta_empresa_codigo) : false; 
@@ -190,6 +194,10 @@ const putUsuarioRol     = (apiREQ, apiRES) => {
 
     if (_ACCION && _USUROLUSC && _USUROLROC && _USUROLEST && _USUROLFDE && _USUROLEMC && _USUROLCEM && _USUROLCUS && _USUROLCIP && _USUROLCPR && _USUROLAEM && _USUROLAUS && _USUROLAIP && _USUROLAPR){
         (async () => {
+
+            _USUROLFDE  = (_USUROLFDE != null) ? `'${await formatDateTime(1, _USUROLFDE)}'`: null;
+            _USUROLFHA  = (_USUROLFHA != null) ? `'${await formatDateTime(1, _USUROLFHA)}'`: null;
+
             xDATA = await updateUSUROL(_ACCION,
             _USUROLUSC,
             _USUROLROC,
@@ -213,14 +221,14 @@ const putUsuarioRol     = (apiREQ, apiRES) => {
             xJSON   = xDATA[1];
 
             if (_code == 200) {
-                xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON = await jsonBody(_code, 'Success', null, 'Correcto', null, 0, 0, 0, 0, xJSON);
 
             } else if (_code == 404){
                 xJSON   = xDATA[1];
-                xJSON   = await jsonBody(_code, 'El registro ya existe', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON   = await jsonBody(_code, 'Error', 'putUsuarioRol', 'Error: El registro ya existe', null, 0, 0, 0, 0, xJSON);
             }else{
                 xJSON   = xDATA[1];
-                xJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON   = await jsonBody(_code, 'Error', xJSON.reference, null, xJSON.message, 0, 0, 0, 0, []);
             }
 
             xJSON = camelcaseKeys(xJSON, {deep: true});
@@ -249,8 +257,8 @@ const deleteUsuarioRol = (apiREQ, apiRES) => {
     let _USUROLEST  = (apiREQ.body.tipo_estado_parametro != undefined && apiREQ.body.tipo_estado_parametro != null && apiREQ.body.tipo_estado_parametro != '' && apiREQ.body.tipo_estado_parametro > 0) ? Number.parseInt(apiREQ.body.tipo_estado_parametro) : false; 
     let _USUROLEMC  = (apiREQ.body.empresa_codigo != undefined && apiREQ.body.empresa_codigo != null && apiREQ.body.empresa_codigo != '' && apiREQ.body.empresa_codigo > 0) ? Number.parseInt(apiREQ.body.empresa_codigo) : false;   
     let _USUROLORD  = (apiREQ.body.usuario_rol_orden != undefined && apiREQ.body.usuario_rol_orden != null && apiREQ.body.usuario_rol_orden != '') ? Number.parseInt(apiREQ.body.usuario_rol_orden) : 999; 
-    let _USUROLFDE  = (apiREQ.body.usuario_rol_fecha_desde != '') ? apiREQ.body.usuario_rol_fecha_desde: false;  
-    let _USUROLFHA  = (apiREQ.body.usuario_rol_fecha_hasta != '') ? apiREQ.body.usuario_rol_fecha_hasta: false; 
+    let _USUROLFDE  = (apiREQ.body.usuario_rol_fecha_desde == undefined || apiREQ.body.usuario_rol_fecha_desde == null || apiREQ.body.usuario_rol_fecha_desde == '') ? false: new Date(apiREQ.body.usuario_rol_fecha_desde);
+    let _USUROLFHA  = (apiREQ.body.usuario_rol_fecha_hasta == undefined || apiREQ.body.usuario_rol_fecha_hasta == null || apiREQ.body.usuario_rol_fecha_hasta == '') ? null: new Date(apiREQ.body.usuario_rol_fecha_hasta);
     let _USUROLOBS  = (apiREQ.body.usuario_rol_observacion != undefined && apiREQ.body.usuario_rol_observacion != null && apiREQ.body.usuario_rol_observacion != '') ? "'"+apiREQ.body.usuario_rol_observacion.trim()+"'" : null;
     
     let _USUROLCEM  = (apiREQ.body.alta_empresa_codigo != undefined && apiREQ.body.alta_empresa_codigo != null && apiREQ.body.alta_empresa_codigo != '' && apiREQ.body.alta_empresa_codigo > 0) ? Number.parseInt(apiREQ.body.alta_empresa_codigo) : false; 
@@ -273,11 +281,11 @@ const deleteUsuarioRol = (apiREQ, apiRES) => {
             xJSON   = xDATA[1];
 
             if (_code == 200) {
-                xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON = await jsonBody(_code, 'Success', null, 'Correcto', null, 0, 0, 0, 0, xJSON);
 
             } else {
                 xJSON   = xDATA[1];
-                xJSON = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON   = await jsonBody(_code, 'Error', xJSON.reference, null, xJSON.message, 0, 0, 0, 0, []);
             }
 
             xJSON = camelcaseKeys(xJSON, {deep: true});

@@ -6,7 +6,6 @@
 	$pageTitle		= 'Usuario Flujo';
 	$pageTitleNav	= '';
 	$NavTitle		= 'Usuario Flujo';
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -17,7 +16,7 @@
 
 	</head>
 
-    <body class="hold-transition light-skin sidebar-mini theme-primary fixed sidebar-collapse">
+    <body class="light-skin sidebar-mini theme-primary fixed">
 		<div class="wrapper">
 			<div id="loader"></div>
 
@@ -117,11 +116,7 @@
             const _parm07BASE   = 'usuarioflujo';
 
 		</script>
-
-		<script src="./../js/api.js?<?php echo date('Ymd');?>"></script>
-		<script src="./../js/usuarioflujo.js?<?php echo date('Ymd');?>"></script>
-		<script src="./../js/select.js?<?php echo date('Ymd');?>"></script>
 		
-
+		<script src="./../js/usuarioflujo.js?<?php echo date('Ymd');?>"></script>
 	</body>
 </html>
