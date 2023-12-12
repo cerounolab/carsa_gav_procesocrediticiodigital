@@ -5,12 +5,6 @@
 	
 	$pageTitle		= 'Inicio';
 	$pageTitleNav	= '';
-	// if(isset($_GET['dominio'])){
-    //     $valueDominio   = $_GET['dominio'];
-	// 	$headerTitle   	= getTitleDominio($valueDominio);
-	// 	$NavTitle   	= $headerTitle;
-	// 	$headerSubTitle	= '';
-    // }	
 
 	if(isset($_GET['dominio'])){
         $valueDominio   = $_GET['dominio'];
@@ -20,7 +14,6 @@
         $groupParametro = $dataDominio[2];
 		$groupSeleccion = $dataDominio[3];
 		$headerSubTitle	= '';
-
     }
 ?>
 <!DOCTYPE html>
@@ -32,7 +25,7 @@
 
 	</head>
 
-    <body class="hold-transition light-skin sidebar-mini theme-primary fixed sidebar-collapse">
+    <body class="light-skin sidebar-mini theme-primary fixed">
 		<div class="wrapper">
 			<div id="loader"></div>
 
@@ -144,7 +137,5 @@
 		</script>
 
 		<script src="./../js/dominio.js?<?php echo date('Ymd');?>"></script>
-		<script src="./../js/api.js?<?php echo date('Ymd');?>"></script>
-
 	</body>
 </html>

@@ -6,7 +6,6 @@
 	$pageTitle		= 'Empresa';
 	$pageTitleNav	= '';
 	$NavTitle		= 'Empresa';
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -17,7 +16,7 @@
 
 	</head>
 
-    <body class="hold-transition light-skin sidebar-mini theme-primary fixed sidebar-collapse">
+    <body class="light-skin sidebar-mini theme-primary fixed">
 		<div class="wrapper">
 			<div id="loader"></div>
 

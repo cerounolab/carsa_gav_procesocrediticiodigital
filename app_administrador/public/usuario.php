@@ -6,7 +6,6 @@
 	$pageTitle		= 'Usuario';
 	$pageTitleNav	= '';
 	$NavTitle		= 'Usuario';
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -17,7 +16,7 @@
 
 	</head>
 
-    <body class="hold-transition light-skin sidebar-mini theme-primary fixed sidebar-collapse">
+    <body class="light-skin sidebar-mini theme-primary fixed">
 		<div class="wrapper">
 			<div id="loader"></div>
 
@@ -122,10 +121,6 @@
             const _parm06BASE   = <?php echo trim($usu_06); ?>;
 		</script>
 
-		<script src="./../js/api.js?<?php echo date('YmdHis');?>"></script>
-		<script src="./../js/select.js?<?php echo date('YmdHis');?>"></script>
 		<script src="./../js/usuario.js?<?php echo date('YmdHis');?>"></script>
-
-
 	</body>
 </html>
