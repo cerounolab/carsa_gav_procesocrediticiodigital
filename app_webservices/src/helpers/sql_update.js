@@ -362,7 +362,7 @@ const {errorBody}   = require('../utils/_json');
             case 2:
                 query00 = `UPDATE adm.USUFIC SET
                                 USUFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOESTADO' AND DOMFICPAR	= ${_USUFICEST}), 
-                                USUFICIPAS  = 0,  
+                                USUFICIPA   = 0,  
                                 USUFICOBS	= ${_USUFICOBS},     
                                 USUFICAFH   = NOW(),
                                 USUFICAEM	= ${_USUFICAEM}, 
@@ -377,7 +377,7 @@ const {errorBody}   = require('../utils/_json');
             case 3:
                 query00 = `UPDATE adm.USUFIC SET
                                 USUFICPAS   = '${_USUFICPAS}',
-                                USUFICIPAS  = 0,
+                                USUFICIPA   = 0,
                                 USUFICAFH   = NOW(),    
                                 USUFICAEM	= ${_USUFICAEM}, 
                                 USUFICAUS	= ${_USUFICAUS},   
