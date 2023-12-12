@@ -1,6 +1,3 @@
-
-    <body class="light-skin sidebar-mini theme-primary fixed">
-        <div class="wrapper">
             <header class="main-header">
                 <div class="d-flex align-items-center logo-box justify-content-start">
                     <a href="./../public/home.php" class="logo">
@@ -75,107 +72,59 @@
 
             <aside class="main-sidebar">
                 <!-- sidebar-->
-                <section class="sidebar "> 
+                <section class="sidebar position-relative"> 
                     <div class="multinav">
-                        <div class="multinav-scroll ps" style="height: 97%;">	
+                        <div class="multinav-scroll ps ps--active-y" style="height: 100%;">	
                             <!-- sidebar menu-->
-                            <ul class="sidebar-menu tree" data-widget="tree">				
+                            <ul class="sidebar-menu tree" data-widget="tree">
                                 <li class="treeview">
                                     <a href="./../public/home.php">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                                        <i data-feather="grid"></i>
                                         <span>Dashboard</span>
                                     </a>
                                 </li>
 
                                 <li class="treeview">
                                     <a href="#">
-                                        <i data-feather="lock"></i>
+                                        <i data-feather="grid"></i>
                                         <span>Parámetros</span>
                                         <span class="pull-right-container">
-                                        <i class="fa fa-angle-right pull-right"></i>
+                                            <i class="fa fa-angle-right pull-right"></i>
                                         </span>
-                                    </a>					
-                                    <ul class="treeview-menu">	
-                                        <li class="treeview">
-                                            <a href="#">
-                                                <i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Usuario
-                                                    <i class="fa fa-angle-right pull-right"></i>
-                                                </span>
-                                            </a>
-                                            <ul class="treeview-menu">
-                                                <li><a href="./../public/dominio.php?dominio=ADMUSUARIOESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Usuario Estado</a></li>
-                                                <li><a href="./../public/dominio.php?dominio=ADMUSUARIOROLESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Usuario Rol Estado</a></li>                                            
-                                                <li><a href="./../public/dominio.php?dominio=ADMUSUARIOCAMPANHAESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Usuario Campaña Estado</a></li>                                            
-                                                <li><a href="./../public/dominio.php?dominio=ADMUSUARIOFLUJOESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Usuario Flujo Estado</a></li>                                            
-                                            </ul>
-                                        </li>
+                                    </a>
 
-                                        <li class="treeview">
-                                            <a href="#">
-                                            <i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Empresa
-                                                <span class="pull-right-container">
-                                                    <i class="fa fa-angle-right pull-right"></i>
-                                                </span>
-                                            </a>
-                                            <ul class="treeview-menu">                                               
-                                                <li><a href="./../public/dominio.php?dominio=ADMEMPRESAESTADO"><span class="path1"></span><span class="path2"></span></i>Empresa Estado</a></li>
-                                                
-                                                <li><a href="./../public/dominio.php?dominio=ADMEMPRESARUBRO"><span class="path1"></span><span class="path2"></span></i>Empresa Rubro</a></li>
-                                                
-                                                <li><a href="./../public/dominio.php?dominio=ADMEMPRESAACCESO"><span class="path1"></span><span class="path2"></span></i>Empresa Acceso</a></li>
-                                            </ul>
-                                        </li>
+                                    <ul class="treeview-menu">
+                                        <li class="header"> ABM Usuario </li>
+                                        <li><a href="./../public/dominio.php?dominio=ADMUSUARIOESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Estado </a></li>
+                                        <li><a href="./../public/dominio.php?dominio=ADMUSUARIOROLESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Rol Estado </a></li>                                        
+                                        <li><a href="./../public/dominio.php?dominio=ADMUSUARIOCAMPANHAESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Campaña Estado </a></li>
+                                        <li><a href="./../public/dominio.php?dominio=ADMUSUARIOFLUJOESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Flujo Estado </a></li>
 
-                                        <li class="treeview">
-                                            <a href="#">
-                                                <i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Sucursal
-                                                <span class="pull-right-container">
-                                                    <i class="fa fa-angle-right pull-right"></i>
-                                                </span>
-                                            </a>
-                                            <ul class="treeview-menu">                                                
+                                        <li class="header"> ABM Empresa </li>
+                                        <li><a href="./../public/dominio.php?dominio=ADMEMPRESAESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Empresa Estado </a></li>
+                                        <li><a href="./../public/dominio.php?dominio=ADMEMPRESARUBRO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Empresa Rubro </a></li>
+                                        <li><a href="./../public/dominio.php?dominio=ADMEMPRESAACCESO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Empresa Acceso </a></li>
+                                        <li><a href="./../public/dominio.php?dominio=ADMSUCURSALESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Sucursal Estado </a></li>
+                                        <li><a href="./../public/dominio.php?dominio=ADMSUCURSALTIPO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Sucursal Tipo </a></li>
 
-                                            <li><a href="./../public/dominio.php?dominio=ADMSUCURSALESTADO"><span class="path1"></span><span class="path2"></span></i>Sucursal Estado</a></li>
-                                                <li><a href="./../public/dominio.php?dominio=ADMSUCURSALTIPO"><span class="path1"></span><span class="path2"></span></i>Sucursal Tipo</a></li>
-                                            </ul>
-                                        </li>
+                                        <li class="header"> ABM Rol </li>                                               
+                                        <li><a href="./../public/dominio.php?dominio=ADMROLESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Estado </a></li>                                            
 
-                                        <li class="treeview">
-                                            <a href="#">
-                                                <i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Rol
-                                                <span class="pull-right-container">
-                                                    <i class="fa fa-angle-right pull-right"></i>
-                                                </span>
-                                            </a>
-                                            <ul class="treeview-menu">                                                
-                                                <li><a href="./../public/dominio.php?dominio=ADMROLESTADO"><span class="path1"></span><span class="path2"></span></i>Rol Estado</a></li>                                            
-                                            </ul>
-                                        </li>
-
-                                        <li class="treeview">
-                                            <a href="#">
-                                                <i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Campaña
-                                                <span class="pull-right-container">
-                                                    <i class="fa fa-angle-right pull-right"></i>
-                                                </span>
-                                            </a>
-                                            <ul class="treeview-menu">                                                
-                                                <li><a href="./../public/dominio.php?dominio=ADMCAMPANHAESTADO"><span class="path1"></span><span class="path2"></span></i>Campaña Estado</a></li>                                            
-                                                <li><a href="./../public/dominio.php?dominio=ADMCAMPANHATIPO"><span class="path1"></span><span class="path2"></span></i>Campaña Tipo</a></li>                                            
-                                            </ul>
-                                        </li>
-                                        
+                                        <li class="header"> ABM Campaña </li>                                               
+                                        <li><a href="./../public/dominio.php?dominio=ADMCAMPANHAESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Estado </a></li>                                            
+                                        <li><a href="./../public/dominio.php?dominio=ADMCAMPANHATIPO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Tipo </a></li>                                            
                                     </ul>
                                 </li>
 
                                 <li class="treeview">
                                     <a href="#">
-                                        <i data-feather="edit"></i>
+                                        <i data-feather="grid"></i>
                                         <span>Empresa</span>
                                         <span class="pull-right-container">
-                                        <i class="fa fa-angle-right pull-right"></i>
+                                            <i class="fa fa-angle-right pull-right"></i>
                                         </span>
                                     </a>
+
                                     <ul class="treeview-menu">
                                         <li><a href="./../public/empresa.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Alta Empresa</a></li>
                                         <li><a href="./../public/sucursal.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Alta Sucursal</a></li>
@@ -184,12 +133,13 @@
 
                                 <li class="treeview">
                                     <a href="#">
-                                        <i data-feather="pie-chart"></i>
+                                        <i data-feather="grid"></i>
                                         <span>Usuario</span>
                                         <span class="pull-right-container">
-                                        <i class="fa fa-angle-right pull-right"></i>
+                                            <i class="fa fa-angle-right pull-right"></i>
                                         </span>
                                     </a>
+
                                     <ul class="treeview-menu">
                                         <li><a href="./../public/usuario.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Usuario</a></li>
                                         <li><a href="./../public/usuarioflujo.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Usuario Flujo</a></li>
@@ -201,9 +151,10 @@
                                         <i data-feather="grid"></i>
                                         <span>Rol</span>
                                         <span class="pull-right-container">
-                                        <i class="fa fa-angle-right pull-right"></i>
+                                            <i class="fa fa-angle-right pull-right"></i>
                                         </span>
                                     </a>
+
                                     <ul class="treeview-menu">
                                         <li><a href="./../public/rol.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Rol</a></li>
                                         <li><a href="./../public/usuariorol.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Usuario Rol</a></li>
@@ -215,9 +166,10 @@
                                         <i data-feather="grid"></i>
                                         <span>Campaña</span>
                                         <span class="pull-right-container">
-                                        <i class="fa fa-angle-right pull-right"></i>
+                                            <i class="fa fa-angle-right pull-right"></i>
                                         </span>
                                     </a>
+
                                     <ul class="treeview-menu">
                                         <li><a href="./../public/campanha.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Campaña</a></li>
                                         <li><a href="./../public/usuarioCampanha.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Usuario Campaña</a></li>
@@ -229,9 +181,10 @@
                                         <i data-feather="grid"></i>
                                         <span>Formulario</span>
                                         <span class="pull-right-container">
-                                        <i class="fa fa-angle-right pull-right"></i>
+                                            <i class="fa fa-angle-right pull-right"></i>
                                         </span>
                                     </a>
+
                                     <ul class="treeview-menu">
                                         <li><a href="./../public/formulario.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Formulario</a></li>
                                         <li><a href="./../public/rolformulario.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Rol Formulario</a></li>
@@ -242,5 +195,3 @@
                     </div>
                 </section>
             </aside>
-        </div>
-    </body>
