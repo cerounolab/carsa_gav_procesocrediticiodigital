@@ -8,7 +8,7 @@ const {updateUSUROL}= require('../helpers/sql_update');
 const {deleteUSUROL}= require('../helpers/sql_delete');
 const {jsonBody}    = require('../utils/_json');
 const {errorBody}   = require('../utils/_json');
-
+const {formatDateTime}  = require('../utils/_json_date');
 //const affiliateId = process.env.ENV_AFFILIATEID;
 
 const getUsuarioRol     = (apiREQ, apiRES) => {
