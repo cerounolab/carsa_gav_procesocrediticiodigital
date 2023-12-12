@@ -221,11 +221,11 @@ const postSucursal   = (apiREQ, apiRES) => {
             xJSON   = xDATA[1];
 
             if (_code == 200) {
-                xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON = await jsonBody(_code, 'Success', null, 'Correcto', null, 0, 0, 0, 0, xJSON);
 
             } else {
                 xJSON   = xDATA[1];
-                xJSON = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON   = await jsonBody(_code, 'Error', xJSON.reference, null, xJSON.message, 0, 0, 0, 0, []);
             }
 
             xJSON = camelcaseKeys(xJSON, {deep: true});
@@ -299,11 +299,11 @@ const putSucursal    = (apiREQ, apiRES) => {
             xJSON   = xDATA[1];
 
             if (_code == 200) {
-                xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON = await jsonBody(_code, 'Success', null, 'Correcto', null, 0, 0, 0, 0, xJSON);
 
             } else {
                 xJSON   = xDATA[1];
-                xJSON = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON   = await jsonBody(_code, 'Error', xJSON.reference, null, xJSON.message, 0, 0, 0, 0, []);
             }
 
             xJSON = camelcaseKeys(xJSON, {deep: true});
@@ -361,11 +361,11 @@ const deleteSucursal = (apiREQ, apiRES) => {
             xJSON   = xDATA[1];
 
             if (_code == 200) {
-                xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON = await jsonBody(_code, 'Success', null, 'Correcto', null, 0, 0, 0, 0, xJSON);
 
             } else {
                 xJSON   = xDATA[1];
-                xJSON = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON   = await jsonBody(_code, 'Error', xJSON.reference, null, xJSON.message, 0, 0, 0, 0, []);
             }
 
             xJSON1 = camelcaseKeys(xJSON, {deep: true});
