@@ -155,7 +155,7 @@ function setcampanha(codElem, codAcc) {
 		});
 
 		html = 
-			'				<div class="modal-content" style="width:800px">'+
+			'				<div class="modal-content">'+
 			'					<form class="needs-validation" novalidate method="post" action="../class/crud/campanha.php">'+
 			'	    				<div class="modal-header" style="color:#ffffff; background:'+ bodyCol +'">'+
 			'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+
@@ -293,7 +293,7 @@ function setcampanha(codElem, codAcc) {
 				var campanhaObservacion		= (element.campanhaObservacion == null) ? '' : element.campanhaObservacion;
 
 				html = 
-				'				<div class="modal-content" style="width:800px">'+
+				'				<div class="modal-content">'+
 				'					<form class="needs-validation" novalidate method="post" action="../class/crud/campanha.php">'+
 				'	    				<div class="modal-header" style="color:#ffffff; background:'+ bodyCol +'">'+
 				'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+

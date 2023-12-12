@@ -40,6 +40,12 @@
 				border-color:#fff5e8
 			}
 
+			@media (min-width: 576px) {
+				.modal-dialog {
+					max-width: 900px;
+					margin: 1.75rem auto;
+				}
+			}
 		</style>
 
         <script>

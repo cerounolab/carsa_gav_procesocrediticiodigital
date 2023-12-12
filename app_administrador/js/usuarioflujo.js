@@ -199,7 +199,7 @@ function setUsuarioFlujo(codRolC, codUsuC, codRolS, codUsuS, codEmp, codAcc) {
 		// });
 
 		html = 
-		'				<div class="modal-content" style="width:800px">'+
+		'				<div class="modal-content">'+
 		'					<form class="needs-validation" novalidate method="post" action="../class/crud/usuarioflujo.php">'+
 		'	    				<div class="modal-header" style="color:#ffffff; background:'+ bodyCol +'">'+
 		'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+
@@ -368,7 +368,7 @@ function setUsuarioFlujo(codRolC, codUsuC, codRolS, codUsuS, codEmp, codAcc) {
 				var usuarioFlujoObservacion		= (element.usuarioFlujoObservacion == null) ? '' : element.usuarioFlujoObservacion;
 
 				html = 
-				'				<div class="modal-content" style="width:800px">'+
+				'				<div class="modal-content">'+
 				'					<form class="needs-validation" novalidate method="post" action="../class/crud/usuarioflujo.php">'+
 				'	    				<div class="modal-header" style="color:#ffffff; background:'+ bodyCol +'">'+
 				'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+

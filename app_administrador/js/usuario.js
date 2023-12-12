@@ -183,7 +183,7 @@ function setUsuario(codElem, codAcc) {
 		});
 
 		html = 
-			'				<div class="modal-content" style="width:800px">'+
+			'				<div class="modal-content">'+
 			'					<form class="needs-validation" novalidate method="post" action="../class/crud/usuario.php">'+
 			'	    				<div class="modal-header" style="color:#ffffff; background:'+ bodyCol +'">'+
 			'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+
@@ -366,7 +366,7 @@ function setUsuario(codElem, codAcc) {
 				codEmpr	= element.empresaCodigo;
 
 				html = 
-				'				<div class="modal-content" style="width:800px">'+
+				'				<div class="modal-content">'+
 				'					<form class="needs-validation" novalidate method="post" action="../class/crud/usuario.php">'+
 				'	    				<div class="modal-header" style="color:#ffffff; background:'+ bodyCol +'">'+
 				'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+
