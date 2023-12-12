@@ -60,7 +60,7 @@ const insertDOMFIC  = async(_DOMFICEST,
             })
             .catch(e => {
                 _code = 500;
-                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertDOMFIC', true)
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine, 'Function: insertDOMFIC')
                     .then(result => _data = result);
             })
             .then(() => {
@@ -125,7 +125,7 @@ const insertEMPFIC  = async(_EMPFICEST,
             })
             .catch(e => {
                 _code = 500;
-                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertEMPFIC', true)
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine, 'Function: insertEMPFIC')
                     .then(result => _data = result);
             })
             .then(() => {
@@ -190,7 +190,7 @@ const insertSUCFIC  = async(_SUCFICEST,
             })
             .catch(e => {
                 _code = 500;
-                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertSUCFIC', true)
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine, 'Function: insertSUCFIC')
                     .then(result => _data = result);
             })
             .then(() => {
@@ -253,7 +253,7 @@ const insertUSUFIC  = async(_USUFICEST,
             })
             .catch(e => {
                 _code = 500;
-                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertUSUFIC', true)
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine, 'Function: insertUSUFIC')
                     .then(result => _data = result);
             })
             .then(() => {
@@ -293,8 +293,9 @@ const insertROLFIC  = async(_ROLFICEST,
     let query00 = '';
 
     query00 = ` INSERT INTO adm.ROLFIC(																				    ROLFICEST, 	  ROLFICEMC, 	  ROLFICORD, 	 ROLFICNOM, 	  ROLFICFDE, 	   ROLFICFHA,     ROLFICEQU,     ROLFICOBS,    ROLFICCEM,      ROLFICCUS,     ROLFICCIP,     ROLFICCPR,     ROLFICAEM,     ROLFICAUS,     ROLFICAIP,     ROLFICAPR, ROLFICAIN)
-	                    VALUES ((SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMROLESTADO' AND DOMFICPAR = ${_ROLFICEST}), ${_ROLFICEMC}, ${_ROLFICORD}, ${_ROLFICNOM},   '${_ROLFICFDE}', '${_ROLFICFHA}'  , ${_ROLFICEQU}, ${_ROLFICOBS}, ${_ROLFICCEM}, ${_ROLFICCUS}, ${_ROLFICCIP}, ${_ROLFICCPR}, ${_ROLFICAEM}, ${_ROLFICAUS}, ${_ROLFICAIP}, ${_ROLFICAPR}, ${_ROLFICAIN})`;	            
+	                    VALUES ((SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMROLESTADO' AND DOMFICPAR = ${_ROLFICEST}), ${_ROLFICEMC}, ${_ROLFICORD}, ${_ROLFICNOM},   ${_ROLFICFDE}, ${_ROLFICFHA}  , ${_ROLFICEQU}, ${_ROLFICOBS}, ${_ROLFICCEM}, ${_ROLFICCUS}, ${_ROLFICCIP}, ${_ROLFICCPR}, ${_ROLFICAEM}, ${_ROLFICAUS}, ${_ROLFICAIP}, ${_ROLFICAPR}, ${_ROLFICAIN})`;	            
 
+                        console.log(query00);
     const connPGSQL = new Client(initPGSQL);
 
     await connPGSQL
@@ -315,7 +316,7 @@ const insertROLFIC  = async(_ROLFICEST,
             })
             .catch(e => {
                 _code = 500;
-                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertROLFIC', true)
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine, 'Function: insertROLFIC')
                     .then(result => _data = result);
             })
             .then(() => {
@@ -352,7 +353,7 @@ const insertCAMFIC  = async(_CAMFICEST,
     let query00 = '';
 
     query00 = `INSERT INTO adm.CAMFIC(																					 CAMFICEST, 																						   CAMFICTCC, 	  CAMFICEMC, 	 CAMFICORD, 	CAMFICNOM, 	     CAMFICFDE,       CAMFICFHA,     CAMFICEQU,     CAMFICOBS, 	   CAMFICCEM, 	  CAMFICCUS, 	 CAMFICCIP, 	CAMFICCPR,     CAMFICAEM, 	  CAMFICAUS, 	 CAMFICAIP, 	CAMFICAPR,    CAMFICAIN)
-	                VALUES ((SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMCAMPANHAESTADO' AND DOMFICPAR = ${_CAMFICEST}), (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMCAMPANHATIPO' AND DOMFICPAR = ${_CAMFICTCC}), ${_CAMFICEMC}, ${_CAMFICORD}, ${_CAMFICNOM}, '${_CAMFICFDE}', '${_CAMFICFHA}', ${_CAMFICEQU}, ${_CAMFICOBS}, ${_CAMFICCEM}, ${_CAMFICCUS}, ${_CAMFICCIP}, ${_CAMFICCPR}, ${_CAMFICAEM}, ${_CAMFICAUS}, ${_CAMFICAIP}, ${_CAMFICAPR}, ${_CAMFICAIN})`;	            
+	                VALUES ((SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMCAMPANHAESTADO' AND DOMFICPAR = ${_CAMFICEST}), (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMCAMPANHATIPO' AND DOMFICPAR = ${_CAMFICTCC}), ${_CAMFICEMC}, ${_CAMFICORD}, ${_CAMFICNOM},   ${_CAMFICFDE},   ${_CAMFICFHA}, ${_CAMFICEQU}, ${_CAMFICOBS}, ${_CAMFICCEM}, ${_CAMFICCUS}, ${_CAMFICCIP}, ${_CAMFICCPR}, ${_CAMFICAEM}, ${_CAMFICAUS}, ${_CAMFICAIP}, ${_CAMFICAPR}, ${_CAMFICAIN})`;	            
 
     const connPGSQL = new Client(initPGSQL);
 
@@ -430,7 +431,7 @@ const insertFORFIC  = async(_FORFICEST,
             })
             .catch(e => {
                 _code   = 500;
-                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertFORFIC', true)
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine, 'Function: insertFORFIC')
                     .then(result => _data = result);
             })
             .then(() => {
@@ -495,7 +496,7 @@ const insertROLFOR  = async(_ROLFORROC,
             })
             .catch(e => {
                 _code   = 500;
-                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertROLFOR', true)
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine, 'Function: insertROLFOR')
                     .then(result => _data = result);
             })
             .then(() => {
@@ -536,7 +537,7 @@ const insertUSUROL  = async(_USUROLUSC,
     let query00 = '';
 
     query00 = `INSERT INTO adm.USUROL(USUROLUSC,    USUROLROC, 																							       USUROLEST,     USUROLEMC,     USUROLORD,       USUROLFDE,       USUROLFHA,     USUROLOBS,     USUROLCEM,     USUROLCUS,     USUROLCIP,     USUROLCPR,     USUROLAEM,     USUROLAUS,    USUROLAIP,      USUROLAPR,    USUROLAIN)
-                           SELECT ${_USUROLUSC}, ${_USUROLROC}, (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOROLESTADO' AND DOMFICPAR = ${_USUROLEST}), ${_USUROLEMC}, ${_USUROLORD}, '${_USUROLFDE}', '${_USUROLFHA}', ${_USUROLOBS}, ${_USUROLCEM}, ${_USUROLCUS}, ${_USUROLCIP}, ${_USUROLCPR}, ${_USUROLAEM}, ${_USUROLAUS}, ${_USUROLAIP}, ${_USUROLAPR}, ${_USUROLAIN}
+                           SELECT ${_USUROLUSC}, ${_USUROLROC}, (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOROLESTADO' AND DOMFICPAR = ${_USUROLEST}), ${_USUROLEMC}, ${_USUROLORD},    ${_USUROLFDE},  ${_USUROLFHA}, ${_USUROLOBS}, ${_USUROLCEM}, ${_USUROLCUS}, ${_USUROLCIP}, ${_USUROLCPR}, ${_USUROLAEM}, ${_USUROLAUS}, ${_USUROLAIP}, ${_USUROLAPR}, ${_USUROLAIN}
                         WHERE NOT EXISTS (SELECT * FROM adm.USUROL WHERE USUROLUSC = ${_USUROLUSC} AND USUROLROC = ${_USUROLROC}) RETURNING USUROLUSC, USUROLROC`;	            
 
     const connPGSQL = new Client(initPGSQL);
@@ -559,7 +560,7 @@ const insertUSUROL  = async(_USUROLUSC,
             })
             .catch(e => {
                 _code   = 500;
-                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertUSUARIOROL', true)
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine, 'Function: insertUSUARIOROL')
                     .then(result => _data = result);
             })
             .then(() => {
@@ -621,7 +622,7 @@ const insertUSUCAM  = async(_USUCAMUSC,
             })
             .catch(e => {
                 _code   = 500;
-                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertUSUCAM', true)
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine, 'Function: insertUSUCAM')
                     .then(result => _data = result);
             })
             .then(() => {
@@ -686,7 +687,7 @@ const insertUSUFLU  = async(_USUFLUUSC,
             })
             .catch(e => {
                 _code   = 500;
-                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', detail: '+e.detail+', Function: insertUSUFLU', true)
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', detail: '+e.detail, 'Function: insertUSUFLU')
                     .then(result => _data = result);
             })
             .then(() => {
