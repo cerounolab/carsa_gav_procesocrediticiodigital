@@ -142,7 +142,7 @@ function setRol(codElem, codAcc) {
 		});
 
 		html = 
-			'				<div class="modal-content" style="width:800px">'+
+			'				<div class="modal-content">'+
 			'					<form class="needs-validation" novalidate method="post" action="../class/crud/rol.php">'+
 			'	    				<div class="modal-header" style="color:#ffffff; background:'+ bodyCol +'">'+
 			'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+
@@ -260,7 +260,7 @@ function setRol(codElem, codAcc) {
 				var rolObservacion		= (element.rolObservacion == null) ? '' : element.rolObservacion;
 
 				html = 
-				'				<div class="modal-content" style="width:800px">'+
+				'				<div class="modal-content">'+
 				'					<form class="needs-validation" novalidate method="post" action="../class/crud/rol.php">'+
 				'	    				<div class="modal-header" style="color:#ffffff; background:'+ bodyCol +'">'+
 				'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+

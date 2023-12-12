@@ -184,7 +184,7 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 		});
 
 		html = 
-		'				<div class="modal-content" style="width:800px">'+
+		'				<div class="modal-content">'+
 		'					<form class="needs-validation" novalidate method="post" action="../class/crud/usuariorol.php">'+
 		'	    				<div class="modal-header" style="color:#ffffff; background:'+ bodyCol +'">'+
 		'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+
@@ -330,7 +330,7 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 				var usuarioRolObservacion				= (element.usuarioRolObservacion == null) ? '' : element.usuarioRolObservacion;
 
 				html = 
-				'				<div class="modal-content" style="width:800px">'+
+				'				<div class="modal-content">'+
 				'					<form class="needs-validation" novalidate method="post" action="../class/crud/usuariorol.php">'+
 				'	    				<div class="modal-header" style="color:#ffffff; background:'+ bodyCol +'">'+
 				'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+
