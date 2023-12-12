@@ -74,7 +74,7 @@
                 <!-- sidebar-->
                 <section class="sidebar position-relative"> 
                     <div class="multinav">
-                        <div class="multinav-scroll ps ps--active-y" style="height: 100%;">	
+                        <div class="multinav-scroll ps" style="height: 100%;">	
                             <!-- sidebar menu-->
                             <ul class="sidebar-menu tree" data-widget="tree">
                                 <li class="treeview">
@@ -87,38 +87,6 @@
                                 <li class="treeview">
                                     <a href="#">
                                         <i data-feather="grid"></i>
-                                        <span>Parámetros</span>
-                                        <span class="pull-right-container">
-                                            <i class="fa fa-angle-right pull-right"></i>
-                                        </span>
-                                    </a>
-
-                                    <ul class="treeview-menu">
-                                        <li class="header"> ABM Usuario </li>
-                                        <li><a href="./../public/dominio.php?dominio=ADMUSUARIOESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Estado </a></li>
-                                        <li><a href="./../public/dominio.php?dominio=ADMUSUARIOROLESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Rol Estado </a></li>                                        
-                                        <li><a href="./../public/dominio.php?dominio=ADMUSUARIOCAMPANHAESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Campaña Estado </a></li>
-                                        <li><a href="./../public/dominio.php?dominio=ADMUSUARIOFLUJOESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Flujo Estado </a></li>
-
-                                        <li class="header"> ABM Empresa </li>
-                                        <li><a href="./../public/dominio.php?dominio=ADMEMPRESAESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Empresa Estado </a></li>
-                                        <li><a href="./../public/dominio.php?dominio=ADMEMPRESARUBRO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Empresa Rubro </a></li>
-                                        <li><a href="./../public/dominio.php?dominio=ADMEMPRESAACCESO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Empresa Acceso </a></li>
-                                        <li><a href="./../public/dominio.php?dominio=ADMSUCURSALESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Sucursal Estado </a></li>
-                                        <li><a href="./../public/dominio.php?dominio=ADMSUCURSALTIPO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Sucursal Tipo </a></li>
-
-                                        <li class="header"> ABM Rol </li>                                               
-                                        <li><a href="./../public/dominio.php?dominio=ADMROLESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Estado </a></li>                                            
-
-                                        <li class="header"> ABM Campaña </li>                                               
-                                        <li><a href="./../public/dominio.php?dominio=ADMCAMPANHAESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Estado </a></li>                                            
-                                        <li><a href="./../public/dominio.php?dominio=ADMCAMPANHATIPO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Tipo </a></li>                                            
-                                    </ul>
-                                </li>
-
-                                <li class="treeview">
-                                    <a href="#">
-                                        <i data-feather="grid"></i>
                                         <span>Empresa</span>
                                         <span class="pull-right-container">
                                             <i class="fa fa-angle-right pull-right"></i>
@@ -126,8 +94,11 @@
                                     </a>
 
                                     <ul class="treeview-menu">
-                                        <li><a href="./../public/empresa.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Alta Empresa</a></li>
-                                        <li><a href="./../public/sucursal.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Alta Sucursal</a></li>
+                                        <li><a href="./../public/empresa.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> ABM Empresa </a></li>
+                                        <li><a href="./../public/sucursal.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> ABM Sucursal </a></li>
+                                        <li><a href="./../public/campanha.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> ABM Campa&ntilde;a </a></li>
+                                        <li><a href="./../public/rol.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> ABM Rol </a></li>
+                                        <li><a href="./../public/formulario.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> ABM Formulario </a></li>
                                     </ul>
                                 </li>
 
@@ -141,53 +112,51 @@
                                     </a>
 
                                     <ul class="treeview-menu">
-                                        <li><a href="./../public/usuario.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Usuario</a></li>
-                                        <li><a href="./../public/usuarioflujo.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Usuario Flujo</a></li>
+                                        <li><a href="./../public/usuario.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> ABM Usuario </a></li>
+                                        <li><a href="./../public/usuariorol.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> ABM Usuario/Rol </a></li>
+                                        <li><a href="./../public/usuarioflujo.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> ABM Usuario/Flujo </a></li>
+                                        <li><a href="./../public/usuariocampanha.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> ABM Usuario/Campa&ntilde;a </a></li>
+                                        <li><a href="./../public/rolformulario.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> ABM Rol/Formulario </a></li>
                                     </ul>
                                 </li>
 
                                 <li class="treeview">
                                     <a href="#">
                                         <i data-feather="grid"></i>
-                                        <span>Rol</span>
+                                        <span>Par&aacute;metros</span>
                                         <span class="pull-right-container">
                                             <i class="fa fa-angle-right pull-right"></i>
                                         </span>
                                     </a>
 
                                     <ul class="treeview-menu">
-                                        <li><a href="./../public/rol.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Rol</a></li>
-                                        <li><a href="./../public/usuariorol.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Usuario Rol</a></li>
-                                    </ul>
-                                </li>
+                                        <li class="header"> ABM Empresa </li>
+                                        <li><a href="./../public/dominio.php?dominio=ADMEMPRESAESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Empresa Estado </a></li>
+                                        <li><a href="./../public/dominio.php?dominio=ADMEMPRESARUBRO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Empresa Rubro </a></li>
+                                        <li><a href="./../public/dominio.php?dominio=ADMEMPRESAACCESO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Empresa Acceso </a></li>
 
-                                <li class="treeview">
-                                    <a href="#">
-                                        <i data-feather="grid"></i>
-                                        <span>Campaña</span>
-                                        <span class="pull-right-container">
-                                            <i class="fa fa-angle-right pull-right"></i>
-                                        </span>
-                                    </a>
+                                        <li class="header"> ABM Sucursal </li>
+                                        <li><a href="./../public/dominio.php?dominio=ADMSUCURSALESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Sucursal Estado </a></li>
+                                        <li><a href="./../public/dominio.php?dominio=ADMSUCURSALTIPO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Sucursal Tipo </a></li>
 
-                                    <ul class="treeview-menu">
-                                        <li><a href="./../public/campanha.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Campaña</a></li>
-                                        <li><a href="./../public/usuarioCampanha.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Usuario Campaña</a></li>
-                                    </ul>
-                                </li>
+                                        <li class="header"> ABM Campa&ntilde;a </li>
+                                        <li><a href="./../public/dominio.php?dominio=ADMCAMPANHAESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Campa&ntilde;a Estado </a></li>                                            
+                                        <li><a href="./../public/dominio.php?dominio=ADMCAMPANHATIPO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Campa&ntilde;a Tipo </a></li>
 
-                                <li class="treeview">
-                                    <a href="#">
-                                        <i data-feather="grid"></i>
-                                        <span>Formulario</span>
-                                        <span class="pull-right-container">
-                                            <i class="fa fa-angle-right pull-right"></i>
-                                        </span>
-                                    </a>
+                                        <li class="header"> ABM Rol </li>
+                                        <li><a href="./../public/dominio.php?dominio=ADMROLESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Rol Estado </a></li>
 
-                                    <ul class="treeview-menu">
-                                        <li><a href="./../public/formulario.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Formulario</a></li>
-                                        <li><a href="./../public/rolformulario.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Rol Formulario</a></li>
+                                        <li class="header"> ABM Formulario </li>
+                                        <li><a href="./../public/dominio.php?dominio=ADMFORMULARIOESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Formulario Estado </a></li> 
+                                        
+                                        <li class="header"> ABM Usuario </li>
+                                        <li><a href="./../public/dominio.php?dominio=ADMUSUARIOESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Usuario Estado </a></li>
+                                        <li><a href="./../public/dominio.php?dominio=ADMUSUARIOROLESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Usuario/Rol Estado </a></li>                                        
+                                        <li><a href="./../public/dominio.php?dominio=ADMUSUARIOFLUJOESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Usuario/Flujo Estado </a></li>                                       
+                                        <li><a href="./../public/dominio.php?dominio=ADMUSUARIOCAMPANHAESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Usuario/Campa&ntilde;a Estado </a></li>
+
+                                        <li class="header"> ABM Rol/Formulario</li>
+                                        <li><a href="./../public/dominio.php?dominio=ADMROLFORMULARIOESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Rol/Formulario Estado </a></li>
                                     </ul>
                                 </li>
                             </ul>

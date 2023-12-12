@@ -1578,7 +1578,7 @@ function w3_close() {
 	});
 
 
-//new PerfectScrollbar(".multinav-scroll");
+new PerfectScrollbar(".multinav-scroll");
 //new PerfectScrollbar(".slim-scroll3");
 
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
