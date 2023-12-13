@@ -8,7 +8,7 @@ $(document).ready(function() {
 		paging		: true,
 		lengthChange: true,
 		info		: true,
-		order: [[1, "asc"]],
+		order: [[7, "desc"]],
 		orderCellsTop: true,
 		fixedHeader	: true,
 		language	: {
@@ -32,12 +32,13 @@ $(document).ready(function() {
 			{ targets			: [0],	visible : false,searchable : true,	orderData : [0, 0] },
 			{ targets			: [1],	visible : true,	searchable : true,	orderData : [1, 0] },
 			{ targets			: [2],	visible : true,	searchable : true,	orderData : [2, 0] },
-			{ targets			: [3],	visible : true, searchable : false,	orderData : [3, 0] },
+			{ targets			: [3],	visible : true, searchable : true,	orderData : [3, 0] },
 			{ targets			: [4],	visible : true,	searchable : true,	orderData : [4, 0] },
-			{ targets			: [5],	visible : true, searchable : true,	orderData : [5, 0] },
-			{ targets			: [6],	visible : false,searchable : true,	orderData : [6, 0] },
-			{ targets			: [7],	visible : false,searchable : false,	orderData : [7, 0] },
-			{ targets			: [8],	visible : true ,searchable : false,	orderData : [8, 0] }
+			{ targets			: [5],	visible : false,searchable : true,	orderData : [5, 0] },
+			{ targets			: [6],	visible : true, searchable : true,	orderData : [6, 0] },
+			{ targets			: [7],	visible : true, searchable : true,	orderData : [7, 0] },
+			{ targets			: [8],	visible : true ,searchable : true,	orderData : [8, 0] },
+			{ targets			: [9],	visible : true ,searchable : true,	orderData : [9, 0] }
 		],
 		
 		columns		: [
@@ -63,6 +64,7 @@ $(document).ready(function() {
 			{ data				: 'usuarioUsuario', name : 'usuarioUsuario'},
 			{ data				: 'usuarioCampanhaObservacion', name : 'usuarioCampanhaObservacion'},
 			{ data				: 'auditoriaUsuario', name : 'auditoriaUsuario'},
+			{ data				: 'auditoriaFechaHora', name : 'auditoriaFechaHora'},
 			{ data				: 'auditoriaIp', name : 'auditoriaIp'},
             { render			: 
 				function (data, type, full, meta) {
@@ -99,8 +101,6 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 	var xJSON       	= [];
 	var xJSON1     		= getDominioValor('ADMUSUARIOCAMPANHAESTADO');
 	var xJSON2     		= getEmpresaList();
-	var xJSON3     		= getcampanhaList(_parm06BASE);
-	var xJSON4     		= getUsuarioList(_parm06BASE);
 	var html			= '';
 	var bodyCol     	= '';
 	var bodyTit     	= '';
@@ -177,18 +177,6 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 			}
 		});
 
-		xJSON3.forEach(element1 => {
-			if (element1.tipoEstadoParametro == 1) {
-				selCamp = selCamp + '            									<option value="'+ element1.campanhaCodigo +'">'+ element1.campanhaNombre +'</option>';
-			}
-		});
-
-		xJSON4.forEach(element1 => {
-			if (element1.tipoEstadoParametro == 1) {
-				selUsu = selUsu + '            										<option value="'+ element1.usuarioCodigo +'">'+ element1.usuarioDocumento +' - '+element1.usuarioNombre +'</option>';
-			}
-		});
-
 		html = 
 		'				<div class="modal-content">'+
 		'					<form class="needs-validation" novalidate method="post" action="../class/crud/usuariocampanha.php">'+
@@ -220,7 +208,8 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 		'       					            <div class="form-group">'+
 		'       					                <label for="var03">Empresa</label>'+
 		`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresaCampanha('var04','var03', 1, 1); selectEmpresaUsuarioListado('var05','var03', 1, 1);" style="width:100%; height:40px;">`+
-		'       					                    <optgroup label="Seleccionar">'+ selEmpresa +
+		'       					                    <optgroup label="Seleccionar">'+
+		'													<option value="0" disabled selected> SELECCIONAR </option>' + selEmpresa +
 		'       					                    </optgroup>'+
 		'       					                </select>'+
 		'       					            </div>'+
@@ -240,7 +229,7 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 		'       					            <div class="form-group">'+
 		'       					                <label for="var05">Usuario</label>'+
 		'       					                <select id="var05" name="var05" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
-		'       					                    <optgroup label="Seleccionar">'+ selUsu +
+		'       					                    <optgroup label="Seleccionar">'+
 		'       					                    </optgroup>'+
 		'       					                </select>'+
 		'       					            </div>'+
@@ -279,7 +268,6 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 
 	} else if (codAcc > 1 && codAcc < 5) {
 		xJSON       = getUsuarioCampanhaId(codUsu, codCamp, codEmp);
-		
 		xJSON.forEach(element => {
 			if (element.campanhaCodigo == codCamp && element.usuarioCodigo == codUsu) {
 				xJSON1.forEach(element1 => {
@@ -291,7 +279,7 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 						}
 					}
 				});
-					
+
 				xJSON2.forEach(element1 => {
 					if (element1.tipoEstadoParametro == 1) {
 						if (element1.empresaCodigo == element.empresaCodigo) {
@@ -300,24 +288,13 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 					}
 				});
 
-				xJSON3.forEach(element1 => {
-					if (element1.tipoEstadoParametro == 1) {
-						if (element1.campanhaCodigo == element.campanhaCodigo) {
-							selCamp = selCamp + '            									<option value="'+ element1.campanhaCodigo +'">'+ element1.campanhaNombre +'</option>';
-						} 
-					}
-				});
-
-				xJSON4.forEach(element1 => {
-					if (element1.tipoEstadoParametro == 1) {
-						if (element1.usuarioCodigo == element.usuarioCodigo) {
-							selUsu = selUsu + '            						<option value="'+ element1.usuarioCodigo +'" selected>'+ element1.usuarioDocumento +' - '+element1.usuarioNombre +'</option>';
-						}
-					}
-				});
-
 				var usuarioCampanhaOrden			= (element.usuarioCampanhaOrden == null) ? '' : element.usuarioCampanhaOrden;
 				var usuarioCampanhaObservacion		= (element.usuarioCampanhaObservacion == null) ? '' : element.usuarioCampanhaObservacion;
+
+				selUsu	= selUsu + '            						<option value="'+ element.usuarioCodigo +'" selected>'+ element.usuarioDocumento +' - '+element.usuarioApellido +' - '+element.usuarioNombre +'</option>';
+				selCamp	= selCamp + '            						<option value="'+ element.campanhaCodigo +'" selected>'+ element.campanhaNombre +'</option>';
+
+
 
 				html = 
 				'				<div class="modal-content">'+

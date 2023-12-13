@@ -8,7 +8,7 @@ $(document).ready(function() {
 		paging		: true,
 		lengthChange: true,
 		info		: true,
-		order: [[1, "asc"]],
+		order: [[16, "desc"]],
 		orderCellsTop: true,
 		fixedHeader	: true,
 		language	: {
@@ -29,26 +29,25 @@ $(document).ready(function() {
 
         data		: dataJSON,
 		columnDefs	: [
-			{ targets			: [0],	visible : false, searchable : true,	orderData : [0, 0] },
+			{ targets			: [0],	visible : false,searchable : true,	orderData : [0, 0] },
 			{ targets			: [1],	visible : false,searchable : true,	orderData : [1, 0] },
 			{ targets			: [2],	visible : true,	searchable : true,	orderData : [2, 0] },
-			{ targets			: [3],	visible : true,searchable : false,	orderData : [3, 0] },
-			{ targets			: [4],	visible : true,	searchable : true,	orderData : [4, 0] },
-			{ targets			: [5],	visible : true,searchable : false,	orderData : [5, 0] },
+			{ targets			: [3],	visible : false,searchable : true,	orderData : [3, 0] },
+			{ targets			: [4],	visible : false,searchable : true,	orderData : [4, 0] },
+			{ targets			: [5],	visible : true,	searchable : true,	orderData : [5, 0] },
 			{ targets			: [6],	visible : true,	searchable : true,	orderData : [6, 0] },
-			{ targets			: [7],	visible : false,searchable : false,	orderData : [7, 0] },
-			{ targets			: [8],	visible : true,searchable : false,	orderData : [8, 0] },
+			{ targets			: [7],	visible : true, searchable : true,	orderData : [7, 0] },
+			{ targets			: [8],	visible : true,	searchable : true,	orderData : [8, 0] },
 			{ targets			: [9],	visible : false,searchable : true,	orderData : [9, 0] },
-			{ targets			: [10],	visible : true,searchable : false,	orderData : [10, 0] },
-			{ targets			: [11],	visible : false,searchable : false,	orderData : [11, 0] },
-			{ targets			: [12],	visible : false,searchable : false,	orderData : [12, 0] },
+			{ targets			: [10],	visible : true,	searchable : true,	orderData : [10, 0] },
+			{ targets			: [11],	visible : false,searchable : true,	orderData : [11, 0] },
+			{ targets			: [12],	visible : false,searchable : true,	orderData : [12, 0] },
 			{ targets			: [13],	visible : false,searchable : true,	orderData : [13, 0] },
-			{ targets			: [14],	visible : false,searchable : false,	orderData : [14, 0] },
-			{ targets			: [15],	visible : false,searchable : true,	orderData : [15, 0] },
-			{ targets			: [16],	visible : false,searchable : false,	orderData : [16, 0] },
-			{ targets			: [17],	visible : false,searchable : false,	orderData : [17, 0] },
-			{ targets			: [18],	visible : false,searchable : false,	orderData : [18, 0] },
-			{ targets			: [19],	visible : true,searchable : false,	orderData : [19, 0] }
+			{ targets			: [14],	visible : false,searchable : true,	orderData : [14, 0] },
+			{ targets			: [15],	visible : true, searchable : true,	orderData : [15, 0] },
+			{ targets			: [16],	visible : true, searchable : true,	orderData : [16, 0] },
+			{ targets			: [17],	visible : true, searchable : true,	orderData : [17, 0] },
+			{ targets			: [18],	visible : true, searchable : true,	orderData : [18, 0] }
 		],
 		
 		columns		: [
@@ -85,7 +84,6 @@ $(document).ready(function() {
 			{ data				: 'empresaEquivalencia', name : 'empresaEquivalencia'},
 			{ data				: 'empresaObservacion', name : 'empresaObservacion'},
 
-			{ data				: 'auditoriaPrograma', name : 'auditoriaPrograma'},
 			{ data				: 'auditoriaUsuario', name : 'auditoriaUsuario'},
 			{ data				: 'auditoriaFechaHora', name : 'auditoriaFechaHora'},
 			{ data				: 'auditoriaIp', name : 'auditoriaIp'},
