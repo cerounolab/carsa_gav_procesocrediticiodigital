@@ -796,6 +796,7 @@ const selectUSUARIOCAMPANHA  = async(actionType, codigo, codigo2, codigo3) => {
     let _code   = 200;
     let _data   = [];
     let query00 = '';
+    let _empresaCodigo2   = (codigo == 1) ? `empresa_codigo <> 0 ` : `empresa_codigo = ${codigo}`;
 
     switch (actionType) {
         case 1:
@@ -803,7 +804,7 @@ const selectUSUARIOCAMPANHA  = async(actionType, codigo, codigo2, codigo3) => {
                             *
                         FROM
                             adm.USUARIOCAMPANHA
-                        WHERE empresa_codigo  = ${codigo}`;
+                        WHERE ${_empresaCodigo2}`;
             break;
 
         case 2:

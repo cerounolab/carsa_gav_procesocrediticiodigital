@@ -894,7 +894,7 @@ function selectEmpresaRol(parm01, parm02, parm03, parm04, parm05) {
     var selOption   = document.getElementById(parm01);
     var codEmp      = document.getElementById(parm02);
     var codRol      = document.getElementById(parm01);
-    var codRol2      = document.getElementById(parm05);
+    var codRol2     = document.getElementById(parm05);
  
     while (selOption.length > 0) {
         selOption.remove(0);
@@ -920,13 +920,13 @@ function selectEmpresaRol(parm01, parm02, parm03, parm04, parm05) {
             break;
     }
 
-    xJSON   = getRolEmp(codEmp.value);
+    xJSON   = getRolEmp(codEmp.value, 1);
 
     if (parm04 == 1) {
         xJSON.forEach(element => {
             var option      = document.createElement('option');
             option.value    = element.rolCodigo;
-            option.text     = element.rolCodigo +' - '+ element.rolNombre;
+            option.text     = element.rolNombre;
             
             if (element.rolCodigo ==  parm04) {
                 option.selected = true;
@@ -943,7 +943,7 @@ function selectEmpresaRol(parm01, parm02, parm03, parm04, parm05) {
 
             if (element.rolCodigo !=  codRol2.value) {
                 option.value    = element.rolCodigo;
-                option.text     = element.rolCodigo +' - '+ element.rolNombre;
+                option.text     = element.rolNombre;
                 selOption.add(option, null);
             } 
     
@@ -1073,9 +1073,8 @@ function selectEmpresaRolUsuario(parm01, parm02, parm03, parm04, parm05) {
             } else {
                 option.selected = false;
             }
+
             selOption.add(option, null);
-    
-           
         });
     } else if (parm04 == 2) {
         xJSON.forEach(element => {
@@ -1098,9 +1097,8 @@ function selectEmpresaRolUsuario(parm01, parm02, parm03, parm04, parm05) {
             } else {
                 option.selected = false;
             }
-            selOption.add(option, null);
 
-        
+            selOption.add(option, null);
         });
     }
     
@@ -1136,13 +1134,13 @@ function selectEmpresaUsuario(parm00, parm01, parm02, parm03, parm04, parm05) {
             break;
     }
 
-    xJSON   = getUsuarioEmp(codEmp.value, codRol.value);
+    xJSON = getUsuarioEmp(codEmp.value, codRol.value, 1);
 
     if (parm04 == 1) {
         xJSON.forEach(element => {
             var option      = document.createElement('option');
             option.value    = element.usuarioCodigo;
-            option.text     = element.usuarioCodigo +' - '+ element.usuarioNombre;
+            option.text     = element.usuarioDocumento + ' - ' + element.usuarioApellido + ', ' + element.usuarioNombre;
             
             if (element.usuarioCodigo ==  parm04) {
                 option.selected = true;
@@ -1158,7 +1156,7 @@ function selectEmpresaUsuario(parm00, parm01, parm02, parm03, parm04, parm05) {
             
             if (element.usuarioCodigo !=  codUsu2.value) {
                 option.value    = element.usuarioCodigo;
-                option.text     = element.usuarioCodigo +' - '+ element.usuarioNombre;
+                option.text     = element.usuarioDocumento + ' - ' + element.usuarioApellido + ', ' + element.usuarioNombre;
                 selOption.add(option, null);
             }
         });

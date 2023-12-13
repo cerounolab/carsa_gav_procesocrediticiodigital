@@ -80,7 +80,8 @@
 																<th class="border-top-0" style="width:140px;">ACCI&Oacute;N</th>
 															</tr>
 														</thead>
-												</table>
+													</table>
+												</div>
 											</div>
 										</div>
 									</div>
