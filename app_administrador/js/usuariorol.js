@@ -104,8 +104,6 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 	var xJSON       	= [];
 	var xJSON1     		= getDominioValor('ADMUSUARIOROLESTADO');
 	var xJSON2     		= getEmpresaList();
-	var xJSON3     		= getRolList(_parm06BASE);
-	var xJSON4     		= getUsuarioList(_parm06BASE);
 	var html			= '';
 	var bodyCol     	= '';
 	var bodyTit     	= '';
@@ -183,18 +181,6 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 			}
 		});
 
-		xJSON3.forEach(element1 => {
-			if (element1.tipoEstadoParametro == 1) {
-				selRol = selRol + '            										<option value="'+ element1.rolCodigo +'">'+ element1.rolNombre +'</option>';
-			}
-		});
-
-		xJSON4.forEach(element1 => {
-			if (element1.tipoEstadoParametro == 1) {
-				selUsu = selUsu + '            										<option value="'+ element1.usuarioCodigo +'">'+ element1.usuarioDocumento +' - '+element1.usuarioNombre +'</option>';
-			}
-		});
-
 		html = 
 		'				<div class="modal-content">'+
 		'					<form class="needs-validation" novalidate method="post" action="../class/crud/usuariorol.php">'+
@@ -225,7 +211,7 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 		'									<div class="col-sm-12 col-md-4">'+
 		'       					            <div class="form-group">'+
 		'       					                <label for="var03">Empresa</label>'+
-		`       					                <select id="var03" name="var03" class="select2 form-control custom-select" onchange="selectEmpresaRol('var04','var03', 1, 1, 'var04'); selectEmpresaUsuario('var05', 'var04', 'var03', 1, 1, 'var05');" style="width:100%; height:40px;">`+
+		`       					                <select id="var03" name="var03" class="select2 form-control custom-select" onchange="selectEmpresaRol('var04','var03', 1, 1, 'var04'); selectEmpresaUsuarioListado('var05','var03', 1, 1);" style="width:100%; height:40px;">`+
 		'       					                    <optgroup label="Seleccionar">'+ selEmpresa +
 		'       					                    </optgroup>'+
 		'       					                </select>'+
@@ -246,7 +232,7 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 		'       					            <div class="form-group">'+
 		'       					                <label for="var05">Usuario</label>'+
 		'       					                <select id="var05" name="var05" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
-		'       					                    <optgroup label="Seleccionar">'+ selUsu +
+		'       					                    <optgroup label="Seleccionar">'+
 		'       					                    </optgroup>'+
 		'       					                </select>'+
 		'       					            </div>'+
@@ -320,27 +306,13 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 					}
 				});
 
-
-				xJSON3.forEach(element1 => {
-					if (element1.tipoEstadoParametro == 1) {
-						if (element1.rolCodigo == element.rolCodigo) {
-							selRol = selRol + '            						<option value="'+ element1.rolCodigo +'" selected>'+ element1.rolNombre +'</option>';
-						} 
-					}
-				});
-
-				xJSON4.forEach(element1 => {
-					if (element1.tipoEstadoParametro == 1) {
-						if (element1.usuarioCodigo == element.usuarioCodigo) {
-							selUsu = selUsu + '            						<option value="'+ element1.usuarioCodigo +'" selected>'+ element1.usuarioDocumento +' - '+element1.usuarioNombre +'</option>';
-						}
-					}
-				});
-
 				var usuarioRolOrden						= (element.usuarioRolOrden == null) ? '' : element.usuarioRolOrden;
 				var usuarioRolFechaDesde				= (element.usuarioRolFechaDesde1 == null) ? '' : element.usuarioRolFechaDesde1;
 				var usuarioRolFechaHasta				= (element.usuarioRolFechaHasta1 == null) ? '' : element.usuarioRolFechaHasta1;
 				var usuarioRolObservacion				= (element.usuarioRolObservacion == null) ? '' : element.usuarioRolObservacion;
+
+				selRol	= selRol + '           			<option value="'+ element.rolCodigo +'" selected>'+ element.rolNombre +'</option>';
+				selUsu	= selUsu + '            		<option value="'+ element.usuarioCodigo +'" selected>'+ element.usuarioDocumento +' - '+element.usuarioApellido +', '+element.usuarioNombre +'</option>';
 
 				html = 
 				'				<div class="modal-content">'+
@@ -372,7 +344,7 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
 				'       					                <label for="var03">Empresa</label>'+
-				`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresaRol('var04','var03', 1, 0);" style="width:100%; height:40px;">`+
+				`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="" style="width:100%; height:40px;">`+
 				'       					                    <optgroup label="Seleccionar">'+ selEmpresa +
 				'       					                    </optgroup>'+
 				'       					                </select>'+
@@ -449,5 +421,5 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 	$("#modal-content").empty();
 	$("#modal-content").append(html);
 
-	selectEmpresaRol('var04','var03', 1, 1);
+	//selectEmpresaRol('var04','var03', 1, 1);
 }
