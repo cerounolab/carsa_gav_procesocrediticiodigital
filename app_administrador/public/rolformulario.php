@@ -77,7 +77,7 @@
 																<th class="border-top-0">OBSERVACI&Oacute;N</th>
 																<th class="border-top-0">USUARIO</th>
 																<th class="border-top-0">IP</th>
-																<th class="border-top-0" style="width:140px;">ACCI&Oacute;N</th>
+																<th class="border-top-0" style="width:200px;">ACCI&Oacute;N</th>
 															</tr>
 														</thead>
 													</table>

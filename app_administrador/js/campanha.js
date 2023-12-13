@@ -312,8 +312,6 @@ function setcampanha(codElem, codAcc) {
 					if (element1.tipoEstadoParametro == 1) {
 						if (element1.empresaCodigo == element.empresaCodigo) {
 							selEmpresa = selEmpresa + '            				<option value="'+ element1.empresaCodigo +'" selected>'+ element1.empresaNombre +'</option>';
-						} else {
-							selEmpresa = selEmpresa + '            				<option value="'+ element1.empresaCodigo +'">'+ element1.empresaNombre +'</option>';
 						}
 					}
 				});
@@ -322,8 +320,6 @@ function setcampanha(codElem, codAcc) {
 					if (element1.tipoEstadoParametro == 1) {
 						if (element1.tipoParametro == element.tipoCampanhaParametro) {
 							selTipCamp = selTipCamp + '            			<option value="'+ element1.tipoParametro +'" selected>'+ element1.tipoNombre +'</option>';
-						} else {
-							selTipCamp = selTipCamp + '            			<option value="'+ element1.tipoParametro +'">'+ element1.tipoNombre +'</option>';
 						}
 					}
 				});

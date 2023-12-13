@@ -831,7 +831,6 @@ function selectEmpresaSuc(parm01, parm02, parm03, parm04) {
     var codEmp      = document.getElementById(parm02);
     var codSuc      = document.getElementById(parm01);
  
-
     while (selOption.length > 0) {
         selOption.remove(0);
     }
@@ -860,36 +859,35 @@ function selectEmpresaSuc(parm01, parm02, parm03, parm04) {
 
     if (parm03 == 1) {
         xJSON.forEach(element => {
-            var option      = document.createElement('option');
-            option.value    = element.sucursalCodigo;
-            option.text     = element.sucursalCodigo +' - '+ element.sucursalNombre;
+            if (element.tipoEstadoParametro  == 1) {
+                var option      = document.createElement('option');
+                option.value    = element.sucursalCodigo;
+                option.text     = element.sucursalNombre;
 
-            if (element.sucursalCodigo ==  parm04) {
-                option.selected = true;
-            } else {
-                option.selected = false;
-            }
-            selOption.add(option, null);
-    
-           
+                if (element.sucursalCodigo ==  parm04) {
+                    option.selected = true;
+                } else {
+                    option.selected = false;
+                }
+                selOption.add(option, null);
+            }   
         });
     } else {
         xJSON.forEach(element => {
-            var option      = document.createElement('option');
-            option.value    = element.sucursalCodigo;
-            option.text     = element.sucursalCodigo +' - '+ element.sucursalNombre;
-
-            if (element.empresaCodigo == codEmp) {
-                option.selected = true;
-            } else {
-                option.selected = false;
+            if (element.tipoEstadoParametro  == 1) {
+                var option      = document.createElement('option');
+                option.value    = element.sucursalCodigo;
+                option.text     = element.sucursalNombre;
+                    
+                if (element.empresaCodigo == codEmp) {
+                    option.selected = true;
+                } else {
+                    option.selected = false;
+                }
+                selOption.add(option, null);
             }
-            selOption.add(option, null);
-
-        
         });
     }
-    
 }
 
 function selectEmpresaRol(parm01, parm02, parm03, parm04, parm05) {

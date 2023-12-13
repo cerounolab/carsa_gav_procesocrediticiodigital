@@ -222,13 +222,10 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 		'               					    </div>'+
 		'               					</div>'+
 		''+
-		'               					<div class="col-sm-12 col-md-4">'+
-		'               					</div>'+
-		''+
-		'									<div class="col-sm-12 col-md-6">'+
+		'									<div class="col-sm-12 col-md-4">'+
 		'       					            <div class="form-group">'+
 		'       					                <label for="var03">Empresa</label>'+
-		`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresaRol('var04','var03', 1, 1);" style="width:100%; height:40px;">`+
+		`       					                <select id="var03" name="var03" class="select2 form-control custom-select" onchange="selectEmpresaRol('var04','var03', 1, 1, 'var04'); selectEmpresaUsuario('var05', 'var04', 'var03', 1, 1, 'var05');" style="width:100%; height:40px;">`+
 		'       					                    <optgroup label="Seleccionar">'+ selEmpresa +
 		'       					                    </optgroup>'+
 		'       					                </select>'+
@@ -238,7 +235,7 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 		'									<div class="col-sm-12 col-md-6">'+
 		'       					            <div class="form-group">'+
 		'       					                <label for="var04">Rol</label>'+
-		'       					                <select id="var04" name="var04" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
+		`       					                <select id="var04" name="var04" class="select2 form-control custom-select" onchange="selectEmpresaUsuario('var05', 'var04', 'var03', 1, 1, 'var05');" style="width:100%; height:40px;" '+ bodyOnl +'>`+
 		'       					                    <optgroup label="Seleccionar">'+
 		'       					                    </optgroup>'+
 		'       					                </select>'+
@@ -255,14 +252,14 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 		'       					            </div>'+
 		'       					        </div>'+
 		''+
-		'               					<div class="col-sm-12 col-md-4">'+
+		'               					<div class="col-sm-12 col-md-6">'+
 		'               					    <div class="form-group">'+
 		'               					        <label for="var06">Fecha Desde</label>'+
 		'               					        <input id="var06" name="var06" value="" class="form-control" type="date" style="text-transform:uppercase; height:40px;" placeholder="Orden" '+ bodyOnl +'>'+
 		'               					    </div>'+
 		'               					</div>'+
 		''+
-		'               					<div class="col-sm-12 col-md-4">'+
+		'               					<div class="col-sm-12 col-md-6">'+
 		'               					    <div class="form-group">'+
 		'               					        <label for="var07">Fecha Hasta</label>'+
 		'               					        <input id="var07" name="var07" value="" class="form-control" type="date" style="text-transform:uppercase; height:40px;" placeholder="Orden" '+ bodyOnl +'>'+
@@ -372,10 +369,7 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 				'               					    </div>'+
 				'               					</div>'+
 				''+
-				'               					<div class="col-sm-12 col-md-4">'+
-				'               					</div>'+
-				''+
-				'									<div class="col-sm-12 col-md-6">'+
+				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
 				'       					                <label for="var03">Empresa</label>'+
 				`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresaRol('var04','var03', 1, 0);" style="width:100%; height:40px;">`+
@@ -454,5 +448,6 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 
 	$("#modal-content").empty();
 	$("#modal-content").append(html);
-		
+
+	selectEmpresaRol('var04','var03', 1, 1);
 }
