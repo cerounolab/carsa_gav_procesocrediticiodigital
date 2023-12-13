@@ -350,39 +350,39 @@ const postUsuario   = (apiREQ, apiRES) => {
             (async () => {
                 bcrypt.hash(_USUFICPAS, rondasDeSal, async (err, _USUFICPAS2) => {
                     xDATA = await insertUSUFIC(_USUFICEST,
-                        _USUFICEMC,
-                        _USUFICSUC,
-                        _USUFICORD,
-                        _USUFICDOC,
-                        _USUFICNOM,
-                        _USUFICAPE,
-                        _USUFICUSU,
-                        _USUFICPAS2,
-                        _USUFICEMA,
-                        _USUFICCEL,
-                        _USUFICOBS,
-                        _USUFICCEM,
-                        _USUFICCUS,
-                        _USUFICCIP,
-                        _USUFICCPR,
-                        _USUFICAEM,
-                        _USUFICAUS,
-                        _USUFICAIP,
-                        _USUFICAPR,
-                        _USUFICAIN);
+                    _USUFICEMC,
+                    _USUFICSUC,
+                    _USUFICORD,
+                    _USUFICDOC,
+                    _USUFICNOM,
+                    _USUFICAPE,
+                    _USUFICUSU,
+                    _USUFICPAS2,
+                    _USUFICEMA,
+                    _USUFICCEL,
+                    _USUFICOBS,
+                    _USUFICCEM,
+                    _USUFICCUS,
+                    _USUFICCIP,
+                    _USUFICCPR,
+                    _USUFICAEM,
+                    _USUFICAUS,
+                    _USUFICAIP,
+                    _USUFICAPR,
+                    _USUFICAIN);
 
                     _code   = xDATA[0];
                     xJSON   = xDATA[1];
 
                     if (_code == 200) {
-                        xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
+                        xJSON = await jsonBody(_code, 'Success', null, 'Correcto ', null, 0, 0, 0, 0, xJSON);
 
                     } else if (_code == 404){
                         xJSON   = xDATA[1];
-                        xJSON   = await jsonBody(_code, 'El usuario ya existe', null, null, null, 0, 0, 0, 0, xJSON);
+                        xJSON   = await jsonBody(_code, 'Error', 'postUsuario', 'Error: el usuario ya existe', null, 0, 0, 0, 0, xJSON);
                     }else{
                         xJSON   = xDATA[1];
-                        xJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
+                        xJSON   = await jsonBody(_code, 'Error', xJSON.reference, null, xJSON.message, 0, 0, 0, 0, []);
                     }
 
                     xJSON = camelcaseKeys(xJSON, {deep: true});
@@ -413,9 +413,9 @@ const postUsuarioLogin   = (apiREQ, apiRES) => {
     let _USUFICAPR  = (apiREQ.body.auditoria_programa != undefined && apiREQ.body.auditoria_programa != null && apiREQ.body.auditoria_programa != '') ? "'"+apiREQ.body.auditoria_programa.trim()+"'" : false; 
     let _USUFICAIN  = (apiREQ.body.auditoria_incidencia != undefined && apiREQ.body.auditoria_incidencia != null && apiREQ.body.auditoria_incidencia != '') ? "'"+apiREQ.body.auditoria_incidencia.trim()+"'" : null;
    
-    let _USULOGHOS  = (apiREQ.body.usuario_log_host != undefined && apiREQ.body.usuario_log_host != null && apiREQ.body.usuario_log_host != '') ? "'"+apiREQ.body.usuario_log_host.trim()+"'" : false;   
-    let _USULOGAGE  = (apiREQ.body.usuario_log_age != undefined && apiREQ.body.usuario_log_age != null && apiREQ.body.usuario_log_age != '') ? "'"+apiREQ.body.usuario_log_age.trim()+"'" : false;     
-    let _USULOGREF  = (apiREQ.body.usuario_log_referencia != undefined && apiREQ.body.usuario_log_referencia != null && apiREQ.body.usuario_log_referencia != '') ? "'"+apiREQ.body.usuario_log_referencia.trim()+"'" : false;     
+    let _USULOGHOS  = (apiREQ.body.usuario_log_host != undefined && apiREQ.body.usuario_log_host != null && apiREQ.body.usuario_log_host != '') ? "'"+apiREQ.body.usuario_log_host.trim()+"'" : null;   
+    let _USULOGAGE  = (apiREQ.body.usuario_log_age != undefined && apiREQ.body.usuario_log_age != null && apiREQ.body.usuario_log_age != '') ? "'"+apiREQ.body.usuario_log_age.trim()+"'" : null;     
+    let _USULOGREF  = (apiREQ.body.usuario_log_referencia != undefined && apiREQ.body.usuario_log_referencia != null && apiREQ.body.usuario_log_referencia != '') ? "'"+apiREQ.body.usuario_log_referencia.trim()+"'" : null;     
     let _password   = '';
     let _USULOGEST  = '';  
     let _USUFICIPAS = 0;
@@ -441,14 +441,14 @@ const postUsuarioLogin   = (apiREQ, apiRES) => {
                                 if (coinciden){
                                     _USULOGEST  = 'CORRECTO';
                                     _dataJSON[0].usuario_password = '';
-                                    _dataJSON   = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, _dataJSON);
+                                    _dataJSON   = await jsonBody(_code, 'Success', null, 'Correcto', null, 0, 0, 0, 0, _dataJSON);
 
                                     updateintentoUSUFIC(1, _USUFICUSU, 0, _USUFICAEM, _USUFICAUS, _USUFICAIP, _USUFICAPR, _USUFICAIN);
                 
                                 } else {
                                     _code       = 201;
                                     _USULOGEST  = 'ERROR_PAS';
-                                    _dataJSON   = await jsonBody(_code, 'Error', null, null, 'La contraseña no coincide, verifique', 0, 0, 0, 0, []);
+                                    _dataJSON   = await jsonBody(_code, 'Error', 'postUsuarioLogin', 'Error: La contraseña no coincide, verifique', null, 0, 0, 0, 0, []);
                                     updateintentoUSUFIC(1, _USUFICUSU, 1, _USUFICAEM, _USUFICAUS, _USUFICAIP, _USUFICAPR, _USUFICAIN);
                                     
                                 }
@@ -463,7 +463,7 @@ const postUsuarioLogin   = (apiREQ, apiRES) => {
                             _code       = 201;
                             _USULOGEST  = 'ERROR_USER';
                             insertUSULOG(_USULOGEST, _USUFICUSU, _password, _USUFICAIP, _USULOGHOS, _USULOGAGE, _USULOGREF, _USUFICAEM, _USUFICAUS, _USUFICAIP, _USUFICAPR);
-                            _dataJSON   = await jsonBody(_code, 'Error', null, null, 'El usuario no existe o se encuentra inactivo, verifique', 0, 0, 0, 0, []);
+                            _dataJSON   = await jsonBody(_code, 'Error', 'postUsuarioLogin','El usuario no existe o se encuentra inactivo, verifique', null, 0, 0, 0, 0, []);
 
                             _dataJSON   = camelcaseKeys(_dataJSON, {deep: true});
                 
@@ -475,7 +475,7 @@ const postUsuarioLogin   = (apiREQ, apiRES) => {
                         updateintentoUSUFIC(2, _USUFICUSU, 0, _USUFICAEM, _USUFICAUS, _USUFICAIP, _USUFICAPR, _USUFICAIN);
                                     
                         insertUSULOG(_USULOGEST, _USUFICUSU, _password, _USUFICAIP, _USULOGHOS, _USULOGAGE, _USULOGREF, _USUFICAEM, _USUFICAUS, _USUFICAIP, _USUFICAPR);
-                        _dataJSON   = await jsonBody(_code, 'Error', null, null, 'El usuario se encuentra bloqueado, verifique', 0, 0, 0, 0, []);
+                        _dataJSON   = await jsonBody(_code, 'Error', 'postUsuarioLogin', 'El usuario se encuentra bloqueado, verifique', null, 0, 0, 0, 0, []);
 
                         _dataJSON   = camelcaseKeys(_dataJSON, {deep: true});
             
@@ -526,6 +526,7 @@ const putUsuario    = (apiREQ, apiRES) => {
     let _USUFICAIP  = (apiREQ.body.auditoria_ip != undefined && apiREQ.body.auditoria_ip != null && apiREQ.body.auditoria_ip != '') ? "'"+apiREQ.body.auditoria_ip.trim().toUpperCase()+"'" : false; 
     let _USUFICAPR  = (apiREQ.body.auditoria_programa != undefined && apiREQ.body.auditoria_programa != null && apiREQ.body.auditoria_programa != '') ? "'"+apiREQ.body.auditoria_programa.trim()+"'" : false; 
     let _USUFICAIN  = (apiREQ.body.auditoria_incidencia != undefined && apiREQ.body.auditoria_incidencia != null && apiREQ.body.auditoria_incidencia != '') ? "'"+apiREQ.body.auditoria_incidencia.trim()+"'" : null;
+    let _USUFICIPA  = 0;
 
     let rondasDeSal = 12;
  
@@ -558,14 +559,14 @@ const putUsuario    = (apiREQ, apiRES) => {
                 xJSON   = xDATA[1];
 
                 if (_code == 200) {
-                    xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
+                    xJSON = await jsonBody(_code, 'Success', null, 'Correcto', null, 0, 0, 0, 0, xJSON);
     
                 } else if (_code == 404){
                     xJSON   = xDATA[1];
-                    xJSON   = await jsonBody(_code, 'El registro ya existe', null, null, null, 0, 0, 0, 0, xJSON);
+                    xJSON   = await jsonBody(_code, 'Error', 'putUsuario', 'Error: El registro ya existe', null, 0, 0, 0, 0, xJSON);
                 }else{
                     xJSON   = xDATA[1];
-                    xJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
+                    xJSON   = await jsonBody(_code, 'Error', xJSON.reference, null, xJSON.message, 0, 0, 0, 0, []);
                 }
 
                 xJSON = camelcaseKeys(xJSON, {deep: true});
@@ -623,11 +624,11 @@ const deleteUsuario = (apiREQ, apiRES) => {
             xJSON   = xDATA[1];
 
             if (_code == 200) {
-                xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON = await jsonBody(_code, 'Success', null, 'Correcto', null, 0, 0, 0, 0, xJSON);
 
             } else {
                 xJSON   = xDATA[1];
-                xJSON = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON   = await jsonBody(_code, 'Error', xJSON.reference, null, xJSON.message, 0, 0, 0, 0, []);
             }
 
             xJSON = camelcaseKeys(xJSON, {deep: true});

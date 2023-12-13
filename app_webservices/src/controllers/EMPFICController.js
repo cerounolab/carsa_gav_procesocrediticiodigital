@@ -166,7 +166,7 @@ const postEmpresa   = (apiREQ, apiRES) => {
     let _EMPFICTEL  = (apiREQ.body.empresa_telefono != undefined && apiREQ.body.empresa_telefono != null && apiREQ.body.empresa_telefono != '') ? "'"+apiREQ.body.empresa_telefono.trim().toLowerCase()+"'" : null;
     let _EMPFICCEL  = (apiREQ.body.empresa_celular != undefined && apiREQ.body.empresa_celular != null && apiREQ.body.empresa_celular != '') ? "'"+apiREQ.body.empresa_celular.trim().toLowerCase()+"'" : null;
     let _EMPFICWEB  = (apiREQ.body.empresa_web != undefined && apiREQ.body.empresa_web != null && apiREQ.body.empresa_web != '') ? "'"+apiREQ.body.empresa_web.trim()+"'" : null;
-    let _EMPFICCOR  = (apiREQ.body.empresa_correo != undefined && apiREQ.body.empresa_correo != null && apiREQ.body.empresa_correo != '') ? "'"+apiREQ.body.empresa_correo.trim().toLowerCase()+"'" : null;
+    let _EMPFICCOR  = (apiREQ.body.empresa_correo != undefined && apiREQ.body.empresa_correo != null && apiREQ.body.empresa_correo != '') ? "'"+apiREQ.body.empresa_correo.trim().toLowerCase()+"'" : false;
     let _EMPFICUBI  = (apiREQ.body.empresa_ubicacion != undefined && apiREQ.body.empresa_ubicacion != null && apiREQ.body.empresa_ubicacion != '') ? "'"+apiREQ.body.empresa_ubicacion.trim()+"'" : null; 
     let _EMPFICDIR  = (apiREQ.body.empresa_direccion != undefined && apiREQ.body.empresa_direccion != null && apiREQ.body.empresa_direccion != '') ? "'"+apiREQ.body.empresa_direccion.trim()+"'" : null; 
     let _EMPFICLOG  = (apiREQ.body.empresa_logo != undefined && apiREQ.body.empresa_logo != null && apiREQ.body.empresa_logo != '') ? "'"+apiREQ.body.empresa_logo.trim()+"'" : null; 
@@ -183,7 +183,7 @@ const postEmpresa   = (apiREQ, apiRES) => {
     let _EMPFICAPR  = (apiREQ.body.auditoria_programa != undefined && apiREQ.body.auditoria_programa != null && apiREQ.body.auditoria_programa != '') ? "'"+apiREQ.body.auditoria_programa.trim()+"'" : false; 
     let _EMPFICAIN  = (apiREQ.body.auditoria_incidencia != undefined && apiREQ.body.auditoria_incidencia != null && apiREQ.body.auditoria_incidencia != '') ? "'"+apiREQ.body.auditoria_incidencia.trim()+"'" : null;
   
-    if (_EMPFICEST && _EMPFICTRC && _EMPFICTAC && _EMPFICNOM && _EMPFICRUC && _EMPFICCEM && _EMPFICCUS && _EMPFICCIP && _EMPFICCPR && _EMPFICAEM && _EMPFICAUS && _EMPFICAIP && _EMPFICAPR) {
+    if (_EMPFICEST && _EMPFICTRC && _EMPFICTAC && _EMPFICNOM && _EMPFICRUC && _EMPFICCOR && _EMPFICCEM && _EMPFICCUS && _EMPFICCIP && _EMPFICCPR && _EMPFICAEM && _EMPFICAUS && _EMPFICAIP && _EMPFICAPR) {
 
         (async () => {
             xDATA = await insertEMPFIC(_EMPFICEST,
@@ -214,14 +214,14 @@ const postEmpresa   = (apiREQ, apiRES) => {
             xJSON   = xDATA[1];
 
             if (_code == 200) {
-                xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON = await jsonBody(_code, 'Success', null, 'Correcto', null, 0, 0, 0, 0, xJSON);
 
             } else if (_code == 404){
                 xJSON   = xDATA[1];
-                xJSON   = await jsonBody(_code, 'El registro ya existe', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON   = await jsonBody(_code, 'Error', 'postEmpresa', 'Error: El registro ya existe', null, 0, 0, 0, 0, xJSON);
             }else{
                 xJSON   = xDATA[1];
-                xJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON   = await jsonBody(_code, 'Error', xJSON.reference, null, xJSON.message, 0, 0, 0, 0, []);
             }
 
             xJSON = camelcaseKeys(xJSON, {deep: true});
@@ -233,9 +233,9 @@ const postEmpresa   = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
-
-            return apiRES.status(_code).json(xJSON);
+            xJSON   = await jsonBody(_code, 'Error', 'postEmpresa', 'Error: Verifique algún campo esta vacío', null, 0, 0, 0, 0, []);
+            xJSON   = camelcaseKeys(xJSON, {deep: true});
+            return apiRES.status(200).json(xJSON);
         })();
     
     }       
@@ -273,7 +273,7 @@ const putEmpresa    = (apiREQ, apiRES) => {
     let _EMPFICAPR  = (apiREQ.body.auditoria_programa != undefined && apiREQ.body.auditoria_programa != null && apiREQ.body.auditoria_programa != '') ? "'"+apiREQ.body.auditoria_programa.trim().toUpperCase()+"'" : false; 
     let _EMPFICAIN  = (apiREQ.body.auditoria_incidencia != undefined && apiREQ.body.auditoria_incidencia != null && apiREQ.body.auditoria_incidencia != '') ? "'"+apiREQ.body.auditoria_incidencia.trim()+"'" : null;
   
-    if (_ACCION && _EMPFICCOD && _EMPFICEST && _EMPFICTRC && _EMPFICTAC && _EMPFICNOM && _EMPFICRUC && _EMPFICCEM && _EMPFICCUS && _EMPFICCIP && _EMPFICCPR && _EMPFICAEM && _EMPFICAUS && _EMPFICAIP && _EMPFICAPR) {
+    if (_ACCION && _EMPFICCOD && _EMPFICEST && _EMPFICTRC && _EMPFICTAC && _EMPFICNOM && _EMPFICRUC && _EMPFICCOR && _EMPFICCEM && _EMPFICCUS && _EMPFICCIP && _EMPFICCPR && _EMPFICAEM && _EMPFICAUS && _EMPFICAIP && _EMPFICAPR) {
 
         (async () => {
             xDATA = await updateEMPFIC(_ACCION,
@@ -302,14 +302,14 @@ const putEmpresa    = (apiREQ, apiRES) => {
             xJSON   = xDATA[1];
 
             if (_code == 200) {
-                xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON = await jsonBody(_code, 'Success', null, 'Correcto', null, 0, 0, 0, 0, xJSON);
 
             } else if (_code == 404){
                 xJSON   = xDATA[1];
-                xJSON   = await jsonBody(_code, 'El registro ya existe', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON   = await jsonBody(_code, 'Error', 'Eror: El registro ya existe', null, null, 0, 0, 0, 0, xJSON);
             }else{
                 xJSON   = xDATA[1];
-                xJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON   = await jsonBody(_code, 'Error', xJSON.reference, null, xJSON.message, 0, 0, 0, 0, []);
             }
 
             xJSON = camelcaseKeys(xJSON, {deep: true});
@@ -321,9 +321,9 @@ const putEmpresa    = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
-
-            return apiRES.status(_code).json(xJSON);
+            xJSON   = await jsonBody(_code, 'Error', 'putEmpresa', 'Error: Verifique algún campo esta vacío', null, 0, 0, 0, 0, []);
+            xJSON   = camelcaseKeys(xJSON, {deep: true});
+            return apiRES.status(200).json(xJSON);
         })();
     
     }       
@@ -361,7 +361,7 @@ const deleteEmpresa = (apiREQ, apiRES) => {
     let _EMPFICAPR  = (apiREQ.body.auditoria_programa != undefined && apiREQ.body.auditoria_programa != null && apiREQ.body.auditoria_programa != '') ? "'"+apiREQ.body.auditoria_programa.trim().toUpperCase()+"'" : false; 
     let _EMPFICAIN  = (apiREQ.body.auditoria_incidencia != undefined && apiREQ.body.auditoria_incidencia != null && apiREQ.body.auditoria_incidencia != '') ? "'"+apiREQ.body.auditoria_incidencia.trim()+"'" : null;
   
-    if (_EMPFICCOD && _EMPFICEST && _EMPFICTRC && _EMPFICTAC && _EMPFICNOM && _EMPFICRUC && _EMPFICCEM && _EMPFICCUS && _EMPFICCIP && _EMPFICCPR && _EMPFICAEM && _EMPFICAUS && _EMPFICAIP && _EMPFICAPR) {
+    if (_EMPFICCOD && _EMPFICEST && _EMPFICTRC && _EMPFICTAC && _EMPFICNOM && _EMPFICRUC && _EMPFICCOR && _EMPFICCEM && _EMPFICCUS && _EMPFICCIP && _EMPFICCPR && _EMPFICAEM && _EMPFICAUS && _EMPFICAIP && _EMPFICAPR) {
 
         (async () => {
             xDATA = await deleteEMPFIC(_EMPFICCOD);
@@ -370,11 +370,11 @@ const deleteEmpresa = (apiREQ, apiRES) => {
             xJSON   = xDATA[1];
 
             if (_code == 200) {
-                xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON = await jsonBody(_code, 'Success', null, 'Correcto', null, 0, 0, 0, 0, xJSON);
 
             } else {
                 xJSON   = xDATA[1];
-                xJSON = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON   = await jsonBody(_code, 'Error', xJSON.reference, null, xJSON.message, 0, 0, 0, 0, []);
             }
 
             xJSON = camelcaseKeys(xJSON, {deep: true});
@@ -386,8 +386,8 @@ const deleteEmpresa = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
-
+            xJSON   = await jsonBody(_code, 'Error', 'deleteEmpresa', 'Error: Verifique algún campo esta vacío', null, 0, 0, 0, 0, []);
+            xJSON = camelcaseKeys(xJSON, {deep: true});
             return apiRES.status(_code).json(xJSON);
         })();
     

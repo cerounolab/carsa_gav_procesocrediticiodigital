@@ -224,14 +224,14 @@ const postRolFormulario   = (apiREQ, apiRES) => {
             xJSON   = xDATA[1];
 
             if (_code == 200) {
-                xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON = await jsonBody(_code, 'Success', null, 'Correcto', null, 0, 0, 0, 0, xJSON);
 
             } else if (_code == 404){
                 xJSON   = xDATA[1];
-                xJSON   = await jsonBody(_code, 'El registro ya existe', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON   = await jsonBody(_code, 'Error', 'postRolFormulario', 'Error: El registro ya existe', null, 0, 0, 0, 0, xJSON);
             }else{
                 xJSON   = xDATA[1];
-                xJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON   = await jsonBody(_code, 'Error', xJSON.reference, null, xJSON.message, 0, 0, 0, 0, []);
             }
 
             xJSON = camelcaseKeys(xJSON, {deep: true});
@@ -313,27 +313,28 @@ const putRolFormulario    = (apiREQ, apiRES) => {
                 xJSON   = xDATA[1];
 
                 if (_code == 200) {
-                    xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
+                    xJSON = await jsonBody(_code, 'Success', null, 'Correcto', null, 0, 0, 0, 0, xJSON);
 
                 } else {
                     xJSON   = xDATA[1];
-                    xJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
+                    xJSON   = await jsonBody(_code, 'Error', xJSON.reference, null, xJSON.message, 0, 0, 0, 0, []);
                 }
 
                 xJSON = camelcaseKeys(xJSON, {deep: true});
 
                 return apiRES.status(_code).json(xJSON);
+
             })();  
 
-    }else{
-        (async () => {
-            _code   = 400;
-            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true); 
+        }else{
+            (async () => {
+                _code   = 400;
+                xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true); 
 
-            return apiRES.status(_code).json(xJSON);
-        })();
+                return apiRES.status(_code).json(xJSON);
+            })();
 
-}       
+        }       
 
 }
 
@@ -376,11 +377,11 @@ const deleteRolFormulario    = (apiREQ, apiRES) => {
             xJSON   = xDATA[1];
 
             if (_code == 200) {
-                xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON = await jsonBody(_code, 'Success', null, 'Correcto', null, 0, 0, 0, 0, xJSON);
 
             } else {
                 xJSON   = xDATA[1];
-                xJSON = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
+                xJSON   = await jsonBody(_code, 'Error', xJSON.reference, null, xJSON.message, 0, 0, 0, 0, []);
             }
 
             xJSON = camelcaseKeys(xJSON, {deep: true});

@@ -92,7 +92,7 @@ const {errorBody}   = require('../utils/_json');
                 })
                 .catch(e => {
                     _code = 500;
-                    errorBody(_code, 'Code: '+ e.code + ', Routine2: ' + e.routine + ', Function: updateDOMFIC', true)
+                    errorBody(_code, 'Code: '+ e.code + ', Routine2: ' + e.routine,' Function: updateDOMFIC')
                         .then(result => _data = result);
                 })
                 .then(() => {
@@ -109,26 +109,26 @@ const {errorBody}   = require('../utils/_json');
     }
 
     const updateEMPFIC  = async(_ACCION,
-            codigo,
-            _EMPFICEST,
-            _EMPFICTRC,
-            _EMPFICTAC,
-            _EMPFICORD,
-            _EMPFICNOM,
-            _EMPFICRUC,
-            _EMPFICTEL,
-            _EMPFICCEL,
-            _EMPFICWEB,
-            _EMPFICCOR,
-            _EMPFICUBI,
-            _EMPFICDIR,
-            _EMPFICLOG,
-            _EMPFICOBS,
-            _EMPFICAEM,
-            _EMPFICAUS,
-            _EMPFICAIP,
-            _EMPFICAPR,
-            _EMPFICAIN) => {
+        codigo,
+        _EMPFICEST,
+        _EMPFICTRC,
+        _EMPFICTAC,
+        _EMPFICORD,
+        _EMPFICNOM,
+        _EMPFICRUC,
+        _EMPFICTEL,
+        _EMPFICCEL,
+        _EMPFICWEB,
+        _EMPFICCOR,
+        _EMPFICUBI,
+        _EMPFICDIR,
+        _EMPFICLOG,
+        _EMPFICOBS,
+        _EMPFICAEM,
+        _EMPFICAUS,
+        _EMPFICAIP,
+        _EMPFICAPR,
+        _EMPFICAIN) => {
 
         let _code   = 200;
         let _data   = [];
@@ -198,7 +198,7 @@ const {errorBody}   = require('../utils/_json');
                 })
                 .catch(e => {
                     _code = 500;
-                    errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateEMPFIC', true)
+                    errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine, 'Function: updateEMPFIC')
                         .then(result => _data = result);
                 })
                 .then(() => {
@@ -215,23 +215,23 @@ const {errorBody}   = require('../utils/_json');
     }
 
     const updateSUCFIC  = async(_ACCION,
-                codigo,
-                _SUCFICEST,
-                _SUCFICTSC,
-                _SUCFICEMP,
-                _SUCFICORD,
-                _SUCFICNOM,
-                _SUCFICTEL,
-                _SUCFICCEL,
-                _SUCFICCOR,
-                _SUCFICUBI,
-                _SUCFICDIR,
-                _SUCFICOBS,
-                _SUCFICAEM,
-                _SUCFICAUS,
-                _SUCFICAIP,
-                _SUCFICAPR,
-                _SUCFICAIN) => {
+        codigo,
+        _SUCFICEST,
+        _SUCFICTSC,
+        _SUCFICEMP,
+        _SUCFICORD,
+        _SUCFICNOM,
+        _SUCFICTEL,
+        _SUCFICCEL,
+        _SUCFICCOR,
+        _SUCFICUBI,
+        _SUCFICDIR,
+        _SUCFICOBS,
+        _SUCFICAEM,
+        _SUCFICAUS,
+        _SUCFICAIP,
+        _SUCFICAPR,
+        _SUCFICAIN) => {
 
         let _code   = 200;
         let _data   = [];
@@ -297,7 +297,7 @@ const {errorBody}   = require('../utils/_json');
                 })
                 .catch(e => {
                     _code = 500;
-                    errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateSUCFIC', true)
+                    errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine, 'Function: updateSUCFIC')
                         .then(result => _data = result);
                 })
                 .then(() => {
@@ -362,7 +362,7 @@ const {errorBody}   = require('../utils/_json');
             case 2:
                 query00 = `UPDATE adm.USUFIC SET
                                 USUFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOESTADO' AND DOMFICPAR	= ${_USUFICEST}), 
-                                USUFICIPAS  = 0,  
+                                USUFICIPA   = 0,  
                                 USUFICOBS	= ${_USUFICOBS},     
                                 USUFICAFH   = NOW(),
                                 USUFICAEM	= ${_USUFICAEM}, 
@@ -377,7 +377,7 @@ const {errorBody}   = require('../utils/_json');
             case 3:
                 query00 = `UPDATE adm.USUFIC SET
                                 USUFICPAS   = '${_USUFICPAS}',
-                                USUFICIPAS  = 0,
+                                USUFICIPA   = 0,
                                 USUFICAFH   = NOW(),    
                                 USUFICAEM	= ${_USUFICAEM}, 
                                 USUFICAUS	= ${_USUFICAUS},   
@@ -409,7 +409,7 @@ const {errorBody}   = require('../utils/_json');
             })
             .catch(e => {
                 _code = 500;
-                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateUSUFIC', true)
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine, 'Function: updateUSUFIC')
                     .then(result => _data = result);
             })
             .then(() => {
@@ -467,7 +467,7 @@ const {errorBody}   = require('../utils/_json');
 
             case 2:
                 query00 = `UPDATE adm.USUFIC SET
-                                USUFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOESTADO' AND DOMFICPAR	= 3),      
+                                USUFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOESTADO' AND DOMFICPAR = 4),      
                                 USUFICAFH   = NOW(),
                                 USUFICAEM	= ${_USUFICAEM}, 
                                 USUFICAUS	= ${_USUFICAUS},   
@@ -538,8 +538,8 @@ const {errorBody}   = require('../utils/_json');
                                 ROLFICEMC	= ${_ROLFICEMC}, 	  
                                 ROLFICORD	= ${_ROLFICORD}, 	
                                 ROLFICNOM	= ${_ROLFICNOM}, 		
-                                ROLFICFDE	= '${_ROLFICFDE}', 	   
-                                ROLFICFHA	= '${_ROLFICFHA}',     
+                                ROLFICFDE	= ${_ROLFICFDE}, 	   
+                                ROLFICFHA	= ${_ROLFICFHA},     
                                 ROLFICEQU	= ${_ROLFICEQU},     
                                 ROLFICOBS	= ${_ROLFICOBS},
                                 ROLFICAFH   = NOW(),    
@@ -589,7 +589,7 @@ const {errorBody}   = require('../utils/_json');
             })
             .catch(e => {
                 _code = 500;
-                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateROLFIC', true)
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine, 'Function: updateROLFIC')
                     .then(result => _data = result);
             })
             .then(() => {
@@ -634,8 +634,8 @@ const {errorBody}   = require('../utils/_json');
                                 CAMFICEMC	= ${_CAMFICEMC}, 	 
                                 CAMFICORD	= ${_CAMFICORD}, 	
                                 CAMFICNOM	= ${_CAMFICNOM}, 	   
-                                CAMFICFDE	= '${_CAMFICFDE}',     
-                                CAMFICFHA	= '${_CAMFICFHA}',     
+                                CAMFICFDE	= ${_CAMFICFDE},     
+                                CAMFICFHA	= ${_CAMFICFHA},     
                                 CAMFICEQU	= ${_CAMFICEQU},     
                                 CAMFICOBS	= ${_CAMFICOBS}, 	        
                                 CAMFICAEM	= ${_CAMFICAEM}, 
@@ -684,7 +684,7 @@ const {errorBody}   = require('../utils/_json');
             })
             .catch(e => {
                 _code = 500;
-                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateCAMFIC', true)
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine, 'Function: updateCAMFIC')
                     .then(result => _data = result);
             })
             .then(() => {
@@ -774,7 +774,7 @@ const {errorBody}   = require('../utils/_json');
             })
             .catch(e => {
                 _code = 500;
-                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateFORFIC', true)
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine, 'Function: updateFORFIC')
                     .then(result => _data = result);
             })
             .then(() => {
@@ -875,7 +875,7 @@ const {errorBody}   = require('../utils/_json');
             })
             .catch(e => {
                 _code = 500;
-                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateFORFIC', true)
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine, 'Function: updateFORFIC')
                     .then(result => _data = result);
             })
             .then(() => {
@@ -915,8 +915,8 @@ const {errorBody}   = require('../utils/_json');
                 query00 = `UPDATE adm.USUROL SET 
                                 USUROLEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOROLESTADO' AND DOMFICPAR = ${_USUROLEST}), 
                                 USUROLORD	= ${_USUROLORD},     
-                                USUROLFDE	= '${_USUROLFDE}',     
-                                USUROLFHA	= '${_USUROLFHA}',     
+                                USUROLFDE	= ${_USUROLFDE},     
+                                USUROLFHA	= ${_USUROLFHA},     
                                 USUROLOBS	= ${_USUROLOBS},   
                                 USUROLAFH   = NOW(),  
                                 USUROLAEM	= ${_USUROLAEM},     
@@ -963,7 +963,7 @@ const {errorBody}   = require('../utils/_json');
             })
             .catch(e => {
                 _code = 500;
-                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateUSUROL', true)
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine, ' Function: updateUSUROL')
                     .then(result => _data = result);
             })
             .then(() => {
@@ -1045,7 +1045,7 @@ const {errorBody}   = require('../utils/_json');
             })
             .catch(e => {
                 _code = 500;
-                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateUSUCAM', true)
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine, 'Function: updateUSUCAM')
                     .then(result => _data = result);
             })
             .then(() => {
@@ -1132,7 +1132,7 @@ const {errorBody}   = require('../utils/_json');
             })
             .catch(e => {
                 _code = 500;
-                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: updateUSUFLU', true)
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine, 'Function: updateUSUFLU')
                     .then(result => _data = result);
             })
             .then(() => {

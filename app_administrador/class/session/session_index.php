@@ -47,11 +47,13 @@
         $_SESSION['empresaSitoWeb']         = trim($resultJSON['data']['0']['empresaSitoWeb']);
         $_SESSION['empresaCorreo']          = trim(strtolower($resultJSON['data']['0']['empresaCorreo']));
         $_SESSION['empresaDireccion']       = trim($resultJSON['data']['0']['empresaDireccion']);
-
+        // $_SESSION['empresaLogo']            = (trim($resultJSON['data']['0']['empresaLogo']) == null) ? '' : trim($resultJSON['data']['0']['empresaLogo']);
 
         $_SESSION['expire'] = time() + 1800;
 
-        header('Location: ./../../../admin/public/home.php');
+        $_SESSION['seg_prg']    = $jsIAM;
+
+        header('Location: ./../../admin/public/home.php');
 
     } else {
         $val_01 = NULL;
