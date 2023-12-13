@@ -234,6 +234,7 @@ const postEmpresa   = (apiREQ, apiRES) => {
         (async () => {
             _code   = 400;
             xJSON   = await jsonBody(_code, 'Error', 'postEmpresa', 'Error: Verifique algún campo esta vacío', null, 0, 0, 0, 0, []);
+            xJSON   = camelcaseKeys(xJSON, {deep: true});
             return apiRES.status(200).json(xJSON);
         })();
     
@@ -320,7 +321,8 @@ const putEmpresa    = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await jsonBody(_code, 'Error', 'postEmpresa', 'Error: Verifique algún campo esta vacío', null, 0, 0, 0, 0, []);
+            xJSON   = await jsonBody(_code, 'Error', 'putEmpresa', 'Error: Verifique algún campo esta vacío', null, 0, 0, 0, 0, []);
+            xJSON   = camelcaseKeys(xJSON, {deep: true});
             return apiRES.status(200).json(xJSON);
         })();
     
@@ -384,9 +386,9 @@ const deleteEmpresa = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await jsonBody(_code, 'Error', 'postEmpresa', 'Error: Verifique algún campo esta vacío', null, 0, 0, 0, 0, []);
-
-            return apiRES.status(200).json(xJSON);
+            xJSON   = await jsonBody(_code, 'Error', 'deleteEmpresa', 'Error: Verifique algún campo esta vacío', null, 0, 0, 0, 0, []);
+            xJSON = camelcaseKeys(xJSON, {deep: true});
+            return apiRES.status(_code).json(xJSON);
         })();
     
     }       
