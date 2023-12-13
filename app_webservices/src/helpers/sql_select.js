@@ -745,6 +745,15 @@ const selectUSUARIOROL  = async(actionType, codigo, codigo2, codigo3) => {
                             usuario_codigo = ${codigo} AND rol_codigo = ${codigo2} AND empresa_codigo  = ${codigo3}`;
             break;
 
+        case 3:
+            query00 = `SELECT
+                            *
+                        FROM
+                            adm.USUARIOROL
+                        WHERE
+                            rol_codigo = ${codigo} AND empresa_codigo  = ${codigo2}`;
+            break;
+
         default:
             break;
     }
