@@ -30,11 +30,11 @@
     $ulrPos         = 0;
 
     if ($expire < time()) {
-        header('Location: ./../../../class/session/session_logout.php');
+        header('Location: ./../../admin/class/session/session_logout.php');
 
     } else {
         if ($log_01 == '' ) {
-            header('Location: ./../../../class/session/session_logout.php');
+            header('Location: ./../../admin/class/session/session_logout.php');
 
         } else {
             if (isset($log_01) && isset($log_03) && isset($val_03)) {
@@ -81,7 +81,7 @@
                     header('Location: ./../../admin/public/error_403.php');
                 }
             } else {
-                header('Location: ./../../../class/session/session_logout.php');
+                header('Location: ./../../admin/class/session/session_logout.php');
             }
         }
     }
