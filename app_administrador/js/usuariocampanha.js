@@ -99,7 +99,7 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 	var selEmpresa  	= '';
 	var selCamp			= '';
 	var selUsu			= '';
-	var bodAcc     		= '';
+	var bodAcc     		= 0;
 
 	switch (codAcc) {
 		case 1:
@@ -257,7 +257,7 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 		''+
 		'						<div class="col-12 text-end">'+
 		'	    					<div class="modal-footer" style="text-align: right;">'+ bodyBot +
-		'		    					<button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>'+
+		'		    					<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>'+
 		'	    					</div>'+
 		'						</div>'+
 		'					</div>'+
@@ -385,7 +385,7 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 				''+
 				'						<div class="col-12 text-end">'+
 				'	    					<div class="modal-footer" style="text-align: right;">'+ bodyBot +
-				'		    					<button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>'+
+				'		    					<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>'+
 				'	    					</div>'+
 				'						</div>'+
 				'					</div>'+

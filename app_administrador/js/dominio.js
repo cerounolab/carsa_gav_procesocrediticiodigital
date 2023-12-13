@@ -236,7 +236,7 @@ function setDominio(codElem, codAcc) {
 			''+
 			'						<div class="col-12 text-end">'+
 			'	    					<div class="modal-footer" style="text-align: right;">'+ bodyBot +
-			'		    					<button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>'+
+			'		    					<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>'+
 			'	    					</div>'+
 			'						</div>'+
 			'				</form>'+
@@ -355,7 +355,7 @@ function setDominio(codElem, codAcc) {
 				''+
 				'						<div class="col-12 text-end">'+
 				'	    					<div class="modal-footer" style="text-align: right;">'+ bodyBot +
-				'		    					<button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>'+
+				'		    					<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>'+
 				'	    					</div>'+
 				'						</div>'+
 				'				</form>'+

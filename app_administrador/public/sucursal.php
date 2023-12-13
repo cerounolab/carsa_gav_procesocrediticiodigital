@@ -67,7 +67,7 @@
 																<th class="border-top-0">ORDEN</th>
 																<th class="border-top-0">ESTADO</th>
 																<th class="border-top-0">TIPO SUCURSAL</th>
-																<th class="border-top-0">COD. EMPRESA</th>
+																<th class="border-top-0">EMPRESA</th>
 																<th class="border-top-0">NOMBRE</th>
 																<th class="border-top-0">TELEFONO</th>
 																<th class="border-top-0">CELULAR</th>

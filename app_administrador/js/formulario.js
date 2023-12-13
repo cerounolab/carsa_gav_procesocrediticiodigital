@@ -43,7 +43,22 @@ $(document).ready(function() {
 		columns		: [
 			{ data				: 'formularioCodigo', name : 'formularioCodigo'},
 			{ data				: 'formularioOrden', name : 'formularioOrden'},
-			{ data				: 'tipoEstadoNombre', name : 'tipoEstadoNombre'},
+			{ render			:
+				function (data, type, full, meta) {
+					var rowEST = '';
+					if (full.tipoEstadoParametro == 1) {
+						rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
+					} else if (full.tipoEstadoParametro == 2){
+					 	rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
+					} else if (full.tipoEstadoParametro == 3){
+						rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
+					} else {
+						rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
+					}
+					
+					return rowEST;
+				}
+			},
 			{ data				: 'empresaNombre', name : 'empresaNombre'},
 			{ data				: 'formularioNombre', name : 'formularioNombre'},
 			{ data				: 'formularioObservacion', name : 'formularioObservacion'},
@@ -53,8 +68,13 @@ $(document).ready(function() {
 				function (data, type, full, meta) {
 					var btnDSP	= '<button onclick="setFormulario('+ full.formularioCodigo +', 2);" title="Ver" type="button" class="btn btn-primary btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-eye"></i></button>';
 					var btnUPD	= '<button onclick="setFormulario('+ full.formularioCodigo +', 3);" title="Editar" type="button" class="btn btn-success btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-edit"></i></button>';
-					var btnDLT	= '<button onclick="setFormulario('+ full.formularioCodigo +', 4);" title="Eliminar" type="button" class="btn btn-danger btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-eraser"></i></button>';
+					var btnDLT	= '<button onclick="setFormulario('+ full.formularioCodigo +', 4);" title="Anular" type="button" class="btn btn-danger btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-eraser"></i></button>';
 					var btnAUD	= '<button onclick="setFormulario('+ full.formularioCodigo +', 5);" title="Auditoria" type="button" class="btn btn-warning btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-user-secret"></i></button>';
+
+					if (full.tipoEstadoParametro != 1) {
+						btnUPD	= '';
+						btnDLT	= '';
+					} 
 
 					return (btnDSP + '&nbsp;' + btnUPD + '&nbsp;' + btnDLT + '&nbsp;');
 				}
@@ -77,6 +97,7 @@ function setFormulario(codElem, codAcc) {
 	var selEstado   = '';
 	var selEmpresa  = '';
 	var selTipSuc	= '';
+	var bodAcc		= 0;
 
 	switch (codAcc) {
 		case 1:
@@ -85,6 +106,7 @@ function setFormulario(codElem, codAcc) {
 			bodyMod = 'C';
 			bodyOnl = '';
 			bodyBot = '           <button type="submit" class="btn btn-info">Agregar</button>';
+			bodAcc	= 1;
 			break;
 
 		case 2:
@@ -93,6 +115,7 @@ function setFormulario(codElem, codAcc) {
 			bodyMod = 'R';
 			bodyOnl = 'disabled';
 			bodyBot = '';
+			bodAcc	= 1;
 			break;
 
 		case 3:
@@ -101,14 +124,17 @@ function setFormulario(codElem, codAcc) {
 			bodyMod = 'U';
 			bodyOnl = '';
 			bodyBot = '           <button type="submit" class="btn btn-success">Actualizar</button>';
+			bodAcc	= 1;
 			break;
 
 		case 4:
-			bodyTit = 'ELIMINAR';
+			bodyTit = 'Anular';
 			bodyCol = '#ff2924;';
-			bodyMod = 'D';
+			bodyMod = 'U';
 			bodyOnl = 'readonly';
-			bodyBot = '           <button type="submit" class="btn btn-danger">Eliminar</button>';
+			bodyBot = '           <button type="submit" class="btn btn-danger">Anular</button>';
+			bodAcc	= 2;
+
 			break;
 	
 		case 5:
@@ -117,6 +143,7 @@ function setFormulario(codElem, codAcc) {
 			bodyMod = 'A';
 			bodyOnl = 'readonly';
 			bodyBot = '';
+			bodAcc	= 1;
 			break;
 
 		default:
@@ -184,7 +211,7 @@ function setFormulario(codElem, codAcc) {
 			'               				    	</div>'+
 			'               					</div>'+
 			''+
-			'               					<div class="col-sm-12 col-md-6">'+
+			'               					<div class="col-sm-12 col-md-6" style="display:none">'+
 			'               					    <div class="form-group">'+
 			'               					        <label for="var05">Url</label>'+ 
 			'											<input id="var05" name="var05" value="" class="form-control" placeholder="Url" type="text" style="text-transform:lowercase; height:40px;" '+ bodyOnl +'>'+
@@ -200,16 +227,17 @@ function setFormulario(codElem, codAcc) {
 			'           				</div>'+
 			''+
 			'           				<div class="form-group">'+
-			'           				    <input class="form-control" type="hidden" id="workCodigo"	name="workCodigo"	value="'+ codElem +'"				required readonly>'+
-			'           				    <input class="form-control" type="hidden" id="workModo"		name="workModo"		value="'+ bodyMod +'"				required readonly>'+
-			'           				    <input class="form-control" type="hidden" id="workPage"		name="workPage"		value="public/formulario.php?"		required readonly>'+
-			'           				    <input class="form-control" type="hidden" id="workPrograma"	name="workPrograma"	value="formulario"		 			required readonly>'+
+			'           				    <input class="form-control" type="hidden" id="workCodigo"		name="workCodigo"		value="'+ codElem +'"				required readonly>'+
+			'           				    <input class="form-control" type="hidden" id="workModo"			name="workModo"			value="'+ bodyMod +'"				required readonly>'+
+			'           				    <input class="form-control" type="hidden" id="workPage"			name="workPage"			value="'+_parm04BASE+'"				required readonly>'+
+			'           				    <input class="form-control" type="hidden" id="workPrograma"		name="workPrograma"		value="formulario"		 			required readonly>'+
+			'           				    <input class="form-control" type="hidden" id="workAccion"		name="workAccion"		value="'+ bodAcc+'"					required readonly>'+
 			'           				</div>'+
 			'						</div>'+
 			''+
 			'						<div class="col-12 text-end">'+
 			'	    					<div class="modal-footer" style="text-align: right;">'+ bodyBot +
-			'		    					<button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>'+
+			'		    					<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>'+
 			'	    					</div>'+
 			'						</div>'+
 			'					</div>'+
@@ -294,7 +322,7 @@ function setFormulario(codElem, codAcc) {
 				'               				    	</div>'+
 				'               					</div>'+
 				''+
-				'               					<div class="col-sm-12 col-md-6">'+
+				'               					<div class="col-sm-12 col-md-6" style="display:none">'+
 				'               					    <div class="form-group">'+
 				'               					        <label for="var05">Url</label>'+ 
 				'											<input id="var05" name="var05" value="'+formularioUrl+'" class="form-control" placeholder="Url" type="text" style="text-transform:uppercase; height:40px;" '+ bodyOnl +'>'+
@@ -310,16 +338,17 @@ function setFormulario(codElem, codAcc) {
 				'           				</div>'+
 				''+
 				'           				<div class="form-group">'+
-				'           				    <input class="form-control" type="hidden" id="workCodigo"	name="workCodigo"	value="'+ codElem +'"				required readonly>'+
-				'           				    <input class="form-control" type="hidden" id="workModo"		name="workModo"		value="'+ bodyMod +'"				required readonly>'+
-				'           				    <input class="form-control" type="hidden" id="workPage"		name="workPage"		value="public/formulario.php?"		required readonly>'+
-				'           				    <input class="form-control" type="hidden" id="workPrograma"	name="workPrograma"	value="formulario"		 			required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="workCodigo"		name="workCodigo"		value="'+ codElem +'"				required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="workModo"			name="workModo"			value="'+ bodyMod +'"				required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="workPage"			name="workPage"			value="'+_parm04BASE+'"				required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="workPrograma"		name="workPrograma"		value="formulario"		 			required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="workAccion"		name="workAccion"		value="'+ bodAcc+'"					required readonly>'+
 				'           				</div>'+
 				'						</div>'+
 				''+
 				'						<div class="col-12 text-end">'+
 				'	    					<div class="modal-footer" style="text-align: right;">'+ bodyBot +
-				'		    					<button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>'+
+				'		    					<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>'+
 				'	    					</div>'+
 				'						</div>'+
 				'					</div>'+

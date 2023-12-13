@@ -24,6 +24,7 @@
 	$work02         = $_POST['workModo'];
 	$work03         = $_POST['workPage'];
 	$work04         = $_POST['workPrograma'];
+	$work05         = $_POST['workAccion'];
 	
 	$usu_03         = strtoupper($_SESSION['log_01']);
 	$log_03         = $_SESSION['log_03'];
@@ -32,7 +33,7 @@
     if (isset($val01) && isset($val03)) {
         $dataJSON = json_encode(
             array(
-				'tipo_accion_codigo'     		=> 1,
+				'tipo_accion_codigo'     		=> $work05,
 				'tipo_estado_parametro'			=> $val01,
 				'tipo_sucursal_parametro'		=> $val02,
 				'empresa_codigo'				=> $val03,
@@ -75,7 +76,7 @@
 	}
 
 	$result		= json_decode($result, true);
-	$msg		= str_replace("\n", ' ', $result['status']);
+	$msg		= str_replace("\n", ' ', $result['messageShort']);
 
 	header('Location: ../../'.$work03.'code='.$result['code'].'&msg='.$msg);
 

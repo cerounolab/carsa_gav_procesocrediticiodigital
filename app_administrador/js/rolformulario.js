@@ -93,7 +93,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 	var bodyMod     	= '';
 	var bodyOnl     	= '';
 	var bodyBot     	= '';
-	var bodAcc			= '';
+	var bodAcc			= 0;
 	var selEstado   	= '';
 	var selEmpresa  	= '';
 	var selRol			= '';
@@ -362,7 +362,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 		''+
 		'						<div class="col-12 text-end">'+
 		'	    					<div class="modal-footer" style="text-align: right;">'+ bodyBot +
-		'		    					<button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>'+
+		'		    					<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>'+
 		'	    					</div>'+
 		'						</div>'+
 		'					</div>'+
@@ -649,17 +649,17 @@ function setRolFormulario(codRol, codForm, codAcc) {
 				'           				</div>'+
 				''+
 				'           				<div class="form-group">'+
-				'           				    <input class="form-control" type="hidden" id="workCodigoRol"	name="workCodigoRol"	value="'+ codRol +'"					required readonly>'+
-				'           				    <input class="form-control" type="hidden" id="workCodigoForm"	name="workCodigoForm"	value="'+ codForm +'"					required readonly>'+
-				'           				    <input class="form-control" type="hidden" id="workModo"		name="workModo"				value="'+ bodyMod +'"					required readonly>'+
-				'           				    <input class="form-control" type="hidden" id="workPage"		name="workPage"				value="public/rolformulario.php?"		required readonly>'+
-				'           				    <input class="form-control" type="hidden" id="workPrograma"	name="workPrograma"			value="rolformulario"					required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="workCodigoRol"	name="workCodigoRol"		value="'+ codRol +'"					required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="workCodigoForm"	name="workCodigoForm"		value="'+ codForm +'"					required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="workModo"			name="workModo"				value="'+ bodyMod +'"					required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="workPage"			name="workPage"				value="public/rolformulario.php?"		required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="workPrograma"		name="workPrograma"			value="rolformulario"					required readonly>'+
 				'           				    <input class="form-control" type="hidden" id="workAccion"		name="workAccion"			value="'+ bodAcc+'"						required readonly>'+
 				'							</div>'+
 				''+
 				'						<div class="col-12 text-end">'+
 				'	    					<div class="modal-footer" style="text-align: right;">'+ bodyBot +
-				'		    					<button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>'+
+				'		    					<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>'+
 				'	    					</div>'+
 				'						</div>'+
 				'					</div>'+

@@ -84,7 +84,7 @@ $(document).ready(function() {
 				function (data, type, full, meta) {
 					var btnDSP	= '<button onclick="setEmpSucursal('+ full.sucursalCodigo +', 2);" title="Ver" type="button" class="btn btn-primary btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-eye"></i></button>';
 					var btnUPD	= '<button onclick="setEmpSucursal('+ full.sucursalCodigo +', 3);" title="Editar" type="button" class="btn btn-success btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-edit"></i></button>';
-					var btnDLT	= '<button onclick="setEmpSucursal('+ full.sucursalCodigo +', 4);" title="Eliminar" type="button" class="btn btn-danger btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-eraser"></i></button>';
+					var btnDLT	= '<button onclick="setEmpSucursal('+ full.sucursalCodigo +', 4);" title="Anular" type="button" class="btn btn-danger btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-eraser"></i></button>';
 					var btnAUD	= '<button onclick="setEmpSucursal('+ full.sucursalCodigo +', 5);" title="Auditoria" type="button" class="btn btn-warning btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-user-secret"></i></button>';
 					
 					if (full.tipoEstadoParametro != 1) {
@@ -115,6 +115,7 @@ function setEmpSucursal(codElem, codAcc) {
 	var selEstado   = '';
 	var selEmpresa  = '';
 	var selTipSuc	= '';
+	var bodAcc		= 0;
 
 	switch (codAcc) {
 		case 1:
@@ -123,6 +124,7 @@ function setEmpSucursal(codElem, codAcc) {
 			bodyMod = 'C';
 			bodyOnl = '';
 			bodyBot = '           <button type="submit" class="btn btn-info">Agregar</button>';
+			bodAcc	= 1;
 			break;
 
 		case 2:
@@ -131,6 +133,7 @@ function setEmpSucursal(codElem, codAcc) {
 			bodyMod = 'R';
 			bodyOnl = 'disabled';
 			bodyBot = '';
+			bodAcc	= 1;
 			break;
 
 		case 3:
@@ -139,14 +142,17 @@ function setEmpSucursal(codElem, codAcc) {
 			bodyMod = 'U';
 			bodyOnl = '';
 			bodyBot = '           <button type="submit" class="btn btn-success">Actualizar</button>';
+			bodAcc	= 1;
 			break;
 
 		case 4:
-			bodyTit = 'ELIMINAR';
+			bodyTit = 'ANULAR';
 			bodyCol = '#ff2924;';
-			bodyMod = 'D';
+			bodyMod = 'U';
 			bodyOnl = 'readonly';
-			bodyBot = '           <button type="submit" class="btn btn-danger">Eliminar</button>';
+			bodyBot = '           <button type="submit" class="btn btn-danger">Anular</button>';
+			bodAcc	= 2;
+
 			break;
 	
 		case 5:
@@ -155,6 +161,7 @@ function setEmpSucursal(codElem, codAcc) {
 			bodyMod = 'A';
 			bodyOnl = 'readonly';
 			bodyBot = '';
+			bodAcc	= 1;
 			break;
 
 		default:
@@ -162,7 +169,6 @@ function setEmpSucursal(codElem, codAcc) {
 	}
 
 	if (codAcc == 1) {
-
 		xJSON1.forEach(element1 => {
 			if (element1.tipoEstadoParametro == 1) {
 				selEstado = selEstado + '                               			<option value="'+ element1.tipoParametro +'">'+ element1.tipoNombre +'</option>';
@@ -283,12 +289,13 @@ function setEmpSucursal(codElem, codAcc) {
 			'           				    <input class="form-control" type="hidden" id="workModo"		name="workModo"		value="'+ bodyMod +'"		required readonly>'+
 			'           				    <input class="form-control" type="hidden" id="workPage"		name="workPage"		value="'+ _parm04BASE +'"	required readonly>'+
 			'           				    <input class="form-control" type="hidden" id="workPrograma"	name="workPrograma"	value="sucursal" 			required readonly>'+
+			'           				    <input class="form-control" type="hidden" id="workAccion"	name="workAccion"	value="'+ bodAcc+'"			required readonly>'+
 			'           				</div>'+
 			'						</div>'+
 			''+
 			'						<div class="col-12 text-end">'+
 			'	    					<div class="modal-footer" style="text-align: right;">'+ bodyBot +
-			'		    					<button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>'+
+			'		    					<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>'+
 			'	    					</div>'+
 			'						</div>'+
 			'					</div>'+
@@ -441,12 +448,13 @@ function setEmpSucursal(codElem, codAcc) {
 				'           				    <input class="form-control" type="hidden" id="workModo"		name="workModo"		value="'+ bodyMod +'"		required readonly>'+
 				'           				    <input class="form-control" type="hidden" id="workPage"		name="workPage"		value="'+ _parm04BASE +'"	required readonly>'+
 				'           				    <input class="form-control" type="hidden" id="workPrograma"	name="workPrograma"	value="sucursal"		 	required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="workAccion"	name="workAccion"	value="'+ bodAcc+'"			required readonly>'+
 				'           				</div>'+
 				'						</div>'+
 				''+
 				'						<div class="col-12 text-end">'+
 				'	    					<div class="modal-footer" style="text-align: right;">'+ bodyBot +
-				'		    					<button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>'+
+				'		    					<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>'+
 				'	    					</div>'+
 				'						</div>'+
 				'					</div>'+

@@ -100,7 +100,7 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 	var bodyMod     	= '';
 	var bodyOnl     	= '';
 	var bodyBot     	= '';
-	var bodAcc			= '';
+	var bodAcc			= 0;
 	var selEstado   	= '';
 	var selEmpresa  	= '';
 	var selRol			= '';
@@ -277,7 +277,7 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 		''+
 		'						<div class="col-12 text-end">'+
 		'	    					<div class="modal-footer" style="text-align: right;">'+ bodyBot +
-		'		    					<button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>'+
+		'		    					<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>'+
 		'	    					</div>'+
 		'						</div>'+
 		'					</div>'+
@@ -422,7 +422,7 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 				''+
 				'						<div class="col-12 text-end">'+
 				'	    					<div class="modal-footer" style="text-align: right;">'+ bodyBot +
-				'		    					<button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>'+
+				'		    					<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>'+
 				'	    					</div>'+
 				'						</div>'+
 				'					</div>'+
