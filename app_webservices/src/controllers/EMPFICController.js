@@ -183,7 +183,7 @@ const postEmpresa   = (apiREQ, apiRES) => {
     let _EMPFICAPR  = (apiREQ.body.auditoria_programa != undefined && apiREQ.body.auditoria_programa != null && apiREQ.body.auditoria_programa != '') ? "'"+apiREQ.body.auditoria_programa.trim()+"'" : false; 
     let _EMPFICAIN  = (apiREQ.body.auditoria_incidencia != undefined && apiREQ.body.auditoria_incidencia != null && apiREQ.body.auditoria_incidencia != '') ? "'"+apiREQ.body.auditoria_incidencia.trim()+"'" : null;
   
-    if (_EMPFICEST && _EMPFICTRC && _EMPFICTAC && _EMPFICNOM && _EMPFICRUC && _EMPFICCEM && _EMPFICCUS && _EMPFICCIP && _EMPFICCPR && _EMPFICAEM && _EMPFICAUS && _EMPFICAIP && _EMPFICAPR) {
+    if (_EMPFICEST && _EMPFICTRC && _EMPFICTAC && _EMPFICNOM && _EMPFICRUC && _EMPFICCOR && _EMPFICCEM && _EMPFICCUS && _EMPFICCIP && _EMPFICCPR && _EMPFICAEM && _EMPFICAUS && _EMPFICAIP && _EMPFICAPR) {
 
         (async () => {
             xDATA = await insertEMPFIC(_EMPFICEST,
@@ -273,7 +273,7 @@ const putEmpresa    = (apiREQ, apiRES) => {
     let _EMPFICAPR  = (apiREQ.body.auditoria_programa != undefined && apiREQ.body.auditoria_programa != null && apiREQ.body.auditoria_programa != '') ? "'"+apiREQ.body.auditoria_programa.trim().toUpperCase()+"'" : false; 
     let _EMPFICAIN  = (apiREQ.body.auditoria_incidencia != undefined && apiREQ.body.auditoria_incidencia != null && apiREQ.body.auditoria_incidencia != '') ? "'"+apiREQ.body.auditoria_incidencia.trim()+"'" : null;
   
-    if (_ACCION && _EMPFICCOD && _EMPFICEST && _EMPFICTRC && _EMPFICTAC && _EMPFICNOM && _EMPFICRUC && _EMPFICCEM && _EMPFICCUS && _EMPFICCIP && _EMPFICCPR && _EMPFICAEM && _EMPFICAUS && _EMPFICAIP && _EMPFICAPR) {
+    if (_ACCION && _EMPFICCOD && _EMPFICEST && _EMPFICTRC && _EMPFICTAC && _EMPFICNOM && _EMPFICRUC && _EMPFICCOR && _EMPFICCEM && _EMPFICCUS && _EMPFICCIP && _EMPFICCPR && _EMPFICAEM && _EMPFICAUS && _EMPFICAIP && _EMPFICAPR) {
 
         (async () => {
             xDATA = await updateEMPFIC(_ACCION,
@@ -361,7 +361,7 @@ const deleteEmpresa = (apiREQ, apiRES) => {
     let _EMPFICAPR  = (apiREQ.body.auditoria_programa != undefined && apiREQ.body.auditoria_programa != null && apiREQ.body.auditoria_programa != '') ? "'"+apiREQ.body.auditoria_programa.trim().toUpperCase()+"'" : false; 
     let _EMPFICAIN  = (apiREQ.body.auditoria_incidencia != undefined && apiREQ.body.auditoria_incidencia != null && apiREQ.body.auditoria_incidencia != '') ? "'"+apiREQ.body.auditoria_incidencia.trim()+"'" : null;
   
-    if (_EMPFICCOD && _EMPFICEST && _EMPFICTRC && _EMPFICTAC && _EMPFICNOM && _EMPFICRUC && _EMPFICCEM && _EMPFICCUS && _EMPFICCIP && _EMPFICCPR && _EMPFICAEM && _EMPFICAUS && _EMPFICAIP && _EMPFICAPR) {
+    if (_EMPFICCOD && _EMPFICEST && _EMPFICTRC && _EMPFICTAC && _EMPFICNOM && _EMPFICRUC && _EMPFICCOR && _EMPFICCEM && _EMPFICCUS && _EMPFICCIP && _EMPFICCPR && _EMPFICAEM && _EMPFICAUS && _EMPFICAIP && _EMPFICAPR) {
 
         (async () => {
             xDATA = await deleteEMPFIC(_EMPFICCOD);
