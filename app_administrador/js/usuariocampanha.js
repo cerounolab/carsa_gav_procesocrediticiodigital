@@ -8,7 +8,7 @@ $(document).ready(function() {
 		paging		: true,
 		lengthChange: true,
 		info		: true,
-		order: [[1, "asc"]],
+		order: [[7, "desc"]],
 		orderCellsTop: true,
 		fixedHeader	: true,
 		language	: {
@@ -32,12 +32,13 @@ $(document).ready(function() {
 			{ targets			: [0],	visible : false,searchable : true,	orderData : [0, 0] },
 			{ targets			: [1],	visible : true,	searchable : true,	orderData : [1, 0] },
 			{ targets			: [2],	visible : true,	searchable : true,	orderData : [2, 0] },
-			{ targets			: [3],	visible : true, searchable : false,	orderData : [3, 0] },
+			{ targets			: [3],	visible : true, searchable : true,	orderData : [3, 0] },
 			{ targets			: [4],	visible : true,	searchable : true,	orderData : [4, 0] },
-			{ targets			: [5],	visible : true, searchable : true,	orderData : [5, 0] },
-			{ targets			: [6],	visible : false,searchable : true,	orderData : [6, 0] },
-			{ targets			: [7],	visible : false,searchable : false,	orderData : [7, 0] },
-			{ targets			: [8],	visible : true ,searchable : false,	orderData : [8, 0] }
+			{ targets			: [5],	visible : false,searchable : true,	orderData : [5, 0] },
+			{ targets			: [6],	visible : true, searchable : true,	orderData : [6, 0] },
+			{ targets			: [7],	visible : true, searchable : true,	orderData : [7, 0] },
+			{ targets			: [8],	visible : true ,searchable : true,	orderData : [8, 0] },
+			{ targets			: [9],	visible : true ,searchable : true,	orderData : [9, 0] }
 		],
 		
 		columns		: [
@@ -63,6 +64,7 @@ $(document).ready(function() {
 			{ data				: 'usuarioUsuario', name : 'usuarioUsuario'},
 			{ data				: 'usuarioCampanhaObservacion', name : 'usuarioCampanhaObservacion'},
 			{ data				: 'auditoriaUsuario', name : 'auditoriaUsuario'},
+			{ data				: 'auditoriaFechaHora', name : 'auditoriaFechaHora'},
 			{ data				: 'auditoriaIp', name : 'auditoriaIp'},
             { render			: 
 				function (data, type, full, meta) {
@@ -206,7 +208,8 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 		'       					            <div class="form-group">'+
 		'       					                <label for="var03">Empresa</label>'+
 		`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresaCampanha('var04','var03', 1, 1); selectEmpresaUsuarioListado('var05','var03', 1, 1);" style="width:100%; height:40px;">`+
-		'       					                    <optgroup label="Seleccionar">'+ selEmpresa +
+		'       					                    <optgroup label="Seleccionar">'+
+		'													<option value="0" disabled selected> SELECCIONAR </option>' + selEmpresa +
 		'       					                    </optgroup>'+
 		'       					                </select>'+
 		'       					            </div>'+

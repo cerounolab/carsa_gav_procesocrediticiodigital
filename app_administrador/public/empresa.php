@@ -82,11 +82,10 @@
 																<th class="border-top-0">UBICACI&Oacute;N</th>
 																<th class="border-top-0">DIRECCI&Oacute;N</th>
 																<th class="border-top-0">EQUIVALENCIA</th>
-																<th class="border-top-0">OBSERVACI&Oacute;N</th>
-																<th class="border-top-0">PROGRAMA</th>
-																<th class="border-top-0">USUARIO</th>
-																<th class="border-top-0">FECHA HORA</th>
-																<th class="border-top-0">IP</th>
+																<th class="border-top-0">COMENTARIO</th>
+																<th class="border-top-0">AUD. USUARIO</th>
+																<th class="border-top-0">AUD. FECHA/HORA</th>
+																<th class="border-top-0">AUD. IP</th>
 																<th class="border-top-0" style="width:200px;">ACCI&Oacute;N</th>
 															</tr>
 														</thead>

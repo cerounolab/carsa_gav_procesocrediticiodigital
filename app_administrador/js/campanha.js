@@ -8,7 +8,7 @@ $(document).ready(function() {
 		paging		: true,
 		lengthChange: true,
 		info		: true,
-		order: [[1, "asc"]],
+		order: [[10, "desc"]],
 		orderCellsTop: true,
 		fixedHeader	: true,
 		language	: {
@@ -30,17 +30,18 @@ $(document).ready(function() {
         data		: dataJSON,
 		columnDefs	: [
 			{ targets			: [0],	visible : false,searchable : true,	orderData : [0, 0] },
-			{ targets			: [1],	visible : false,searchable : false,	orderData : [1, 0] },
+			{ targets			: [1],	visible : false,searchable : true,	orderData : [1, 0] },
 			{ targets			: [2],	visible : true,	searchable : true,	orderData : [2, 0] },
-			{ targets			: [3],	visible : true, searchable : false,	orderData : [3, 0] },
+			{ targets			: [3],	visible : true, searchable : true,	orderData : [3, 0] },
 			{ targets			: [4],	visible : true,	searchable : true,	orderData : [4, 0] },
 			{ targets			: [5],	visible : true, searchable : true,	orderData : [5, 0] },
 			{ targets			: [6],	visible : true,	searchable : true,	orderData : [6, 0] },
 			{ targets			: [7],	visible : true, searchable : true,	orderData : [7, 0] },
-			{ targets			: [8],	visible : false,searchable : false,	orderData : [8, 0] },
-			{ targets			: [9],	visible : false,searchable : false,	orderData : [9, 0] },
-			{ targets			: [10],	visible : false,searchable : false,	orderData : [10, 0] },
-			{ targets			: [11],	visible : true, searchable : false,	orderData : [11, 0] }
+			{ targets			: [8],	visible : false,searchable : true,	orderData : [8, 0] },
+			{ targets			: [9],	visible : true,	searchable : true,	orderData : [9, 0] },
+			{ targets			: [10],	visible : true,	searchable : true,	orderData : [10, 0] },
+			{ targets			: [11],	visible : true, searchable : true,	orderData : [11, 0] },
+			{ targets			: [12],	visible : true, searchable : true,	orderData : [12, 0] }
 
 		],
 		
@@ -63,13 +64,14 @@ $(document).ready(function() {
 					return rowEST;
 				}
 			},
-			{ data				: 'tipoCampanhaNombre', name : 'tipoCampanhaNombre'},
 			{ data				: 'empresaNombre', name : 'empresaNombre'},
+			{ data				: 'tipoCampanhaNombre', name : 'tipoCampanhaNombre'},
 			{ data				: 'campanhaNombre', name : 'campanhaNombre'},
 			{ data				: 'campanhaFechaDesde2', name : 'campanhaFechaDesde2'},
 			{ data				: 'campanhaFechaHasta2', name : 'campanhaFechaHasta2'},
 			{ data				: 'campanhaObservacion', name : 'campanhaObservacion'},
 			{ data				: 'auditoriaUsuario', name : 'auditoriaUsuario'},
+			{ data				: 'auditoriaFechaHora', name : 'auditoriaFechaHora'},
 			{ data				: 'auditoriaIp', name : 'auditoriaIp'},
             { render			: 
 				function (data, type, full, meta) {

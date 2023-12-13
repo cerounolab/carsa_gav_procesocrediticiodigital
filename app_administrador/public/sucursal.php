@@ -71,18 +71,18 @@
 																<th class="border-top-0">C&Oacute;DIGO</th>
 																<th class="border-top-0">ORDEN</th>
 																<th class="border-top-0">ESTADO</th>
-																<th class="border-top-0">TIPO SUCURSAL</th>
 																<th class="border-top-0">EMPRESA</th>
+																<th class="border-top-0">TIPO SUCURSAL</th>
 																<th class="border-top-0">NOMBRE</th>
 																<th class="border-top-0">TELEFONO</th>
 																<th class="border-top-0">CELULAR</th>
 																<th class="border-top-0">CORREO</th>
 																<th class="border-top-0">UBICACI&Oacute;N</th>
 																<th class="border-top-0">DIRECCI&Oacute;N</th>
-																<th class="border-top-0">OBSERVACI&Oacute;N</th>
-																<th class="border-top-0">USUARIO</th>
-																<th class="border-top-0">PROGRAMA</th>
-																<th class="border-top-0">IP</th>
+																<th class="border-top-0">COMENTARIO</th>
+																<th class="border-top-0">AUD. USUARIO</th>
+																<th class="border-top-0">AUD. FECHA/HORA</th>
+																<th class="border-top-0">AUD. IP</th>
 																<th class="border-top-0" style="width:200px;">ACCI&Oacute;N</th>
 															</tr>
 														</thead>
