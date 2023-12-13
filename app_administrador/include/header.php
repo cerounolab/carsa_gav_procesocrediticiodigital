@@ -40,6 +40,10 @@
 				border-color:#fff5e8
 			}
 
+			.modal-header .modal-title {
+				color: #FFFFFF;
+			}
+
 			@media (min-width: 576px) {
 				.modal-dialog {
 					max-width: 900px;

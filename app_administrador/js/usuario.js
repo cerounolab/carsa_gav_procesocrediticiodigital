@@ -84,13 +84,15 @@ $(document).ready(function() {
 					var btnUPD	= '<button onclick="setUsuario('+ full.usuarioCodigo +', 3);" title="Editar" type="button" class="btn btn-success btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-edit"></i></button>';
 					var btnDLT	= '<button onclick="setUsuario('+ full.usuarioCodigo +', 4);" title="Anular" type="button" class="btn btn-danger btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-eraser"></i></button>';
 					var btnAUD	= '<button onclick="setUsuario('+ full.usuarioCodigo +', 5);" title="Auditoria" type="button" class="btn btn-warning btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-user-secret"></i></button>';
+					var btnPAS	= '<button onclick="setUsuario('+ full.usuarioCodigo +', 6);" title="Cambio de Contraseña" type="button" class="btn btn-info btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-user-secret"></i></button>';
 
 					if (full.tipoEstadoParametro != 1) {
 						btnUPD	= '';
 						btnDLT	= '';
+						btnPAS	= '';
 					} 
 
-					return (btnDSP + '&nbsp;' + btnUPD + '&nbsp;' + btnDLT + '&nbsp;');
+					return (btnDSP + '&nbsp;' + btnUPD + '&nbsp;' + btnDLT + '&nbsp;' + btnPAS + '&nbsp;');
 				}
 			},
         ],
@@ -120,16 +122,16 @@ function setUsuario(codElem, codAcc) {
 	switch (codAcc) {
 		case 1:
 			bodyTit = 'NUEVO';
-			bodyCol = '#2b5cfd;';
+			bodyCol = '#be9027;';
 			bodyMod = 'C';
 			bodyOnl = '';
-			bodyBot = '           <button type="submit" class="btn btn-info">Agregar</button>';
+			bodyBot = '           <button type="submit" class="btn btn-primary">Agregar</button>';
 			bodAcc	= 1;
 			break;
 
 		case 2:
 			bodyTit = 'VER';
-			bodyCol = '#6929d5;';
+			bodyCol = '#be9027;';
 			bodyMod = 'R';
 			bodyOnl = 'disabled';
 			bodyBot = '';
@@ -138,30 +140,39 @@ function setUsuario(codElem, codAcc) {
 
 		case 3:
 			bodyTit = 'EDITAR';
-			bodyCol = '#007979;';
+			bodyCol = '#be9027;';
 			bodyMod = 'U';
 			bodyOnl = '';
-			bodyBot = '           <button type="submit" class="btn btn-success">Actualizar</button>';
+			bodyBot = '           <button type="submit" class="btn btn-primary">Actualizar</button>';
 			bodAcc	= 1;
 			break;
 
 		case 4:
 			bodyTit = 'ANULAR';
-			bodyCol = '#ff2924;';
+			bodyCol = '#be9027;';
 			bodyMod = 'U';
 			bodyOnl = 'readonly';
-			bodyBot = '           <button type="submit" class="btn btn-danger">Anular</button>';
+			bodyBot = '           <button type="submit" class="btn btn-primary">Anular</button>';
 			bodAcc	= 2;
 
 			break;
 	
 		case 5:
 			bodyTit = 'AUDITORIA';
-			bodyCol = '#d38109;';
+			bodyCol = '#be9027;';
 			bodyMod = 'A';
 			bodyOnl = 'readonly';
 			bodyBot = '';
 			bodAcc	= 1;
+			break;
+
+		case 6:
+			bodyTit = 'CAMBIO DE CONTRASEÑA';
+			bodyCol = '#be9027;';
+			bodyMod = 'U';
+			bodyOnl = 'readonly';
+			bodyBot = '           <button type="submit" class="btn btn-primary">Actualizar</button>';
+			bodAcc	= 3;
 			break;
 
 		default:
@@ -311,11 +322,15 @@ function setUsuario(codElem, codAcc) {
 			'           				</div>'+
 			'						</div>'+
 			''+
-			'						<div class="col-12 text-end">'+
-			'	    					<div class="modal-footer" style="text-align: right;">'+ bodyBot +
-			'		    					<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>'+
-			'	    					</div>'+
-			'						</div>'+
+			'	    				<div class="modal-footer" style="text-align:right; width:100%;">'+ 
+			'							<div class="row">'+
+			'       						<div class="col-sm-12">'+
+			'           						<div class="form-group">'+ bodyBot +
+			'		    							<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>'+
+			'           						</div>'+
+			'           					</div>'+
+			'           				</div>'+
+			'	    				</div>'+
 			'					</div>'+
 			'				</form>'+
 			'			</div>';
@@ -495,11 +510,149 @@ function setUsuario(codElem, codAcc) {
 				'           				</div>'+
 				'						</div>'+
 				''+
-				'						<div class="col-12 text-end">'+
-				'	    					<div class="modal-footer" style="text-align: right;">'+ bodyBot +
-				'		    					<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>'+
-				'	    					</div>'+
+				'	    				<div class="modal-footer" style="text-align:right; width:100%;">'+ 
+				'							<div class="row">'+
+				'       						<div class="col-sm-12">'+
+				'           						<div class="form-group">'+ bodyBot +
+				'		    							<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>'+
+				'           						</div>'+
+				'           					</div>'+
+				'           				</div>'+
+				'	    				</div>'+
+				'					</div>'+
+				'				</form>'+
+				'			</div>';
+			}
+		});	
+	} else if (codAcc == 6) {
+		xJSON       = getUsuarioId(codElem);
+
+		xJSON.forEach(element => {
+			if (element.usuarioCodigo == codElem) {
+
+				xJSON1.forEach(element1 => {
+					if (element1.tipoEstadoParametro == 1) {
+						if (element1.tipoParametro == element.tipoEstadoParametro) {
+							selEstado = selEstado + '            			<option value="'+ element1.tipoParametro +'" selected>'+ element1.tipoNombre +'</option>';
+						}
+					}
+				});
+					
+				xJSON3.forEach(element1 => {
+					if (element1.tipoEstadoParametro == 1) {
+						if (element1.empresaCodigo == element.empresaCodigo) {
+							selEmpresa = selEmpresa + '            			<option value="'+ element1.empresaCodigo +'" selected>'+ element1.empresaNombre +'</option>';
+						}
+					}
+				});
+
+				xJSON4.forEach(element1 => {
+					if (element1.tipoEstadoParametro == 1) {
+						if (element1.sucursalCodigo == element.sucursalCodigo) {
+							selTipSuc = selTipSuc + '            			<option value="'+ element1.sucursalCodigo +'" selected>'+ element1.sucursalNombre +'</option>';
+						}
+					}
+				});
+
+				var usuarioOrden		= (element.usuarioOrden == null) ? '' : element.usuarioOrden;
+				var usuarioDocumento	= (element.usuarioDocumento == null) ? '' : element.usuarioDocumento;
+				var usuarioNombre		= (element.usuarioNombre == null) ? '' : element.usuarioNombre;
+				var usuarioApellido		= (element.usuarioApellido == null) ? '' : element.usuarioApellido;
+				var usuarioUsuario		= (element.usuarioUsuario == null) ? '' : element.usuarioUsuario;
+				var usuarioPassword		= (element.usuarioPassword == null) ? '' : element.usuarioPassword;
+				var usuarioCelular		= (element.usuarioCelular == null) ? '' : element.usuarioCelular;
+				var usuarioEmail		= (element.usuarioEmail == null) ? '' : element.usuarioEmail;
+				var usuarioObservacion	= (element.usuarioObservacion == null) ? '' : element.usuarioObservacion;
+				codSuc					= (element.sucursalCodigo == null) ? 0 : element.sucursalCodigo;
+
+				usuarioUsuario			= usuarioUsuario.substr(4);
+
+				codEmpr	= element.empresaCodigo;
+
+				html = 
+				'				<div class="modal-content">'+
+				'					<form class="needs-validation" novalidate method="post" action="../class/crud/usuario.php">'+
+				'	    				<div class="modal-header" style="color:#ffffff; background:'+ bodyCol +'">'+
+				'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+
+				'							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>'+
 				'						</div>'+
+				''+
+				'	    					<div class="modal-body" >'+
+				'       					    <div class="row">'+
+				'               					<div class="col-sm-12 col-md-4">'+
+				'               				    	<div class="form-group">'+
+				'               				        	<label for="var05">Documento</label>'+
+				`               				        	<input id="var05" name="var05" value="${usuarioDocumento}" onblur="setRecuperoDatos('var05', 'var03', 'var06', 'var07', 'var08', 'var09', 'var010', 'var011');" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="" required  ${bodyOnl}>`+
+				'               				    	</div>'+
+				'               					</div>'+
+				''+
+				'               					<div class="col-sm-12 col-md-4">'+
+				'               				    	<div class="form-group">'+
+				'               				        	<label for="var06">Nombre</label>'+
+				'               				        	<input id="var06" name="var06" value="'+ usuarioNombre +'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="" '+ bodyOnl +'>'+
+				'               				    	</div>'+
+				'               					</div>'+
+				''+
+				'               					<div class="col-sm-12 col-md-4">'+
+				'               				    	<div class="form-group">'+
+				'               				        	<label for="var07">Apellido</label>'+
+				'               				        	<input id="var07" name="var07" value="'+ usuarioApellido +'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="" '+ bodyOnl +'>'+
+				'               				    	</div>'+
+				'               					</div>'+
+				''+
+				'               					<div class="col-sm-12 col-md-4">'+
+				'               					    <div class="form-group">'+
+				'               					        <label for="var08_1">Cod</label>'+
+				'               					        <input id="var08_1" name="var08_1" value="" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="" readonly>'+
+				'               					    </div>'+
+				'               					</div>'+
+				''+
+				'               					<div class="col-sm-12 col-md-4">'+
+				'               					    <div class="form-group">'+
+				'               					        <label for="var08">Usuario</label>'+
+				'               					        <input id="var08" name="var08" value="'+ usuarioUsuario +'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="" '+ bodyOnl +'>'+
+				'               					    </div>'+
+				'               					</div>'+
+				''+
+				'               					<div class="col-sm-12 col-md-4">'+
+				'               					    <div class="form-group">'+
+				'               					        <label for="var09">Password</label>'+
+				'											<input id="var09" name="var09" value="" class="form-control" type="password" style="height:40px;">'+
+				'               					    </div>'+
+				'               					</div>'+
+				''+
+				'               					<div class="col-sm-12">'+
+				'               					    <div class="form-group">'+
+				'               					        <label for="var012">OBSERVACIÓN</label>'+
+				'               					        <textarea id="var012" name="var012" value="" class="form-control" rows="5" style="text-transform:uppercase;" '+ bodyOnl +'>'+ usuarioObservacion +'</textarea>'+
+				'               					    </div>'+
+				'               					</div>'+
+				'           				</div>'+
+				''+
+				'           				<div class="form-group">'+
+				'           				    <input class="form-control" type="hidden" id="workCodigo"	name="workCodigo"	value="'+ codElem +'"		required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="workModo"		name="workModo"		value="'+ bodyMod +'"		required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="workPage"		name="workPage"		value="'+_parm04BASE+'"		required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="workPrograma"	name="workPrograma"	value="usuario"		 		required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="workAccion"	name="workAccion"	value="'+ bodAcc+'"			required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="var01"		name="var01"		value="1"					required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="var02"		name="var02"		value="'+ usuarioOrden+'"	required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="var03"		name="var03"		value="'+ codEmpr+'"		required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="var04"		name="var04"		value="'+ codSuc+'"			required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="var010"		name="var010"		value="'+ usuarioEmail+'"	required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="var011"		name="var011"		value="'+ usuarioCelular+'"	required readonly>'+
+				'           				</div>'+
+				'						</div>'+
+				''+
+				'	    				<div class="modal-footer" style="text-align:right; width:100%;">'+ 
+				'							<div class="row">'+
+				'       						<div class="col-sm-12">'+
+				'           						<div class="form-group">'+ bodyBot +
+				'		    							<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>'+
+				'           						</div>'+
+				'           					</div>'+
+				'           				</div>'+
+				'	    				</div>'+
 				'					</div>'+
 				'				</form>'+
 				'			</div>';
@@ -510,11 +663,12 @@ function setUsuario(codElem, codAcc) {
 	$("#modal-content").empty();
 	$("#modal-content").append(html);
 
-	if (codAcc > 1) {
+	if (codAcc > 1 && codAcc < 6) {
 		selectEmpresaSuc('var04','var03', 1, codSuc);
 		setUsu('var03', 'var08_1');
+	} else if (codAcc == 6) {
+		setUsu('var03', 'var08_1');
 	}
-	
 }
 
 function setRecuperoDatos(parm01, parm02, parm03, parm04, parm05, parm06,  parm07, parm08) {
