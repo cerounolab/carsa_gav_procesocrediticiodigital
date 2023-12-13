@@ -29,7 +29,8 @@
 	$usu_03         = strtoupper($_SESSION['log_01']);
 	$log_03         = $_SESSION['log_03'];
 	$usu_06         = $_SESSION['empresaCodigo'];
-	
+	$val01			= ($work05 == 1) ? $val01 : 3;
+
     if (isset($val01) && isset($val03)) {
         $dataJSON = json_encode(
             array(

@@ -76,6 +76,18 @@ $(document).ready(function() {
 					var btnDLT	= '<button onclick="setUsuarioFlujo('+ full.rolSubordinadoCodigo +', '+ full.usuarioSubordinadoCodigo +', '+ full.rolSuperiorCodigo +', '+ full.usuarioSuperiorCodigo +', '+ full.empresaCodigo +', 4);" title="Anular" type="button" class="btn btn-danger btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-eraser"></i></button>';
 					var btnAUD	= '<button onclick="setUsuarioFlujo('+ full.rolSubordinadoCodigo +', '+ full.usuarioSubordinadoCodigo +', '+ full.rolSuperiorCodigo +', '+ full.usuarioSuperiorCodigo +', '+ full.empresaCodigo +', 5);" title="Auditoria" type="button" class="btn btn-warning btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-user-secret"></i></button>';
 
+					if (_parm00DSP == 'N') {
+						btnDSP = '';
+					}
+
+					if (_parm00UPD == 'N') {
+						btnUPD = '';
+					}
+					
+					if (_parm00DLT == 'N') {
+						btnDLT = '';
+					}
+
 					if (full.tipoEstadoParametro != 1) {
 						btnUPD	= '';
 						btnDLT	= '';
