@@ -782,20 +782,24 @@ function geUsuarioUsu(codElem){
     return xDATA;
 }
 
-function getUsuarioEmp(codEmp, codRol){
+function getUsuarioEmp(codEmp, codRol, codEst){
     localStorage.removeItem('usuarioEmpresaJSON');
 
     if (localStorage.getItem('usuarioEmpresaJSON') === null){
         getJSON('usuarioEmpresaJSON', 'usuariorol/codigorol/'+ codRol +'/empresa/' + codEmp);
     }
-    var xJSON = [];
 
+    var xJSON = [];
     var xJSON = JSON.parse(localStorage.getItem('usuarioEmpresaJSON'));
     var xDATA = [];
 
     if (xJSON['code'] == 200) {
         xJSON['data'].forEach(element => {
-            xDATA.push(element);
+            if (codEst == 0) {
+                xDATA.push(element);
+            } else if (element.tipoEstadoParametro == codEst){
+                xDATA.push(element);
+            }
         });
     }
 
@@ -841,7 +845,7 @@ function getRolId(codElem){
     return xDATA;
 }
 
-function getRolEmp(codElem){
+function getRolEmp(codElem, codEst){
     localStorage.removeItem('rolEmpresaJSON');
 
     if (localStorage.getItem('rolEmpresaJSON') === null){
@@ -854,7 +858,11 @@ function getRolEmp(codElem){
  
     if (xJSON['code'] == 200) {
         xJSON['data'].forEach(element => {
-            xDATA.push(element);
+            if (codEst == 0) {
+                xDATA.push(element);
+            } else if (element.tipoEstadoParametro == codEst){
+                xDATA.push(element);
+            }
         });
     }
 
