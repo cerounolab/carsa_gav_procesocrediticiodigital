@@ -393,9 +393,9 @@ const postUsuario   = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true); 
-
-            return apiRES.status(_code).json(xJSON);
+            xJSON   = await jsonBody(_code, 'Error', 'postUsuario', 'Error: Verifique algún campo esta vacío', null, 0, 0, 0, 0, []);
+            xJSON   = camelcaseKeys(xJSON, {deep: true});
+            return apiRES.status(200).json(xJSON);
         })();
     
     }       
@@ -489,9 +489,9 @@ const postUsuarioLogin   = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true); 
-
-            return apiRES.status(_code).json(xJSON);
+            xJSON   = await jsonBody(_code, 'Error', 'postUsuarioLogin', 'Error: Verifique algún campo esta vacío', null, 0, 0, 0, 0, []);
+            xJSON   = camelcaseKeys(xJSON, {deep: true});
+            return apiRES.status(200).json(xJSON);
         })();
     
     }       
@@ -578,9 +578,9 @@ const putUsuario    = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true); 
-
-            return apiRES.status(_code).json(xJSON);
+            xJSON   = await jsonBody(_code, 'Error', 'putUsuario', 'Error: Verifique algún campo esta vacío', null, 0, 0, 0, 0, []);
+            xJSON   = camelcaseKeys(xJSON, {deep: true});
+            return apiRES.status(200).json(xJSON);
         })();
 
 }       
@@ -640,9 +640,9 @@ const deleteUsuario = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
-
-            return apiRES.status(_code).json(xJSON);
+            xJSON   = await jsonBody(_code, 'Error', 'deleteUsuario', 'Error: Verifique algún campo esta vacío', null, 0, 0, 0, 0, []);
+            xJSON   = camelcaseKeys(xJSON, {deep: true});
+            return apiRES.status(200).json(xJSON);
         })();
     
     }       

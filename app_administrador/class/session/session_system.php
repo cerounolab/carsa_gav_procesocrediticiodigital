@@ -27,6 +27,16 @@
     $expire = $_SESSION['expire'];
 
     $val_03 = $_SERVER['REMOTE_ADDR'];
+
+    $priv_display       = 'N';
+    $priv_insert        = 'N';
+    $priv_update        = 'N';
+    $priv_delete        = 'N';
+    $priv_exportXls     = 'N';
+    $priv_exportPdf     = 'N';
+    $priv_print         = 'N';
+    $priv_access        = 'N';
+
     $ulrPos         = 0;
 
     if ($expire < time()) {
@@ -64,14 +74,14 @@
                     if ($urlApp === trim(strtolower($seg_01Value['formularioNombre']))){
                         $priv_access = trim(strtoupper(strtolower($seg_01Value['rolFormularioAcceso'])));
                         if (trim(strtoupper(strtolower($seg_01Value['rolFormularioAcceso']))) === 'S'){
-                            $priv_display= ($seg_01Value['rolFormularioAccesoDsp'] === 'S') ? 'S' : 'N';
-                            $priv_insert = ($seg_01Value['rolFormularioAccesoIns'] === 'S') ? 'S' : 'N';
-                            $priv_delete = ($seg_01Value['rolFormularioAccesoDlt'] === 'S') ? 'S' : 'N';
-                            $priv_update = ($seg_01Value['rolFormularioAccesoUpd'] === 'S') ? 'S' : 'N';
-                            $priv_export = ($seg_01Value['rolFormularioAccesoXls'] === 'S') ? 'S' : 'N';
-                            $priv_export = ($seg_01Value['rolFormularioAccesoPdf'] === 'S') ? 'S' : 'N';
-                            $priv_print  = ($seg_01Value['rolFormularioAcesoImpresion' ]  === 'S') ? 'S' : 'N';
-                            $urlBand     = true;
+                            $priv_display   = ($seg_01Value['rolFormularioAccesoDsp'] === 'S') ? 'S' : 'N';
+                            $priv_insert    = ($seg_01Value['rolFormularioAccesoIns'] === 'S') ? 'S' : 'N';
+                            $priv_delete    = ($seg_01Value['rolFormularioAccesoDlt'] === 'S') ? 'S' : 'N';
+                            $priv_update    = ($seg_01Value['rolFormularioAccesoUpd'] === 'S') ? 'S' : 'N';
+                            $priv_exportXls = ($seg_01Value['rolFormularioAccesoXls'] === 'S') ? 'S' : 'N';
+                            $priv_exportPdf = ($seg_01Value['rolFormularioAccesoPdf'] === 'S') ? 'S' : 'N';
+                            $priv_print     = ($seg_01Value['rolFormularioAcesoImpresion' ]  === 'S') ? 'S' : 'N';
+                            $urlBand        = true;
                             break;
                         }
                     }

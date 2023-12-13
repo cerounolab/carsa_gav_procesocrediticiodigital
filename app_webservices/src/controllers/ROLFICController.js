@@ -192,10 +192,10 @@ const postRol   = (apiREQ, apiRES) => {
             })();       
     }else{
         (async () => {
-            _code   = 400;
-            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true); 
-
-            return apiRES.status(_code).json(xJSON);
+            _code   = 400; 
+            xJSON   = await jsonBody(_code, 'Error', 'postRol', 'Error: Verifique algún campo esta vacío', null, 0, 0, 0, 0, []);
+            xJSON   = camelcaseKeys(xJSON, {deep: true});
+            return apiRES.status(200).json(xJSON);
         })();
     
     }       
@@ -234,44 +234,44 @@ const putRol    = (apiREQ, apiRES) => {
             _ROLFICFHA  = (_ROLFICFHA != null) ? `'${await formatDateTime(1, _ROLFICFHA)}'`: null;
             _ROLFICFDE  = (_ROLFICFDE != null) ? `'${await formatDateTime(1, _ROLFICFDE)}'`: null;
 
-                xDATA   = await updateROLFIC(_ACCION,
-                _ROLFICCOD,
-                _ROLFICEST,
-                _ROLFICEMC,
-                _ROLFICORD,
-                _ROLFICNOM,
-                _ROLFICFDE,
-                _ROLFICFHA,
-                _ROLFICEQU,
-                _ROLFICOBS,
-                _ROLFICAEM,
-                _ROLFICAUS,
-                _ROLFICAIP,
-                _ROLFICAPR,
-                _ROLFICAIN);
+            xDATA   = await updateROLFIC(_ACCION,
+            _ROLFICCOD,
+            _ROLFICEST,
+            _ROLFICEMC,
+            _ROLFICORD,
+            _ROLFICNOM,
+            _ROLFICFDE,
+            _ROLFICFHA,
+            _ROLFICEQU,
+            _ROLFICOBS,
+            _ROLFICAEM,
+            _ROLFICAUS,
+            _ROLFICAIP,
+            _ROLFICAPR,
+            _ROLFICAIN);
 
-                _code   = xDATA[0];
+            _code   = xDATA[0];
+            xJSON   = xDATA[1];
+
+            if (_code == 200) {
+                xJSON = await jsonBody(_code, 'Success', null, 'Correcto', null, 0, 0, 0, 0, xJSON);
+
+            } else {
                 xJSON   = xDATA[1];
+                xJSON   = await jsonBody(_code, 'Error', xJSON.reference, null, xJSON.message, 0, 0, 0, 0, []);
+            }
 
-                if (_code == 200) {
-                    xJSON = await jsonBody(_code, 'Success', null, 'Correcto', null, 0, 0, 0, 0, xJSON);
+            xJSON = camelcaseKeys(xJSON, {deep: true});
 
-                } else {
-                    xJSON   = xDATA[1];
-                       xJSON   = await jsonBody(_code, 'Error', xJSON.reference, null, xJSON.message, 0, 0, 0, 0, []);
-                }
-
-                xJSON = camelcaseKeys(xJSON, {deep: true});
-
-                return apiRES.status(_code).json(xJSON);
+            return apiRES.status(_code).json(xJSON);
             })();  
 
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true); 
-
-            return apiRES.status(_code).json(xJSON);
+            xJSON   = await jsonBody(_code, 'Error', 'putRol', 'Error: Verifique algún campo esta vacío', null, 0, 0, 0, 0, []);
+            xJSON = camelcaseKeys(xJSON, {deep: true});
+            return apiRES.status(200).json(xJSON);
         })();
 
 }       

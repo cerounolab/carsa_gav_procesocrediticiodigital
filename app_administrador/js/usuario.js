@@ -86,6 +86,18 @@ $(document).ready(function() {
 					var btnAUD	= '<button onclick="setUsuario('+ full.usuarioCodigo +', 5);" title="Auditoria" type="button" class="btn btn-warning btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-user-secret"></i></button>';
 					var btnPAS	= '<button onclick="setUsuario('+ full.usuarioCodigo +', 6);" title="Cambio de Contraseña" type="button" class="btn btn-info btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-user-secret"></i></button>';
 
+					if (_parm00DSP == 'N') {
+						btnDSP = '';
+					}
+
+					if (_parm00UPD == 'N') {
+						btnUPD = '';
+					}
+					
+					if (_parm00DLT == 'N') {
+						btnDLT = '';
+					}
+
 					if (full.tipoEstadoParametro != 1) {
 						btnUPD	= '';
 						btnDLT	= '';

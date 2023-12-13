@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
     var dataJSON	= getSucursalList(_parm06BASE);
 
 	$('#tableLoads').DataTable({
@@ -87,18 +86,29 @@ $(document).ready(function() {
 					var btnDLT	= '<button onclick="setEmpSucursal('+ full.sucursalCodigo +', 4);" title="Anular" type="button" class="btn btn-danger btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-eraser"></i></button>';
 					var btnAUD	= '<button onclick="setEmpSucursal('+ full.sucursalCodigo +', 5);" title="Auditoria" type="button" class="btn btn-warning btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-user-secret"></i></button>';
 					
+					if (_parm00DSP == 'N') {
+						btnDSP = '';
+					}
+
+					if (_parm00UPD == 'N') {
+						btnUPD = '';
+					}
+					
+					if (_parm00DLT == 'N') {
+						btnDLT = '';
+					}
+										
 					if (full.tipoEstadoParametro != 1) {
 						btnUPD	= '';
 						btnDLT	= '';
 					}
-
+					
 					return (btnDSP + '&nbsp;' + btnUPD + '&nbsp;' + btnDLT + '&nbsp;');
 				}
 			},
         ],
     });
 });
-
 
 function setEmpSucursal(codElem, codAcc) {
 	var xJSON       = [];
@@ -335,8 +345,6 @@ function setEmpSucursal(codElem, codAcc) {
 					if (element1.tipoEstadoParametro == 1) {
 						if (element1.empresaCodigo == element.empresaCodigo) {
 							selEmpresa = selEmpresa + '            			<option value="'+ element1.empresaCodigo +'" selected>'+ element1.empresaNombre +'</option>';
-						} else {
-							selEmpresa = selEmpresa + '            			<option value="'+ element1.empresaCodigo +'">'+ element1.empresaNombre +'</option>';
 						}
 					}
 				});
@@ -472,9 +480,6 @@ function setEmpSucursal(codElem, codAcc) {
 		});
 	}
 
-
 	$("#modal-content").empty();
 	$("#modal-content").append(html);
-	
-	
 }

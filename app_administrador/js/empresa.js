@@ -92,7 +92,7 @@ $(document).ready(function() {
 
             { render			: 
 				function (data, type, full, meta) {
-					var btnDSP	= '<button onclick="setEmpresa('+ full.empresaCodigo +', 2);" title="Ver" type="button" class="btn btn-indigo btn-icon" style="color:#ffffff; background:#6929d5;" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-eye"></i></button>';
+					var btnDSP	= '<button onclick="setEmpresa('+ full.empresaCodigo +', 2);" title="Ver" type="button" class="btn btn-primary btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-eye"></i></button>';
 					var btnUPD	= '<button onclick="setEmpresa('+ full.empresaCodigo +', 3);" title="Editar" type="button" class="btn btn-success btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-edit"></i></button>';
 					var btnDLT	= '<button onclick="setEmpresa('+ full.empresaCodigo +', 4);" title="Anular" type="button" class="btn btn-danger btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-eraser"></i></button>';
 					var btnAUD	= '<button onclick="setEmpresa('+ full.empresaCodigo +', 5);" title="Auditoria" type="button" class="btn btn-warning btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-user-secret"></i></button>';
@@ -100,13 +100,30 @@ $(document).ready(function() {
 
 					if (full.empresaLogo) {
 						btnADJ = '<a href="../uploads/empresa/'+full.empresaLogo+'" target="_blank" role="button" title="Ver Adjunto" class="btn btn-indigo" style="color:#ffffff; background:#6929d5;"><i class="ti-import"></i></a>';
-						//btnRET = btnRET + `<a href="../uploads/rendicion/factura/${full.facturador_contable_adjunto}" target="_blank" role="button" class="btn btn-warning text-center text-white" style="margin-bottom:5px;"><i class="fa fa-paperclip" title="Adjunto Factura"></i> </a>&nbsp;`;
+					}
+					
+					if (_parm00DSP == 'N') {
+						btnDSP = '';
+					}
+
+					if (_parm00UPD == 'N') {
+						btnUPD = '';
+					}
+					
+					if (_parm00DLT == 'N') {
+						btnDLT = '';
+					}
+
+					if (_parm00EXPDF == 'N') {
+						btnADJ = '';
 					}
 
 					if (full.tipoEstadoParametro != 1) {
 						btnUPD	= '';
 						btnDLT	= '';
-					} 
+					}
+
+					
 
 					return (btnDSP + '&nbsp;' + btnUPD + '&nbsp;' + btnDLT + '&nbsp;' + btnADJ+ '&nbsp;');
 				}
@@ -169,7 +186,7 @@ function setEmpresa(codElem, codAcc) {
 			bodyCol = '#be9027;';
 			bodyMod = 'U';
 			bodyOnl = 'readonly';
-			bodyBot = '           <button type="submit" id="submit" name="submit" value="submit" class="btn btn-primary">Eliminar</button>';
+			bodyBot = '           <button type="submit" id="submit" name="submit" value="submit" class="btn btn-primary">Anular</button>';
 			bodAcc	= 2;
 
 			break;
