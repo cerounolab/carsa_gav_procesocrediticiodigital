@@ -21,14 +21,15 @@
     unset($_SESSION['empresaSitoWeb']);
     unset($_SESSION['empresaCorreo']);
     unset($_SESSION['empresaDireccion']);
+    // unset($_SESSION['empresaLogo']);
 
+    unset($_SESSION['seg_prg']);
 
     unset($_SESSION['expire']);
 
     session_unset();
     session_destroy();
     
-    // header('Location: ./../../');
     header('Location: ../../');
 
 
