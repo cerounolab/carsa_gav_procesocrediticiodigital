@@ -71,17 +71,18 @@
 																<th class="border-top-0">ORDEN</th>
 																<th class="border-top-0">ESTADO</th>
 																<th class="border-top-0">EMPRESA</th>
-																<th class="border-top-0">ROL COLABORADOR</th>
-																<th class="border-top-0">COLABORADOR</th>
 																<th class="border-top-0">ROL SUPERIOR</th>
 																<th class="border-top-0">SUPERIOR</th>
+																<th class="border-top-0">ROL COLABORADOR</th>
+																<th class="border-top-0">COLABORADOR</th>
 																<th class="border-top-0">OBSERVACI&Oacute;N</th>
 																<th class="border-top-0">USUARIO</th>
 																<th class="border-top-0">IP</th>
 																<th class="border-top-0" style="width:140px;">ACCI&Oacute;N</th>
 															</tr>
 														</thead>
-												</table>
+													</table>
+												</div>
 											</div>
 										</div>
 									</div>

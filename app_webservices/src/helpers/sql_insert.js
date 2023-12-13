@@ -706,7 +706,8 @@ const insertUSUFLU  = async(_USUFLUUSC,
 
 const insertUSULOG  = async(_USULOGEST, 
     _USULOGCOR, 
-    _USULOGPAS, 
+    _USULOGPAS,
+    _USULOGEMC, 
     _USULOGDIP, 
     _USULOGHOS, 
     _USULOGAGE, 
@@ -721,9 +722,9 @@ const insertUSULOG  = async(_USULOGEST,
 
     let query00 = '';
 
-    query00 = 	`INSERT INTO adm.USULOG( USULOGEST,       USULOGCOR,       USULOGPAS,     USULOGDIP,     USULOGHOS,     USULOGAGE,     USULOGREF,     USULOGAEM,     USULOGAUS,     USULOGAIP, USULOGAPR)
-	                         VALUES ('${_USULOGEST}', ${_USULOGCOR}, '${_USULOGPAS}', ${_USULOGDIP}, ${_USULOGHOS}, ${_USULOGAGE}, ${_USULOGREF}, ${_USULOGAEM}, ${_USULOGAUS}, ${_USULOGAIP}, ${_USULOGAPR})`;	            
-
+    query00 = 	`INSERT INTO adm.USULOG( USULOGEST,       USULOGCOR,       USULOGPAS,     USULOGEMC,    USULOGDIP,     USULOGHOS,     USULOGAGE,     USULOGREF,     USULOGAEM,     USULOGAUS,     USULOGAIP, USULOGAPR)
+	                         VALUES ('${_USULOGEST}', ${_USULOGCOR}, '${_USULOGPAS}', ${_USULOGEMC}, ${_USULOGDIP}, ${_USULOGHOS}, ${_USULOGAGE}, ${_USULOGREF}, ${_USULOGAEM}, ${_USULOGAUS}, ${_USULOGAIP}, ${_USULOGAPR})`;	            
+console.log(query00);
     const connPGSQL = new Client(initPGSQL);
 
     await connPGSQL
