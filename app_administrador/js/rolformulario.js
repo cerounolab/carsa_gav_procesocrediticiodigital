@@ -166,8 +166,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 				selEstado = selEstado + '                               			<option value="'+ element1.tipoParametro +'">'+ element1.tipoNombre +'</option>';
 			}
 		});
-
-
+		
 		xJSON2.forEach(element1 => {
 			if (element1.tipoEstadoParametro == 1) {
 				selEmpresa = selEmpresa + '            								<option value="'+ element1.empresaCodigo +'">'+ element1.empresaNombre +'</option>';

@@ -782,11 +782,11 @@ function geUsuarioUsu(codElem){
     return xDATA;
 }
 
-function getUsuarioEmp(codElem){
+function getUsuarioEmp(codEmp, codRol){
     localStorage.removeItem('usuarioEmpresaJSON');
 
     if (localStorage.getItem('usuarioEmpresaJSON') === null){
-        getJSON('usuarioEmpresaJSON', 'usuario/empresa/' + codElem);
+        getJSON('usuarioEmpresaJSON', 'usuariorol/codigorol/'+ codRol +'/empresa/' + codEmp);
     }
     var xJSON = [];
 
