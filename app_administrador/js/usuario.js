@@ -244,7 +244,7 @@ function setUsuario(codElem, codAcc) {
 			'									<div class="col-sm-12 col-md-4">'+
 			'       					            <div class="form-group">'+
 			'       					                <label for="var03">Empresa</label>'+
-			`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresaSuc('var04','var03', 1, 0); setUsu('var03', 'var08_1'); setRecuperoDatos('var05', 'var03', 'var06', 'var07', 'var08', 'var09', 'var010', 'var011');" style="width:100%; height:40px;">`+
+			`       					                <select id="var03" name="var03" class="select2 form-control custom-select" onchange="selectEmpresaSuc('var04','var03', 1, 0); setUsu('var03', 'var08_1'); setRecuperoDatos('var05', 'var03', 'var06', 'var07', 'var08', 'var09', 'var010', 'var011'); "  style="width:100%; height:40px;" ${bodyOnl}>`+
 			'       					                    <optgroup label="Seleccionar">'+ selEmpresa +
 			'       					                    </optgroup>'+
 			'       					                </select>'+
@@ -367,8 +367,6 @@ function setUsuario(codElem, codAcc) {
 					if (element1.tipoEstadoParametro == 1) {
 						if (element1.empresaCodigo == element.empresaCodigo) {
 							selEmpresa = selEmpresa + '            			<option value="'+ element1.empresaCodigo +'" selected>'+ element1.empresaNombre +'</option>';
-						} else {
-							selEmpresa = selEmpresa + '            			<option value="'+ element1.empresaCodigo +'">'+ element1.empresaNombre +'</option>';
 						}
 					}
 				});
@@ -377,8 +375,6 @@ function setUsuario(codElem, codAcc) {
 					if (element1.tipoEstadoParametro == 1) {
 						if (element1.sucursalCodigo == element.sucursalCodigo) {
 							selTipSuc = selTipSuc + '            			<option value="'+ element1.sucursalCodigo +'" selected>'+ element1.sucursalNombre +'</option>';
-						} else {
-							selTipSuc = selTipSuc + '            			<option value="'+ element1.sucursalCodigo +'">'+ element1.sucursalNombre +'</option>';
 						}
 					}
 				});
@@ -432,7 +428,7 @@ function setUsuario(codElem, codAcc) {
 				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
 				'       					                <label for="var03">Empresa</label>'+
-				`       					                <select id="var03" name="var03" class="select2 form-control custom-select" onchange="selectEmpresaSuc('var04','var03', 1, 0); setUsu('var03', 'var08_1'); setRecuperoDatos('var05', 'var03', 'var06', 'var07', 'var08', 'var09', 'var010', 'var011');"  style="width:100%; height:40px;" ${bodyOnl}>`+
+				`       					                <select id="var03" name="var03" class="select2 form-control custom-select" onchange="selectEmpresaSuc('var04','var03', 1, 0); setUsu('var03', 'var08_1'); setRecuperoDatos('var05', 'var03', 'var06', 'var07', 'var08', 'var09', 'var010', 'var011'); "  style="width:100%; height:40px;" ${bodyOnl}>`+
 				'       					                    <optgroup label="Seleccionar">'+selEmpresa +
 				'       					                    </optgroup>'+
 				'       					                </select>'+
@@ -443,7 +439,7 @@ function setUsuario(codElem, codAcc) {
 				'       					            <div class="form-group">'+
 				'       					                <label for="var04">Sucursal</label>'+
 				'       					                <select id="var04" name="var04" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
-				'       					                    <optgroup label="Seleccionar">'+ //selTipSuc +
+				'       					                    <optgroup label="Seleccionar">'+ selTipSuc +
 				'       					                    </optgroup>'+
 				'       					                </select>'+
 				'       					            </div>'+
@@ -676,7 +672,7 @@ function setUsuario(codElem, codAcc) {
 	$("#modal-content").append(html);
 
 	if (codAcc > 1 && codAcc < 6) {
-		selectEmpresaSuc('var04','var03', 1, codSuc);
+		//selectEmpresaSuc('var04','var03', 1, codSuc);
 		setUsu('var03', 'var08_1');
 	} else if (codAcc == 6) {
 		setUsu('var03', 'var08_1');
@@ -707,9 +703,10 @@ function setRecuperoDatos(parm01, parm02, parm03, parm04, parm05, parm06,  parm0
 	// usuCel.disabled		= false;		
 	// usuEmail.disabled	= false;
 	var xJSON       	= [];
-    // var xJSON       	= (codDoc.value > 0) ? getUsuDocumento(codDoc.value, codEmp.value) : null;
-    var xJSON       	= getUsuDocumento(codDoc.value, codEmp.value);
+	var codDocumento	= 0;
+	codDocumento		= (codDoc.value == '' || codDoc.value == null) ? 0 : codDoc.value;
 
+	xJSON       	= (codDocumento > 0) ? getUsuDocumento(codDoc.value, codEmp.value) : [];
 
 	if ((xJSON != []) || (xJSON != null) || xJSON != '') {
 		xJSON.forEach(element => {
