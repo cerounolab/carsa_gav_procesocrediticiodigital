@@ -451,15 +451,20 @@ const selectROL = async(actionType, codigo) => {
         case 4:
             query00 = `SELECT 
                             COUNT (*)		AS	rol_cantidad,
-                            a.ROLFICNOM		AS	rol_nombre
+                            a.ROLFICNOM		AS	rol_nombre,
+                            a.ROLFICCOD		AS	rol_codigo,
+                            a.ROLFICNOM		AS	rol_nombre,
+							b.EMPFICCOD		AS	empresa_codigo,
+							b.EMPFICNOM		AS	empresa_nombre
+                            
                             
                         FROM adm.ROLFIC a
                         INNER JOIN adm.EMPFIC b ON a.ROLFICEMC = b.EMPFICCOD
 
                         WHERE ${_empresaCodigo3}
 
-                        GROUP BY a.ROLFICNOM
-						ORDER BY a.ROLFICNOM`;
+                        GROUP BY b.EMPFICCOD, b.EMPFICNOM, a.ROLFICCOD, a.ROLFICNOM
+						ORDER BY b.EMPFICORD DESC`;
             break;
 
         default:
