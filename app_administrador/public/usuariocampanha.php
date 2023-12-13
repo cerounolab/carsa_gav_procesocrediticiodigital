@@ -51,7 +51,13 @@
 										<div class="row">
 											<h4 class="col-10 card-title"> <?php echo $NavTitle; ?> </h4>
 											<h4 class="col-2 card-title" style="text-align: right;">
+<?php
+    if ($priv_insert === 'S'){
+?>
 												<a class="btn btn-info" style="background-color:#163562; border-color:#163562;" role="button" onclick="setUsuarioCampanha(0, 0, 0, 1);" data-bs-toggle="modal" data-bs-target="#modal-dialog" title="Nuevo" aria-hidden="true"><i class="ti-plus"></i> AGREGAR</a>
+<?php
+    }
+?>
 											</h4>
 										</div><br>
 									</div>
@@ -70,7 +76,7 @@
 																<th class="border-top-0">OBSERVACI&Oacute;N</th>
 																<th class="border-top-0">USUARIO</th>
 																<th class="border-top-0">IP</th>
-																<th class="border-top-0">ACCI&Oacute;N</th>
+																<th class="border-top-0" style="width:140px;">ACCI&Oacute;N</th>
 															</tr>
 														</thead>
 												</table>
@@ -105,16 +111,24 @@
 ?>
 
 		<script>
-			const _parm01BASE   = '<?php echo trim($usu_01); ?>';
-            const _parm02BASE   = '<?php echo date('Y-m-d H:i:s'); ?>';
-            const _parm03BASE   = '<?php echo trim($log_03); ?>';
-			const _parm04BASE	= 'public/usuariocampanha.php?';
-			const _parm05BASE   = '<?php echo trim($usu_05); ?>';
-            const _parm06BASE   = <?php echo trim($usu_06); ?>;
-            const _parm07BASE   = 'usuariocampanha';
+			const _parm00DSP    	= '<?php echo trim($priv_display); ?>';
+            const _parm00INS    	= '<?php echo trim($priv_insert); ?>';
+            const _parm00UPD    	= '<?php echo trim($priv_update); ?>';
+            const _parm00DLT    	= '<?php echo trim($priv_delete); ?>';
+            const _parm00EXPXLS		= '<?php echo trim($priv_exportXls); ?>';
+            const _parm00EXPDF		= '<?php echo trim($priv_exportPdf); ?>';
+            const _parm00IMP		= '<?php echo trim($priv_print); ?>';
+
+			const _parm01BASE   	= '<?php echo trim($usu_01); ?>';
+            const _parm02BASE   	= '<?php echo date('Y-m-d H:i:s'); ?>';
+            const _parm03BASE   	= '<?php echo trim($log_03); ?>';
+			const _parm04BASE		= 'public/usuariocampanha.php?';
+			const _parm05BASE   	= '<?php echo trim($usu_05); ?>';
+            const _parm06BASE   	= <?php echo trim($usu_06); ?>;
+            const _parm07BASE   	= 'usuariocampanha';
 
 		</script>
 		
-		<script src="./../js/usuariocampanha.js?<?php echo date('YmdHis');?>"></script>
+		<script src="./../js/usuariocampanha.js?<?php echo date('Ymd');?>"></script>
 	</body>
 </html>

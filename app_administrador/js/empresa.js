@@ -54,7 +54,22 @@ $(document).ready(function() {
 		columns		: [
 			{ data				: 'empresaCodigo', name : 'empresaCodigo'},
 			{ data				: 'empresaOrden', name : 'empresaOrden'},
-			{ data				: 'tipoEstadoNombre', name : 'tipoEstadoNombre'},
+			{ render			:
+				function (data, type, full, meta) {
+					var rowEST = '';
+					if (full.tipoEstadoParametro == 1) {
+						rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
+					} else if (full.tipoEstadoParametro == 2){
+					 	rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
+					} else if (full.tipoEstadoParametro == 3){
+						rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
+					} else {
+						rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
+					}
+					
+					return rowEST;
+				}
+			},
 			{ data				: 'tipoRubroNombre', name : 'tipoRubroNombre'},
 			{ data				: 'tipoAccesoNombre', name : 'tipoAccesoNombre'},
 			{ data				: 'empresaNombre', name : 'empresaNombre'},
@@ -79,15 +94,38 @@ $(document).ready(function() {
 				function (data, type, full, meta) {
 					var btnDSP	= '<button onclick="setEmpresa('+ full.empresaCodigo +', 2);" title="Ver" type="button" class="btn btn-primary btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-eye"></i></button>';
 					var btnUPD	= '<button onclick="setEmpresa('+ full.empresaCodigo +', 3);" title="Editar" type="button" class="btn btn-success btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-edit"></i></button>';
-					var btnDLT	= '<button onclick="setEmpresa('+ full.empresaCodigo +', 4);" title="Eliminar" type="button" class="btn btn-danger btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-eraser"></i></button>';
+					var btnDLT	= '<button onclick="setEmpresa('+ full.empresaCodigo +', 4);" title="Anular" type="button" class="btn btn-danger btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-eraser"></i></button>';
 					var btnAUD	= '<button onclick="setEmpresa('+ full.empresaCodigo +', 5);" title="Auditoria" type="button" class="btn btn-warning btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-user-secret"></i></button>';
 					var btnADJ = '';
 
 					if (full.empresaLogo) {
-						btnADJ = '<a href="../uploads/empresa/'+full.empresaLogo+'" target="_blank" role="button" class="btn btn-primary"><i class="ti-import"></i></a>';
-						//btnRET = btnRET + `<a href="../uploads/rendicion/factura/${full.facturador_contable_adjunto}" target="_blank" role="button" class="btn btn-warning text-center text-white" style="margin-bottom:5px;"><i class="fa fa-paperclip" title="Adjunto Factura"></i> </a>&nbsp;`;
+						btnADJ = '<a href="../uploads/empresa/'+full.empresaLogo+'" target="_blank" role="button" title="Ver Adjunto" class="btn btn-indigo" style="color:#ffffff; background:#6929d5;"><i class="ti-import"></i></a>';
 					}
-					return (btnDSP + '&nbsp;' + btnUPD + '&nbsp;' + btnDLT + '&nbsp;' + btnADJ);
+					
+					if (_parm00DSP == 'N') {
+						btnDSP = '';
+					}
+
+					if (_parm00UPD == 'N') {
+						btnUPD = '';
+					}
+					
+					if (_parm00DLT == 'N') {
+						btnDLT = '';
+					}
+
+					if (_parm00EXPDF == 'N') {
+						btnADJ = '';
+					}
+
+					if (full.tipoEstadoParametro != 1) {
+						btnUPD	= '';
+						btnDLT	= '';
+					}
+
+					
+
+					return (btnDSP + '&nbsp;' + btnUPD + '&nbsp;' + btnDLT + '&nbsp;' + btnADJ+ '&nbsp;');
 				}
 			},
         ],
@@ -109,49 +147,57 @@ function setEmpresa(codElem, codAcc) {
 	var xJSON2     	= getDominioValorAll('ADMEMPRESARUBRO', 0);
 	var xJSON3     	= getDominioValorAll('ADMEMPRESAACCESO', 0); 
 
-	var selEstado   = '';
-	var selRubro   = '';
-	var selAcceso  = '';
+	var selEstado	= '';
+	var selRubro	= '';
+	var selAcceso	= '';
+	var bodAcc		= 0;
+
 
 	switch (codAcc) {
 		case 1:
 			bodyTit = 'NUEVO';
-			bodyCol = '#2b5cfd;';
+			bodyCol = '#be9027;';
 			bodyMod = 'C';
 			bodyOnl = '';
-			bodyBot = '           <button type="submit" id="submit" name="submit" value="submit" class="btn btn-info">Agregar</button>';
+			bodyBot = '           <button type="submit" id="submit" name="submit" value="submit" class="btn btn-primary">Agregar</button>';
+			bodAcc	= 1;
 			break;
 
 		case 2:
 			bodyTit = 'VER';
-			bodyCol = '#6929d5;';
+			bodyCol = '#be9027;';
 			bodyMod = 'R';
 			bodyOnl = 'disabled';
 			bodyBot = '';
+			bodAcc	= 1;
 			break;
 
 		case 3:
 			bodyTit = 'EDITAR';
-			bodyCol = '#007979;';
+			bodyCol = '#be9027;';
 			bodyMod = 'U';
 			bodyOnl = '';
-			bodyBot = '           <button type="submit" id="submit" name="submit" value="submit" class="btn btn-success">Actualizar</button>';
+			bodyBot = '           <button type="submit" id="submit" name="submit" value="submit" class="btn btn-primary">Actualizar</button>';
+			bodAcc	= 1;
 			break;
 
 		case 4:
-			bodyTit = 'ELIMINAR';
-			bodyCol = '#ff2924;';
-			bodyMod = 'D';
+			bodyTit = 'Anular';
+			bodyCol = '#be9027;';
+			bodyMod = 'U';
 			bodyOnl = 'readonly';
-			bodyBot = '           <button type="submit" id="submit" name="submit" value="submit" class="btn btn-danger">Eliminar</button>';
+			bodyBot = '           <button type="submit" id="submit" name="submit" value="submit" class="btn btn-primary">Anular</button>';
+			bodAcc	= 2;
+
 			break;
 	
 		case 5:
 			bodyTit = 'AUDITORIA';
-			bodyCol = '#d38109;';
+			bodyCol = '#be9027;';
 			bodyMod = 'A';
 			bodyOnl = 'readonly';
 			bodyBot = '';
+			bodAcc	= 1;
 			break;
 
 		default:
@@ -297,24 +343,29 @@ function setEmpresa(codElem, codAcc) {
 			'               					<div class="col-sm-12">'+
 			'               					    <div class="form-group">'+
 			'               					        <label for="var015">OBSERVACIÓN</label>'+
-			'               					        <textarea id="var015" name="var015" value="" class="form-control" rows="5" style="text-transform:uppercase;" '+ bodyOnl +'></textarea>'+
+			'               					        <textarea id="var015" name="var015" value="" class="form-control" rows="5" style="" '+ bodyOnl +'></textarea>'+
 			'               					    </div>'+
 			'               					</div>'+
 			'           				</div>'+
 			''+
 			'           				<div class="form-group">'+
-			'           				    <input class="form-control" type="hidden" id="workCodigo"	name="workCodigo"	value="'+ codElem +'"		required readonly>'+
-			'           				    <input class="form-control" type="hidden" id="workModo"		name="workModo"		value="'+ bodyMod +'"		required readonly>'+
-			'           				    <input class="form-control" type="hidden" id="workPage"		name="workPage"		value="'+ _parm04BASE +'"	required readonly>'+
-			'           				    <input class="form-control" type="hidden" id="workPrograma"	name="workPrograma"	value="empresa"		 		required readonly>'+
+			'           				    <input class="form-control" type="hidden" id="workCodigo"		name="workCodigo"	value="'+ codElem +'"		required readonly>'+
+			'           				    <input class="form-control" type="hidden" id="workModo"			name="workModo"		value="'+ bodyMod +'"		required readonly>'+
+			'           				    <input class="form-control" type="hidden" id="workPage"			name="workPage"		value="'+ _parm04BASE +'"	required readonly>'+
+			'           				    <input class="form-control" type="hidden" id="workPrograma"		name="workPrograma"	value="empresa"		 		required readonly>'+
+			'           				    <input class="form-control" type="hidden" id="workAccion"		name="workAccion"	value="'+ bodAcc+'"			required readonly>'+
 			'           				</div>'+
 			'						</div>'+
 			''+
-			'						<div class="col-12 text-end">'+
-			'	    					<div class="modal-footer" style="text-align: right;">'+ bodyBot +
-			'		    					<button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>'+
-			'	    					</div>'+
-			'						</div>'+
+			'	    				<div class="modal-footer" style="text-align:right; width:100%;">'+ 
+			'							<div class="row">'+
+			'       						<div class="col-sm-12">'+
+			'           						<div class="form-group">'+ bodyBot +
+			'		    							<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>'+
+			'           						</div>'+
+			'           					</div>'+
+			'           				</div>'+
+			'	    				</div>'+
 			'					</div>'+
 			'				</form>'+
 			'			</div>';
@@ -364,6 +415,8 @@ function setEmpresa(codElem, codAcc) {
 				var empresaDireccion	= (element.empresaDireccion == null) ? '' : element.empresaDireccion;
 				var empresaObservacion	= (element.empresaObservacion == null) ? '' : element.empresaObservacion;
 				var empresaLogo			= (element.empresaLogo == null) ? '' : element.empresaLogo;
+				var viewDisplay			= (empresaLogo == '') ? 'display:none' : '';
+
 
 
 				html = 
@@ -472,14 +525,16 @@ function setEmpresa(codElem, codAcc) {
 				'               					<div class="col-sm-12 col-md-4">'+
 				'               					    <div class="form-group">'+
 				'               					        <label for="var013">Logo</label>'+
-				'               					        <input id="var013" name="var013" class="form-control" type="file" style="text-transform:lowercase; height:40px;" placeholder="Longitud" '+ bodyOnl +'>'+
+				'               					        <input id="var013" name="var013" value="'+ empresaLogo +'" class="form-control" type="file" style="text-transform:lowercase; height:40px;" placeholder="Logo" '+ bodyOnl +'>'+
 				'                       					<input id="var013_1" name="var013_1" value="'+ empresaLogo +'" class="form-control" type="hidden" style="height:40px;" readonly>'+
 				'               					    </div>'+
 				'               					</div>'+
 				''+
-				'               					<div class="col-sm-12 col-md-1"><br>'+
-				'									<a href="../uploads/empresa/'+ empresaLogo +'" target="_blank" type="button" title="Ver Adjunto" class="btn btn-indigo btn-icon btn-circle btn-lg"  style="text-transform:uppercase;"  placeholder="Ver Adjunto"><i class="fa fa-file"></i></a>'+
-				'									</div>'+
+				'               					<div class="col-sm-12 col-md-4" style="'+viewDisplay+'">'+
+				'                   					<div class="form-group">'+
+				'											<a href="../uploads/empresa/'+ empresaLogo +'" target="_blank" type="button" title="Ver Adjunto" class="btn btn-indigo btn-icon btn-circle btn-lg"  style="color:#ffffff; background:#6929d5;"  placeholder="Ver Adjunto"><i class="fa fa-file"></i></a>'+
+				'										</div>'+
+				'               					</div>'+
 				// ''+
 				// '               					<div class="col-sm-12 col-md-4">'+
 				// '               					    <div class="form-group">'+
@@ -491,7 +546,7 @@ function setEmpresa(codElem, codAcc) {
 				'               					<div class="col-sm-12">'+
 				'               					    <div class="form-group">'+
 				'               					        <label for="var015">OBSERVACIÓN</label>'+
-				'               					        <textarea id="var015" name="var015" class="form-control" rows="5" style="text-transform:uppercase;" '+ bodyOnl +'>'+ empresaObservacion +'</textarea>'+
+				'               					        <textarea id="var015" name="var015" class="form-control" rows="5" style="" '+ bodyOnl +'>'+ empresaObservacion +'</textarea>'+
 				'               					    </div>'+
 				'               					</div>'+
 				'           				</div>'+
@@ -501,14 +556,19 @@ function setEmpresa(codElem, codAcc) {
 				'           				    <input class="form-control" type="hidden" id="workModo"		name="workModo"		value="'+ bodyMod +'"		required readonly>'+
 				'           				    <input class="form-control" type="hidden" id="workPage"		name="workPage"		value="'+ _parm04BASE +'"	required readonly>'+
 				'           				    <input class="form-control" type="hidden" id="workPrograma"	name="workPrograma"	value="empresa"		 		required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="workAccion"	name="workAccion"	value="'+ bodAcc+'"			required readonly>'+
 				'           				</div>'+
 				'						</div>'+
 				''+
-				'						<div class="col-12 text-end">'+
-				'	    					<div class="modal-footer" style="text-align: right;">'+ bodyBot +
-				'		    					<button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>'+
-				'	    					</div>'+
-				'						</div>'+
+				'	    				<div class="modal-footer" style="text-align:right; width:100%;">'+ 
+				'							<div class="row">'+
+				'       						<div class="col-sm-12">'+
+				'           						<div class="form-group">'+ bodyBot +
+				'		    							<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>'+
+				'           						</div>'+
+				'           					</div>'+
+				'           				</div>'+
+				'	    				</div>'+
 				'					</div>'+
 				'				</form>'+
 				'			</div>';
