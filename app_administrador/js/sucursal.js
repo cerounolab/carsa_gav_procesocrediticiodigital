@@ -8,7 +8,7 @@ $(document).ready(function() {
 		paging		: true,
 		lengthChange: true,
 		info		: true,
-		order: [[1, "asc"]],
+		order: [[13, "desc"]],
 		orderCellsTop: true,
 		fixedHeader	: true,
 		language	: {
@@ -32,20 +32,19 @@ $(document).ready(function() {
 			{ targets			: [0],	visible : false,searchable : true,	orderData : [0, 0] },
 			{ targets			: [1],	visible : false,searchable : true,	orderData : [1, 0] },
 			{ targets			: [2],	visible : true,	searchable : true,	orderData : [2, 0] },
-			{ targets			: [3],	visible : true,searchable : false,	orderData : [3, 0] },
+			{ targets			: [3],	visible : true,	searchable : true,	orderData : [3, 0] },
 			{ targets			: [4],	visible : true,	searchable : true,	orderData : [4, 0] },
-			{ targets			: [5],	visible : true,searchable : false,	orderData : [5, 0] },
+			{ targets			: [5],	visible : true,	searchable : true,	orderData : [5, 0] },
 			{ targets			: [6],	visible : true,	searchable : true,	orderData : [6, 0] },
-			{ targets			: [7],	visible : true,searchable : false,	orderData : [7, 0] },
-			{ targets			: [8],	visible : true,searchable : false,	orderData : [8, 0] },
+			{ targets			: [7],	visible : true,	searchable : true,	orderData : [7, 0] },
+			{ targets			: [8],	visible : true,	searchable : true,	orderData : [8, 0] },
 			{ targets			: [9],	visible : false,searchable : true,	orderData : [9, 0] },
-			{ targets			: [10],	visible : false,searchable : false,	orderData : [10, 0] },
-			{ targets			: [11],	visible : false,searchable : false,	orderData : [11, 0] },
-			{ targets			: [12],	visible : false,searchable : false,	orderData : [12, 0] },
-			{ targets			: [13],	visible : false,searchable : true,	orderData : [13, 0] },
-			{ targets			: [14],	visible : false,searchable : false,	orderData : [14, 0] },
-			{ targets			: [15],	visible : true,searchable : false,	orderData : [15, 0] }
-
+			{ targets			: [10],	visible : false,searchable : true,	orderData : [10, 0] },
+			{ targets			: [11],	visible : false,searchable : true,	orderData : [11, 0] },
+			{ targets			: [12],	visible : true, searchable : true,	orderData : [12, 0] },
+			{ targets			: [13],	visible : true, searchable : true,	orderData : [13, 0] },
+			{ targets			: [14],	visible : true, searchable : true,	orderData : [14, 0] },
+			{ targets			: [15],	visible : true,	searchable : true,	orderData : [15, 0] }
 		],
 		
 		columns		: [
@@ -67,8 +66,8 @@ $(document).ready(function() {
 					return rowEST;
 				}
 			},
-			{ data				: 'tipoSucursalNombre', name : 'tipoSucursalNombre'},
 			{ data				: 'empresaNombre', name : 'empresaNombre'},
+			{ data				: 'tipoSucursalNombre', name : 'tipoSucursalNombre'},
 			{ data				: 'sucursalNombre', name : 'sucursalNombre'},
 			{ data				: 'sucursalTelefono', name : 'sucursalTelefono'},
 			{ data				: 'sucursalCelular', name : 'sucursalCelular'},
@@ -76,8 +75,8 @@ $(document).ready(function() {
 			{ data				: 'sucursalUbicacion', name : 'sucursalUbicacion'},
 			{ data				: 'sucursalDireccion', name : 'sucursalDireccion'},
 			{ data				: 'sucursalObservacion', name : 'sucursalObservacion'},
-			{ data				: 'auditoriaPrograma', name : 'auditoriaPrograma'},
 			{ data				: 'auditoriaUsuario', name : 'auditoriaUsuario'},
+			{ data				: 'auditoriaFechaHora', name : 'auditoriaFechaHora'},
 			{ data				: 'auditoriaIp', name : 'auditoriaIp'},
             { render			: 
 				function (data, type, full, meta) {

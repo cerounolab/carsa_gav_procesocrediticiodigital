@@ -8,7 +8,7 @@ $(document).ready(function() {
 		paging		: true,
 		lengthChange: true,
 		info		: true,
-		order: [[1, "asc"]],
+		order: [[9, "desc"]],
 		orderCellsTop: true,
 		fixedHeader	: true,
 		language	: {
@@ -32,14 +32,15 @@ $(document).ready(function() {
 			{ targets			: [0],	visible : false,searchable : true,	orderData : [0, 0] },
 			{ targets			: [1],	visible : true,	searchable : true,	orderData : [1, 0] },
 			{ targets			: [2],	visible : true,	searchable : true,	orderData : [2, 0] },
-			{ targets			: [3],	visible : true, searchable : false,	orderData : [3, 0] },
+			{ targets			: [3],	visible : true, searchable : true,	orderData : [3, 0] },
 			{ targets			: [4],	visible : true,	searchable : true,	orderData : [4, 0] },
 			{ targets			: [5],	visible : true, searchable : true,	orderData : [5, 0] },
 			{ targets			: [6],	visible : true,	searchable : true,	orderData : [6, 0] },
-			{ targets			: [7],	visible : false,searchable : false,	orderData : [7, 0] },
-			{ targets			: [8],	visible : false,searchable : false,	orderData : [8, 0] },
-			{ targets			: [9],	visible : false,searchable : false,	orderData : [9, 0] },
-			{ targets			: [10],	visible : true,searchable : false,	orderData : [10, 0] }
+			{ targets			: [7],	visible : false,searchable : true,	orderData : [7, 0] },
+			{ targets			: [8],	visible : true, searchable : true,	orderData : [8, 0] },
+			{ targets			: [9],	visible : true, searchable : true,	orderData : [9, 0] },
+			{ targets			: [10],	visible : true,	searchable : true,	orderData : [10, 0] },
+			{ targets			: [11],	visible : true,	searchable : true,	orderData : [11, 0] }
 		],
 		
 		columns		: [
@@ -67,6 +68,7 @@ $(document).ready(function() {
 			{ data				: 'usuarioRolFechaHasta2', name : 'usuarioRolFechaHasta2'},
 			{ data				: 'usuarioRolObservacion', name : 'usuarioRolObservacion'},
 			{ data				: 'auditoriaUsuario', name : 'auditoriaUsuario'},
+			{ data				: 'auditoriaFechaHora', name : 'auditoriaFechaHora'},
 			{ data				: 'auditoriaIp', name : 'auditoriaIp'},
             { render			: 
 				function (data, type, full, meta) {
@@ -212,7 +214,8 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 		'       					            <div class="form-group">'+
 		'       					                <label for="var03">Empresa</label>'+
 		`       					                <select id="var03" name="var03" class="select2 form-control custom-select" onchange="selectEmpresaRol('var04','var03', 1, 1, 'var04'); selectEmpresaUsuarioListado('var05','var03', 1, 1);" style="width:100%; height:40px;">`+
-		'       					                    <optgroup label="Seleccionar">'+ selEmpresa +
+		'       					                    <optgroup label="Seleccionar">'+ 
+		'													<option value="0" disabled selected> SELECCIONAR </option>' + selEmpresa +
 		'       					                    </optgroup>'+
 		'       					                </select>'+
 		'       					            </div>'+
@@ -420,6 +423,4 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 
 	$("#modal-content").empty();
 	$("#modal-content").append(html);
-
-	//selectEmpresaRol('var04','var03', 1, 1);
 }

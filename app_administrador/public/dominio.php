@@ -78,8 +78,8 @@
 													<table id="tableLoads" class="text-fade table table-bordered display" style="width:100%">
 														<thead id="tableCodigo" class="<?php echo $valueDominio; ?>">
 															<tr class="btn-primary" style="text-align:center;">
-																<th >C&Oacute;DIGO</th>
-																<th >ORDEN</th>
+																<th class="border-top-0">C&Oacute;DIGO</th>
+																<th class="border-top-0">ORDEN</th>
 																<th class="border-top-0">PAR&Aacute;METRO</th>
 																<th class="border-top-0">ESTADO</th>
 																<th class="border-top-0">NOMBRE</th>
@@ -88,10 +88,10 @@
 																<th class="border-top-0">PATH</th>
 																<th class="border-top-0">EQUIVALENCIA</th>
 																<th class="border-top-0">DOMINIO</th>
-																<th class="border-top-0">OBSERVACI&Oacute;N</th>
-																<th class="border-top-0">USUARIO</th>
-																<th class="border-top-0">FECHA HORA</th>
-																<th class="border-top-0">IP</th>
+																<th class="border-top-0">COMENTARIO</th>
+																<th class="border-top-0">AUD. USUARIO</th>
+																<th class="border-top-0">AUD. FECHA/HORA</th>
+																<th class="border-top-0">AUD. IP</th>
 																<th class="border-top-0" style="width:200px;">ACCI&Oacute;N</th>
 															</tr>
 														</thead>
