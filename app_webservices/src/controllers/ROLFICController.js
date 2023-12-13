@@ -88,6 +88,7 @@ const getRolId  = (apiREQ, apiRES) => {
     }
 }
 
+
 const getRolEmpresaId = (apiREQ, apiRES) => {
     let _code       = 200;
     let _dataJSON   = [];
@@ -127,8 +128,47 @@ const getRolEmpresaId = (apiREQ, apiRES) => {
     }
 }
 
+const getRolEmpresadashboard = (apiREQ, apiRES) => {
+    let _code       = 200;
+    let _dataJSON   = [];
+    let _codigo     = parseInt(apiREQ.params.empresa);
+
+    if (_codigo != 'undefined' && _codigo != '' && _codigo != null && _codigo > 0){
+
+        (async () => {
+            const xDATA = await selectROL(4, _codigo, '');
+            _code       = xDATA[0];
+            _dataJSON   = xDATA[1];
+    
+            if (_code == 200) {
+                _dataJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, _dataJSON);
+
+            } else if (_code == 404){
+                _dataJSON   = xDATA[1];
+                _dataJSON   = await jsonBody(_code, 'Error', 'getRolEmpresadashboard', 'No hay registros', null, 0, 0, 0, 0, []);
+            }else{
+                _dataJSON   = xDATA[1];
+                _dataJSON   = await jsonBody(_code, 'Error', _dataJSON.reference, null, _dataJSON.message, 0, 0, 0, 0, []);
+            }
+    
+            _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
+    
+             return apiRES.status(200).json(_dataJSON);
+        })();
+
+    }else{
+        (async () => {
+            _code       = 400;
+            _dataJSON   = await jsonBody(_code, 'Error', 'postRol', 'Error: Verifique algún campo esta vacío', null, 0, 0, 0, 0, []);
+
+             return apiRES.status(200).json(_dataJSON);
+        })();
+        
+    }
+}
+
 const postRol   = (apiREQ, apiRES) => {
-    let  xDATA      =   []; 
+    let  xDATA      = []; 
     let _ROLFICEST  = (apiREQ.body.tipo_estado_parametro != undefined && apiREQ.body.tipo_estado_parametro != null && apiREQ.body.tipo_estado_parametro != '' && apiREQ.body.tipo_estado_parametro > 0) ? Number.parseInt(apiREQ.body.tipo_estado_parametro) : false; 
     let _ROLFICEMC  = (apiREQ.body.empresa_codigo != undefined && apiREQ.body.empresa_codigo != null && apiREQ.body.empresa_codigo != '' && apiREQ.body.empresa_codigo > 0) ? Number.parseInt(apiREQ.body.empresa_codigo) : false;  
     let _ROLFICORD  = (apiREQ.body.rol_orden != undefined && apiREQ.body.rol_orden != null && apiREQ.body.rol_orden != '') ? Number.parseInt(apiREQ.body.rol_orden) : 999;
@@ -343,6 +383,7 @@ module.exports  = {
     getRol,
     getRolId,
     getRolEmpresaId,
+    getRolEmpresadashboard,
     postRol,
     putRol,
     deleteRol
