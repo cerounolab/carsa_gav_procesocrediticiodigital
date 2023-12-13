@@ -420,6 +420,7 @@ const selectROL = async(actionType, codigo) => {
     let _data   = [];
     let query00 = '';
     let _empresaCodigo2 = (codigo == 1) ? `empresa_codigo <> 0 ` : ` empresa_codigo = ${codigo}`;
+    let _empresaCodigo3 = (codigo == 1) ? `a.ROLFICEMC <> 0 ` : `a.ROLFICEMC = ${codigo}`;
 
     switch (actionType) {
         case 1:
@@ -445,6 +446,20 @@ const selectROL = async(actionType, codigo) => {
                             adm.ROL
                         WHERE
                             empresa_codigo  = ${codigo}`;
+            break;
+            
+        case 4:
+            query00 = `SELECT 
+                            COUNT (*)		AS	rol_cantidad,
+                            a.ROLFICNOM		AS	rol_nombre
+                            
+                        FROM adm.ROLFIC a
+                        INNER JOIN adm.EMPFIC b ON a.ROLFICEMC = b.EMPFICCOD
+
+                        WHERE ${_empresaCodigo3}
+
+                        GROUP BY a.ROLFICNOM
+						ORDER BY a.ROLFICNOM`;
             break;
 
         default:
@@ -980,6 +995,78 @@ const selectUSUARIOFLUJO  = async(actionType, codigo, codigo2, codigo3, codigo4,
     return Array(_code, _data);
 }
 
+const selectUSUARIOLOG  = async(actionType, codigo, codigo2, codigo3) => {
+    let _code   = 200;
+    let _data   = [];
+    let query00 = '';
+    let _empresaCodigo2   = (codigo == 1) ? `empresa_codigo <> 0 ` : `empresa_codigo = ${codigo}`;
+
+    switch (actionType) {
+        case 1:
+            query00 = `SELECT 
+                            CASE 
+                                WHEN a.USULOGEST = 'ERROR_USER' THEN 'ERROR_USUARIO'
+                                WHEN a.USULOGEST = 'ERROR_PAS' THEN 'ERROR_PASSWORD'
+                                WHEN a.USULOGEST = 'USER_LOKED' THEN 'USUARIO BLOQUEADO'
+                                ELSE 'CORRECTO'
+                            END                                 AS	usuario_log_estado,
+
+                            TO_CHAR(a.USULOGFEC, 'YYYY-MM-DD')	AS	usuario_log_fecha_1,
+                            TO_CHAR(a.USULOGFEC, 'DD/MM/YYYY')	AS	usuario_log_fecha_2,
+                            UPPER(a.USULOGCOR)					AS	usuario_log_usuario,	
+                            a.USULOGDIP							AS	usuario_log_ip,
+
+                            c.EMPFICCOD							AS	empresa_codigo,
+                            c.EMPFICNOM 						AS 	empresa_nombre
+
+                        FROM adm.USULOG a
+                        INNER JOIN adm.EMPFIC b ON a.USULOGAEM	= b.EMPFICCOD
+                        INNER JOIN adm.EMPFIC c ON a.USULOGEMC	= c.EMPFICCOD
+
+                        WHERE a.USULOGEMC = ${_empresaCodigo2} AND a.USULOGFEC = ${codigo2}  
+                    
+                        ORDER BY USULOGCOD DESC
+                        LIMIT ${codigo3}`;
+            break;
+
+        default:
+            break;
+    }
+
+    const connPGSQL = new Client(initPGSQL);
+    await connPGSQL
+        .connect()
+        .catch(e => {
+            _code = 401;
+            errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: selectUSUARIOLOG', true)
+                .then(result => _data = result);
+        }
+    );
+
+    await connPGSQL
+        .query(query00)
+        .then(result => {
+            _code = 200;
+            _data = result.rows;
+        })
+        .catch(e => {
+            _code = 500;
+            errorBody(_code, 'Code: '+ e.code +' '+e.severity+', '+e.hint, 'Function: selectUSUARIOLOG')
+                .then(result => _data = result);
+        })
+        .then(() => {
+            connPGSQL.end();
+        }
+
+    );
+
+    if (_data.length == 0) {
+        _code = 404;
+    }
+
+    return Array(_code, _data);
+}
+
 module.exports  = {
     selectDOMINIOTIPO,
     selectEMPRESA, 
@@ -992,5 +1079,6 @@ module.exports  = {
     selectROLFORMULARIO,
     selectUSUARIOROL,
     selectUSUARIOCAMPANHA,
-    selectUSUARIOFLUJO
+    selectUSUARIOFLUJO,
+    selectUSUARIOLOG
 };
