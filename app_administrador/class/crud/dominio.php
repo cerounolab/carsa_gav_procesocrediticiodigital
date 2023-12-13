@@ -69,7 +69,7 @@
 	}
 
 	$result		= json_decode($result, true);
-	$msg		= str_replace("\n", ' ', $result['status']);
+	$msg		= str_replace("\n", ' ', $result['messageShort']);
 
 	header('Location: ../../'.$work03.'code='.$result['code'].'&msg='.$msg);
 

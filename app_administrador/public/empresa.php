@@ -65,8 +65,8 @@
 																<th class="border-top-0">C&Oacute;DIGO</th>
 																<th class="border-top-0">ORDEN</th>
 																<th class="border-top-0">ESTADO</th>
-																<th class="border-top-0">TIPO RUBRO</th>
-																<th class="border-top-0">TIPO ACCESO</th>
+																<th class="border-top-0">RUBRO</th>
+																<th class="border-top-0">ACCESO</th>
 																<th class="border-top-0">NOMBRE</th>
 																<th class="border-top-0">RUC</th>
 																<th class="border-top-0">TELEFONO</th>
@@ -99,7 +99,7 @@
 		</div>
 
 		<div id="modal-dialog" class="modal fade" role="dialog" aria-hidden="true">
-			<div class="modal-dialog">
+			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content" id="modal-content">
 				</div>
 			</div>
@@ -125,6 +125,6 @@
             const _parm06BASE   = <?php echo trim($usu_06); ?>;
 		</script>
 
-		<script src="./../js/empresa.js?<?php echo date('Ymd');?>"></script>
+		<script src="./../js/empresa.js?<?php echo date('YmdHis');?>"></script>
 	</body>
 </html>

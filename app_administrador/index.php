@@ -77,7 +77,7 @@
 								</div>
 
 								<div class="p-40">
-									<form action="./class/session/session_index.php" method="post">
+									<form action="./class/session/session_keycloak.php" method="post">
 										<div class="form-group">
 											<div class="input-group mb-3">
 												<span class="input-group-text bg-transparent"><i class="text-fade ti-user"></i></span>

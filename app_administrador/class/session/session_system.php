@@ -21,19 +21,19 @@
     $usu_11 = $_SESSION['empresaSitoWeb'];
     $usu_12 = $_SESSION['empresaCorreo'];
     $usu_13 = $_SESSION['empresaDireccion'];
-
+    // $usu_14 = $_SESSION['empresaLogo'];
+    $seg_01 = $_SESSION['seg_prg'];
 
     $expire = $_SESSION['expire'];
 
     $val_03 = $_SERVER['REMOTE_ADDR'];
-    
+    $ulrPos         = 0;
+
     if ($expire < time()) {
-        // header('Location: ./../class/session/session_logout.php');
         header('Location: ./../../../class/session/session_logout.php');
 
     } else {
         if ($log_01 == '' ) {
-            // header('Location: ./../class/session/session_logout.php');
             header('Location: ./../../../class/session/session_logout.php');
 
         } else {
@@ -46,16 +46,39 @@
     
                 $_SESSION['expire'] = time() + 1800;
     
-                $urlAct             = $_SERVER['REQUEST_URI'];
-                $urlPat             = strtoupper(substr(substr($_SERVER['SCRIPT_FILENAME'], 48), 0, -4));
-                $ulrPos             = strpos($_SERVER['HTTP_REFERER'], 'public');
-                $urlAnt             = substr($_SERVER['HTTP_REFERER'], $ulrPos);
-                $ulrPos             = strpos($urlAnt, '.php?');
+                $urlPat = strtoupper($_SERVER['SCRIPT_FILENAME']);
 
-                if ($ulrPos > 0){
-                    $urlQui = substr($urlAnt, $ulrPos);
-                    $ulrPos = strlen($urlQui);
-                    $urlAnt = substr($urlAnt, 0, ($ulrPos * -1));
+                $urlAnt = substr($_SERVER['HTTP_REFERER'], $ulrPos);
+                
+                $urlAct = $_SERVER['REQUEST_URI'];
+                
+                $ulrPos = strripos($urlAct, '/');
+                $urlApp = substr($urlAct, ($ulrPos + 1));
+                
+                $ulrPos = strripos($urlApp, '.php');
+                $urlApp = trim(strtolower(substr($urlApp, 0, $ulrPos)));
+
+                $urlBand= false;
+
+                foreach ($seg_01["apps"] as $seg_01Key => $seg_01Value) {
+                    if ($urlApp === trim(strtolower($seg_01Value['formularioNombre']))){
+                        $priv_access = trim(strtoupper(strtolower($seg_01Value['rolFormularioAcceso'])));
+                        if (trim(strtoupper(strtolower($seg_01Value['rolFormularioAcceso']))) === 'S'){
+                            $priv_display= ($seg_01Value['rolFormularioAccesoDsp'] === 'S') ? 'S' : 'N';
+                            $priv_insert = ($seg_01Value['rolFormularioAccesoIns'] === 'S') ? 'S' : 'N';
+                            $priv_delete = ($seg_01Value['rolFormularioAccesoDlt'] === 'S') ? 'S' : 'N';
+                            $priv_update = ($seg_01Value['rolFormularioAccesoUpd'] === 'S') ? 'S' : 'N';
+                            $priv_export = ($seg_01Value['rolFormularioAccesoXls'] === 'S') ? 'S' : 'N';
+                            $priv_export = ($seg_01Value['rolFormularioAccesoPdf'] === 'S') ? 'S' : 'N';
+                            $priv_print  = ($seg_01Value['rolFormularioAcesoImpresion' ]  === 'S') ? 'S' : 'N';
+                            $urlBand     = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (!$urlBand){
+                    header('Location: ./../../admin/public/error_403.php');
                 }
             } else {
                 header('Location: ./../../../class/session/session_logout.php');

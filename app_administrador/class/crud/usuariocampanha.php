@@ -29,7 +29,7 @@
 	$log_03         = $_SESSION['log_03'];
 	$usu_06         = $_SESSION['empresaCodigo'];
 
-	$val01			= ($work05 == 1) ? $val01 : 2;
+	$val01			= ($work05 == 1) ? $val01 : 3;
 
     if (isset($val01) && isset($val03)) {
         $dataJSON = json_encode(
@@ -70,7 +70,7 @@
 	}
 
 	$result		= json_decode($result, true);
-	$msg		= str_replace("\n", ' ', $result['status']);
+	$msg		= str_replace("\n", ' ', $result['messageShort']);
 
 	header('Location: ../../'.$work03.'code='.$result['code'].'&msg='.$msg);
 
