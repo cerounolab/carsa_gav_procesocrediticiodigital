@@ -135,6 +135,6 @@
             const _parm06BASE   	= <?php echo trim($usu_06); ?>;
 		</script>
 
-		<script src="./../js/usuario.js?<?php echo date('YmdHis');?>"></script>
+		<script src="./../js/usuario.js?<?php echo date('Ymd');?>"></script>
 	</body>
 </html>

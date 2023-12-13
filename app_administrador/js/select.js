@@ -922,7 +922,7 @@ function selectEmpresaRol(parm01, parm02, parm03, parm04, parm05) {
             break;
     }
 
-    xJSON           = getRolEmp(codEmp.value);
+    xJSON   = getRolEmp(codEmp.value);
 
     if (parm04 == 1) {
         xJSON.forEach(element => {
@@ -1108,12 +1108,11 @@ function selectEmpresaRolUsuario(parm01, parm02, parm03, parm04, parm05) {
     
 }
 
-function selectEmpresaUsuario(parm01, parm02, parm03, parm04, parm05) {
-    var selOption   = document.getElementById(parm01);
+function selectEmpresaUsuario(parm00, parm01, parm02, parm03, parm04, parm05) {
+    var selOption   = document.getElementById(parm00);
+    var codRol      = document.getElementById(parm01);
     var codEmp      = document.getElementById(parm02);
-    var codUsu      = document.getElementById(parm01);
-    var codUsu2      = document.getElementById(parm05);
- 
+    var codUsu2     = document.getElementById(parm05);
         
     while (selOption.length > 0) {
         selOption.remove(0);
@@ -1139,7 +1138,7 @@ function selectEmpresaUsuario(parm01, parm02, parm03, parm04, parm05) {
             break;
     }
 
-    xJSON   = getUsuarioEmp(codEmp.value);
+    xJSON   = getUsuarioEmp(codEmp.value, codRol.value);
 
     if (parm04 == 1) {
         xJSON.forEach(element => {
@@ -1152,9 +1151,8 @@ function selectEmpresaUsuario(parm01, parm02, parm03, parm04, parm05) {
             } else {
                 option.selected = false;
             }
+
             selOption.add(option, null);
-    
-           
         });
     } else if (parm04 == 2) {
         xJSON.forEach(element => {
@@ -1164,12 +1162,9 @@ function selectEmpresaUsuario(parm01, parm02, parm03, parm04, parm05) {
                 option.value    = element.usuarioCodigo;
                 option.text     = element.usuarioCodigo +' - '+ element.usuarioNombre;
                 selOption.add(option, null);
-            } 
-    
-           
+            }
         });
     }
-
 }
 
 function selectEmpresaForm(parm01, parm02, parm03, parm04) {

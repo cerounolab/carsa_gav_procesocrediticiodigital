@@ -198,9 +198,9 @@ const postUsuarioRol    = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true); 
-
-            return apiRES.status(_code).json(xJSON);
+            xJSON   = await jsonBody(_code, 'Error', 'postUsuarioRol', 'Error: Verifique algún campo esta vacío', null, 0, 0, 0, 0, []);
+            xJSON   = camelcaseKeys(xJSON, {deep: true});
+            return apiRES.status(200).json(xJSON);
         })();
     
     }       
@@ -279,9 +279,9 @@ const putUsuarioRol     = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true); 
-
-            return apiRES.status(_code).json(xJSON);
+            xJSON   = await jsonBody(_code, 'Error', 'putUsuarioRol', 'Error: Verifique algún campo esta vacío', null, 0, 0, 0, 0, []);
+            xJSON   = camelcaseKeys(xJSON, {deep: true});
+            return apiRES.status(200).json(xJSON);
         })();
 
     }       
@@ -337,9 +337,9 @@ const deleteUsuarioRol = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
-
-            return apiRES.status(_code).json(xJSON);
+            xJSON   = await jsonBody(_code, 'Error', 'deleteUsuarioRol', 'Error: Verifique algún campo esta vacío', null, 0, 0, 0, 0, []);
+            xJSON   = camelcaseKeys(xJSON, {deep: true});
+            return apiRES.status(200).json(xJSON);
         })();
     
     }       

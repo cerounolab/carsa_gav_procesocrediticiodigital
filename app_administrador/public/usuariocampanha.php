@@ -129,6 +129,6 @@
 
 		</script>
 		
-		<script src="./../js/usuariocampanha.js?<?php echo date('YmdHis');?>"></script>
+		<script src="./../js/usuariocampanha.js?<?php echo date('Ymd');?>"></script>
 	</body>
 </html>

@@ -183,9 +183,9 @@ const postDominio   = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
-
-            return apiRES.status(_code).json(xJSON);
+            xJSON   = await jsonBody(_code, 'Error', 'postDominio', 'Error: Verifique algún campo esta vacío', null, 0, 0, 0, 0, []);
+            xJSON   = camelcaseKeys(xJSON, {deep: true});
+            return apiRES.status(200).json(xJSON);
         })();
     
     }       
@@ -265,9 +265,9 @@ const putDominio    = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
-
-            return apiRES.status(_code).json(xJSON);
+            xJSON   = await jsonBody(_code, 'Error', 'putDominio', 'Error: Verifique algún campo esta vacío', null, 0, 0, 0, 0, []);
+            xJSON   = camelcaseKeys(xJSON, {deep: true});
+            return apiRES.status(200).json(xJSON);
         })();
     
     }       
@@ -325,9 +325,9 @@ const deleteDominio = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true);
-
-            return apiRES.status(_code).json(xJSON);
+            xJSON   = await jsonBody(_code, 'Error', 'deleteDominio', 'Error: Verifique algún campo esta vacío', null, 0, 0, 0, 0, []);
+            xJSON   = camelcaseKeys(xJSON, {deep: true});
+            return apiRES.status(200).json(xJSON);
         })();
     
     }       

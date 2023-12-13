@@ -132,13 +132,13 @@ function setRolFormulario(codRol, codForm, codAcc) {
 			bodyCol = '#2b5cfd;';
 			bodyMod = 'C';
 			bodyOnl = '';
-			bodyBot = '           <button type="submit" class="btn btn-info">Agregar</button>';
+			bodyBot = '           <button type="submit" class="btn btn-primary">Agregar</button>';
 			bodAcc	= 1;
 			break;
 
 		case 2:
 			bodyTit = 'VER';
-			bodyCol = '#6929d5;';
+			bodyCol = '#be9027;';
 			bodyMod = 'R';
 			bodyOnl = 'disabled';
 			bodyBot = '';
@@ -147,26 +147,26 @@ function setRolFormulario(codRol, codForm, codAcc) {
 
 		case 3:
 			bodyTit = 'EDITAR';
-			bodyCol = '#007979;';
+			bodyCol = '#be9027;';
 			bodyMod = 'U';
 			bodyOnl = '';
-			bodyBot = '           <button type="submit" class="btn btn-success">Actualizar</button>';
+			bodyBot = '           <button type="submit" class="btn btn-primary">Actualizar</button>';
 			bodAcc	= 1;
 			break;
 
 		case 4:
 			bodyTit = 'Anular';
-			bodyCol = '#ff2924;';
+			bodyCol = '#be9027;';
 			bodyMod = 'U';
 			bodyOnl = 'readonly';
-			bodyBot = '           <button type="submit" class="btn btn-danger">Anular</button>';
+			bodyBot = '           <button type="submit" class="btn btn-primary">Anular</button>';
 			bodAcc	= 2;
 
 			break;
 	
 		case 5:
 			bodyTit = 'AUDITORIA';
-			bodyCol = '#d38109;';
+			bodyCol = '#be9027;';
 			bodyMod = 'A';
 			bodyOnl = 'readonly';
 			bodyBot = '';
@@ -183,7 +183,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 				selEstado = selEstado + '                               			<option value="'+ element1.tipoParametro +'">'+ element1.tipoNombre +'</option>';
 			}
 		});
-
+    
 		xJSON2.forEach(element1 => {
 			if (element1.tipoEstadoParametro == 1) {
 				selEmpresa = selEmpresa + '            								<option value="'+ element1.empresaCodigo +'">'+ element1.empresaNombre +'</option>';
@@ -376,11 +376,15 @@ function setRolFormulario(codRol, codForm, codAcc) {
 		'           				</div>'+
 		'						</div>'+
 		''+
-		'						<div class="col-12 text-end">'+
-		'	    					<div class="modal-footer" style="text-align: right;">'+ bodyBot +
-		'		    					<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>'+
-		'	    					</div>'+
-		'						</div>'+
+		'	    				<div class="modal-footer" style="text-align:right; width:100%;">'+ 
+		'							<div class="row">'+
+		'       						<div class="col-sm-12">'+
+		'           						<div class="form-group">'+ bodyBot +
+		'		    							<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>'+
+		'           						</div>'+
+		'           					</div>'+
+		'           				</div>'+
+		'	    				</div>'+
 		'					</div>'+
 		'				</form>'+
 		'			</div>';
@@ -673,11 +677,15 @@ function setRolFormulario(codRol, codForm, codAcc) {
 				'           				    <input class="form-control" type="hidden" id="workAccion"		name="workAccion"			value="'+ bodAcc+'"						required readonly>'+
 				'							</div>'+
 				''+
-				'						<div class="col-12 text-end">'+
-				'	    					<div class="modal-footer" style="text-align: right;">'+ bodyBot +
-				'		    					<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>'+
-				'	    					</div>'+
-				'						</div>'+
+				'	    				<div class="modal-footer" style="text-align:right; width:100%;">'+ 
+				'							<div class="row">'+
+				'       						<div class="col-sm-12">'+
+				'           						<div class="form-group">'+ bodyBot +
+				'		    							<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>'+
+				'           						</div>'+
+				'           					</div>'+
+				'           				</div>'+
+				'	    				</div>'+
 				'					</div>'+
 				'				</form>'+
 				'			</div>';

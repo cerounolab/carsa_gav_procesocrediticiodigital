@@ -114,16 +114,16 @@ function setFormulario(codElem, codAcc) {
 	switch (codAcc) {
 		case 1:
 			bodyTit = 'NUEVO';
-			bodyCol = '#2b5cfd;';
+			bodyCol = '#be9027;';
 			bodyMod = 'C';
 			bodyOnl = '';
-			bodyBot = '           <button type="submit" class="btn btn-info">Agregar</button>';
+			bodyBot = '           <button type="submit" class="btn btn-primary">Agregar</button>';
 			bodAcc	= 1;
 			break;
 
 		case 2:
 			bodyTit = 'VER';
-			bodyCol = '#6929d5;';
+			bodyCol = '#be9027;';
 			bodyMod = 'R';
 			bodyOnl = 'disabled';
 			bodyBot = '';
@@ -132,26 +132,26 @@ function setFormulario(codElem, codAcc) {
 
 		case 3:
 			bodyTit = 'EDITAR';
-			bodyCol = '#007979;';
+			bodyCol = '#be9027;';
 			bodyMod = 'U';
 			bodyOnl = '';
-			bodyBot = '           <button type="submit" class="btn btn-success">Actualizar</button>';
+			bodyBot = '           <button type="submit" class="btn btn-primary">Actualizar</button>';
 			bodAcc	= 1;
 			break;
 
 		case 4:
 			bodyTit = 'Anular';
-			bodyCol = '#ff2924;';
+			bodyCol = '#be9027;';
 			bodyMod = 'U';
 			bodyOnl = 'readonly';
-			bodyBot = '           <button type="submit" class="btn btn-danger">Anular</button>';
+			bodyBot = '           <button type="submit" class="btn btn-primary">Anular</button>';
 			bodAcc	= 2;
 
 			break;
 	
 		case 5:
 			bodyTit = 'AUDITORIA';
-			bodyCol = '#d38109;';
+			bodyCol = '#be9027;';
 			bodyMod = 'A';
 			bodyOnl = 'readonly';
 			bodyBot = '';
@@ -247,11 +247,15 @@ function setFormulario(codElem, codAcc) {
 			'           				</div>'+
 			'						</div>'+
 			''+
-			'						<div class="col-12 text-end">'+
-			'	    					<div class="modal-footer" style="text-align: right;">'+ bodyBot +
-			'		    					<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>'+
-			'	    					</div>'+
-			'						</div>'+
+			'	    				<div class="modal-footer" style="text-align:right; width:100%;">'+ 
+			'							<div class="row">'+
+			'       						<div class="col-sm-12">'+
+			'           						<div class="form-group">'+ bodyBot +
+			'		    							<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>'+
+			'           						</div>'+
+			'           					</div>'+
+			'           				</div>'+
+			'	    				</div>'+
 			'					</div>'+
 			'				</form>'+
 			'			</div>';
@@ -358,11 +362,15 @@ function setFormulario(codElem, codAcc) {
 				'           				</div>'+
 				'						</div>'+
 				''+
-				'						<div class="col-12 text-end">'+
-				'	    					<div class="modal-footer" style="text-align: right;">'+ bodyBot +
-				'		    					<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>'+
-				'	    					</div>'+
-				'						</div>'+
+				'	    				<div class="modal-footer" style="text-align:right; width:100%;">'+ 
+				'							<div class="row">'+
+				'       						<div class="col-sm-12">'+
+				'           						<div class="form-group">'+ bodyBot +
+				'		    							<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>'+
+				'           						</div>'+
+				'           					</div>'+
+				'           				</div>'+
+				'	    				</div>'+
 				'					</div>'+
 				'				</form>'+
 				'			</div>';

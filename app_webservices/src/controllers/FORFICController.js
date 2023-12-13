@@ -147,44 +147,44 @@ const postFormulario  = (apiREQ, apiRES) => {
 
     if (_FORFICEST && _FORFICEMC && _FORFICNOM && _FORFICCEM && _FORFICCUS && _FORFICCIP && _FORFICCPR && _FORFICAEM && _FORFICAUS && _FORFICAIP && _FORFICAPR){
 
-            (async () => {
-                    xDATA = await insertFORFIC(_FORFICEST,
-                    _FORFICEMC,
-                    _FORFICORD,
-                    _FORFICNOM,
-                    _FORFICURL,
-                    _FORFICOBS,
-                    _FORFICCEM,
-                    _FORFICCUS,
-                    _FORFICCIP,
-                    _FORFICCPR,
-                    _FORFICAEM,
-                    _FORFICAUS,
-                    _FORFICAIP,
-                    _FORFICAPR,
-                    _FORFICAIN);
+        (async () => {
+            xDATA = await insertFORFIC(_FORFICEST,
+            _FORFICEMC,
+            _FORFICORD,
+            _FORFICNOM,
+            _FORFICURL,
+            _FORFICOBS,
+            _FORFICCEM,
+            _FORFICCUS,
+            _FORFICCIP,
+            _FORFICCPR,
+            _FORFICAEM,
+            _FORFICAUS,
+            _FORFICAIP,
+            _FORFICAPR,
+            _FORFICAIN);
 
-                    _code   = xDATA[0];
-                    xJSON   = xDATA[1];
+            _code   = xDATA[0];
+            xJSON   = xDATA[1];
 
-                    if (_code == 200) {
-                        xJSON = await jsonBody(_code, 'Success', null, 'Correcto', null, 0, 0, 0, 0, xJSON);
+            if (_code == 200) {
+                xJSON = await jsonBody(_code, 'Success', null, 'Correcto', null, 0, 0, 0, 0, xJSON);
 
-                    } else {
-                        xJSON   = xDATA[1];
-                        xJSON   = await jsonBody(_code, 'Error', xJSON.reference, null, xJSON.message, 0, 0, 0, 0, []);
-                    }
+            } else {
+                xJSON   = xDATA[1];
+                xJSON   = await jsonBody(_code, 'Error', xJSON.reference, null, xJSON.message, 0, 0, 0, 0, []);
+            }
 
-                    xJSON = camelcaseKeys(xJSON, {deep: true});
+            xJSON = camelcaseKeys(xJSON, {deep: true});
 
-                    return apiRES.status(_code).json(xJSON);
-                })();       
+            return apiRES.status(_code).json(xJSON);
+        })();       
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true); 
-
-            return apiRES.status(_code).json(xJSON);
+            xJSON   = await jsonBody(_code, 'Error', 'postFormulario', 'Error: Verifique algún campo esta vacío', null, 0, 0, 0, 0, []);
+            xJSON   = camelcaseKeys(xJSON, {deep: true});
+            return apiRES.status(200).json(xJSON);
         })();
     
     }       
@@ -216,23 +216,23 @@ const putFormulario    = (apiREQ, apiRES) => {
 
     if (_ACCION && _FORFICCOD && _FORFICEST && _FORFICEMC && _FORFICNOM && _FORFICCEM && _FORFICCUS && _FORFICCIP && _FORFICCPR && _FORFICAEM && _FORFICAUS && _FORFICAIP && _FORFICAPR){
             (async () => {
-                    xDATA = await updateFORFIC(_ACCION,
-                        _FORFICCOD,
-                        _FORFICEST,
-                        _FORFICEMC,
-                        _FORFICORD,
-                        _FORFICNOM,
-                        _FORFICURL,
-                        _FORFICOBS,
-                        _FORFICCEM,
-                        _FORFICCUS,
-                        _FORFICCIP,
-                        _FORFICCPR,
-                        _FORFICAEM,
-                        _FORFICAUS,
-                        _FORFICAIP,
-                        _FORFICAPR,
-                        _FORFICAIN);
+                xDATA = await updateFORFIC(_ACCION,
+                _FORFICCOD,
+                _FORFICEST,
+                _FORFICEMC,
+                _FORFICORD,
+                _FORFICNOM,
+                _FORFICURL,
+                _FORFICOBS,
+                _FORFICCEM,
+                _FORFICCUS,
+                _FORFICCIP,
+                _FORFICCPR,
+                _FORFICAEM,
+                _FORFICAUS,
+                _FORFICAIP,
+                _FORFICAPR,
+                _FORFICAIN);
 
                 _code   = xDATA[0];
                 xJSON   = xDATA[1];
@@ -253,9 +253,9 @@ const putFormulario    = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true); 
-
-            return apiRES.status(_code).json(xJSON);
+            xJSON   = await jsonBody(_code, 'Error', 'putFormulario', 'Error: Verifique algún campo esta vacío', null, 0, 0, 0, 0, []);
+            xJSON   = camelcaseKeys(xJSON, {deep: true});
+            return apiRES.status(200).json(xJSON);
         })();
 
     }       
@@ -310,9 +310,9 @@ const deleteFormulario    = (apiREQ, apiRES) => {
     }else{
         (async () => {
             _code   = 400;
-            xJSON   = await errorBody(_code, 'Verifique, algún campo esta vacio.', true); 
-
-            return apiRES.status(_code).json(xJSON);
+            xJSON   = await jsonBody(_code, 'Error', 'deleteFormulario', 'Error: Verifique algún campo esta vacío', null, 0, 0, 0, 0, []);
+            xJSON   = camelcaseKeys(xJSON, {deep: true});
+            return apiRES.status(200).json(xJSON);
         })();
 
     }     
