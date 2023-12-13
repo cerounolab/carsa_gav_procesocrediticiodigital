@@ -525,6 +525,17 @@ const selectCAMPANHA = async(actionType, codigo, valor) => {
                             tipo_campanha_codigo  = (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMCAMPANHATIPO' AND DOMFICPAR = ${codigo})`;
             break;
 
+        case 5:
+            query00 = `SELECT 
+                            COUNT(*)	AS      cantidad_campanha,
+                            tipo_campanha_nombre
+                        
+                        FROM adm.CAMPANHA
+                        WHERE ${_empresaCodigo2}
+                    
+                        GROUP BY tipo_campanha_nombre`;
+            break;
+
         default:
             break;
     }
@@ -734,6 +745,15 @@ const selectUSUARIOROL  = async(actionType, codigo, codigo2, codigo3) => {
                             usuario_codigo = ${codigo} AND rol_codigo = ${codigo2} AND empresa_codigo  = ${codigo3}`;
             break;
 
+        case 3:
+            query00 = `SELECT
+                            *
+                        FROM
+                            adm.USUARIOROL
+                        WHERE
+                            rol_codigo = ${codigo} AND empresa_codigo  = ${codigo2}`;
+            break;
+
         default:
             break;
     }
@@ -793,6 +813,17 @@ const selectUSUARIOCAMPANHA  = async(actionType, codigo, codigo2, codigo3) => {
                             adm.USUARIOCAMPANHA
                         WHERE
                             usuario_codigo = ${codigo} AND campanha_codigo = ${codigo2} AND empresa_codigo  = ${codigo3}`;
+            break;
+
+        case 3:
+            query00 = `SELECT 
+                            COUNT(*)	AS  cantidad_campanha,
+                            tipo_campanha_nombre
+            
+                        FROM adm.CAMPANHA
+                            WHERE ${_empresaCodigo2}
+        
+                        GROUP BY tipo_campanha_nombre`
             break;
 
         default:

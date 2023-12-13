@@ -18,7 +18,7 @@
 
 	</head>
 
-    <body class="hold-transition light-skin sidebar-mini theme-primary fixed sidebar-collapse">
+    <body class="light-skin sidebar-mini theme-primary fixed">
 		<div class="wrapper">
 			<div id="loader"></div>
 
@@ -91,6 +91,5 @@
 			const _parm05BASE   = '<?php echo trim($usu_05); ?>';
             const _parm06BASE   = <?php echo trim($usu_06); ?>;
 		</script>
-		<!-- <script src="./../js/dashboardv1.js?<?php //echo date('YmdHis');?>"></script> -->
 	</body>
 </html>

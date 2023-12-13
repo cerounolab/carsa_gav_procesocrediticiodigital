@@ -145,7 +145,7 @@ const postFormulario  = (apiREQ, apiRES) => {
     let _FORFICAPR  = (apiREQ.body.auditoria_programa != undefined && apiREQ.body.auditoria_programa != null && apiREQ.body.auditoria_programa != '') ? "'"+apiREQ.body.auditoria_programa.trim()+"'" : false;  
     let _FORFICAIN  = (apiREQ.body.auditoria_incidencia != undefined && apiREQ.body.auditoria_incidencia != null && apiREQ.body.auditoria_incidencia != '') ? "'"+apiREQ.body.auditoria_incidencia.trim()+"'" : null;
 
-    if (_FORFICEST && _FORFICEMC && _FORFICNOM && _FORFICURL && _FORFICCEM && _FORFICCUS && _FORFICCIP && _FORFICCPR && _FORFICAEM && _FORFICAUS && _FORFICAIP && _FORFICAPR){
+    if (_FORFICEST && _FORFICEMC && _FORFICNOM && _FORFICCEM && _FORFICCUS && _FORFICCIP && _FORFICCPR && _FORFICAEM && _FORFICAUS && _FORFICAIP && _FORFICAPR){
 
             (async () => {
                     xDATA = await insertFORFIC(_FORFICEST,
@@ -168,11 +168,11 @@ const postFormulario  = (apiREQ, apiRES) => {
                     xJSON   = xDATA[1];
 
                     if (_code == 200) {
-                        xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
+                        xJSON = await jsonBody(_code, 'Success', null, 'Correcto', null, 0, 0, 0, 0, xJSON);
 
                     } else {
                         xJSON   = xDATA[1];
-                        xJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
+                        xJSON   = await jsonBody(_code, 'Error', xJSON.reference, null, xJSON.message, 0, 0, 0, 0, []);
                     }
 
                     xJSON = camelcaseKeys(xJSON, {deep: true});
@@ -214,7 +214,7 @@ const putFormulario    = (apiREQ, apiRES) => {
     let _FORFICAPR  = (apiREQ.body.auditoria_programa != undefined && apiREQ.body.auditoria_programa != null && apiREQ.body.auditoria_programa != '') ? "'"+apiREQ.body.auditoria_programa.trim()+"'" : false;  
     let _FORFICAIN  = (apiREQ.body.auditoria_incidencia != undefined && apiREQ.body.auditoria_incidencia != null && apiREQ.body.auditoria_incidencia != '') ? "'"+apiREQ.body.auditoria_incidencia.trim()+"'" : null;
 
-    if (_ACCION && _FORFICCOD && _FORFICEST && _FORFICEMC && _FORFICNOM && _FORFICURL && _FORFICCEM && _FORFICCUS && _FORFICCIP && _FORFICCPR && _FORFICAEM && _FORFICAUS && _FORFICAIP && _FORFICAPR){
+    if (_ACCION && _FORFICCOD && _FORFICEST && _FORFICEMC && _FORFICNOM && _FORFICCEM && _FORFICCUS && _FORFICCIP && _FORFICCPR && _FORFICAEM && _FORFICAUS && _FORFICAIP && _FORFICAPR){
             (async () => {
                     xDATA = await updateFORFIC(_ACCION,
                         _FORFICCOD,
@@ -238,11 +238,11 @@ const putFormulario    = (apiREQ, apiRES) => {
                 xJSON   = xDATA[1];
 
                 if (_code == 200) {
-                    xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
+                    xJSON = await jsonBody(_code, 'Success', null, 'Correcto', null, 0, 0, 0, 0, xJSON);
 
                 } else {
                     xJSON   = xDATA[1];
-                    xJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, xJSON);
+                     xJSON   = await jsonBody(_code, 'Error', xJSON.reference, null, xJSON.message, 0, 0, 0, 0, []);
                 }
 
                 xJSON = camelcaseKeys(xJSON, {deep: true});
@@ -284,7 +284,7 @@ const deleteFormulario    = (apiREQ, apiRES) => {
     let _FORFICAPR  = (apiREQ.body.auditoria_programa != undefined && apiREQ.body.auditoria_programa != null && apiREQ.body.auditoria_programa != '') ? "'"+apiREQ.body.auditoria_programa.trim()+"'" : false;  
     let _FORFICAIN  = (apiREQ.body.auditoria_incidencia != undefined && apiREQ.body.auditoria_incidencia != null && apiREQ.body.auditoria_incidencia != '') ? "'"+apiREQ.body.auditoria_incidencia.trim()+"'" : null;
 
-    if (_FORFICCOD && _FORFICEST && _FORFICEMC && _FORFICNOM && _FORFICURL && _FORFICCEM && _FORFICCUS && _FORFICCIP && _FORFICCPR && _FORFICAEM && _FORFICAUS && _FORFICAIP && _FORFICAPR){
+    if (_FORFICCOD && _FORFICEST && _FORFICEMC && _FORFICNOM && _FORFICCEM && _FORFICCUS && _FORFICCIP && _FORFICCPR && _FORFICAEM && _FORFICAUS && _FORFICAIP && _FORFICAPR){
             (async () => {
                 xDATA = await deleteFORFIC(_FORFICCOD);
 
@@ -292,14 +292,14 @@ const deleteFormulario    = (apiREQ, apiRES) => {
                 xJSON   = xDATA[1];
 
                 if (_code == 200) {
-                    xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
+                    xJSON = await jsonBody(_code, 'Success', null, 'Correcto', null, 0, 0, 0, 0, xJSON);
     
                 } else if (_code == 404){
                     xJSON   = xDATA[1];
-                    xJSON   = await jsonBody(_code, 'Error: El codigo de rol pertenece a un conjunto de datos, verifique', null, null, null, 0, 0, 0, 0, []);
+                    xJSON   = await jsonBody(_code, 'Error', 'deleteFormulario', 'Error: El código de rol pertenece a un conjunto de datos', null, 0, 0, 0, 0, []);
                 }else{
                     xJSON   = xDATA[1];
-                    xJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
+                    xJSON   = await jsonBody(_code, 'Error', xJSON.reference, null, xJSON.message, 0, 0, 0, 0, []);
                 }
 
                 xJSON = camelcaseKeys(xJSON, {deep: true});

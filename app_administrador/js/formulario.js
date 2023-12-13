@@ -165,7 +165,7 @@ function setFormulario(codElem, codAcc) {
 		});
 
 		html = 
-			'				<div class="modal-content" style="width:800px">'+
+			'				<div class="modal-content">'+
 			'					<form class="needs-validation" novalidate method="post" action="../class/crud/formulario.php">'+
 			'	    				<div class="modal-header" style="color:#ffffff; background:'+ bodyCol +'">'+
 			'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+
@@ -276,7 +276,7 @@ function setFormulario(codElem, codAcc) {
 				var formularioObservacion	= (element.formularioObservacion == null) ? '' : element.formularioObservacion;
 
 				html = 
-				'				<div class="modal-content" style="width:800px">'+
+				'				<div class="modal-content">'+
 				'					<form class="needs-validation" novalidate method="post" action="../class/crud/formulario.php">'+
 				'	    				<div class="modal-header" style="color:#ffffff; background:'+ bodyCol +'">'+
 				'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+

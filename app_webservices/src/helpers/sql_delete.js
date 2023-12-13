@@ -38,7 +38,7 @@ const deleteDOMFIC  = async(codigo) => {
             })
             .catch(e => {
                 _code = 500;
-                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: deleteDOMFIC', true)
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine, 'Function: deleteDOMFIC')
                     .then(result => _data = result);
             })
             .then(() => {
@@ -79,7 +79,7 @@ const deleteEMPFIC  = async(codigo) => {
             })
             .catch(e => {
                 _code = 500;
-                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: deleteEMPFIC', true)
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine, 'Function: deleteEMPFIC')
                     .then(result => _data = result);
             })
             .then(() => {
@@ -120,7 +120,7 @@ const deleteSUCFIC  = async(codigo) => {
             })
             .catch(e => {
                 _code = 500;
-                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: deleteSUCFIC', true)
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine, 'Function: deleteSUCFIC')
                     .then(result => _data = result);
             })
             .then(() => {
@@ -161,7 +161,7 @@ const deleteUSUFIC  = async(codigo) => {
             })
             .catch(e => {
                 _code = 500;
-                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: deleteUSUFIC', true)
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine, 'Function: deleteUSUFIC')
                     .then(result => _data = result);
             })
             .then(() => {
@@ -204,7 +204,7 @@ const deleteROLFIC  = async(codigo) => {
             .catch(e => {
                 _code = 500;
                 _error  = e.code;
-                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: deleteROLFIC', true)
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine, 'Function: deleteROLFIC')
                     .then(result => _data = result);
             })
             .then(() => {
@@ -249,7 +249,7 @@ const deleteCAMFIC  = async(codigo) => {
             })
             .catch(e => {
                 _code = 500;
-                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: deleteCAMFIC', true)
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine, 'Function: deleteCAMFIC')
                     .then(result => _data = result);
             })
             .then(() => {
@@ -292,7 +292,7 @@ const deleteFORFIC  = async(codigo) => {
             .catch(e => {
                 _code   = 500;
                 _error  = e.code; 
-                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: deleteFORFIC', true)
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine, 'Function: deleteFORFIC')
                     .then(result => _data = result);
             })
             .then(() => {
@@ -337,7 +337,7 @@ const deleteROLFOR  = async(codigo, codigo2) => {
             })
             .catch(e => {
                 _code = 500;
-                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: deleteROLFOR', true)
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine, 'Function: deleteROLFOR')
                     .then(result => _data = result);
             })
             .then(() => {
@@ -377,7 +377,7 @@ const deleteUSUROL  = async(codigo, codigo2) => {
             })
             .catch(e => {
                 _code = 500;
-                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: deleteUSUROL', true)
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine,'Function: deleteUSUROL')
                     .then(result => _data = result);
             })
             .then(() => {
@@ -417,7 +417,7 @@ const deleteUSUCAM  = async(codigo, codigo2) => {
             })
             .catch(e => {
                 _code = 500;
-                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: deleteUSUCAM', true)
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine, 'Function: deleteUSUCAM')
                     .then(result => _data = result);
             })
             .then(() => {

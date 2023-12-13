@@ -178,7 +178,7 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 		});
 
 		html = 
-		'				<div class="modal-content" style="width:800px">'+
+		'				<div class="modal-content">'+
 		'					<form class="needs-validation" novalidate method="post" action="../class/crud/usuariocampanha.php">'+
 		'	    				<div class="modal-header" style="color:#ffffff; background:'+ bodyCol +'">'+
 		'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+
@@ -307,7 +307,7 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 				var usuarioCampanhaObservacion		= (element.usuarioCampanhaObservacion == null) ? '' : element.usuarioCampanhaObservacion;
 
 				html = 
-				'				<div class="modal-content" style="width:800px">'+
+				'				<div class="modal-content">'+
 				'					<form class="needs-validation" novalidate method="post" action="../class/crud/usuariocampanha.php">'+
 				'	    				<div class="modal-header" style="color:#ffffff; background:'+ bodyCol +'">'+
 				'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+
