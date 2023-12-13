@@ -427,8 +427,8 @@ function setUsuario(codElem, codAcc) {
 				''+
 				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var03">Empresa</label>'+
-				`       					                <select id="var03" name="var03" class="select2 form-control custom-select" onchange="selectEmpresaSuc('var04','var03', 1, 0); setUsu('var03', 'var08_1'); setRecuperoDatos('var05', 'var03', 'var06', 'var07', 'var08', 'var09', 'var010', 'var011'); "  style="width:100%; height:40px;" ${bodyOnl}>`+
+				'       					                <label for="var03">Empresa</label>'+ //onchange="selectEmpresaSuc('var04','var03', 1, 0); setUsu('var03', 'var08_1'); setRecuperoDatos('var05', 'var03', 'var06', 'var07', 'var08', 'var09', 'var010', 'var011'); "
+				`       					                <select id="var03" name="var03" class="select2 form-control custom-select" style="width:100%; height:40px;" ${bodyOnl}>`+
 				'       					                    <optgroup label="Seleccionar">'+selEmpresa +
 				'       					                    </optgroup>'+
 				'       					                </select>'+
