@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var dataJSON	= getUsuarioList(_parm06BASE);
+    var dataJSON	= getUsuarioList(_parm06BASE, 0);
 
 	$('#tableLoads').DataTable({
 		processing	: true,
@@ -680,14 +680,14 @@ function setUsuario(codElem, codAcc) {
 }
 
 function setRecuperoDatos(parm01, parm02, parm03, parm04, parm05, parm06,  parm07, parm08) {
-	var codDoc		= document.getElementById(parm01);
-	var codEmp		= document.getElementById(parm02);
-	var usuNom		= document.getElementById(parm03);
-	var usuApe		= document.getElementById(parm04);
-	var usuUSu		= document.getElementById(parm05);
-	var usuPass		= document.getElementById(parm06);
-	var usuCel		= document.getElementById(parm07);
-	var usuEmail	= document.getElementById(parm08);
+	var codDoc		= document.getElementById(parm01);//doc
+	var codEmp		= document.getElementById(parm02);//emp
+	var usuNom		= document.getElementById(parm03);//nomb
+	var usuApe		= document.getElementById(parm04);//ape
+	var usuUSu		= document.getElementById(parm05);//usu
+	var usuPass		= document.getElementById(parm06); //pass
+	var usuEmail	= document.getElementById(parm07); //email
+	var usuCel		= document.getElementById(parm08);//cel
 
 	usuNom.value	= '';
 	usuApe.value	= '';
