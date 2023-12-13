@@ -725,11 +725,11 @@ function getSucursalEmp(codElem){
     return xDATA;
 }
 
-function getUsuarioList(codElem){
+function getUsuarioList(codEmp, codEst){
     localStorage.removeItem('UsuarioListJSON');
 
     if (localStorage.getItem('UsuarioListJSON') === null){
-        getJSON('UsuarioListJSON', 'usuario/listado/empresa/'+ codElem);
+        getJSON('UsuarioListJSON', 'usuario/listado/empresa/'+ codEmp);
     }
 
     var xJSON = JSON.parse(localStorage.getItem('UsuarioListJSON'));
@@ -737,7 +737,11 @@ function getUsuarioList(codElem){
     
     if (xJSON['code'] == 200) {
         xJSON['data'].forEach(element => {
-            xDATA.push(element);
+            if (codEst == 0) {
+                xDATA.push(element);
+            } else if (element.tipoEstadoParametro == codEst){
+                xDATA.push(element);
+            }
         });
     }
 
@@ -907,11 +911,11 @@ function getcampanhaId(codElem){
     return xDATA;
 }
 
-function getcampanhaEmp(codElem){
+function getcampanhaEmp(codEmp, codEst){
     localStorage.removeItem('campanhaEmpresaJSON');
 
     if (localStorage.getItem('campanhaEmpresaJSON') === null){
-        getJSON('campanhaEmpresaJSON', 'campanha/empresa/' + codElem);
+        getJSON('campanhaEmpresaJSON', 'campanha/empresa/' + codEmp);
     }
     var xJSON = [];
 
@@ -920,7 +924,11 @@ function getcampanhaEmp(codElem){
 
     if (xJSON['code'] == 200) {
         xJSON['data'].forEach(element => {
-            xDATA.push(element);
+            if (codEst == 0) {
+                xDATA.push(element);
+            } else if (element.tipoEstadoParametro == codEst){
+                xDATA.push(element);
+            }
         });
     }
 

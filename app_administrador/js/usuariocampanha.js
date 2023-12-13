@@ -199,7 +199,7 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 		''+
 		'	    					<div class="modal-body" >'+
 		'       					    <div class="row">'+
-		'       					        <div class="col-sm-12 col-md-4">'+
+		'       					        <div class="col-sm-12 col-md-6">'+
 		'       					            <div class="form-group">'+
 		'       					                <label for="var01">ESTADO</label>'+
 		'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
@@ -209,27 +209,24 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 		'       					            </div>'+
 		'       					        </div>'+
 		''+
-		'               					<div class="col-sm-12 col-md-4">'+
+		'               					<div class="col-sm-12 col-md-6">'+
 		'               					    <div class="form-group">'+
 		'               					        <label for="var02">Orden</label>'+
 		'               					        <input id="var02" name="var02" value="" class="form-control" type="number" min="0" max="999" style="text-transform:uppercase; height:40px;" placeholder="Orden" '+ bodyOnl +'>'+
 		'               					    </div>'+
 		'               					</div>'+
 		''+
-		'               					<div class="col-sm-12 col-md-4">'+
-		'               					</div>'+
-		''+
-		'									<div class="col-sm-12 col-md-6">'+
+		'									<div class="col-sm-12 col-md-4">'+
 		'       					            <div class="form-group">'+
 		'       					                <label for="var03">Empresa</label>'+
-		`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresaCampanha('var04','var03', 1, 1); selectEmpresaUsuario('var05','var03', 1, 1);" style="width:100%; height:40px;">`+
+		`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresaCampanha('var04','var03', 1, 1); selectEmpresaUsuarioListado('var05','var03', 1, 1);" style="width:100%; height:40px;">`+
 		'       					                    <optgroup label="Seleccionar">'+ selEmpresa +
 		'       					                    </optgroup>'+
 		'       					                </select>'+
 		'       					            </div>'+
 		'       					        </div>'+
 		''+
-		'									<div class="col-sm-12 col-md-6">'+
+		'									<div class="col-sm-12 col-md-4">'+
 		'       					            <div class="form-group">'+
 		'       					                <label for="var04">Campaña</label>'+
 		'       					                <select id="var04" name="var04" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
@@ -239,7 +236,7 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 		'       					            </div>'+
 		'       					        </div>'+
 		''+
-		'									<div class="col-sm-12 col-md-6">'+
+		'									<div class="col-sm-12 col-md-4">'+
 		'       					            <div class="form-group">'+
 		'       					                <label for="var05">Usuario</label>'+
 		'       					                <select id="var05" name="var05" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
@@ -332,7 +329,7 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 				''+
 				'	    					<div class="modal-body" >'+
 				'       					    <div class="row">'+
-				'       					        <div class="col-sm-12 col-md-4">'+
+				'       					        <div class="col-sm-12 col-md-6">'+
 				'       					            <div class="form-group">'+
 				'       					                <label for="var01">ESTADO</label>'+
 				'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
@@ -342,27 +339,24 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 				'       					            </div>'+
 				'       					        </div>'+
 				''+
-				'               					<div class="col-sm-12 col-md-4">'+
+				'               					<div class="col-sm-12 col-md-6">'+
 				'               					    <div class="form-group">'+
 				'               					        <label for="var02">Orden</label>'+
 				'               					        <input id="var02" name="var02" value="'+usuarioCampanhaOrden+'" class="form-control" type="number" min="0" max="999" style="text-transform:uppercase; height:40px;" placeholder="Orden" '+ bodyOnl +'>'+
 				'               					    </div>'+
 				'               					</div>'+
 				''+
-				'               					<div class="col-sm-12 col-md-4">'+
-				'               					</div>'+
-				''+
-				'									<div class="col-sm-12 col-md-6">'+
+				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
 				'       					                <label for="var03">Empresa</label>'+
-				`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresaCampanha('var04','var03', 1, 1); selectEmpresaUsuario('var05','var03', 1, 1);" style="width:100%; height:40px;">`+
+				`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresaCampanha('var04','var03', 1, 1); selectEmpresaUsuarioListado('var05','var03', 1, 1);" style="width:100%; height:40px;">`+
 				'       					                    <optgroup label="Seleccionar">'+ selEmpresa +
 				'       					                    </optgroup>'+
 				'       					                </select>'+
 				'       					            </div>'+
 				'       					        </div>'+
 				''+
-				'									<div class="col-sm-12 col-md-6">'+
+				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
 				'       					                <label for="var04">Campaña</label>'+
 				'       					                <select id="var04" name="var04" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
@@ -372,7 +366,7 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 				'       					            </div>'+
 				'       					        </div>'+
 				''+
-				'									<div class="col-sm-12 col-md-6">'+
+				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
 				'       					                <label for="var05">Usuario</label>'+
 				'       					                <select id="var05" name="var05" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
@@ -420,6 +414,6 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 		
 	if (codAcc == 1) {
 		selectEmpresaCampanha('var04','var03', 1, 1); 
-		selectEmpresaUsuario('var05','var03', 1, 1);	
+		selectEmpresaUsuarioListado('var05','var03', 1, 1);	
 	}
 }
