@@ -559,7 +559,7 @@ const putUsuario    = (apiREQ, apiRES) => {
                 xJSON   = xDATA[1];
 
                 if (_code == 200) {
-                    xJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, xJSON);
+                    xJSON = await jsonBody(_code, 'Success', null, 'Correcto', null, 0, 0, 0, 0, xJSON);
     
                 } else if (_code == 404){
                     xJSON   = xDATA[1];
