@@ -104,6 +104,10 @@
     height: 9.35rem;
 }
 
+.navbar {
+  justify-content: flex-end;
+}
+
 @media only screen and (max-width: 1367px) {
   .Sales_Profit .col-8{
     padding: 0px;
@@ -122,10 +126,8 @@
 }
 
 .side_product{
-    height:59.15rem;
-  }
-
-
+  height:59.15rem;
+}
 
 @media only screen and (max-width: 400px) {
   .side_product{
