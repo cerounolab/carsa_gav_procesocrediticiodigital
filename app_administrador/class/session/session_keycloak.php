@@ -23,7 +23,11 @@
             'auditoria_empresa_codigo'		=> $codEmp,
             'auditoria_usuario'				=> $val_01,
             'auditoria_ip'					=> $val_03,
-            'auditoria_programa'			=> 'PROCREDIG'
+            'auditoria_programa'			=> 'PROCREDIG',
+
+            'usuario_log_host'              => $_SERVER['HTTP_HOST'],
+            'usuario_log_age'               => $_SERVER['HTTP_USER_AGENT'],
+            'usuario_log_referencia'        => $_SERVER['HTTP_REFERER']
         ));
         
     $resultJSON = post_curl('usuario/login', $dataJSON);

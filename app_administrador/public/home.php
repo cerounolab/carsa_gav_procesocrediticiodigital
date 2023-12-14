@@ -2,12 +2,13 @@
 	require './../class/function/curl_api.php';
 	require './../class/function/function.php';
 	require './../class/session/session_system.php';
-	
-	$pageTitle		= 'Inicio';
-	$pageTitleNav	= '';
 
-	$dominio01JSON	= get_curl('parametros/dominio/valor/WSCHEDUOSOLICITUDESTADONIVEL2');
-	$dominio02JSON	= get_curl('parametros/dominio/valor/WSCHEDUOSOLICITUDFORMAPAGO');
+	$pageTitle		= 'Dashboard';
+	$pageTitleNav	= 'Dashboard';
+	$NavTitle01		= 'Cantidad de Rol por Empresa';
+	$NavTitle02		= 'Cantidad de Usuario por Empresa';
+	$NavTitle03		= 'Log Usuario Password';
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -36,7 +37,7 @@
 									<nav>
 										<ol class="breadcrumb">
 											<li class="breadcrumb-item"><a href="./../public/home.php"><i class="mdi mdi-home-outline"></i> Dashboard </a></li>
-											<li class="breadcrumb-item active" aria-current="page"> <?php echo $pageTitleNav; ?> </li>
+											<!-- <li class="breadcrumb-item active" aria-current="page"> <?php //cho $pageTitleNav; ?> </li> -->
 										</ol>
 									</nav>
 								</div>
@@ -47,22 +48,67 @@
 					<section class="content">
                         <!-- ContentInit -->
 						<div class="row">
+							<div class="col-6">
+								<div class="box">
+									<div class="box-body">
+										<div class="row">
+											<h5 class="col-10 card-title"> <?php echo $NavTitle01; ?> </h5>
+										</div>
+										<div class="table-responsive">
+											<table id="tableLoad01" class="text-fade table table-bordered display" style="width:100%">
+												<thead>
+													<tr class="btn-primary" style="text-align:center;">
+														<th class="border-top-0">EMPRESA</th>
+														<th class="border-top-0">ROL NOMBRE</th>
+														<th class="border-top-0">ROL CANTIDAD</th>
+													</tr>
+												</thead>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-6">
+								<div class="box">
+									<div class="box-body">
+										<div class="row">
+											<h4 class="col-10 card-title"> <?php echo $NavTitle02; ?> </h4>
+										</div>
+										<div class="table-responsive">
+											<table id="tableLoad02" class="text-fade table table-bordered display" style="width:100%">
+												<thead>
+													<tr class="btn-primary" style="text-align:center;">
+														<th class="border-top-0">EMPRESA</th>
+														<th class="border-top-0">USUARIO NOMBRE</th>
+														<th class="border-top-0">USUARIO CANTIDAD</th>
+												</thead>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+
 							<div class="col-12">
 								<div class="box">
-									<!-- <div class="row mt-30">
-										<div class="col-lg-5 col-12">
-											<h3 class="box-title">Your Portfolio</h3>
-											<div class="d-flex justify-content-start align-items-center mt-md-20 mt-0">
-												<div id="chart01"></div>
-												<ul class="list-unstyled">
-													<li><span class="badge badge-primary badge-dot me-10"></span> Large Cap Funds</li>
-													<li><span class="badge badge-info badge-dot me-10"></span> Diversified Funds</li>
-													<li><span class="badge badge-success badge-dot me-10"></span> Debt Funds</li>
-												</ul>
-											</div>
+									<div class="box-body">
+										<div class="row">
+											<h4 class="col-10 card-title"> <?php echo $NavTitle03; ?> </h4>
 										</div>
-									</div> -->
-
+										<div class="table-responsive">
+											<table id="tableLoad03" class="text-fade table table-bordered display" style="width:100%">
+												<thead>
+													<tr class="btn-primary" style="text-align:center;">
+														<th class="border-top-0">EMPRESA</th>
+														<th class="border-top-0">USUARIO</th>
+														<th class="border-top-0">ESTADO</th>
+														<th class="border-top-0">FECHA</th>
+														<th class="border-top-0">IP</th>
+													</tr>
+												</thead>
+											</table>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -84,12 +130,15 @@
 ?>
 
 		<script>
-			const _parm01BASE   = '<?php echo trim($usu_01); ?>';
-            const _parm02BASE   = '<?php echo date('Y-m-d H:i:s'); ?>';
-            const _parm03BASE   = '<?php echo trim($log_03); ?>';
-			const _parm04BASE	= 'public/home.php?';
-			const _parm05BASE   = '<?php echo trim($usu_05); ?>';
-            const _parm06BASE   = <?php echo trim($usu_06); ?>;
+			const _parm01BASE  		= '<?php echo trim($usu_01); ?>';
+            const _parm02BASE   	= '<?php echo date('Y-m-d H:i:s'); ?>';
+            const _parm03BASE   	= '<?php echo trim($log_03); ?>';
+			const _parm04BASE		= 'public/home.php?';
+			const _parm05BASE   	= '<?php echo trim($usu_05); ?>';
+            const _parm06BASE   	= <?php echo trim($usu_06); ?>;
+            const _parm07BASE   	= '<?php echo date('Y-m-d'); ?>';
+
 		</script>
+		<script src="./../js/home.js?<?php echo date('Ymd');?>"></script>
 	</body>
 </html>
