@@ -237,8 +237,8 @@ const selectUSUARIO = async(actionType, codigo, valor) => {
         let _data   = [];
         let query00 = '';
         let _empresaCodigo  = parseInt(valor.trim().substring(1, 4));
-        let _empresaCodigo2 = (codigo == 1) ? ` a.empresa_codigo <> 0 ` : ` a.empresa_codigo = ${codigo}`;
-        let _empresaCodigo3 = (codigo == 1) ? `empresa_codigo <> 0 ` : ` empresa_codigo = ${codigo}`;
+        let _empresaCodigo2 = (codigo == 1) ? ` c.EMPFICCOD <> 0 ` : ` c.EMPFICCOD = ${codigo}`;
+        let _empresaCodigo3 = (codigo == 1) ? `empresa_codigo <> 0 ` : `empresa_codigo = ${codigo}`;
 
         switch (actionType) {
             case 1:
@@ -297,17 +297,22 @@ const selectUSUARIO = async(actionType, codigo, valor) => {
                 break;
 
             case 7:
-                query00 = `SELECT
+                query00 = `SELECT 							
                                 COUNT (*)           AS  cantidad_usuario,
-                                a.tipo_estado_codigo,
-                                a.tipo_estado_nombre
-                                
-                            FROM adm.USUARIO a
-                            INNER JOIN adm.EMPRESA b ON a.empresa_codigo    = b.empresa_codigo
+                                b.DOMFICCOD			AS	tipo_estado_codigo,
+                                b.DOMFICNOM			AS	tipo_estado_nombre,
+                            
+                                c.EMPFICCOD			AS	empresa_codigo,
+                                c.EMPFICNOM			AS	empresa_nombre
+                            
+                            FROM adm.USUFIC a
+                            INNER JOIN adm.DOMFIC b ON a.USUFICEST	= b.DOMFICCOD
+                            INNER JOIN adm.EMPFIC c ON a.USUFICEMC	= c.EMPFICCOD
+
                             WHERE ${_empresaCodigo2}
                             
-                            GROUP BY a.tipo_estado_codigo, a.tipo_estado_nombre
-                            ORDER BY a.tipo_estado_codigo `;
+                            GROUP BY c.EMPFICCOD, c.EMPFICNOM, b.DOMFICCOD, b.DOMFICNOM
+                            ORDER BY c.EMPFICORD DESC`;
                 break;
 
             case 8:
@@ -341,6 +346,7 @@ const selectUSUARIO = async(actionType, codigo, valor) => {
             })
             .catch(e => {
                 _code = 500;
+                console.log(e);
                 errorBody(_code, 'Code: '+ e.code +' '+e.severity+', '+e.hint, 'Function: selectUSUARIO')
                     .then(result => _data = result);
             })
