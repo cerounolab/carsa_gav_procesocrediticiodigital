@@ -53,10 +53,17 @@
                             <!-- sidebar menu-->
                             <ul class="sidebar-menu tree" data-widget="tree">
                                 <li class="treeview">
-                                    <a href="./../public/home.php">
+                                    <a href="#">
                                         <i data-feather="grid"></i>
                                         <span>Dashboard</span>
+                                        <span class="pull-right-container">
+                                            <i class="fa fa-angle-right pull-right"></i>
+                                        </span>
                                     </a>
+
+                                    <ul class="treeview-menu">
+                                        <li><a href="./../public/home.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Dashboard v1 </a></li>
+                                    </ul>
                                 </li>
 
                                 <li class="treeview">

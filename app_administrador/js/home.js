@@ -1,88 +1,202 @@
-function charView01(fil01, fil02, fil03) {
-    var xJSON       = getInversionEstado(fil01, fil02, fil03);
-    var objData1    = [];
-    var objData2    = [];
-    var colores     =[];
-    var indexrow    = 0;
-    xJSON.forEach(element => {
-        var dataAUX1 = { "value": element.inversion_total, "name": element.inversion_nombre + ' Gs. '};
-        objData1.push(dataAUX1);
-        var dataAUX2 = { "value": element.inversion_cantidad, "name": element.inversion_nombre};
-        objData2.push(dataAUX2); 
-       colores.push(getRandomColor1(indexrow)); 
-       indexrow = indexrow + 1;
-    });
+$(document).ready(function() {
+    var dataJSON01      = getRolDashboard(_parm06BASE);
+    var dataJSON02      = getUsuarioDashboard(_parm06BASE);
+    var dataJSON03      = getUsuLogDashboard(_parm06BASE, _parm07BASE, 10);
 
-    $(function() {
-        "use strict";
-        var cha01 = echarts.init(document.getElementById('chart01'));
-        var opt01 = {
-            tooltip: {
-                trigger: 'item',
-                enabled: true,
-                formatter: function(d) { 
-                    return d.data.name + ' ' + d.data.value.toLocaleString('es') 
+    $('#tableLoad01').DataTable({
+        processing	: true,
+        destroy		: true,
+        searching	: false,
+        paging		: false,
+        lengthChange: false,
+        info		: false,
+        order: [[ 0, "asc" ]],
+        orderCellsTop: true,
+        fixedHeader	:  true,
+        language	: {
+            lengthMenu: "Mostrar _MENU_ registros por pagina",
+            zeroRecords: "No hay registros disponibles.",
+            info: "Mostrando pagina _PAGE_ de _PAGES_",
+            infoEmpty: "No hay registros disponibles.",
+            infoFiltered: "(Filtrado de _MAX_ registros totales)",
+            sZeroRecords: "No se encontraron resultados",
+            sSearch: "buscar",
+            oPaginate: {
+                sFirst:    "Primero",
+                sLast:     "Último",
+                sNext:     "Siguiente",
+                sPrevious: "Anterior"
+            },
+        },
+        
+        data		: dataJSON01,
+        columnDefs	: [
+            { targets			: [0],	visible : true, searchable : true,	orderData : [0, 0] },
+            { targets			: [1],	visible : true,	searchable : true,	orderData : [1, 0] },
+            { targets			: [2],	visible : true,	searchable : true,	orderData : [2, 0] }
+            
+        ],
+        columns		: [
+            { render			:
+                function (data, type, full, meta) {
+                    var rowNom = '';
+                    rowNom =  full.empresaNombre ;
+
+                    return rowNom;
                 }
             },
-            color: colores,
-            calculable: false,
-            series: [
-                // Inner
-                {
-                    name: 'Cantidad',
-                    type: 'pie',
-                    selectedMode: 'single',
-                    radius: [0, '40%'],
-                    // label : {
-                    //     formatter: function(d) { return d.data.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') }
-                    // },
+            { render			:
+                function (data, type, full, meta) {
+                    var rowNom = '';
+                    rowNom =  full.rolNombre ;
 
-                    // for funnel
-                    x: '15%',
-                    y: '7.5%',
-                    width: '40%',
-                    height: '85%',
-                    funnelAlign: 'right',
-                    max: 1548,
-
-                    itemStyle: {
-                        normal: {
-                            label: {
-                                position: 'inner',
-                                    
-                            },
-                            labelLine: {
-                                show: false
-                            }
-                        },
-                        emphasis: {
-                            label: {
-                                show: true
-                            }
-                        }
-                    },
-                    data: objData2
-                },
-
-                // Outer
-                {
-                    name: 'Monto',
-                    type: 'pie',
-                    radius: ['60%', '85%'],
-
-                    // for funnel
-                    x: '55%',
-                    y: '7.5%',
-                    width: '35%',
-                    height: '85%',
-                    funnelAlign: 'left',
-                    max: 1048,
-                    data: objData1
-
+                    return rowNom;
                 }
-        ]
-    };    
+            },
+            { render			:
+                function (data, type, full, meta) {
+                    var rowTot = '';
+                    var rowTot = full.rolCantidad; 
 
-        cha01.setOption(opt01);
+                    return rowTot;
+                }
+            }               
+        ]
     });
-}
+
+    $('#tableLoad02').DataTable({
+        processing	: true,
+        destroy		: true,
+        searching	: false,
+        paging		: false,
+        lengthChange: false,
+        info		: false,
+        order: [[ 0, "asc" ]],
+        orderCellsTop: true,
+        fixedHeader	:  true,
+        language	: {
+            lengthMenu: "Mostrar _MENU_ registros por pagina",
+            zeroRecords: "No hay registros disponibles.",
+            info: "Mostrando pagina _PAGE_ de _PAGES_",
+            infoEmpty: "No hay registros disponibles.",
+            infoFiltered: "(Filtrado de _MAX_ registros totales)",
+            sZeroRecords: "No se encontraron resultados",
+            sSearch: "buscar",
+            oPaginate: {
+                sFirst:    "Primero",
+                sLast:     "Último",
+                sNext:     "Siguiente",
+                sPrevious: "Anterior"
+            },
+        },
+        
+        data		: dataJSON02,
+        columnDefs	: [
+            { targets			: [0],	visible : true, searchable : true,	orderData : [0, 0] },
+            { targets			: [1],	visible : true,	searchable : true,	orderData : [1, 0] },
+            { targets			: [2],	visible : true,	searchable : true,	orderData : [2, 0] }
+        ],
+        columns		: [
+            { render			:
+                function (data, type, full, meta) {
+                    var rowNom = '';
+                    rowNom =  full.empresaNombre ;
+
+                    return rowNom;
+                }
+            },
+            { render			:
+                function (data, type, full, meta) {
+                    var rowTot = '';
+                    var rowTot = full.tipoEstadoNombre; 
+
+                    return rowTot;
+                }
+            },
+            { render			:
+                function (data, type, full, meta) {
+                    var rowTot = '';
+                    var rowTot = full.cantidadUsuario; 
+
+                    return rowTot;
+                }
+            }           
+        ]
+    });
+
+    $('#tableLoad03').DataTable({
+        processing	: true,
+        destroy		: true,
+        searching	: false,
+        paging		: false,
+        lengthChange: false,
+        info		: false,
+        order: [[ 0, "asc" ]],
+        orderCellsTop: true,
+        fixedHeader	:  true,
+        language	: {
+            lengthMenu: "Mostrar _MENU_ registros por pagina",
+            zeroRecords: "No hay registros disponibles.",
+            info: "Mostrando pagina _PAGE_ de _PAGES_",
+            infoEmpty: "No hay registros disponibles.",
+            infoFiltered: "(Filtrado de _MAX_ registros totales)",
+            sZeroRecords: "No se encontraron resultados",
+            sSearch: "buscar",
+            oPaginate: {
+                sFirst:    "Primero",
+                sLast:     "Último",
+                sNext:     "Siguiente",
+                sPrevious: "Anterior"
+            },
+        },
+        data		: dataJSON03,
+        columnDefs	: [
+            { targets			: [0],	visible : true, searchable : true,	orderData : [0, 0] },
+            { targets			: [1],	visible : true,	searchable : true,	orderData : [1, 0] },
+            { targets			: [2],	visible : true,	searchable : true,	orderData : [2, 0] },
+            { targets			: [3],	visible : true,	searchable : true,	orderData : [3, 0] }
+        ],
+        columns		: [
+            { render			:
+                function (data, type, full, meta) {
+                    var rowNom = '';
+                    rowNom =  full.empresaNombre ;
+
+                    return rowNom;
+                }
+            },
+            { render			:
+                function (data, type, full, meta) {
+                    var rowTot = '';
+                    var rowTot = full.usuarioLogUsuario; 
+
+                    return rowTot;
+                }
+            },
+            { render			:
+                function (data, type, full, meta) {
+                    var rowTot = '';
+                    var rowTot = full.usuarioLogEstado; 
+
+                    return rowTot;
+                }
+            },
+            { render			:
+                function (data, type, full, meta) {
+                    var rowTot = '';
+                    var rowTot = full.usuarioLogFecha2;
+
+                    return rowTot;
+                }
+            },
+            { render			:
+                function (data, type, full, meta) {
+                    var rowTot = '';
+                    var rowTot = full.usuarioLogIp;
+
+                    return rowTot;
+                }
+            }  
+        ]
+    });
+});

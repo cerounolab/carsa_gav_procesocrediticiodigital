@@ -56,12 +56,10 @@
     
                 $_SESSION['expire'] = time() + 1800;
     
-                $urlPat = strtoupper($_SERVER['SCRIPT_FILENAME']);
-
-                $urlAnt = substr($_SERVER['HTTP_REFERER'], $ulrPos);
+                //$urlPat = strtoupper($_SERVER['SCRIPT_FILENAME']);
+                //$urlAnt = substr($_SERVER['HTTP_REFERER'], $ulrPos);
                 
                 $urlAct = $_SERVER['REQUEST_URI'];
-                
                 $ulrPos = strripos($urlAct, '/');
                 $urlApp = substr($urlAct, ($ulrPos + 1));
                 

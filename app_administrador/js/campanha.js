@@ -201,14 +201,14 @@ function setcampanha(codElem, codAcc) {
 			'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+
 			'							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>'+
 			'						</div>'+
-			''+
 			'	    					<div class="modal-body" >'+
 			'       					    <div class="row">'+
 			'       					        <div class="col-sm-12 col-md-4">'+
 			'       					            <div class="form-group">'+
 			'       					                <label for="var01">Estado</label>'+
 			'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
-			'       					                    <optgroup label="Estado">'+selEstado+
+			'       					                    <optgroup label="Estado">'+
+			'													<option value="0" disabled selected> SELECCIONAR </option>' + selEstado+
 			'       					                    </optgroup>'+
 			'       					                </select>'+
 			'       					            </div>'+
@@ -221,44 +221,43 @@ function setcampanha(codElem, codAcc) {
 			'               					    </div>'+
 			'               					</div>'+
 			''+
-			'               					<div class="col-sm-12 col-md-4">'+
-			'               					</div>'+
+			'									<div class="col-sm-12 col-md-4">'+
+			'       					            <div class="form-group">'+
+			'       					                <label for="var03">Empresa</label>'+
+			'       					                <select id="var03" name="var03" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
+			'       					                    <optgroup label="Seleccionar">'+ 
+			'													<option value="0" disabled selected> SELECCIONAR </option>' + selEmpresa +
+			'       					                    </optgroup>'+
+			'       					                </select>'+
+			'       					            </div>'+
+			'       					        </div>'+
 			''+
 			'									<div class="col-sm-12 col-md-4">'+
 			'       					            <div class="form-group">'+
 			'       					                <label for="var04">Tipo Campaña</label>'+
 			'       					                <select id="var04" name="var04" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
-			'       					                    <optgroup label="Seleccionar">'+ selTipCamp +
+			'       					                    <optgroup label="Seleccionar">'+
+			'													<option value="0" disabled selected> SELECCIONAR </option>' + selTipCamp +
 			'       					                    </optgroup>'+
 			'       					                </select>'+
 			'       					            </div>'+
 			'       					        </div>'+
 			''+
-			'									<div class="col-sm-12 col-md-4">'+
-			'       					            <div class="form-group">'+
-			'       					                <label for="var03">Empresa</label>'+
-			'       					                <select id="var03" name="var03" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
-			'       					                    <optgroup label="Seleccionar">'+ selEmpresa +
-			'       					                    </optgroup>'+
-			'       					                </select>'+
-			'       					            </div>'+
-			'       					        </div>'+
-			''+
-			'               					<div class="col-sm-12 col-md-12">'+
+			'               					<div class="col-sm-12 col-md-8">'+
 			'               				    	<div class="form-group">'+
 			'               				        	<label for="var05">Nombre</label>'+
-			'               				        	<input id="var05" name="var05" value="" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" required '+ bodyOnl +'>'+
+			'               				        	<input id="var05" name="var05" value="" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" required="true" '+ bodyOnl +'>'+
 			'               				    	</div>'+
 			'               					</div>'+
 			''+
-			'               					<div class="col-sm-12 col-md-4">'+
+			'               					<div class="col-sm-12 col-md-6">'+
 			'               					    <div class="form-group">'+
 			'               					        <label for="var06">Fecha Desde</label>'+
-			'               					        <input id="var06" name="var06" class="form-control" type="date" style="text-transform:uppercase; height:40px;" placeholder="Fecha Desde" '+ bodyOnl +'>'+
+			'               					        <input id="var06" name="var06" class="form-control" type="date" style="text-transform:uppercase; height:40px;" placeholder="Fecha Desde" required="true" '+ bodyOnl +'>'+
 			'               					    </div>'+
 			'               					</div>'+
 			''+
-			'               					<div class="col-sm-12 col-md-4">'+
+			'               					<div class="col-sm-12 col-md-6">'+
 			'               					    <div class="form-group">'+
 			'               					        <label for="var07">Fecha Hasta</label>'+ 
 			'											<input id="var07" name="var07" value="" class="form-control" placeholder="Fecha Hasta" type="date" style="text-transform:uppercase; height:40px;" '+ bodyOnl +'>'+
@@ -267,7 +266,7 @@ function setcampanha(codElem, codAcc) {
 			''+
 			'               					<div class="col-sm-12">'+
 			'               					    <div class="form-group">'+
-			'               					        <label for="var08">Observación</label>'+
+			'               					        <label for="var08">Comentario</label>'+
 			'               					        <textarea id="var08" name="var08" value="" class="form-control" rows="5" style="" '+ bodyOnl +'></textarea>'+
 			'               					    </div>'+
 			'               					</div>'+
@@ -341,7 +340,7 @@ function setcampanha(codElem, codAcc) {
 				'							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>'+
 				'						</div>'+
 				''+
-				'	    					<div class="modal-body" >'+
+				'	    					<div class="modal-body">'+
 				'       					    <div class="row">'+
 				'       					        <div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
@@ -360,8 +359,15 @@ function setcampanha(codElem, codAcc) {
 				'               					    </div>'+
 				'               					</div>'+
 				''+
-				'               					<div class="col-sm-12 col-md-4">'+
-				'               					</div>'+
+				'									<div class="col-sm-12 col-md-4">'+
+				'       					            <div class="form-group">'+
+				'       					                <label for="var03">Empresa</label>'+
+				'       					                <select id="var03" name="var03" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
+				'       					                    <optgroup label="Seleccionar">'+ selEmpresa +
+				'       					                    </optgroup>'+
+				'       					                </select>'+
+				'       					            </div>'+
+				'       					        </div>'+
 				''+
 				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
@@ -373,31 +379,21 @@ function setcampanha(codElem, codAcc) {
 				'       					            </div>'+
 				'       					        </div>'+
 				''+
-				'									<div class="col-sm-12 col-md-4">'+
-				'       					            <div class="form-group">'+
-				'       					                <label for="var03">Empresa</label>'+
-				'       					                <select id="var03" name="var03" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
-				'       					                    <optgroup label="Seleccionar">'+ selEmpresa +
-				'       					                    </optgroup>'+
-				'       					                </select>'+
-				'       					            </div>'+
-				'       					        </div>'+
-				''+
-				'               					<div class="col-sm-12 col-md-12">'+
+				'               					<div class="col-sm-12 col-md-8">'+
 				'               				    	<div class="form-group">'+
 				'               				        	<label for="var05">Nombre</label>'+
 				'               				        	<input id="var05" name="var05" value="'+campanhaNombre+'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" required '+ bodyOnl +'>'+
 				'               				    	</div>'+
 				'               					</div>'+
 				''+
-				'               					<div class="col-sm-12 col-md-4">'+
+				'               					<div class="col-sm-12 col-md-6">'+
 				'               					    <div class="form-group">'+
 				'               					        <label for="var06">Fecha Desde</label>'+
-				'               					        <input id="var06" name="var06" value="'+campanhaFechaDesde1+'" class="form-control" type="date" style="text-transform:uppercase; height:40px;" placeholder="Fecha Desde" '+ bodyOnl +'>'+
+				'               					        <input id="var06" name="var06" value="'+campanhaFechaDesde1+'" class="form-control" type="date" style="text-transform:uppercase; height:40px;" placeholder="Fecha Desde" required="true" '+ bodyOnl +'>'+
 				'               					    </div>'+
 				'               					</div>'+
 				''+
-				'               					<div class="col-sm-12 col-md-4">'+
+				'               					<div class="col-sm-12 col-md-6">'+
 				'               					    <div class="form-group">'+
 				'               					        <label for="var07">Fecha Hasta</label>'+ 
 				'											<input id="var07" name="var07" value="'+campanhaFechaHasta1+'" class="form-control" placeholder="Fecha Hasta" type="date" style="text-transform:uppercase; height:40px;" '+ bodyOnl +'>'+
@@ -406,7 +402,7 @@ function setcampanha(codElem, codAcc) {
 				''+
 				'               					<div class="col-sm-12">'+
 				'               					    <div class="form-group">'+
-				'               					        <label for="var08">Observación</label>'+
+				'               					        <label for="var08">Comentario</label>'+
 				'               					        <textarea id="var08" name="var08" value="" class="form-control" rows="5" style="" '+ bodyOnl +'>'+campanhaObservacion+'</textarea>'+
 				'               					    </div>'+
 				'               					</div>'+
@@ -439,6 +435,5 @@ function setcampanha(codElem, codAcc) {
 	}
 
 	$("#modal-content").empty();
-	$("#modal-content").append(html);
-		
+	$("#modal-content").append(html);		
 }

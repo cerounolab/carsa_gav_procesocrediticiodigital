@@ -193,9 +193,10 @@ function setRol(codElem, codAcc) {
 			'       					    <div class="row">'+
 			'       					        <div class="col-sm-12 col-md-4">'+
 			'       					            <div class="form-group">'+
-			'       					                <label for="var01">ESTADO</label>'+
+			'       					                <label for="var01">Estado</label>'+
 			'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
-			'       					                    <optgroup label="Estado">'+selEstado+
+			'       					                    <optgroup label="Estado">'+
+			'													<option value="0" disabled selected> SELECCIONAR </option>' + selEstado+
 			'       					                    </optgroup>'+
 			'       					                </select>'+
 			'       					            </div>'+
@@ -208,30 +209,28 @@ function setRol(codElem, codAcc) {
 			'               					    </div>'+
 			'               					</div>'+
 			''+
-			'               					<div class="col-sm-12 col-md-4">'+
-			'               					</div>'+
-			''+
 			'									<div class="col-sm-12 col-md-4">'+
 			'       					            <div class="form-group">'+
 			'       					                <label for="var03">Empresa</label>'+
 			'       					                <select id="var03" name="var03" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
-			'       					                    <optgroup label="Seleccionar">'+ selEmpresa +
+			'       					                    <optgroup label="Seleccionar">'+ 
+			'													<option value="0" disabled selected> SELECCIONAR </option>' + selEmpresa +
 			'       					                    </optgroup>'+
 			'       					                </select>'+
 			'       					            </div>'+
 			'       					        </div>'+
 			''+
-			'               					<div class="col-sm-12 col-md-8">'+
+			'               					<div class="col-sm-12 col-md-4">'+
 			'               				    	<div class="form-group">'+
 			'               				        	<label for="var04">Nombre</label>'+
-			'               				        	<input id="var04" name="var04" value="" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" required '+ bodyOnl +'>'+
+			'               				        	<input id="var04" name="var04" value="" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" required="true" '+ bodyOnl +'>'+
 			'               				    	</div>'+
 			'               					</div>'+
 			''+
 			'               					<div class="col-sm-12 col-md-4">'+
 			'               					    <div class="form-group">'+
 			'               					        <label for="var05">Fecha Desde</label>'+
-			'               					        <input id="var05" name="var05" class="form-control" type="date" style="text-transform:uppercase; height:40px;" placeholder="Fecha Desde" '+ bodyOnl +'>'+
+			'               					        <input id="var05" name="var05" class="form-control" type="date" style="text-transform:uppercase; height:40px;" placeholder="Fecha Desde" required="true" '+ bodyOnl +'>'+
 			'               					    </div>'+
 			'               					</div>'+
 			''+
@@ -244,7 +243,7 @@ function setRol(codElem, codAcc) {
 			''+
 			'               					<div class="col-sm-12">'+
 			'               					    <div class="form-group">'+
-			'               					        <label for="var07">Observación</label>'+
+			'               					        <label for="var07">Comentario</label>'+
 			'               					        <textarea id="var07" name="var07" value="" class="form-control" rows="5" style="" '+ bodyOnl +'></textarea>'+
 			'               					    </div>'+
 			'               					</div>'+
@@ -314,7 +313,7 @@ function setRol(codElem, codAcc) {
 				'       					    <div class="row">'+
 				'       					        <div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var01">ESTADO</label>'+
+				'       					                <label for="var01">Estado</label>'+
 				'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Estado">'+selEstado+
 				'       					                    </optgroup>'+
@@ -329,9 +328,6 @@ function setRol(codElem, codAcc) {
 				'               					    </div>'+
 				'               					</div>'+
 				''+
-				'               					<div class="col-sm-12 col-md-4">'+
-				'               					</div>'+
-				''+
 				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
 				'       					                <label for="var03">Empresa</label>'+
@@ -342,17 +338,17 @@ function setRol(codElem, codAcc) {
 				'       					            </div>'+
 				'       					        </div>'+
 				''+
-				'               					<div class="col-sm-12 col-md-8">'+
+				'               					<div class="col-sm-12 col-md-4">'+
 				'               				    	<div class="form-group">'+
 				'               				        	<label for="var04">Nombre</label>'+
-				'               				        	<input id="var04" name="var04" value="'+rolNombre+'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" required '+ bodyOnl +'>'+
+				'               				        	<input id="var04" name="var04" value="'+rolNombre+'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" required="true" '+ bodyOnl +'>'+
 				'               				    	</div>'+
 				'               					</div>'+
 				''+
 				'               					<div class="col-sm-12 col-md-4">'+
 				'               					    <div class="form-group">'+
 				'               					        <label for="var05">Fecha Desde</label>'+
-				'               					        <input id="var05" name="var05" value="'+rolFechaDesde2+'" class="form-control" type="date" style="text-transform:uppercase; height:40px;" placeholder="Fecha Desde" '+ bodyOnl +'>'+
+				'               					        <input id="var05" name="var05" value="'+rolFechaDesde2+'" class="form-control" type="date" style="text-transform:uppercase; height:40px;" placeholder="Fecha Desde" required="true" '+ bodyOnl +'>'+
 				'               					    </div>'+
 				'               					</div>'+
 				''+
