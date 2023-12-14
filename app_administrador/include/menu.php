@@ -13,31 +13,6 @@
                 </div>
 
                 <nav class="navbar navbar-static-top">
-                    <div class="app-menu">
-                        <ul class="header-megamenu nav">
-                            <li class="btn-group nav-item">
-                                <a href="#" class="waves-effect waves-light nav-link push-btn btn-primary-light" data-toggle="push-menu" role="button">
-                                    <i data-feather="menu"></i>
-                                </a>
-                            </li>
-
-                            <li class="btn-group d-lg-inline-flex d-none">
-                                <div class="app-menu">
-                                    <div class="search-bx mx-5">
-                                        <form>
-                                            <div class="input-group">
-                                                <input type="search" class="form-control" placeholder="Buscar">
-                                                <div class="input-group-append">
-                                                    <button class="btn" type="submit" id="button-addon3"><i class="icon-Search"><span class="path1"></span><span class="path2"></span></i></button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul> 
-                    </div>
-                    
                     <div class="navbar-custom-menu r-side">
                         <ul class="nav navbar-nav">
                             <li class="btn-group d-md-inline-flex d-none">
