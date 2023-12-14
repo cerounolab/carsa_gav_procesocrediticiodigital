@@ -192,7 +192,8 @@ function setFormulario(codElem, codAcc) {
 			'       					            <div class="form-group">'+
 			'       					                <label for="var01">Estado</label>'+
 			'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
-			'       					                    <optgroup label="Estado">'+selEstado+
+			'       					                    <optgroup label="Estado">'+
+			'													<option value="0" disabled selected> SELECCIONAR </option>' + selEstado+
 			'       					                    </optgroup>'+
 			'       					                </select>'+
 			'       					            </div>'+
@@ -212,7 +213,8 @@ function setFormulario(codElem, codAcc) {
 			'       					            <div class="form-group">'+
 			'       					                <label for="var03">Empresa</label>'+
 			'       					                <select id="var03" name="var03" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
-			'       					                    <optgroup label="Seleccionar">'+ selEmpresa +
+			'       					                    <optgroup label="Seleccionar">'+ 
+			'													<option value="0" disabled selected> SELECCIONAR </option>' + selEmpresa +
 			'       					                    </optgroup>'+
 			'       					                </select>'+
 			'       					            </div>'+
@@ -221,7 +223,7 @@ function setFormulario(codElem, codAcc) {
 			'               					<div class="col-sm-12 col-md-6">'+
 			'               				    	<div class="form-group">'+
 			'               				        	<label for="var04">Nombre</label>'+
-			'               				        	<input id="var04" name="var04" value="" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="Nombre" required '+ bodyOnl +'>'+
+			'               				        	<input id="var04" name="var04" value="" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="Nombre" required="true" '+ bodyOnl +'>'+
 			'               				    	</div>'+
 			'               					</div>'+
 			''+
@@ -336,7 +338,7 @@ function setFormulario(codElem, codAcc) {
 				'               					<div class="col-sm-12 col-md-6">'+
 				'               				    	<div class="form-group">'+
 				'               				        	<label for="var04">Nombre</label>'+
-				'               				        	<input id="var04" name="var04" value="'+formularioNombre+'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" required '+ bodyOnl +'>'+
+				'               				        	<input id="var04" name="var04" value="'+formularioNombre+'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" required="true" '+ bodyOnl +'>'+
 				'               				    	</div>'+
 				'               					</div>'+
 				''+
@@ -349,7 +351,7 @@ function setFormulario(codElem, codAcc) {
 				''+
 				'               					<div class="col-sm-12">'+
 				'               					    <div class="form-group">'+
-				'               					        <label for="var06">Observación</label>'+
+				'               					        <label for="var06">Comentario</label>'+
 				'               					        <textarea id="var06" name="var06" value="" class="form-control" rows="5" style="" '+ bodyOnl +'>'+formularioObservacion+'</textarea>'+
 				'               					    </div>'+
 				'               					</div>'+

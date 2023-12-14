@@ -8,7 +8,6 @@
 	$NavTitle01		= 'Cantidad de Rol por Empresa';
 	$NavTitle02		= 'Cantidad de Usuario por Empresa';
 	$NavTitle03		= 'Log Usuario Password';
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -88,7 +87,9 @@
 									</div>
 								</div>
 							</div>
+						</div>
 
+						<div class="row">
 							<div class="col-12">
 								<div class="box">
 									<div class="box-body">
@@ -137,8 +138,8 @@
 			const _parm05BASE   	= '<?php echo trim($usu_05); ?>';
             const _parm06BASE   	= <?php echo trim($usu_06); ?>;
             const _parm07BASE   	= '<?php echo date('Y-m-d'); ?>';
-
 		</script>
+		
 		<script src="./../js/home.js?<?php echo date('Ymd');?>"></script>
 	</body>
 </html>
