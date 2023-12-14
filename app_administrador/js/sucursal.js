@@ -208,9 +208,10 @@ function setEmpSucursal(codElem, codAcc) {
 			'       					    <div class="row">'+
 			'       					        <div class="col-sm-12 col-md-4">'+
 			'       					            <div class="form-group">'+
-			'       					                <label for="var01">ESTADO</label>'+
+			'       					                <label for="var01">Estado</label>'+
 			'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
-			'       					                    <optgroup label="Estado">'+selEstado+
+			'       					                    <optgroup label="Estado">'+
+			'													<option value="0" disabled selected> SELECCIONAR </option>' + selEstado+
 			'       					                    </optgroup>'+
 			'       					                </select>'+
 			'       					            </div>'+
@@ -220,7 +221,8 @@ function setEmpSucursal(codElem, codAcc) {
 			'       					            <div class="form-group">'+
 			'       					                <label for="var02">Tipo Sucursal</label>'+
 			'       					                <select id="var02" name="var02" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
-			'       					                    <optgroup label="Estado">'+selTipSuc+
+			'       					                    <optgroup label="Estado">'+
+			'													<option value="0" disabled selected> SELECCIONAR </option>' + selTipSuc+
 			'       					                    </optgroup>'+
 			'       					                </select>'+
 			'       					            </div>'+
@@ -230,7 +232,8 @@ function setEmpSucursal(codElem, codAcc) {
 			'       					            <div class="form-group">'+
 			'       					                <label for="var03">Empresa</label>'+
 			'       					                <select id="var03" name="var03" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
-			'       					                    <optgroup label="Estado">'+selEmpresa+
+			'       					                    <optgroup label="Estado">'+
+			'													<option value="0" disabled selected> SELECCIONAR </option>' + selEmpresa+
 			'       					                    </optgroup>'+
 			'       					                </select>'+
 			'       					            </div>'+
@@ -246,7 +249,7 @@ function setEmpSucursal(codElem, codAcc) {
 			'               					<div class="col-sm-12 col-md-4">'+
 			'               				    	<div class="form-group">'+
 			'               				        	<label for="var05">Nombre</label>'+
-			'               				        	<input id="var05" name="var05" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" '+ bodyOnl +'>'+
+			'               				        	<input id="var05" name="var05" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" required="true" '+ bodyOnl +'>'+
 			'               				    	</div>'+
 			'               					</div>'+
 			''+
@@ -287,7 +290,7 @@ function setEmpSucursal(codElem, codAcc) {
 			''+
 			'               					<div class="col-sm-12">'+
 			'               					    <div class="form-group">'+
-			'               					        <label for="var011">OBSERVACIÓN</label>'+
+			'               					        <label for="var011">Comentario</label>'+
 			'               					        <textarea id="var011" name="var011" value="" class="form-control" rows="5" style="" '+ bodyOnl +'></textarea>'+
 			'               					    </div>'+
 			'               					</div>'+
@@ -369,7 +372,7 @@ function setEmpSucursal(codElem, codAcc) {
 				'       					    <div class="row">'+
 				'       					        <div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var01">ESTADO</label>'+
+				'       					                <label for="var01">Estado</label>'+
 				'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Estado">'+selEstado+
 				'       					                    </optgroup>'+
@@ -407,7 +410,7 @@ function setEmpSucursal(codElem, codAcc) {
 				'               					<div class="col-sm-12 col-md-4">'+
 				'               				    	<div class="form-group">'+
 				'               				        	<label for="var05">Nombre</label>'+
-				'               				        	<input id="var05" name="var05" value="'+ sucursalNombre +'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" '+ bodyOnl +'>'+
+				'               				        	<input id="var05" name="var05" value="'+ sucursalNombre +'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" required="true" '+ bodyOnl +'>'+
 				'               				    	</div>'+
 				'               					</div>'+
 				''+
@@ -448,7 +451,7 @@ function setEmpSucursal(codElem, codAcc) {
 				''+
 				'               					<div class="col-sm-12">'+
 				'               					    <div class="form-group">'+
-				'               					        <label for="var011">OBSERVACIÓN</label>'+
+				'               					        <label for="var011">Comentario</label>'+
 				'               					        <textarea id="var011" name="var011" class="form-control" rows="5" style="" '+ bodyOnl +'>'+ sucursalObservacion +'</textarea>'+
 				'               					    </div>'+
 				'               					</div>'+

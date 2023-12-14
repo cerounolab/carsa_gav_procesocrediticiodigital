@@ -156,7 +156,6 @@ function setDominio(codElem, codAcc) {
 	}
 	
 	if (codAcc == 1) {
-
 		xJSON1.forEach(element1 => {
 			if (element1.tipoEstadoParametro == 1) {
 				selEstado = selEstado + '                               			<option value="'+ element1.tipoParametro +'">'+ element1.tipoNombre +'</option>';
@@ -170,15 +169,15 @@ function setDominio(codElem, codAcc) {
 			'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+
 			'							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>'+
 			'						</div>'+
-			// '						<div class="modal-body px-4 pb-4 pt-0">'+
 			''+
 			'	    					<div class="modal-body" >'+
 			'       					    <div class="row">'+
 			'       					        <div class="col-sm-12 col-md-4">'+
 			'       					            <div class="form-group">'+
-			'       					                <label for="var01">ESTADO</label>'+
+			'       					                <label for="var01">Estado</label>'+
 			'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
-			'       					                    <optgroup label="Estado">'+selEstado+
+			'       					                    <optgroup label="Estado">'+
+			'													<option value="0" disabled selected> SELECCIONAR </option>' + selEstado+
 			'       					                    </optgroup>'+
 			'       					                </select>'+
 			'       					            </div>'+
@@ -186,56 +185,56 @@ function setDominio(codElem, codAcc) {
 			''+
 			'               					<div class="col-sm-12 col-md-4">'+
 			'               					    <div class="form-group">'+
-			'               					        <label for="var02">ORDEN</label>'+
+			'               					        <label for="var02">Orden</label>'+
 			'               					        <input id="var02" name="var02" value="" class="form-control" type="number" min="0" max="999" style="text-transform:uppercase; height:40px;" placeholder="NRO ORDEN" '+ bodyOnl +'>'+
 			'               					    </div>'+
 			'               					</div>'+
 			''+
 			'               				<div class="col-sm-12 col-md-4" style="display:none">'+
 			'               				    <div class="form-group">'+
-			'               				        <label for="var03">PARÁMETRO</label>'+
+			'               				        <label for="var03">Parámetro</label>'+
 			'               				        <input id="var03" name="var03" class="form-control" type="number" min="0" max="999" style="height:40px;" placeholder="PARÁMETRO" '+ bodyOnl +'>'+
 			'               				    </div>'+
 			'               				</div>'+
 			''+
 			'               				<div class="col-sm-12 col-md-12">'+
 			'               				    <div class="form-group">'+
-			'               				        <label for="var04">NOMBRE</label>'+
-			'               				        <input id="var04" name="var04" value="" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="TIPO" required '+ bodyOnl +'>'+
+			'               				        <label for="var04">Nombre</label>'+
+			'               				        <input id="var04" name="var04" value="" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="TIPO" required="true" '+ bodyOnl +'>'+
 			'               				    </div>'+
 			'               				</div>'+
 			''+
 			'               				<div class="col-sm-12 col-md-4">'+
 			'               				    <div class="form-group">'+
-			'               				        <label for="var05">ICONO</label>'+
+			'               				        <label for="var05">Icono</label>'+
 			'               				        <input id="var05" name="var05" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="ICONO" '+ bodyOnl +'>'+
 			'               				    </div>'+
 			'               				</div>'+
 			''+
 			'               				<div class="col-sm-12 col-md-4">'+
 			'               				    <div class="form-group">'+
-			'               				        <label for="var06">COLOR</label>'+
+			'               				        <label for="var06">Color</label>'+
 			'										<input id="var06" name="var06" value="#ff6161" class="form-control" type="color" style="text-transform:lowercase; height:40px;" '+ bodyOnl +'>'+
 			'               				    </div>'+
 			'               				</div>'+
 			''+
 			'               				<div class="col-sm-12 col-md-4">'+
 			'               				    <div class="form-group">'+
-			'               				        <label for="var07">PATH</label>'+
+			'               				        <label for="var07">Path</label>'+
 			'               				        <input id="var07" name="var07" value="" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="PATH" '+ bodyOnl +'>'+
 			'               				    </div>'+
 			'               				</div>'+
 			''+
 			'               				<div class="col-sm-12 col-md-4">'+
 			'               				    <div class="form-group">'+
-			'               				        <label for="var08">EQUIVALENCIA</label>'+
+			'               				        <label for="var08">Equivalencia</label>'+
 			'               				        <input id="var08" name="var08" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="EQUIVALENCIA" '+ bodyOnl +'>'+
 			'               				    </div>'+
 			'               				</div>'+
 			''+
 			'               				<div class="col-sm-12">'+
 			'               				    <div class="form-group">'+
-			'               				        <label for="var09">OBSERVACIÓN</label>'+
+			'               				        <label for="var09">Comentario</label>'+
 			'               				        <textarea id="var09" name="var09" value="" class="form-control" rows="5" '+ bodyOnl +'></textarea>'+
 			'               				    </div>'+
 			'               				</div>'+
@@ -293,13 +292,12 @@ function setDominio(codElem, codAcc) {
 				'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+
 				'							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>'+
 				'						</div>'+
-				// '						<div class="modal-body px-4 pb-4 pt-0">'+
 				''+
 				'	    					<div class="modal-body" >'+
 				'       					    <div class="row">'+
 				'       					        <div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var01">ESTADO</label>'+
+				'       					                <label for="var01">Estado</label>'+
 				'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Estado">'+ selEstado +
 				'       					                    </optgroup>'+
@@ -309,56 +307,56 @@ function setDominio(codElem, codAcc) {
 				''+
 				'               					<div class="col-sm-12 col-md-4">'+
 				'               					    <div class="form-group">'+
-				'               					        <label for="var02">ORDEN</label>'+
+				'               					        <label for="var02">Orden</label>'+
 				'               					        <input id="var02" name="var02" value="'+ tipoOrden +'" class="form-control" type="number" min="0" max="999" style="text-transform:uppercase; height:40px;" placeholder="NRO ORDEN" '+ bodyOnl +'>'+
 				'               					    </div>'+
 				'               					</div>'+
 				''+
 				'               					<div class="col-sm-12 col-md-4">'+
 				'               				    	<div class="form-group">'+
-				'               				        	<label for="var03">PARÁMETRO</label>'+
+				'               				        	<label for="var03">Parámetro</label>'+
 				'               				        	<input id="var03" name="var03" value="'+ tipoParametro +'" class="form-control" type="number" min="0" max="999" style="height:40px;" placeholder="PARÁMETRO" readonly'+ bodyOnl +'>'+
 				'               				    	</div>'+
 				'               					</div>'+
 				''+
 				'               					<div class="col-sm-12 col-md-12">'+
 				'               				    	<div class="form-group">'+
-				'               				        	<label for="var04">NOMBRE</label>'+
-				'               				        	<input id="var04" name="var04" value="'+ tipoNombre +'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="TIPO" required '+ bodyOnl +'>'+
+				'               				        	<label for="var04">Nombre</label>'+
+				'               				        	<input id="var04" name="var04" value="'+ tipoNombre +'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="TIPO" required="true" '+ bodyOnl +'>'+
 				'               				    	</div>'+
 				'               					</div>'+
 				// ''+
 				'               					<div class="col-sm-12 col-md-4">'+
 				'               					    <div class="form-group">'+
-				'               					        <label for="var05">ICONO</label>'+
+				'               					        <label for="var05">Icono</label>'+
 				'               					        <input id="var05" name="var05" value="'+ tipoIcono +'" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="ICONO" '+ bodyOnl +'>'+
 				'               					    </div>'+
 				'               					</div>'+
 				''+
 				'               					<div class="col-sm-12 col-md-4">'+
 				'               					    <div class="form-group">'+
-				'               					        <label for="var06">COLOR</label>'+
+				'               					        <label for="var06">Color</label>'+
 				'                       						<input id="var06" name="var06" value="'+ tipoCss +'" class="form-control" type="color" style="text-transform:lowercase; height:40px;" '+ bodyOnl +'>'+
 				'               					    </div>'+
 				'               					</div>'+
 				''+
 				'               					<div class="col-sm-12 col-md-4">'+
 				'               					    <div class="form-group">'+
-				'               					        <label for="var07">PATH</label>'+
+				'               					        <label for="var07">Path</label>'+
 				'               					        <input id="var07" name="var07" value="'+ tipoPath +'" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="PATH" '+ bodyOnl +'>'+
 				'               					    </div>'+
 				'               					</div>'+
 				''+
 				'               					<div class="col-sm-12 col-md-4">'+
 				'               					    <div class="form-group">'+
-				'               					        <label for="var08">EQUIVALENCIA</label>'+
+				'               					        <label for="var08">Equilavencia</label>'+
 				'               					        <input id="var08" name="var08" value="'+ tipoEquivalencia +'" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="EQUIVALENCIA" '+ bodyOnl +'>'+
 				'               					    </div>'+
 				'               					</div>'+
 				''+
 				'               					<div class="col-sm-12">'+
 				'               					    <div class="form-group">'+
-				'               					        <label for="var09">OBSERVACIÓN</label>'+
+				'               					        <label for="var09">Comentario</label>'+
 				'               					        <textarea id="var09" name="var09" value="" class="form-control" rows="5";" '+ bodyOnl +'>'+ tipoObservacion +'</textarea>'+
 				'               					    </div>'+
 				'               					</div>'+
@@ -388,6 +386,6 @@ function setDominio(codElem, codAcc) {
 		});
 	}
 
-		$("#modal-content").empty();
-		$("#modal-content").append(html);	
+	$("#modal-content").empty();
+	$("#modal-content").append(html);	
 }

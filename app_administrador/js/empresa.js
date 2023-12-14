@@ -201,7 +201,6 @@ function setEmpresa(codElem, codAcc) {
 	}
 
 	if (codAcc == 1) {
-
 		xJSON1.forEach(element1 => {
 			if (element1.tipoEstadoParametro == 1) {
 				selEstado = selEstado + '                               			<option value="'+ element1.tipoParametro +'">'+ element1.tipoNombre +'</option>';
@@ -231,9 +230,10 @@ function setEmpresa(codElem, codAcc) {
 			'       					    <div class="row">'+
 			'       					        <div class="col-sm-12 col-md-4">'+
 			'       					            <div class="form-group">'+
-			'       					                <label for="var01">ESTADO</label>'+
+			'       					                <label for="var01">Estado</label>'+
 			'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
-			'       					                    <optgroup label="Estado">'+selEstado+
+			'       					                    <optgroup label="Estado">'+
+			'													<option value="0" disabled selected> SELECCIONAR </option>' + selEstado+
 			'       					                    </optgroup>'+
 			'       					                </select>'+
 			'       					            </div>'+
@@ -250,7 +250,8 @@ function setEmpresa(codElem, codAcc) {
 			'       					            <div class="form-group">'+
 			'       					                <label for="var03">Tipo Rubro</label>'+
 			'       					                <select id="var03" name="var03" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
-			'       					                    <optgroup label="Seleccionar">'+selRubro+
+			'       					                    <optgroup label="Seleccionar">'+
+			'													<option value="0" disabled selected> SELECCIONAR </option>' + selRubro+
 			'       					                    </optgroup>'+
 			'       					                </select>'+
 			'       					            </div>'+
@@ -260,7 +261,8 @@ function setEmpresa(codElem, codAcc) {
 			'       					            <div class="form-group">'+
 			'       					                <label for="var04">Tipo Acceso</label>'+
 			'       					                <select id="var04" name="var04" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
-			'       					                    <optgroup label="Seleccionar">'+selAcceso+
+			'       					                    <optgroup label="Seleccionar">'+
+			'													<option value="0" disabled selected> SELECCIONAR </option>' + selAcceso+
 			'       					                    </optgroup>'+
 			'       					                </select>'+
 			'       					            </div>'+
@@ -269,14 +271,14 @@ function setEmpresa(codElem, codAcc) {
 			'               					<div class="col-sm-12 col-md-8">'+
 			'               				    	<div class="form-group">'+
 			'               				        	<label for="var05">Nombre</label>'+
-			'               				        	<input id="var05" name="var05" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" '+ bodyOnl +' required="true">'+
+			'               				        	<input id="var05" name="var05" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" required="true" '+ bodyOnl +'>'+
 			'               				    	</div>'+
 			'               					</div>'+
 			''+
 			'               					<div class="col-sm-12 col-md-12">'+
 			'               				    	<div class="form-group">'+
 			'               				        	<label for="var06">Ruc</label>'+
-			'               				        	<input id="var06" name="var06" value="" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Ruc" required '+ bodyOnl +'>'+
+			'               				        	<input id="var06" name="var06" value="" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Ruc" required="true" '+ bodyOnl +'>'+
 			'               				    	</div>'+
 			'               					</div>'+
 			''+
@@ -331,7 +333,7 @@ function setEmpresa(codElem, codAcc) {
 			''+
 			'               					<div class="col-sm-12">'+
 			'               					    <div class="form-group">'+
-			'               					        <label for="var015">OBSERVACIÓN</label>'+
+			'               					        <label for="var015">Comentario</label>'+
 			'               					        <textarea id="var015" name="var015" value="" class="form-control" rows="5" style="" '+ bodyOnl +'></textarea>'+
 			'               					    </div>'+
 			'               					</div>'+
@@ -406,8 +408,6 @@ function setEmpresa(codElem, codAcc) {
 				var empresaLogo			= (element.empresaLogo == null) ? '' : element.empresaLogo;
 				var viewDisplay			= (empresaLogo == '') ? 'display:none' : '';
 
-
-
 				html = 
 				'				<div class="modal-content">'+
 				'					<form class="needs-validation" method="post" action="../class/crud/empresa.php" enctype="multipart/form-data">'+
@@ -420,7 +420,7 @@ function setEmpresa(codElem, codAcc) {
 				'       					    <div class="row">'+
 				'       					        <div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var01">ESTADO</label>'+
+				'       					                <label for="var01">Estado</label>'+
 				'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Estado">'+ selEstado +
 				'       					                    </optgroup>'+
@@ -458,14 +458,14 @@ function setEmpresa(codElem, codAcc) {
 				'               					<div class="col-sm-12 col-md-8">'+
 				'               				    	<div class="form-group">'+
 				'               				        	<label for="var05">Nombre</label>'+
-				'               				        	<input id="var05" name="var05" value="'+ empresaNombre +'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" '+ bodyOnl +'>'+
+				'               				        	<input id="var05" name="var05" value="'+ empresaNombre +'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" required="true" '+ bodyOnl +'>'+
 				'               				    	</div>'+
 				'               					</div>'+
 				''+
 				'               					<div class="col-sm-12 col-md-12">'+
 				'               				    	<div class="form-group">'+
 				'               				        	<label for="var06">Ruc</label>'+
-				'               				        	<input id="var06" name="var06" value="'+ empresaRuc +'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Ruc" required '+ bodyOnl +'>'+
+				'               				        	<input id="var06" name="var06" value="'+ empresaRuc +'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Ruc" required="true" '+ bodyOnl +'>'+
 				'               				    	</div>'+
 				'               					</div>'+
 				''+
@@ -524,17 +524,10 @@ function setEmpresa(codElem, codAcc) {
 				'											<a href="../uploads/empresa/'+ empresaLogo +'" target="_blank" type="button" title="Ver Adjunto" class="btn btn-indigo btn-icon btn-circle btn-lg"  style="color:#ffffff; background:#6929d5;"  placeholder="Ver Adjunto"><i class="fa fa-file"></i></a>'+
 				'										</div>'+
 				'               					</div>'+
-				// ''+
-				// '               					<div class="col-sm-12 col-md-4">'+
-				// '               					    <div class="form-group">'+
-				// '               					        <label for="var014">Equivalencia</label>'+
-				// '               					        <input id="var014" name="var014" value="'+ element.empresaEquivalencia +'" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="Equivalencia" '+ bodyOnl +'>'+
-				// '               					    </div>'+
-				// '               					</div>'+
 				''+
 				'               					<div class="col-sm-12">'+
 				'               					    <div class="form-group">'+
-				'               					        <label for="var015">OBSERVACIÓN</label>'+
+				'               					        <label for="var015">Comentario</label>'+
 				'               					        <textarea id="var015" name="var015" class="form-control" rows="5" style="" '+ bodyOnl +'>'+ empresaObservacion +'</textarea>'+
 				'               					    </div>'+
 				'               					</div>'+
@@ -567,5 +560,4 @@ function setEmpresa(codElem, codAcc) {
 	
 	$("#modal-content").empty();
 	$("#modal-content").append(html);
-//	$('#var05').attr('required',true);
 }

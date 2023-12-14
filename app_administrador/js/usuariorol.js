@@ -195,9 +195,10 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 		'       					    <div class="row">'+
 		'       					        <div class="col-sm-12 col-md-4">'+
 		'       					            <div class="form-group">'+
-		'       					                <label for="var01">ESTADO</label>'+
+		'       					                <label for="var01">Estado</label>'+
 		'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
-		'       					                    <optgroup label="Estado">'+selEstado+
+		'       					                    <optgroup label="Estado">'+
+		'													<option value="0" disabled selected> SELECCIONAR </option>' + selEstado+
 		'       					                    </optgroup>'+
 		'       					                </select>'+
 		'       					            </div>'+
@@ -226,6 +227,7 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 		'       					                <label for="var04">Rol</label>'+
 		`       					                <select id="var04" name="var04" class="select2 form-control custom-select" onchange="selectEmpresaUsuario('var05', 'var04', 'var03', 1, 1, 'var05');" style="width:100%; height:40px;" '+ bodyOnl +'>`+
 		'       					                    <optgroup label="Seleccionar">'+
+		'													<option value="0" disabled selected> SELECCIONAR </option>' + 
 		'       					                    </optgroup>'+
 		'       					                </select>'+
 		'       					            </div>'+
@@ -236,6 +238,7 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 		'       					                <label for="var05">Usuario</label>'+
 		'       					                <select id="var05" name="var05" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
 		'       					                    <optgroup label="Seleccionar">'+
+		'													<option value="0" disabled selected> SELECCIONAR </option>' + 
 		'       					                    </optgroup>'+
 		'       					                </select>'+
 		'       					            </div>'+
@@ -244,7 +247,7 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 		'               					<div class="col-sm-12 col-md-6">'+
 		'               					    <div class="form-group">'+
 		'               					        <label for="var06">Fecha Desde</label>'+
-		'               					        <input id="var06" name="var06" value="" class="form-control" type="date" style="text-transform:uppercase; height:40px;" placeholder="Orden" '+ bodyOnl +'>'+
+		'               					        <input id="var06" name="var06" value="" class="form-control" type="date" style="text-transform:uppercase; height:40px;" placeholder="Orden" required="true" '+ bodyOnl +'>'+
 		'               					    </div>'+
 		'               					</div>'+
 		''+
@@ -257,7 +260,7 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 		''+
 		'               					<div class="col-sm-12">'+
 		'               					    <div class="form-group">'+
-		'               					        <label for="var08">Observación</label>'+
+		'               					        <label for="var08">Comentario</label>'+
 		'               					        <textarea id="var08" name="var08" value="" class="form-control" rows="5" style="" '+ bodyOnl +'></textarea>'+
 		'               					    </div>'+
 		'               					</div>'+
@@ -329,7 +332,7 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 				'       					    <div class="row">'+
 				'       					        <div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var01">ESTADO</label>'+
+				'       					                <label for="var01">Estado</label>'+
 				'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Estado">'+selEstado+
 				'       					                    </optgroup>'+
@@ -377,7 +380,7 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 				'               					<div class="col-sm-12 col-md-6">'+
 				'               					    <div class="form-group">'+
 				'               					        <label for="var06">Fecha Desde</label>'+
-				'               					        <input id="var06" name="var06" value="'+usuarioRolFechaDesde+'" class="form-control" type="date" style="text-transform:uppercase; height:40px;" placeholder="Orden" '+ bodyOnl +'>'+
+				'               					        <input id="var06" name="var06" value="'+usuarioRolFechaDesde+'" class="form-control" type="date" style="text-transform:uppercase; height:40px;" placeholder="Orden" required="true" '+ bodyOnl +'>'+
 				'               					    </div>'+
 				'               					</div>'+
 				''+
@@ -390,7 +393,7 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 				''+
 				'               					<div class="col-sm-12">'+
 				'               					    <div class="form-group">'+
-				'               					        <label for="var08">Observación</label>'+
+				'               					        <label for="var08">Comentario</label>'+
 				'               					        <textarea id="var08" name="var08" value="" class="form-control" rows="5" style="" '+ bodyOnl +'>'+usuarioRolObservacion+'</textarea>'+
 				'               					    </div>'+
 				'               					</div>'+
