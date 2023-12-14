@@ -165,7 +165,7 @@ function setDominio(codElem, codAcc) {
 
 		html = 
 			'				<div class="modal-content">'+
-			'					<form class="needs-validation" novalidate method="post" action="../class/crud/dominio.php">'+
+			'					<form class="needs-validation" method="post" action="../class/crud/dominio.php">'+
 			'	    				<div class="modal-header" style="color:#ffffff; background:'+ bodyCol +'">'+
 			'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+
 			'							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>'+
@@ -288,7 +288,7 @@ function setDominio(codElem, codAcc) {
 
 				html = 
 				'				<div class="modal-content">'+
-				'					<form class="needs-validation" novalidate method="post" action="../class/crud/dominio.php">'+
+				'					<form class="needs-validation" method="post" action="../class/crud/dominio.php">'+
 				'	    				<div class="modal-header" style="color:#ffffff; background:'+ bodyCol +'">'+
 				'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+
 				'							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>'+
