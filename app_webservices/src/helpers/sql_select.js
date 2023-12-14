@@ -1004,7 +1004,7 @@ const selectUSUARIOLOG  = async(actionType, codigo, codigo2, codigo3) => {
     let _code   = 200;
     let _data   = [];
     let query00 = '';
-    let _empresaCodigo2   = (codigo == 1) ? `empresa_codigo <> 0 ` : `empresa_codigo = ${codigo}`;
+    let _empresaCodigo2   = (codigo == 1) ? `b.EMPFICCOD <> 0 ` : `b.EMPFICCOD = ${codigo}`;
 
     switch (actionType) {
         case 1:
@@ -1028,9 +1028,9 @@ const selectUSUARIOLOG  = async(actionType, codigo, codigo2, codigo3) => {
                         INNER JOIN adm.EMPFIC b ON a.USULOGAEM	= b.EMPFICCOD
                         INNER JOIN adm.EMPFIC c ON a.USULOGEMC	= c.EMPFICCOD
 
-                        WHERE a.USULOGEMC = ${_empresaCodigo2} AND a.USULOGFEC = ${codigo2}  
+                        WHERE ${_empresaCodigo2} AND a.USULOGFEC <= ${codigo2}  
                     
-                        ORDER BY USULOGCOD DESC
+                        ORDER BY a.USULOGCOD DESC
                         LIMIT ${codigo3}`;
             break;
 
@@ -1056,6 +1056,7 @@ const selectUSUARIOLOG  = async(actionType, codigo, codigo2, codigo3) => {
         })
         .catch(e => {
             _code = 500;
+            console.log(e);
             errorBody(_code, 'Code: '+ e.code +' '+e.severity+', '+e.hint, 'Function: selectUSUARIOLOG')
                 .then(result => _data = result);
         })
