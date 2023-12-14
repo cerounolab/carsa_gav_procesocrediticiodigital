@@ -121,8 +121,6 @@ $(document).ready(function() {
 						btnDLT	= '';
 					}
 
-					
-
 					return (btnDSP + '&nbsp;' + btnUPD + '&nbsp;' + btnDLT + '&nbsp;' + btnADJ+ '&nbsp;');
 				}
 			},
@@ -223,7 +221,7 @@ function setEmpresa(codElem, codAcc) {
 		});
 		html = 
 			'				<div class="modal-content">'+
-			'					<form class="needs-validation" novalidate method="post" action="../class/crud/empresa.php" enctype="multipart/form-data">'+
+			'					<form class="needs-validation" method="post" action="../class/crud/empresa.php" enctype="multipart/form-data">'+
 			'	    				<div class="modal-header" style="color:#ffffff; background:'+ bodyCol +'">'+
 			'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+
 			'							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>'+
@@ -271,7 +269,7 @@ function setEmpresa(codElem, codAcc) {
 			'               					<div class="col-sm-12 col-md-8">'+
 			'               				    	<div class="form-group">'+
 			'               				        	<label for="var05">Nombre</label>'+
-			'               				        	<input id="var05" name="var05" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" '+ bodyOnl +'>'+
+			'               				        	<input id="var05" name="var05" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" '+ bodyOnl +' required="true">'+
 			'               				    	</div>'+
 			'               					</div>'+
 			''+
@@ -330,13 +328,6 @@ function setEmpresa(codElem, codAcc) {
 			'               					        <input id="var013" name="var013" value="" class="form-control" type="file" style="text-transform:lowercase; height:40px;" placeholder="Logo" '+ bodyOnl +'>'+
 			'               					    </div>'+
 			'               					</div>'+
-			// ''+
-			// '               					<div class="col-sm-12 col-md-4">'+
-			// '               					    <div class="form-group">'+
-			// '               					        <label for="var014">Equivalencia</label>'+
-			// '               					        <input id="var014" name="var014" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="Equivalencia" '+ bodyOnl +'>'+
-			// '               					    </div>'+
-			// '               					</div>'+
 			''+
 			'               					<div class="col-sm-12">'+
 			'               					    <div class="form-group">'+
@@ -419,7 +410,7 @@ function setEmpresa(codElem, codAcc) {
 
 				html = 
 				'				<div class="modal-content">'+
-				'					<form class="needs-validation" novalidate method="post" action="../class/crud/empresa.php" enctype="multipart/form-data">'+
+				'					<form class="needs-validation" method="post" action="../class/crud/empresa.php" enctype="multipart/form-data">'+
 				'	    				<div class="modal-header" style="color:#ffffff; background:'+ bodyCol +'">'+
 				'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+
 				'							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>'+
@@ -576,5 +567,5 @@ function setEmpresa(codElem, codAcc) {
 	
 	$("#modal-content").empty();
 	$("#modal-content").append(html);
-		
+//	$('#var05').attr('required',true);
 }
