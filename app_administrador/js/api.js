@@ -1030,7 +1030,7 @@ function getUsuDocumento(codDoc, codEmp){
     return xDATA;
 }
 
-function getUsuDashboard(codEmp){
+function getUsuarioDashboard(codEmp){
     localStorage.removeItem('usuDashboardJSON');
 
     if (localStorage.getItem('usuDashboardJSON') === null){
@@ -1043,6 +1043,47 @@ function getUsuDashboard(codEmp){
     if (xJSON['code'] == 200) {
         xJSON['data'].forEach(element => {
             xDATA.push(element);
+        });
+    }
+
+    return xDATA;
+}
+
+function getRolDashboard(codEmp){
+    localStorage.removeItem('rolDashboardJSON');
+
+    if (localStorage.getItem('rolDashboardJSON') === null){
+        getJSON('rolDashboardJSON', 'rol/dashboard/empresa/'+codEmp);
+    }
+ 
+    var xJSON = JSON.parse(localStorage.getItem('rolDashboardJSON'));
+    var xDATA = [];
+   
+    if (xJSON['code'] == 200) {
+        xJSON['data'].forEach(element => {
+            xDATA.push(element);
+        });
+    }
+
+    return xDATA;
+}
+
+function getUsuLogDashboard(codEmp, fecha, cantReg){
+    localStorage.removeItem('empDashboardJSON');
+
+    if (localStorage.getItem('empDashboardJSON') === null){
+        getJSON('empDashboardJSON', 'usuariolog/dashboard/empresa/'+codEmp +'/fecha/'+ fecha+'/cantidadregistro/'+cantReg);
+    }
+
+    var xJSON = JSON.parse(localStorage.getItem('empDashboardJSON'));
+    var xDATA = [];
+
+    if (xJSON['code'] == 200) {
+        xJSON['data'].forEach(element => {
+            if (element.usuarioLogEstado != 'CORRECTO') {
+                xDATA.push(element);
+
+            }
         });
     }
 
