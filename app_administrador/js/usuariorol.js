@@ -185,7 +185,7 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 
 		html = 
 		'				<div class="modal-content">'+
-		'					<form class="needs-validation" novalidate method="post" action="../class/crud/usuariorol.php">'+
+		'					<form class="needs-validation" method="post" action="../class/crud/usuariorol.php">'+
 		'	    				<div class="modal-header" style="color:#ffffff; background:'+ bodyCol +'">'+
 		'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+
 		'							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>'+
@@ -319,7 +319,7 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 
 				html = 
 				'				<div class="modal-content">'+
-				'					<form class="needs-validation" novalidate method="post" action="../class/crud/usuariorol.php">'+
+				'					<form class="needs-validation" method="post" action="../class/crud/usuariorol.php">'+
 				'	    				<div class="modal-header" style="color:#ffffff; background:'+ bodyCol +'">'+
 				'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+
 				'							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>'+
