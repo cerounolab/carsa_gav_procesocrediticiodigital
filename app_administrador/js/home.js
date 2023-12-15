@@ -131,7 +131,7 @@ $(document).ready(function() {
         paging		: false,
         lengthChange: false,
         info		: false,
-        order: [[ 0, "asc" ]],
+        order: [[ 6, "desc" ]],
         orderCellsTop: true,
         fixedHeader	:  true,
         language	: {
@@ -154,9 +154,21 @@ $(document).ready(function() {
             { targets			: [0],	visible : true, searchable : true,	orderData : [0, 0] },
             { targets			: [1],	visible : true,	searchable : true,	orderData : [1, 0] },
             { targets			: [2],	visible : true,	searchable : true,	orderData : [2, 0] },
-            { targets			: [3],	visible : true,	searchable : true,	orderData : [3, 0] }
+            { targets			: [3],	visible : true,	searchable : true,	orderData : [3, 0] },
+            { targets			: [4],	visible : true,	searchable : true,	orderData : [4, 0] },
+            { targets			: [5],	visible : true,	searchable : true,	orderData : [5, 0] },
+            { targets			: [6],	visible : true,	searchable : true,	orderData : [6, 0] },
+            { targets			: [7],	visible : true,	searchable : true,	orderData : [7, 0] }
         ],
         columns		: [
+            { render			:
+                function (data, type, full, meta) {
+                    var rowTot = '';
+                    var rowTot = full.usuarioLogEstado; 
+
+                    return rowTot;
+                }
+            },
             { render			:
                 function (data, type, full, meta) {
                     var rowNom = '';
@@ -176,7 +188,7 @@ $(document).ready(function() {
             { render			:
                 function (data, type, full, meta) {
                     var rowTot = '';
-                    var rowTot = full.usuarioLogEstado; 
+                    var rowTot = full.usuarioLogFecha2;
 
                     return rowTot;
                 }
@@ -184,7 +196,31 @@ $(document).ready(function() {
             { render			:
                 function (data, type, full, meta) {
                     var rowTot = '';
-                    var rowTot = full.usuarioLogFecha2;
+                    var rowTot = full.usuarioLogHost;
+
+                    return rowTot;
+                }
+            },
+            { render			:
+                function (data, type, full, meta) {
+                    var rowTot = '';
+                    var rowTot = full.usuarioLogAge;
+
+                    return rowTot;
+                }
+            },
+            { render			:
+                function (data, type, full, meta) {
+                    var rowTot = '';
+                    var rowTot = full.usuarioLogReferencia;
+
+                    return rowTot;
+                }
+            },
+            { render			:
+                function (data, type, full, meta) {
+                    var rowTot = '';
+                    var rowTot = full.auditoriaFechaHora;
 
                     return rowTot;
                 }
@@ -196,7 +232,7 @@ $(document).ready(function() {
 
                     return rowTot;
                 }
-            }  
+            }
         ]
     });
 });

@@ -100,11 +100,15 @@
 											<table id="tableLoad03" class="text-fade table table-bordered display" style="width:100%">
 												<thead>
 													<tr class="btn-primary" style="text-align:center;">
+														<th class="border-top-0">ESTADO</th>
 														<th class="border-top-0">EMPRESA</th>
 														<th class="border-top-0">USUARIO</th>
-														<th class="border-top-0">ESTADO</th>
 														<th class="border-top-0">FECHA</th>
-														<th class="border-top-0">IP</th>
+														<th class="border-top-0">HOST</th>
+														<th class="border-top-0">AGENT</th>
+														<th class="border-top-0">REFERENCES</th>
+														<th class="border-top-0">AUD. FECHA/HORA</th>
+														<th class="border-top-0">AUD. IP</th>
 													</tr>
 												</thead>
 											</table>
@@ -140,6 +144,6 @@
             const _parm07BASE   	= '<?php echo date('Y-m-d'); ?>';
 		</script>
 		
-		<script src="./../js/home.js?<?php echo date('Ymd');?>"></script>
+		<script src="./../js/home.js?<?php echo date('YmdHis');?>"></script>
 	</body>
 </html>
