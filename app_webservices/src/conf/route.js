@@ -26,7 +26,7 @@ router.group('/v1/', (routerGroup) => {
   routerGroup.put('/dominio/:codigo', putDominio);
   routerGroup.delete('/dominio/:codigo', deleteDominio);
 
-  routerGroup.get('/empresa/listado', getEmpresa);
+  routerGroup.get('/empresa/listado/empresa/:empresa', getEmpresa);
   routerGroup.get('/empresa/codigo/:codigo', getEmpresaId);
   routerGroup.get('/empresa/ruc/:ruc', getEmpresaRUC);
   routerGroup.get('/empresa/tiporubro/:tiporubro', getEmpresaTipoRubro);

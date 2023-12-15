@@ -722,8 +722,8 @@ const insertUSULOG  = async(_USULOGEST,
 
     let query00 = '';
 
-    query00 = 	`INSERT INTO adm.USULOG( USULOGEST,       USULOGCOR,       USULOGPAS,     USULOGEMC,    USULOGDIP,     USULOGHOS,     USULOGAGE,     USULOGREF,     USULOGAEM,     USULOGAUS,     USULOGAIP, USULOGAPR)
-	                         VALUES ('${_USULOGEST}', ${_USULOGCOR}, '${_USULOGPAS}', ${_USULOGEMC}, ${_USULOGDIP}, ${_USULOGHOS}, ${_USULOGAGE}, ${_USULOGREF}, ${_USULOGAEM}, ${_USULOGAUS}, ${_USULOGAIP}, ${_USULOGAPR})`;	            
+    query00 = 	`INSERT INTO adm.USULOG( USULOGEST,     USULOGCOR,       USULOGPAS,     USULOGEMC,     USULOGDIP,     USULOGHOS,     USULOGAGE,     USULOGREF,     USULOGAEM,     USULOGAUS,     USULOGAIP, USULOGAPR)
+	                       VALUES ('${_USULOGEST}', ${_USULOGCOR}, '${_USULOGPAS}', ${_USULOGEMC}, ${_USULOGDIP}, ${_USULOGHOS}, ${_USULOGAGE}, ${_USULOGREF}, ${_USULOGAEM}, ${_USULOGAUS}, ${_USULOGAIP}, ${_USULOGAPR}) RETURNING USULOGCOD AS usuario_log_codigo`;	            
     const connPGSQL = new Client(initPGSQL);
 
     await connPGSQL
@@ -741,10 +741,10 @@ const insertUSULOG  = async(_USULOGEST,
             .then(result => {
                 _code = 200;
                 _data = result.rows;
+
             })
             .catch(e => {
                 _code   = 500;
-                console.log(e);
                 errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertUSULOG', true)
                     .then(result => _data = result);
             })
