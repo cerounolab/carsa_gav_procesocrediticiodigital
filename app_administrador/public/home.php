@@ -144,6 +144,6 @@
             const _parm07BASE   	= '<?php echo date('Y-m-d'); ?>';
 		</script>
 		
-		<script src="./../js/home.js?<?php echo date('YmdHis');?>"></script>
+		<script src="./../js/home.js?<?php echo date('Ymd');?>"></script>
 	</body>
 </html>
