@@ -132,7 +132,7 @@ function setEmpSucursal(codElem, codAcc) {
 			bodyCol = '#be9027;';
 			bodyMod = 'C';
 			bodyOnl = '';
-			bodyBot = '           <button type="submit" class="btn btn-primary">Agregar</button>';
+			bodyBot = '           <button type="submit" id="submit" name="submit" value="submit" class="btn btn-primary">Agregar</button>';
 			bodAcc	= 1;
 			break;
 
@@ -150,7 +150,7 @@ function setEmpSucursal(codElem, codAcc) {
 			bodyCol = '#be9027;';
 			bodyMod = 'U';
 			bodyOnl = '';
-			bodyBot = '           <button type="submit" class="btn btn-primary">Actualizar</button>';
+			bodyBot = '           <button type="submit" id="submit" name="submit" value="submit" class="btn btn-primary">Actualizar</button>';
 			bodAcc	= 1;
 			break;
 
@@ -159,7 +159,7 @@ function setEmpSucursal(codElem, codAcc) {
 			bodyCol = '#be9027;';
 			bodyMod = 'U';
 			bodyOnl = 'readonly';
-			bodyBot = '           <button type="submit" class="btn btn-primary">Anular</button>';
+			bodyBot = '           <button type="submit" id="submit" name="submit" value="submit" class="btn btn-primary">Anular</button>';
 			bodAcc	= 2;
 
 			break;

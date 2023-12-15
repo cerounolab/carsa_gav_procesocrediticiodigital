@@ -116,7 +116,7 @@ function setDominio(codElem, codAcc) {
 			bodyCol = '#be9027;';
 			bodyMod = 'C';
 			bodyOnl = '';
-			bodyBot = '           <button type="submit" class="btn btn-primary">Agregar</button>';
+			bodyBot = '           <button type="submit" id="submit" name="submit" value="submit" class="btn btn-primary">Agregar</button>';
 			break;
 
 		case 2:
@@ -132,7 +132,7 @@ function setDominio(codElem, codAcc) {
 			bodyCol = '#be9027;';
 			bodyMod = 'U';
 			bodyOnl = '';
-			bodyBot = '           <button type="submit" class="btn btn-primary">Actualizar</button>';
+			bodyBot = '           <button type="submit" id="submit" name="submit" value="submit" class="btn btn-primary">Actualizar</button>';
 			break;
 
 		case 4:
@@ -140,7 +140,7 @@ function setDominio(codElem, codAcc) {
 			bodyCol = '#be9027;';
 			bodyMod = 'D';
 			bodyOnl = 'readonly';
-			bodyBot = '           <button type="submit" class="btn btn-primary">Eliminar</button>';
+			bodyBot = '           <button type="submit" id="submit" name="submit" value="submit" class="btn btn-primary">Eliminar</button>';
 			break;
 	
 		case 5:
