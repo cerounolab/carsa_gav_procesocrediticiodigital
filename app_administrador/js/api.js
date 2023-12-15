@@ -1082,7 +1082,6 @@ function getUsuLogDashboard(codEmp, fecha, cantReg){
         xJSON['data'].forEach(element => {
             if (element.usuarioLogEstado != 'CORRECTO') {
                 xDATA.push(element);
-
             }
         });
     }
