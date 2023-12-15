@@ -228,7 +228,7 @@ function setUsuario(codElem, codAcc) {
 			'       					        <div class="col-sm-12 col-md-6">'+
 			'       					            <div class="form-group">'+
 			'       					                <label for="var01">Estado</label>'+
-			'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
+			'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 			'       					                    <optgroup label="Estado">'+
 			'													<option value="0" disabled selected> SELECCIONAR </option>' + selEstado+
 			'       					                    </optgroup>'+
@@ -246,7 +246,7 @@ function setUsuario(codElem, codAcc) {
 			'									<div class="col-sm-12 col-md-6">'+
 			'       					            <div class="form-group">'+
 			'       					                <label for="var03">Empresa</label>'+
-			`       					                <select id="var03" name="var03" class="select2 form-control custom-select" onchange="selectEmpresaSuc('var04','var03', 1, 0); setUsu('var03', 'var08_1'); setRecuperoDatos('var05', 'var03', 'var06', 'var07', 'var08', 'var09', 'var010', 'var011'); "  style="width:100%; height:40px;" ${bodyOnl}>`+
+			`       					                <select id="var03" name="var03" class="select2 form-control custom-select" onchange="selectEmpresaSuc('var04','var03', 1, 0); setUsu('var03', 'var08_1'); setRecuperoDatos('var05', 'var03', 'var06', 'var07', 'var08', 'var09', 'var010', 'var011'); "  style="width:100%; height:40px;" required="true" ${bodyOnl}>`+
 			'       					                    <optgroup label="Seleccionar">'+ 
 			'													<option value="0" disabled selected> SELECCIONAR </option>' + selEmpresa +
 			'       					                    </optgroup>'+
@@ -257,7 +257,7 @@ function setUsuario(codElem, codAcc) {
 			'									<div class="col-sm-12 col-md-6">'+
 			'       					            <div class="form-group">'+
 			'       					                <label for="var04">Sucursal</label>'+
-			`       					                <select id="var04" name="var04" class="select2 form-control custom-select" style="width:100%; height:40px;" ${bodyOnl}>`+
+			`       					                <select id="var04" name="var04" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" ${bodyOnl}>`+
 			'       					                    <optgroup label="Seleccionar">'+
 			'													<option value="0" disabled selected> SELECCIONAR </option>' + 
 			'       					                    </optgroup>'+
@@ -412,7 +412,7 @@ function setUsuario(codElem, codAcc) {
 				'       					        <div class="col-sm-12 col-md-6">'+
 				'       					            <div class="form-group">'+
 				'       					                <label for="var01">Estado</label>'+
-				'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
+				'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Estado">'+ selEstado +
 				'       					                    </optgroup>'+
 				'       					                </select>'+
@@ -429,7 +429,7 @@ function setUsuario(codElem, codAcc) {
 				'									<div class="col-sm-12 col-md-6">'+
 				'       					            <div class="form-group">'+
 				'       					                <label for="var03">Empresa</label>'+
-				`       					                <select id="var03" name="var03" class="select2 form-control custom-select" style="width:100%; height:40px;" ${bodyOnl}>`+
+				`       					                <select id="var03" name="var03" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" ${bodyOnl}>`+
 				'       					                    <optgroup label="Seleccionar">'+selEmpresa +
 				'       					                    </optgroup>'+
 				'       					                </select>'+
@@ -439,7 +439,7 @@ function setUsuario(codElem, codAcc) {
 				'									<div class="col-sm-12 col-md-6">'+
 				'       					            <div class="form-group">'+
 				'       					                <label for="var04">Sucursal</label>'+
-				'       					                <select id="var04" name="var04" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
+				'       					                <select id="var04" name="var04" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Seleccionar">'+ selTipSuc +
 				'       					                    </optgroup>'+
 				'       					                </select>'+
@@ -710,13 +710,6 @@ function setRecuperoDatos(parm01, parm02, parm03, parm04, parm05, parm06,  parm0
 			usuPass.value		= element.usuario_password;
 			usuCel.value		= element.usuario_celular;
 			usuEmail.value		= element.usuario_mail;
-
-			// usuNom.disabled 	= true;			
-			// usuApe.disabled		= true;		
-			// usuUSu.disabled 	= true;			
-			// usuPass.disabled	= true;			
-			// usuCel.disabled		= true;		
-			// usuEmail.disabled	= true;	
         });
 	} else {
 		usuNom.value		= '';

@@ -190,7 +190,7 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 		'       					        <div class="col-sm-12 col-md-6">'+
 		'       					            <div class="form-group">'+
 		'       					                <label for="var01">Estado</label>'+
-		'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
+		'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 		'       					                    <optgroup label="Estado">'+
 		'													<option value="0" disabled selected> SELECCIONAR </option>' + selEstado+
 		'       					                    </optgroup>'+
@@ -208,7 +208,7 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 		'									<div class="col-sm-12 col-md-4">'+
 		'       					            <div class="form-group">'+
 		'       					                <label for="var03">Empresa</label>'+
-		`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresaCampanha('var04','var03', 1, 1); selectEmpresaUsuarioListado('var05','var03', 1, 1);" style="width:100%; height:40px;">`+
+		`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresaCampanha('var04','var03', 1, 1); selectEmpresaUsuarioListado('var05','var03', 1, 1);" style="width:100%; height:40px;" required="true">`+
 		'       					                    <optgroup label="Seleccionar">'+
 		'													<option value="0" disabled selected> SELECCIONAR </option>' + selEmpresa +
 		'       					                    </optgroup>'+
@@ -219,7 +219,7 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 		'									<div class="col-sm-12 col-md-4">'+
 		'       					            <div class="form-group">'+
 		'       					                <label for="var04">Campaña</label>'+
-		'       					                <select id="var04" name="var04" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
+		'       					                <select id="var04" name="var04" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 		'       					                    <optgroup label="Seleccionar">'+
 		'													<option value="0" disabled selected> SELECCIONAR </option>' + 
 		'       					                    </optgroup>'+
@@ -230,7 +230,7 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 		'									<div class="col-sm-12 col-md-4">'+
 		'       					            <div class="form-group">'+
 		'       					                <label for="var05">Usuario</label>'+
-		'       					                <select id="var05" name="var05" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
+		'       					                <select id="var05" name="var05" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 		'       					                    <optgroup label="Seleccionar">'+
 		'													<option value="0" disabled selected> SELECCIONAR </option>' + 
 		'       					                    </optgroup>'+
@@ -312,7 +312,7 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 				'       					        <div class="col-sm-12 col-md-6">'+
 				'       					            <div class="form-group">'+
 				'       					                <label for="var01">Estado</label>'+
-				'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
+				'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Estado">'+selEstado+
 				'       					                    </optgroup>'+
 				'       					                </select>'+
@@ -329,7 +329,7 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
 				'       					                <label for="var03">Empresa</label>'+
-				`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresaCampanha('var04','var03', 1, 1); selectEmpresaUsuarioListado('var05','var03', 1, 1);" style="width:100%; height:40px;">`+
+				`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresaCampanha('var04','var03', 1, 1); selectEmpresaUsuarioListado('var05','var03', 1, 1);" style="width:100%; height:40px;" required="true">`+
 				'       					                    <optgroup label="Seleccionar">'+ selEmpresa +
 				'       					                    </optgroup>'+
 				'       					                </select>'+
@@ -339,7 +339,7 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
 				'       					                <label for="var04">Campaña</label>'+
-				'       					                <select id="var04" name="var04" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
+				'       					                <select id="var04" name="var04" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Seleccionar">'+
 				'       					                    </optgroup>'+ selCamp +
 				'       					                </select>'+
@@ -349,7 +349,7 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
 				'       					                <label for="var05">Usuario</label>'+
-				'       					                <select id="var05" name="var05" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
+				'       					                <select id="var05" name="var05" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Seleccionar">'+ selUsu +
 				'       					                    </optgroup>'+
 				'       					                </select>'+
