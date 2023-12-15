@@ -1,7 +1,7 @@
 $(document).ready(function() {
     var dataJSON01      = getRolDashboard(_parm06BASE);
     var dataJSON02      = getUsuarioDashboard(_parm06BASE);
-    var dataJSON03      = getUsuLogDashboard(_parm06BASE, _parm07BASE, 10);
+    var dataJSON03      = getUsuLogDashboard(_parm06BASE, _parm07BASE, 100);
 
     $('#tableLoad01').DataTable({
         processing	: true,
@@ -158,7 +158,8 @@ $(document).ready(function() {
             { targets			: [4],	visible : true,	searchable : true,	orderData : [4, 0] },
             { targets			: [5],	visible : true,	searchable : true,	orderData : [5, 0] },
             { targets			: [6],	visible : true,	searchable : true,	orderData : [6, 0] },
-            { targets			: [7],	visible : true,	searchable : true,	orderData : [7, 0] }
+            { targets			: [7],	visible : true,	searchable : true,	orderData : [7, 0] },
+            { targets			: [8],	visible : true,	searchable : true,	orderData : [8, 0] }
         ],
         columns		: [
             { render			:

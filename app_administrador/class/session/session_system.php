@@ -54,7 +54,7 @@
                 setlocale(LC_TIME, 'spanish');
                 setlocale(LC_MONETARY, 'es_PY');
     
-                $_SESSION['expire'] = time() + 1800;
+                $_SESSION['expire'] = time() + 600;
     
                 //$urlPat = strtoupper($_SERVER['SCRIPT_FILENAME']);
                 //$urlAnt = substr($_SERVER['HTTP_REFERER'], $ulrPos);
