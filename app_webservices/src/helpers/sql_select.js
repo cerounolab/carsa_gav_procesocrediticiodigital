@@ -1020,22 +1020,22 @@ const selectUSUARIOLOG  = async(actionType, codigo, codigo2, codigo3) => {
                                 WHEN a.USULOGEST = 'ERROR_PAS' THEN 'ERROR_PASSWORD'
                                 WHEN a.USULOGEST = 'USER_LOKED' THEN 'USUARIO BLOQUEADO'
                                 ELSE 'CORRECTO'
-                            END                                         AS	usuario_log_estado,
+                            END                                             AS	usuario_log_estado,
 
-                            TO_CHAR(a.USULOGFEC, 'YYYY-MM-DD')	        AS	usuario_log_fecha_1,
-                            TO_CHAR(a.USULOGFEC, 'DD/MM/YYYY')	        AS	usuario_log_fecha_2,
-                            UPPER(a.USULOGCOR)					        AS	usuario_log_usuario,	
-                            a.USULOGDIP							        AS	usuario_log_ip,
-                            a.USULOGHOS                                 AS  usuario_log_host,
-                            a.USULOGAGE                                 AS  usuario_log_age,
-                            a.USULOGREF                                 AS  usuario_log_referencia,
+                            TO_CHAR(a.USULOGFEC, 'YYYY-MM-DD')	            AS	usuario_log_fecha_1,
+                            TO_CHAR(a.USULOGFEC, 'DD/MM/YYYY')	            AS	usuario_log_fecha_2,
+                            UPPER(a.USULOGCOR)					            AS	usuario_log_usuario,	
+                            a.USULOGDIP							            AS	usuario_log_ip,
+                            a.USULOGHOS                                     AS  usuario_log_host,
+                            a.USULOGAGE                                     AS  usuario_log_age,
+                            a.USULOGREF                                     AS  usuario_log_referencia,
                             
-                            a.USULOGAUS							        AS	auditoria_usuario,
-                            TO_CHAR(USULOGAFH, 'YYYY-MM-DD HH24:MI:SS') AS	auditoria_fecha_hora,
-                            a.USULOGAIP							        AS	auditoria_ip,
+                            a.USULOGAUS							            AS	auditoria_usuario,
+                            TO_CHAR(a.USULOGAFH, 'YYYY-MM-DD HH24:MI:SS')   AS	auditoria_fecha_hora,
+                            a.USULOGAIP							            AS	auditoria_ip,
 
-                            c.EMPFICCOD							        AS	empresa_codigo,
-                            c.EMPFICNOM 						        AS 	empresa_nombre
+                            c.EMPFICCOD							            AS	empresa_codigo,
+                            c.EMPFICNOM 						            AS 	empresa_nombre
 
                         FROM adm.USULOG a
                         INNER JOIN adm.EMPFIC b ON a.USULOGAEM	= b.EMPFICCOD
