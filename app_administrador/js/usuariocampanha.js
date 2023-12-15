@@ -100,7 +100,7 @@ $(document).ready(function() {
 function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 	var xJSON       	= [];
 	var xJSON1     		= getDominioValor('ADMUSUARIOCAMPANHAESTADO');
-	var xJSON2     		= getEmpresaList();
+	var xJSON2     		= getEmpresaList(_parm06BASE);
 	var html			= '';
 	var bodyCol     	= '';
 	var bodyTit     	= '';

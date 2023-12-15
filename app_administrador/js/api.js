@@ -576,25 +576,11 @@ function getPersonaDocumento(parm01){
     return xDATA;
 }
 
-// function getEmpresaList(){
-//     var urlPage =  'empresa/listado';
-//     var xJSON   = JSON.parse(getURL_1(urlPage));
-//     var xDATA   = [];
-
-//     if (xJSON['code'] == 200){
-//         xJSON['data'].forEach(element => {
-//             xDATA.push(element);
-//         });
-//     }
-
-//     return xDATA; 
-// }
-
-function getEmpresaList(codElem){
+function getEmpresaList(codEmp){
     localStorage.removeItem('empresaListJSON');
 
     if (localStorage.getItem('empresaListJSON') === null){
-        getJSON('empresaListJSON', 'empresa/listado');
+        getJSON('empresaListJSON', 'empresa/listado/empresa/'+codEmp);
     }
 
     var xJSON = JSON.parse(localStorage.getItem('empresaListJSON'));
@@ -607,20 +593,6 @@ function getEmpresaList(codElem){
 
     return xDATA;
 }
-
-// function getEmpresaId(codElem){
-//     var urlPage =  '100/empresa/codigo/' + codElem;
-//     var xJSON   = JSON.parse(getURL_1(urlPage));
-//     var xDATA   = [];
-
-//     if (xJSON['code'] == 200){
-//         xJSON['data'].forEach(element => {
-//             xDATA.push(element);
-//         });
-//     }
-
-//     return xDATA; 
-// }
 
 function getEmpresaId(codElem){
     localStorage.removeItem('empresaIdJSON');

@@ -101,7 +101,7 @@ $(document).ready(function() {
 function setFormulario(codElem, codAcc) {
 	var xJSON       = [];
 	var xJSON1     	= getDominioValor('ADMROLESTADO');
-	var xJSON2     	= getEmpresaList();
+	var xJSON2     	= getEmpresaList(_parm06BASE);
 	var html		= '';
 	var bodyCol     = '';
 	var bodyTit     = '';
