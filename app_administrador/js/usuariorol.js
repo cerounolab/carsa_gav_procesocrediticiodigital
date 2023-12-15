@@ -124,7 +124,7 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 			bodyCol = '#be9027;';
 			bodyMod = 'C';
 			bodyOnl = '';
-			bodyBot = '           <button type="submit" class="btn btn-primary">Agregar</button>';
+			bodyBot = '           <button type="submit" id="submit" name="submit" value="submit" class="btn btn-primary">Agregar</button>';
 			bodAcc	= 1;
 			break;
 
@@ -142,7 +142,7 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 			bodyCol = '#be9027;';
 			bodyMod = 'U';
 			bodyOnl = '';
-			bodyBot = '           <button type="submit" class="btn btn-primary">Actualizar</button>';
+			bodyBot = '           <button type="submit" id="submit" name="submit" value="submit" class="btn btn-primary">Actualizar</button>';
 			bodAcc	= 1;
 			break;
 
@@ -151,7 +151,7 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 			bodyCol = '#be9027;';
 			bodyMod = 'U';
 			bodyOnl = 'readonly';
-			bodyBot = '           <button type="submit" class="btn btn-primary">Anular</button>';
+			bodyBot = '           <button type="submit" id="submit" name="submit" value="submit" class="btn btn-primary">Anular</button>';
 			bodAcc	= 2;
 
 			break;
@@ -225,7 +225,7 @@ function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 		'									<div class="col-sm-12 col-md-6">'+
 		'       					            <div class="form-group">'+
 		'       					                <label for="var04">Rol</label>'+
-		`       					                <select id="var04" name="var04" class="select2 form-control custom-select" onchange="selectEmpresaUsuario('var05', 'var04', 'var03', 1, 1, 'var05');" style="width:100%; height:40px;" required="true" ${bodyOnl}>`+
+		`       					                <select id="var04" name="var04" class="select2 form-control custom-select" onchange="selectEmpresaUsuarioListado('var05','var03', 1, 1);" style="width:100%; height:40px;" required="true" ${bodyOnl}>`+
 		'       					                    <optgroup label="Seleccionar">'+
 		'													<option value="0" disabled selected> SELECCIONAR </option>' + 
 		'       					                    </optgroup>'+
