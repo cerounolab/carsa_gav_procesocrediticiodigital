@@ -209,7 +209,7 @@ function setEmpSucursal(codElem, codAcc) {
 			'       					        <div class="col-sm-12 col-md-4">'+
 			'       					            <div class="form-group">'+
 			'       					                <label for="var01">Estado</label>'+
-			'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
+			'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 			'       					                    <optgroup label="Estado">'+
 			'													<option value="0" disabled selected> SELECCIONAR </option>' + selEstado+
 			'       					                    </optgroup>'+
@@ -220,7 +220,7 @@ function setEmpSucursal(codElem, codAcc) {
 			'									<div class="col-sm-12 col-md-4">'+
 			'       					            <div class="form-group">'+
 			'       					                <label for="var02">Tipo Sucursal</label>'+
-			'       					                <select id="var02" name="var02" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
+			'       					                <select id="var02" name="var02" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 			'       					                    <optgroup label="Estado">'+
 			'													<option value="0" disabled selected> SELECCIONAR </option>' + selTipSuc+
 			'       					                    </optgroup>'+
@@ -231,7 +231,7 @@ function setEmpSucursal(codElem, codAcc) {
 			'									<div class="col-sm-12 col-md-4">'+
 			'       					            <div class="form-group">'+
 			'       					                <label for="var03">Empresa</label>'+
-			'       					                <select id="var03" name="var03" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
+			'       					                <select id="var03" name="var03" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 			'       					                    <optgroup label="Estado">'+
 			'													<option value="0" disabled selected> SELECCIONAR </option>' + selEmpresa+
 			'       					                    </optgroup>'+
@@ -373,7 +373,7 @@ function setEmpSucursal(codElem, codAcc) {
 				'       					        <div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
 				'       					                <label for="var01">Estado</label>'+
-				'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
+				'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Estado">'+selEstado+
 				'       					                    </optgroup>'+
 				'       					                </select>'+
@@ -383,7 +383,7 @@ function setEmpSucursal(codElem, codAcc) {
 				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
 				'       					                <label for="var02">Tipo Sucursal</label>'+
-				'       					                <select id="var02" name="var02" class="select2 form-control custom-select" style="width:100%; height:40px;" '+ bodyOnl +'>'+
+				'       					                <select id="var02" name="var02" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Estado">'+selTipSuc+
 				'       					                    </optgroup>'+
 				'       					                </select>'+
@@ -393,7 +393,7 @@ function setEmpSucursal(codElem, codAcc) {
 				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
 				'       					                <label for="var03">Empresa</label>'+
-				`       					                <select id="var03" name="var03" class="select2 form-control custom-select" style="width:100%; height:40px;"` + bodyOnl +'>'+
+				`       					                <select id="var03" name="var03" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true"` + bodyOnl +'>'+
 				'       					                    <optgroup label="Estado">'+selEmpresa+
 				'       					                    </optgroup>'+
 				'       					                </select>'+
