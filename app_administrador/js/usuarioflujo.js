@@ -179,12 +179,6 @@ function setUsuarioFlujo(codRolC, codUsuC, codRolS, codUsuS, codEmp, codAcc) {
 			}
 		});
 
-		selEmpresa  = selEmpresa + '                            <option value="" selected disabled> SELECCIONAR... </option>';
-		selRolS    	= selRolS + '                               <option value="" selected disabled> SELECCIONAR... </option>';
-		selUsuS    	= selUsuS + '                               <option value="" selected disabled> SELECCIONAR... </option>';
-		selUsuC    	= selUsuC + '                               <option value="" selected disabled> SELECCIONAR... </option>';
-		selRolC    	= selRolC + '                               <option value="" selected disabled> SELECCIONAR... </option>';
-
 		xJSON2.forEach(element1 => {
 			if (element1.tipoEstadoParametro == 1) {
 				selEmpresa = selEmpresa + '            								<option value="'+ element1.empresaCodigo +'">'+ element1.empresaNombre +'</option>';

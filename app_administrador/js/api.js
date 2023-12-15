@@ -821,11 +821,11 @@ function getRolId(codElem){
     return xDATA;
 }
 
-function getRolEmp(codElem, codEst){
+function getRolEmp(codEmp, codEst){
     localStorage.removeItem('rolEmpresaJSON');
 
     if (localStorage.getItem('rolEmpresaJSON') === null){
-        getJSON('rolEmpresaJSON', 'rol/listado/empresa/'+ codElem);
+        getJSON('rolEmpresaJSON', 'rol/listado/empresa/'+ codEmp);
     }
     var xJSON = [];
 
@@ -836,7 +836,7 @@ function getRolEmp(codElem, codEst){
         xJSON['data'].forEach(element => {
             if (codEst == 0) {
                 xDATA.push(element);
-            } else if (element.tipoEstadoParametro == codEst){
+            } else if (element.tipoEstadoParametro == codEst && element.empresaCodigo == codEmp){
                 xDATA.push(element);
             }
         });
