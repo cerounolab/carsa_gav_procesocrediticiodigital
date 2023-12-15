@@ -1026,6 +1026,13 @@ const selectUSUARIOLOG  = async(actionType, codigo, codigo2, codigo3) => {
                             TO_CHAR(a.USULOGFEC, 'DD/MM/YYYY')	AS	usuario_log_fecha_2,
                             UPPER(a.USULOGCOR)					AS	usuario_log_usuario,	
                             a.USULOGDIP							AS	usuario_log_ip,
+                            a.USULOGHOS                         AS  usuario_log_host,
+                            a.USULOGAGE                         AS  usuario_log_age,
+                            a.USULOGREF                         AS  usuario_log_referencia,
+                            
+                            a.USULOGAUS							AS	auditoria_usuario,
+                            a.USULOGAFH							AS	auditoria_fecha_hora,
+                            a.USULOGAIP							AS	auditoria_ip,
 
                             c.EMPFICCOD							AS	empresa_codigo,
                             c.EMPFICNOM 						AS 	empresa_nombre
@@ -1034,7 +1041,7 @@ const selectUSUARIOLOG  = async(actionType, codigo, codigo2, codigo3) => {
                         INNER JOIN adm.EMPFIC b ON a.USULOGAEM	= b.EMPFICCOD
                         INNER JOIN adm.EMPFIC c ON a.USULOGEMC	= c.EMPFICCOD
 
-                        WHERE ${_empresaCodigo2} AND a.USULOGFEC <= ${codigo2}  
+                        WHERE ${_empresaCodigo2} AND a.USULOGFEC <= ${codigo2} AND a.USULOGEST <> 'CORRECTO'  
                     
                         ORDER BY a.USULOGCOD DESC
                         LIMIT ${codigo3}`;
