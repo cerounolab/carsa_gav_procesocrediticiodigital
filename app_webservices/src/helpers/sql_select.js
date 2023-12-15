@@ -84,13 +84,17 @@ const selectEMPRESA = async(actionType, codigo, valor) => {
     let _code   = 200;
     let _data   = [];
     let query00 = '';
+    let _empresaCodigo2 = (codigo == 1) ? `empresa_codigo <> 0 ` : `empresa_codigo = ${codigo}`;
+
 
     switch (actionType) {
         case 1:
             query00 = `SELECT
                             *
                         FROM
-                            adm.EMPRESA`;
+                            adm.EMPRESA
+                        WHERE ${_empresaCodigo2}`;
+;
             break;
 
         case 2:
@@ -152,6 +156,9 @@ const selectEMPRESA = async(actionType, codigo, valor) => {
         );
     }
 
+    if (_data.length == 0) {
+        _code = 404;
+    }
     return Array(_code, _data);
 }
 
@@ -229,8 +236,12 @@ const selectSUCURSAL    = async(actionType, codigo, valor) => {
         );
     }
 
+    if (_data.length == 0) {
+        _code = 404;
+    }
     return Array(_code, _data);
 }
+
 
 const selectUSUARIO = async(actionType, codigo, valor) => {
         let _code   = 200;

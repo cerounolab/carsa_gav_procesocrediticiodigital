@@ -104,7 +104,7 @@ $(document).ready(function() {
 						
 					}
 
-					if (full.tipoEstadoParametro == 1 || full.tipoEstadoParametro == 4) {
+					if (full.tipoEstadoParametro != 1 && full.tipoEstadoParametro != 4) {
 						btnPAS	= '';
 					}
 

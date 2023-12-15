@@ -419,7 +419,7 @@ const postUsuarioLogin   = (apiREQ, apiRES) => {
     let _password   = '';
     let _USULOGEST  = '';  
     let _USUFICIPAS = 0;
-    Let_empresacodigo   = 0;
+    let _empresacodigo   = 0;
     
     if (_USUFICUSU && _USUFICPAS && _USUFICAEM && _USUFICAUS && _USUFICAIP && _USUFICAPR){
             (async () => {
