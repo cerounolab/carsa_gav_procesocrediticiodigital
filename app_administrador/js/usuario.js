@@ -205,8 +205,7 @@ function setUsuario(codElem, codAcc) {
 				selEstado = selEstado + '                               			<option value="'+ element1.tipoParametro +'">'+ element1.tipoNombre +'</option>';
 			}
 		});
-
-		selEmpresa = selEmpresa + '            										<option value="0" selected>SELECCIONAR</option>';
+		
 		xJSON3.forEach(element1 => {
 			if (element1.tipoEstadoParametro == 1) {
 				selEmpresa = selEmpresa + '            								<option value="'+ element1.empresaCodigo +'">'+ element1.empresaNombre +'</option>';
