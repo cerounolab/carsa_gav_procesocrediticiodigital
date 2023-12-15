@@ -123,7 +123,7 @@ $(document).ready(function() {
 function setUsuario(codElem, codAcc) {
 	var xJSON       = [];
 	var xJSON1     	= getDominioValor('ADMUSUARIOESTADO');
-	var xJSON3     	= getEmpresaList();
+	var xJSON3     	= getEmpresaList(_parm06BASE);
 	var xJSON4     	= getSucursalList(_parm06BASE);
 
 	var html		= '';
