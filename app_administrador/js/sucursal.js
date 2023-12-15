@@ -270,7 +270,7 @@ function setEmpSucursal(codElem, codAcc) {
 			'               					<div class="col-sm-12 col-md-4">'+
 			'               					    <div class="form-group">'+
 			'               					        <label for="var08">Correo</label>'+
-			'               					        <input id="var08" name="var08" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="Correo" '+ bodyOnl +'>'+
+			'               					        <input id="var08" name="var08" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="Correo" required="true" '+ bodyOnl +'>'+
 			'               					    </div>'+
 			'               					</div>'+
 			''+
@@ -431,7 +431,7 @@ function setEmpSucursal(codElem, codAcc) {
 				'               					<div class="col-sm-12 col-md-4">'+
 				'               					    <div class="form-group">'+
 				'               					        <label for="var08">Correo</label>'+
-				'               					        <input id="var08" name="var08" value="'+ sucursalCorreo +'" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="Correo" '+ bodyOnl +'>'+
+				'               					        <input id="var08" name="var08" value="'+ sucursalCorreo +'" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="Correo" required="true" '+ bodyOnl +'>'+
 				'               					    </div>'+
 				'               					</div>'+
 				''+
