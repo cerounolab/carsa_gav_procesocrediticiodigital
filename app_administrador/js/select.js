@@ -774,7 +774,7 @@ function selectFormaPago(parm01, parm02, parm03, parm04, parm05) {
 
 function selectEmpresa2(parm01, parm02, parm03, parm04) {
     var selOption   = document.getElementById(parm01);
-    var xJSON       = getEmpresaList();
+    var xJSON       = getEmpresaList(_parm06BASE);
     
     while (selOption.length > 0) {
         selOption.remove(0);

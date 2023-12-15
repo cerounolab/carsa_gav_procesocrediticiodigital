@@ -104,7 +104,7 @@ $(document).ready(function() {
 function setUsuarioFlujo(codRolC, codUsuC, codRolS, codUsuS, codEmp, codAcc) {
 	var xJSON       	= [];
 	var xJSON1     		= getDominioValor('ADMUSUARIOFLUJOESTADO');
-	var xJSON2     		= getEmpresaList();
+	var xJSON2     		= getEmpresaList(_parm06BASE);
 	var xJSON3     		= getRolList(_parm06BASE);
 	var xJSON4     		= getUsuarioList(_parm06BASE);
 	var html			= '';

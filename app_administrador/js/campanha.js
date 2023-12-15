@@ -107,7 +107,7 @@ $(document).ready(function() {
 function setcampanha(codElem, codAcc) {
 	var xJSON       = [];
 	var xJSON1     	= getDominioValor('ADMCAMPANHAESTADO');
-	var xJSON2     	= getEmpresaList();
+	var xJSON2     	= getEmpresaList(_parm06BASE);
 	var xJSON3     	= getDominioValor('ADMCAMPANHATIPO');
 	var html		= '';
 	var bodyCol     = '';
