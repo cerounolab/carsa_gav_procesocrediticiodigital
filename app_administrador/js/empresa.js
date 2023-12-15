@@ -306,7 +306,7 @@ function setEmpresa(codElem, codAcc) {
 			'               					<div class="col-sm-12 col-md-4">'+
 			'               					    <div class="form-group">'+
 			'               					        <label for="var010">Correo</label>'+
-			'               					        <input id="var010" name="var010" value="" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="Correo" '+ bodyOnl +'>'+
+			'               					        <input id="var010" name="var010" value="" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="Correo" required="true" '+ bodyOnl +'>'+
 			'               					    </div>'+
 			'               					</div>'+
 			''+
@@ -493,7 +493,7 @@ function setEmpresa(codElem, codAcc) {
 				'               					<div class="col-sm-12 col-md-4">'+
 				'               					    <div class="form-group">'+
 				'               					        <label for="var010">Correo</label>'+
-				'               					        <input id="var010" name="var010" value="'+ empresaCorreo +'" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="Correo" '+ bodyOnl +'>'+
+				'               					        <input id="var010" name="var010" value="'+ empresaCorreo +'" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="Correo" required="true" '+ bodyOnl +'>'+
 				'               					    </div>'+
 				'               					</div>'+
 				''+
