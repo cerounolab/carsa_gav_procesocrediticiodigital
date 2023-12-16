@@ -6,7 +6,7 @@ $(document).ready(function() {
     $('#tableLoad01').DataTable({
         processing	: true,
         destroy		: true,
-        searching	: false,
+        searching	: true,
         paging		: false,
         lengthChange: false,
         info		: false,
@@ -67,7 +67,7 @@ $(document).ready(function() {
     $('#tableLoad02').DataTable({
         processing	: true,
         destroy		: true,
-        searching	: false,
+        searching	: true,
         paging		: false,
         lengthChange: false,
         info		: false,
@@ -127,11 +127,11 @@ $(document).ready(function() {
     $('#tableLoad03').DataTable({
         processing	: true,
         destroy		: true,
-        searching	: false,
+        searching	: true,
         paging		: false,
         lengthChange: false,
         info		: false,
-        order: [[ 6, "desc" ]],
+        order: [[ 7, "desc" ]],
         orderCellsTop: true,
         fixedHeader	:  true,
         language	: {
