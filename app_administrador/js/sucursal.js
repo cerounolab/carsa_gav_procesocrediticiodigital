@@ -198,7 +198,7 @@ function setEmpSucursal(codElem, codAcc) {
 
 		html = 
 			'				<div class="modal-content">'+
-			'					<form class="needs-validation" method="post" action="../class/crud/sucursal.php">'+
+			'					<form class="needs-validation" onsubmit="return validarForm();" method="post" action="../class/crud/sucursal.php">'+
 			'	    				<div class="modal-header" style="color:#ffffff; background:'+ bodyCol +'">'+
 			'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+
 			'							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>'+
@@ -208,7 +208,7 @@ function setEmpSucursal(codElem, codAcc) {
 			'       					    <div class="row">'+
 			'       					        <div class="col-sm-12 col-md-4">'+
 			'       					            <div class="form-group">'+
-			'       					                <label for="var01">Estado</label>'+
+			'       					                <label for="var01">Estado<span style="color:red;"> * </span></label>'+
 			'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 			'       					                    <optgroup label="Estado">'+
 			'													<option value="0" disabled selected> SELECCIONAR </option>' + selEstado+
@@ -219,7 +219,7 @@ function setEmpSucursal(codElem, codAcc) {
 			''+
 			'									<div class="col-sm-12 col-md-4">'+
 			'       					            <div class="form-group">'+
-			'       					                <label for="var02">Tipo Sucursal</label>'+
+			'       					                <label for="var02">Tipo Sucursal<span style="color:red;"> * </span></label>'+
 			'       					                <select id="var02" name="var02" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 			'       					                    <optgroup label="Estado">'+
 			'													<option value="0" disabled selected> SELECCIONAR </option>' + selTipSuc+
@@ -230,7 +230,7 @@ function setEmpSucursal(codElem, codAcc) {
 			''+
 			'									<div class="col-sm-12 col-md-4">'+
 			'       					            <div class="form-group">'+
-			'       					                <label for="var03">Empresa</label>'+
+			'       					                <label for="var03">Empresa<span style="color:red;"> * </span></label>'+
 			'       					                <select id="var03" name="var03" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 			'       					                    <optgroup label="Estado">'+
 			'													<option value="0" disabled selected> SELECCIONAR </option>' + selEmpresa+
@@ -248,7 +248,7 @@ function setEmpSucursal(codElem, codAcc) {
 			''+
 			'               					<div class="col-sm-12 col-md-4">'+
 			'               				    	<div class="form-group">'+
-			'               				        	<label for="var05">Nombre</label>'+
+			'               				        	<label for="var05">Nombre<span style="color:red;"> * </span></label>'+
 			'               				        	<input id="var05" name="var05" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" required="true" '+ bodyOnl +'>'+
 			'               				    	</div>'+
 			'               					</div>'+
@@ -269,7 +269,7 @@ function setEmpSucursal(codElem, codAcc) {
 			''+
 			'               					<div class="col-sm-12 col-md-4">'+
 			'               					    <div class="form-group">'+
-			'               					        <label for="var08">Correo</label>'+
+			'               					        <label for="var08">Correo<span style="color:red;"> * </span></label>'+
 			'               					        <input id="var08" name="var08" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="Correo" required="true" '+ bodyOnl +'>'+
 			'               					    </div>'+
 			'               					</div>'+
@@ -372,7 +372,7 @@ function setEmpSucursal(codElem, codAcc) {
 				'       					    <div class="row">'+
 				'       					        <div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var01">Estado</label>'+
+				'       					                <label for="var01">Estado<span style="color:red;"> * </span></label>'+
 				'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Estado">'+selEstado+
 				'       					                    </optgroup>'+
@@ -382,7 +382,7 @@ function setEmpSucursal(codElem, codAcc) {
 				''+
 				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var02">Tipo Sucursal</label>'+
+				'       					                <label for="var02">Tipo Sucursal<span style="color:red;"> * </span></label>'+
 				'       					                <select id="var02" name="var02" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Estado">'+selTipSuc+
 				'       					                    </optgroup>'+
@@ -392,7 +392,7 @@ function setEmpSucursal(codElem, codAcc) {
 				''+
 				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var03">Empresa</label>'+
+				'       					                <label for="var03">Empresa<span style="color:red;"> * </span></label>'+
 				`       					                <select id="var03" name="var03" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true"` + bodyOnl +'>'+
 				'       					                    <optgroup label="Estado">'+selEmpresa+
 				'       					                    </optgroup>'+
@@ -409,7 +409,7 @@ function setEmpSucursal(codElem, codAcc) {
 				''+
 				'               					<div class="col-sm-12 col-md-4">'+
 				'               				    	<div class="form-group">'+
-				'               				        	<label for="var05">Nombre</label>'+
+				'               				        	<label for="var05">Nombre<span style="color:red;"> * </span></label>'+
 				'               				        	<input id="var05" name="var05" value="'+ sucursalNombre +'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" required="true" '+ bodyOnl +'>'+
 				'               				    	</div>'+
 				'               					</div>'+
@@ -430,7 +430,7 @@ function setEmpSucursal(codElem, codAcc) {
 				''+
 				'               					<div class="col-sm-12 col-md-4">'+
 				'               					    <div class="form-group">'+
-				'               					        <label for="var08">Correo</label>'+
+				'               					        <label for="var08">Correo<span style="color:red;"> * </span></label>'+
 				'               					        <input id="var08" name="var08" value="'+ sucursalCorreo +'" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="Correo" required="true" '+ bodyOnl +'>'+
 				'               					    </div>'+
 				'               					</div>'+
@@ -484,4 +484,22 @@ function setEmpSucursal(codElem, codAcc) {
 
 	$("#modal-content").empty();
 	$("#modal-content").append(html);
+}
+
+function validarForm(){
+	var todo_correcto = true;
+
+	if(document.getElementById('var01').value == 0){
+		todo_correcto = false;
+		swal('Estado debe ser distinto a SELECCIONAR');
+	} else if(document.getElementById('var02').value == 0){
+		todo_correcto = false;
+		swal('Tipo Sucursal debe ser distinto a SELECCIONAR');
+	} else if(document.getElementById('var03').value == 0){
+		todo_correcto = false;
+		swal('Empresa debe ser distinto a SELECCIONAR');
+	}
+
+	
+	return todo_correcto;
 }

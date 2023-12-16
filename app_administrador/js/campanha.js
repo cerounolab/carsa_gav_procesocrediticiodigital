@@ -192,7 +192,7 @@ function setcampanha(codElem, codAcc) {
 
 		html = 
 			'				<div class="modal-content">'+
-			'					<form class="needs-validation" method="post" action="../class/crud/campanha.php">'+
+			'					<form class="needs-validation" onsubmit="return validarForm();" method="post" action="../class/crud/campanha.php">'+
 			'	    				<div class="modal-header" style="color:#ffffff; background:'+ bodyCol +'">'+
 			'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+
 			'							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>'+
@@ -201,7 +201,7 @@ function setcampanha(codElem, codAcc) {
 			'       					    <div class="row">'+
 			'       					        <div class="col-sm-12 col-md-4">'+
 			'       					            <div class="form-group">'+
-			'       					                <label for="var01">Estado</label>'+
+			'       					                <label for="var01">Estado <span style="color:red;"> * </span></label>'+
 			'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 			'       					                    <optgroup label="Estado">'+
 			'													<option value="0" disabled selected> SELECCIONAR </option>' + selEstado+
@@ -219,7 +219,7 @@ function setcampanha(codElem, codAcc) {
 			''+
 			'									<div class="col-sm-12 col-md-4">'+
 			'       					            <div class="form-group">'+
-			'       					                <label for="var03">Empresa</label>'+
+			'       					                <label for="var03">Empresa <span style="color:red;"> * </span></label>'+
 			'       					                <select id="var03" name="var03" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 			'       					                    <optgroup label="Seleccionar">'+ 
 			'													<option value="0" disabled selected> SELECCIONAR </option>' + selEmpresa +
@@ -230,7 +230,7 @@ function setcampanha(codElem, codAcc) {
 			''+
 			'									<div class="col-sm-12 col-md-4">'+
 			'       					            <div class="form-group">'+
-			'       					                <label for="var04">Tipo Campaña</label>'+
+			'       					                <label for="var04">Tipo Campaña <span style="color:red;"> * </span> </label>'+
 			'       					                <select id="var04" name="var04" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 			'       					                    <optgroup label="Seleccionar">'+
 			'													<option value="0" disabled selected> SELECCIONAR </option>' + selTipCamp +
@@ -241,14 +241,14 @@ function setcampanha(codElem, codAcc) {
 			''+
 			'               					<div class="col-sm-12 col-md-8">'+
 			'               				    	<div class="form-group">'+
-			'               				        	<label for="var05">Nombre</label>'+
+			'               				        	<label for="var05">Nombre <span style="color:red;"> * </span></label>'+
 			'               				        	<input id="var05" name="var05" value="" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" required="true" '+ bodyOnl +'>'+
 			'               				    	</div>'+
 			'               					</div>'+
 			''+
 			'               					<div class="col-sm-12 col-md-6">'+
 			'               					    <div class="form-group">'+
-			'               					        <label for="var06">Fecha Desde</label>'+
+			'               					        <label for="var06">Fecha Desde <span style="color:red;"> * </span></label>'+
 			'               					        <input id="var06" name="var06" class="form-control" type="date" style="text-transform:uppercase; height:40px;" placeholder="Fecha Desde" required="true" '+ bodyOnl +'>'+
 			'               					    </div>'+
 			'               					</div>'+
@@ -340,7 +340,7 @@ function setcampanha(codElem, codAcc) {
 				'       					    <div class="row">'+
 				'       					        <div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var01">Estado</label>'+
+				'       					                <label for="var01">Estado<span style="color:red;"> * </span> </label>'+
 				'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Estado">'+selEstado+
 				'       					                    </optgroup>'+
@@ -357,7 +357,7 @@ function setcampanha(codElem, codAcc) {
 				''+
 				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var03">Empresa</label>'+
+				'       					                <label for="var03">Empresa <span style="color:red;"> * </span></label>'+
 				'       					                <select id="var03" name="var03" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Seleccionar">'+ selEmpresa +
 				'       					                    </optgroup>'+
@@ -367,7 +367,7 @@ function setcampanha(codElem, codAcc) {
 				''+
 				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var04">Tipo Campaña</label>'+
+				'       					                <label for="var04">Tipo Campaña <span style="color:red;"> * </span></label>'+
 				'       					                <select id="var04" name="var04" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Seleccionar">'+ selTipCamp +
 				'       					                    </optgroup>'+
@@ -377,14 +377,14 @@ function setcampanha(codElem, codAcc) {
 				''+
 				'               					<div class="col-sm-12 col-md-8">'+
 				'               				    	<div class="form-group">'+
-				'               				        	<label for="var05">Nombre</label>'+
+				'               				        	<label for="var05">Nombre <span style="color:red;"> * </span></label>'+
 				'               				        	<input id="var05" name="var05" value="'+campanhaNombre+'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" required '+ bodyOnl +'>'+
 				'               				    	</div>'+
 				'               					</div>'+
 				''+
 				'               					<div class="col-sm-12 col-md-6">'+
 				'               					    <div class="form-group">'+
-				'               					        <label for="var06">Fecha Desde</label>'+
+				'               					        <label for="var06">Fecha Desde <span style="color:red;"> * </span></label>'+
 				'               					        <input id="var06" name="var06" value="'+campanhaFechaDesde1+'" class="form-control" type="date" style="text-transform:uppercase; height:40px;" placeholder="Fecha Desde" required="true" '+ bodyOnl +'>'+
 				'               					    </div>'+
 				'               					</div>'+
@@ -432,4 +432,21 @@ function setcampanha(codElem, codAcc) {
 
 	$("#modal-content").empty();
 	$("#modal-content").append(html);		
+}
+
+function validarForm(){
+	var todo_correcto = true;
+
+	if(document.getElementById('var01').value == 0){
+		todo_correcto = false;
+		swal('Estado debe ser distinto a SELECCIONAR');
+	} else if(document.getElementById('var03').value == 0){
+		todo_correcto = false;
+		swal('Empresa debe ser distinto a SELECCIONAR');
+	} else if(document.getElementById('var04').value == 0){
+		todo_correcto = false;
+		swal('Tipo Camaña debe ser distinto a SELECCIONAR');
+	}
+
+	return todo_correcto;
 }
