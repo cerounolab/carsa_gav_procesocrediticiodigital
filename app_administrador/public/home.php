@@ -7,7 +7,7 @@
 	$pageTitleNav	= 'Dashboard';
 	$NavTitle01		= 'Cantidad de Rol por Empresa';
 	$NavTitle02		= 'Cantidad de Usuario por Empresa';
-	$NavTitle03		= 'Log Usuario Password';
+	$NavTitle03		= 'Log Usuario';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -100,15 +100,15 @@
 											<table id="tableLoad03" class="text-fade table table-bordered display" style="width:100%">
 												<thead>
 													<tr class="btn-primary" style="text-align:center;">
-														<th class="border-top-0">ESTADO</th>
-														<th class="border-top-0">EMPRESA</th>
-														<th class="border-top-0">USUARIO</th>
-														<th class="border-top-0">FECHA</th>
-														<th class="border-top-0">HOST</th>
-														<th class="border-top-0">AGENT</th>
-														<th class="border-top-0">REFERENCES</th>
-														<th class="border-top-0">AUD. FECHA/HORA</th>
-														<th class="border-top-0">AUD. IP</th>
+														<th class="border-top-0" style="width:10%">ESTADO</th>
+														<th class="border-top-0" style="width:10%">EMPRESA</th>
+														<th class="border-top-0" style="width:10%">USUARIO</th>
+														<th class="border-top-0" style="width:10%">FECHA</th>
+														<th class="border-top-0" style="width:10%">HOST</th>
+														<th class="border-top-0" style="width:15%">AGENT</th>
+														<th class="border-top-0" style="width:15%">REFERENCES</th>
+														<th class="border-top-0" style="width:10%">AUD. FECHA/HORA</th>
+														<th class="border-top-0" style="width:10%">AUD. IP</th>
 													</tr>
 												</thead>
 											</table>
