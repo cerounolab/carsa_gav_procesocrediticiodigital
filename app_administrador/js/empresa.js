@@ -55,16 +55,7 @@ $(document).ready(function() {
 			{ data				: 'empresaOrden', name : 'empresaOrden'},
 			{ render			:
 				function (data, type, full, meta) {
-					var rowEST = '';
-					if (full.tipoEstadoParametro == 1) {
-						rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
-					} else if (full.tipoEstadoParametro == 2){
-					 	rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
-					} else if (full.tipoEstadoParametro == 3){
-						rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
-					} else {
-						rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
-					}
+					var rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
 					
 					return rowEST;
 				}
