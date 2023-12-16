@@ -52,7 +52,13 @@ $(document).ready(function() {
 			{ data				: 'tipoCodigo', name : 'tipoCodigo'},
 			{ data				: 'tipoOrden', name : 'tipoOrden'},
 			{ data				: 'tipoParametro', name : 'tipoParametro'},
-			{ data				: 'tipoEstadoNombre', name : 'tipoEstadoNombre'},
+			{ render			:
+				function (data, type, full, meta) {
+					var rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
+					
+					return rowEST;
+				}
+			},
 			{ data				: 'tipoNombre', name : 'tipoNombre'},
 			{ data				: 'tipoIcono', name : 'tipoIcono'},
 			{ data				: 'tipoCss', name : 'tipoCss'},

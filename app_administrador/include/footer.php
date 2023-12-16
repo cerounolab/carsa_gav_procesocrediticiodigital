@@ -53,9 +53,6 @@
                         // $('[data-mask]').inputmask();
                 });
         </script>
-
-
-
 <?php
     if(isset($_GET['code'])){
         $codeRest       = $_GET['code'];
