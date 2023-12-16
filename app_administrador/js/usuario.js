@@ -52,16 +52,7 @@ $(document).ready(function() {
 			{ data				: 'usuarioOrden', name : 'usuarioOrden'},
 			{ render			:
 				function (data, type, full, meta) {
-					var rowEST = '';
-					if (full.tipoEstadoParametro == 1) {
-						rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
-					} else if (full.tipoEstadoParametro == 2){
-					 	rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
-					} else if (full.tipoEstadoParametro == 3){
-						rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
-					} else {
-						rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
-					}
+					var rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
 					
 					return rowEST;
 				}
@@ -220,7 +211,7 @@ function setUsuario(codElem, codAcc) {
 
 		html = 
 			'				<div class="modal-content">'+
-			'					<form class="needs-validation" method="post" action="../class/crud/usuario.php">'+
+			'					<form class="needs-validation" onsubmit="return validarForm();" method="post" action="../class/crud/usuario.php">'+
 			'	    				<div class="modal-header" style="color:#ffffff; background:'+ bodyCol +'">'+
 			'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+
 			'							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>'+
@@ -230,7 +221,7 @@ function setUsuario(codElem, codAcc) {
 			'       					    <div class="row">'+
 			'       					        <div class="col-sm-12 col-md-6">'+
 			'       					            <div class="form-group">'+
-			'       					                <label for="var01">Estado</label>'+
+			'       					                <label for="var01">Estado<span style="color:red;"> * </span></label>'+
 			'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 			'       					                    <optgroup label="Estado">'+
 			'													<option value="0" disabled selected> SELECCIONAR </option>' + selEstado+
@@ -248,7 +239,7 @@ function setUsuario(codElem, codAcc) {
 			''+
 			'									<div class="col-sm-12 col-md-6">'+
 			'       					            <div class="form-group">'+
-			'       					                <label for="var03">Empresa</label>'+
+			'       					                <label for="var03">Empresa<span style="color:red;"> * </span></label>'+
 			`       					                <select id="var03" name="var03" class="select2 form-control custom-select" onchange="selectEmpresaSuc('var04','var03', 1, 0); setUsu('var03', 'var08_1'); setRecuperoDatos('var05', 'var03', 'var06', 'var07', 'var08', 'var09', 'var010', 'var011'); "  style="width:100%; height:40px;" required="true" ${bodyOnl}>`+
 			'       					                    <optgroup label="Seleccionar">'+ 
 			'													<option value="0" disabled selected> SELECCIONAR </option>' + selEmpresa +
@@ -259,7 +250,7 @@ function setUsuario(codElem, codAcc) {
 			''+
 			'									<div class="col-sm-12 col-md-6">'+
 			'       					            <div class="form-group">'+
-			'       					                <label for="var04">Sucursal</label>'+
+			'       					                <label for="var04">Sucursal<span style="color:red;"> * </span></label>'+
 			`       					                <select id="var04" name="var04" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" ${bodyOnl}>`+
 			'       					                    <optgroup label="Seleccionar">'+
 			'													<option value="0" disabled selected> SELECCIONAR </option>' + 
@@ -270,21 +261,21 @@ function setUsuario(codElem, codAcc) {
 			''+
 			'               					<div class="col-sm-12 col-md-4">'+
 			'               				    	<div class="form-group">'+
-			'               				        	<label for="var05">Documento</label>'+
+			'               				        	<label for="var05">Documento<span style="color:red;"> * </span></label>'+
 			`              				        		<input id="var05" name="var05" value="" onblur="setRecuperoDatos('var05', 'var03', 'var06', 'var07', 'var08', 'var09', 'var010', 'var011');"  class="form-control" type="text" style="height:40px;" placeholder="Documento" required="true" ${bodyOnl}>`+
 			'               				    	</div>'+
 			'               					</div>'+
 			''+
 			'               					<div class="col-sm-12 col-md-4" id="row_var06">'+
 			'               				    	<div class="form-group">'+
-			'               				        	<label for="var06">Nombre</label>'+
+			'               				        	<label for="var06">Nombre<span style="color:red;"> * </span></label>'+
 			'               				        	<input id="var06" name="var06" value="" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" required="true" '+ bodyOnl +'>'+
 			'               				    	</div>'+
 			'               					</div>'+
 			''+
 			'               					<div class="col-sm-12 col-md-4" id="row_var07">'+
 			'               					    <div class="form-group">'+
-			'               					        <label for="var07">Apellido</label>'+
+			'               					        <label for="var07">Apellido<span style="color:red;"> * </span></label>'+
 			'               					        <input id="var07" name="var07" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Apellido" required="true" '+ bodyOnl +'>'+
 			'               					    </div>'+
 			'               					</div>'+
@@ -298,14 +289,14 @@ function setUsuario(codElem, codAcc) {
 			''+
 			'               					<div class="col-sm-12 col-md-4" id="row_var08">'+
 			'               					    <div class="form-group">'+
-			'               					        <label for="var08">Usuario</label>'+ 
+			'               					        <label for="var08">Usuario<span style="color:red;"> * </span></label>'+ 
 			'											<input id="var08" name="var08" value="" class="form-control" placeholder="Usuario" type="text" style="text-transform:uppercase; height:40px;" required="true" '+ bodyOnl +'>'+
 			'               					    </div>'+
 			'               					</div>'+
 			''+
 			'               					<div class="col-sm-12 col-md-4" id="row_var09">'+
 			'               					    <div class="form-group">'+
-			'               					        <label for="var09">Password</label>'+
+			'               					        <label for="var09">Password<span style="color:red;"> * </span></label>'+
 			'               					        <input id="var09" name="var09" value=""  class="form-control" type="password" style=" height:40px;" placeholder="Password" required="true" '+ bodyOnl +'>'+
 			'               					    </div>'+
 			'               					</div>'+
@@ -414,7 +405,7 @@ function setUsuario(codElem, codAcc) {
 				'       					    <div class="row">'+
 				'       					        <div class="col-sm-12 col-md-6">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var01">Estado</label>'+
+				'       					                <label for="var01">Estado<span style="color:red;"> * </span></label>'+
 				'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Estado">'+ selEstado +
 				'       					                    </optgroup>'+
@@ -431,7 +422,7 @@ function setUsuario(codElem, codAcc) {
 				''+
 				'									<div class="col-sm-12 col-md-6">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var03">Empresa</label>'+
+				'       					                <label for="var03">Empresa<span style="color:red;"> * </span></label>'+
 				`       					                <select id="var03" name="var03" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" ${bodyOnl}>`+
 				'       					                    <optgroup label="Seleccionar">'+selEmpresa +
 				'       					                    </optgroup>'+
@@ -441,7 +432,7 @@ function setUsuario(codElem, codAcc) {
 				''+
 				'									<div class="col-sm-12 col-md-6">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var04">Sucursal</label>'+
+				'       					                <label for="var04">Sucursal<span style="color:red;"> * </span></label>'+
 				'       					                <select id="var04" name="var04" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Seleccionar">'+ selTipSuc +
 				'       					                    </optgroup>'+
@@ -451,21 +442,21 @@ function setUsuario(codElem, codAcc) {
 				''+
 				'               					<div class="col-sm-12 col-md-4">'+
 				'               				    	<div class="form-group">'+
-				'               				        	<label for="var05">Documento</label>'+
+				'               				        	<label for="var05">Documento<span style="color:red;"> * </span></label>'+
 				`               				        	<input id="var05" name="var05" value="${usuarioDocumento}" onblur="setRecuperoDatos('var05', 'var03', 'var06', 'var07', 'var08', 'var09', 'var010', 'var011');" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="" required="true"  ${bodyOnl}>`+
 				'               				    	</div>'+
 				'               					</div>'+
 				''+
 				'               					<div class="col-sm-12 col-md-4">'+
 				'               				    	<div class="form-group">'+
-				'               				        	<label for="var06">Nombre</label>'+
+				'               				        	<label for="var06">Nombre<span style="color:red;"> * </span></label>'+
 				'               				        	<input id="var06" name="var06" value="'+ usuarioNombre +'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="" required="true" '+ bodyOnl +'>'+
 				'               				    	</div>'+
 				'               					</div>'+
 				''+
 				'               					<div class="col-sm-12 col-md-4">'+
 				'               				    	<div class="form-group">'+
-				'               				        	<label for="var07">Apellido</label>'+
+				'               				        	<label for="var07">Apellido<span style="color:red;"> * </span></label>'+
 				'               				        	<input id="var07" name="var07" value="'+ usuarioApellido +'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="" required="true" '+ bodyOnl +'>'+
 				'               				    	</div>'+
 				'               					</div>'+
@@ -479,7 +470,7 @@ function setUsuario(codElem, codAcc) {
 				''+
 				'               					<div class="col-sm-12 col-md-4">'+
 				'               					    <div class="form-group">'+
-				'               					        <label for="var08">Usuario</label>'+
+				'               					        <label for="var08">Usuario<span style="color:red;"> * </span></label>'+
 				'               					        <input id="var08" name="var08" value="'+ usuarioUsuario +'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="" required="true" '+ bodyOnl +'>'+
 				'               					    </div>'+
 				'               					</div>'+
@@ -593,21 +584,21 @@ function setUsuario(codElem, codAcc) {
 				'       					    <div class="row">'+
 				'               					<div class="col-sm-12 col-md-4">'+
 				'               				    	<div class="form-group">'+
-				'               				        	<label for="var05">Documento</label>'+
+				'               				        	<label for="var05">Documento<span style="color:red;"> * </span></label>'+
 				`               				        	<input id="var05" name="var05" value="${usuarioDocumento}" onblur="setRecuperoDatos('var05', 'var03', 'var06', 'var07', 'var08', 'var09', 'var010', 'var011');" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="" required="true"  ${bodyOnl}>`+
 				'               				    	</div>'+
 				'               					</div>'+
 				''+
 				'               					<div class="col-sm-12 col-md-4">'+
 				'               				    	<div class="form-group">'+
-				'               				        	<label for="var06">Nombre</label>'+
+				'               				        	<label for="var06">Nombre<span style="color:red;"> * </span></label>'+
 				'               				        	<input id="var06" name="var06" value="'+ usuarioNombre +'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="" required="true" '+ bodyOnl +'>'+
 				'               				    	</div>'+
 				'               					</div>'+
 				''+
 				'               					<div class="col-sm-12 col-md-4">'+
 				'               				    	<div class="form-group">'+
-				'               				        	<label for="var07">Apellido</label>'+
+				'               				        	<label for="var07">Apellido<span style="color:red;"> * </span></label>'+
 				'               				        	<input id="var07" name="var07" value="'+ usuarioApellido +'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="" required="true" '+ bodyOnl +'>'+
 				'               				    	</div>'+
 				'               					</div>'+
@@ -621,14 +612,14 @@ function setUsuario(codElem, codAcc) {
 				''+
 				'               					<div class="col-sm-12 col-md-4">'+
 				'               					    <div class="form-group">'+
-				'               					        <label for="var08">Usuario</label>'+
+				'               					        <label for="var08">Usuario<span style="color:red;"> * </span></label>'+
 				'               					        <input id="var08" name="var08" value="'+ usuarioUsuario +'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="" required="true" '+ bodyOnl +'>'+
 				'               					    </div>'+
 				'               					</div>'+
 				''+
 				'               					<div class="col-sm-12 col-md-4">'+
 				'               					    <div class="form-group">'+
-				'               					        <label for="var09">Password</label>'+
+				'               					        <label for="var09">Password<span style="color:red;"> * </span></label>'+
 				'											<input id="var09" name="var09" value="" class="form-control" type="password" required="true" style="height:40px;">'+
 				'               					    </div>'+
 				'               					</div>'+
@@ -732,4 +723,21 @@ function setUsu(parm01, parm02) {
 
 	codUsuE.value	= rowInp01 +''+ codEmp+'_';
 
+}
+
+function validarForm(){
+	var todo_correcto = true;
+
+	if(document.getElementById('var01').value == 0){
+		todo_correcto = false;
+		swal('Estado debe ser distinto a SELECCIONAR');
+	} else if(document.getElementById('var03').value == 0){
+		todo_correcto = false;
+		swal('Empresa debe ser distinto a SELECCIONAR');
+	} else if(document.getElementById('var04').value == 0){
+		todo_correcto = false;
+		swal('Sucursal debe ser distinto a SELECCIONAR');
+	}
+	
+	return todo_correcto;
 }

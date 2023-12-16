@@ -577,11 +577,7 @@ function getPersonaDocumento(parm01){
 }
 
 function getEmpresaList(codEmp){
-    localStorage.removeItem('empresaListJSON');
-
-    if (localStorage.getItem('empresaListJSON') === null){
-        getJSON('empresaListJSON', 'empresa/listado/empresa/'+codEmp);
-    }
+    getJSON('empresaListJSON', 'empresa/listado/empresa/'+codEmp);
 
     var xJSON = JSON.parse(localStorage.getItem('empresaListJSON'));
     var xDATA = [];

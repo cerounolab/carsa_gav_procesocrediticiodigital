@@ -3,30 +3,30 @@
         session_start(); 
     }
 
-    $log_01 = $_SESSION['log_01'];
-    $log_02 = $_SESSION['log_02'];
-    $log_03 = $_SESSION['log_03'];
-    $log_04 = $_SESSION['log_04'];
+    $log_01 = isset($_SESSION['log_01']) ? $_SESSION['log_01'] : '';
+    $log_02 = isset($_SESSION['log_02']) ? $_SESSION['log_02'] : '';
+    $log_03 = isset($_SESSION['log_03']) ? $_SESSION['log_03'] : '';
+    $log_04 = isset($_SESSION['log_04']) ? $_SESSION['log_04'] : '';
     
-    $usu_01 = $_SESSION['usuarioUsuario'];
-    $usu_02 = $_SESSION['usuarioEmail'];
-    $usu_03 = $_SESSION['usuarioNombre'];
-    $usu_04 = $_SESSION['usuarioApellido'];
-    $usu_05 = $_SESSION['usuarioDocumento'];
-    $usu_06 = $_SESSION['empresaCodigo'];
-    $usu_07 = $_SESSION['empresaNombre'];
-    $usu_08 = $_SESSION['empresaRuc'];
-    $usu_09 = $_SESSION['rolCodigo'];
-    $usu_10 = $_SESSION['rolNombre'];
-    $usu_11 = $_SESSION['empresaSitoWeb'];
-    $usu_12 = $_SESSION['empresaCorreo'];
-    $usu_13 = $_SESSION['empresaDireccion'];
-    // $usu_14 = $_SESSION['empresaLogo'];
-    $seg_01 = $_SESSION['seg_prg'];
+    $usu_01 = isset($_SESSION['usuarioUsuario']) ? $_SESSION['usuarioUsuario'] : '';
+    $usu_02 = isset($_SESSION['usuarioEmail']) ? $_SESSION['usuarioEmail'] : '';
+    $usu_03 = isset($_SESSION['usuarioNombre']) ? $_SESSION['usuarioNombre'] : '';
+    $usu_04 = isset($_SESSION['usuarioApellido']) ? $_SESSION['usuarioApellido'] : '';
+    $usu_05 = isset($_SESSION['usuarioDocumento']) ? $_SESSION['usuarioDocumento'] : '';
+    $usu_06 = isset($_SESSION['empresaCodigo']) ? $_SESSION['empresaCodigo'] : '';
+    $usu_07 = isset($_SESSION['empresaNombre']) ? $_SESSION['empresaNombre'] : '';
+    $usu_08 = isset($_SESSION['empresaRuc']) ? $_SESSION['empresaRuc'] : '';
+    $usu_09 = isset($_SESSION['rolCodigo']) ? $_SESSION['rolCodigo'] : '';
+    $usu_10 = isset($_SESSION['rolNombre']) ? $_SESSION['rolNombre'] : '';
+    $usu_11 = isset($_SESSION['empresaSitoWeb']) ? $_SESSION['empresaSitoWeb'] : '';
+    $usu_12 = isset($_SESSION['empresaCorreo']) ? $_SESSION['empresaCorreo'] : '';
+    $usu_13 = isset($_SESSION['empresaDireccion']) ? $_SESSION['empresaDireccion'] : '';
+    // $usu_14 = isset($_SESSION['empresaLogo']) ? $_SESSION['empresaLogo'] : '';
+    $seg_01 = isset($_SESSION['seg_prg']) ? $_SESSION['seg_prg'] : '';
 
-    $expire = $_SESSION['expire'];
+    $expire = isset($_SESSION['expire']) ? $_SESSION['expire'] : '';
 
-    $val_03 = $_SERVER['REMOTE_ADDR'];
+    $val_03 = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
 
     $priv_display       = 'N';
     $priv_insert        = 'N';

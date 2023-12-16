@@ -52,7 +52,13 @@ $(document).ready(function() {
 			{ data				: 'tipoCodigo', name : 'tipoCodigo'},
 			{ data				: 'tipoOrden', name : 'tipoOrden'},
 			{ data				: 'tipoParametro', name : 'tipoParametro'},
-			{ data				: 'tipoEstadoNombre', name : 'tipoEstadoNombre'},
+			{ render			:
+				function (data, type, full, meta) {
+					var rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
+					
+					return rowEST;
+				}
+			},
 			{ data				: 'tipoNombre', name : 'tipoNombre'},
 			{ data				: 'tipoIcono', name : 'tipoIcono'},
 			{ data				: 'tipoCss', name : 'tipoCss'},
@@ -61,7 +67,7 @@ $(document).ready(function() {
 			{ data				: 'tipoValor', name : 'tipoValor'},
 			{ data				: 'tipoObservacion', name : 'tipoObservacion'},
 			{ data				: 'auditoriaUsuario', name : 'auditoriaUsuario'},
-			{ data				: 'autitoriaFechaHora', name : 'autitoriaFechaHora'},
+			{ data				: 'auditoriaFechaHora', name : 'auditoriaFechaHora'},
 			{ data				: 'auditoriaIp', name : 'auditoriaIp'},
             { render			: 
 				function (data, type, full, meta) {
@@ -164,7 +170,7 @@ function setDominio(codElem, codAcc) {
 
 		html = 
 			'				<div class="modal-content">'+
-			'					<form class="needs-validation" method="post" action="../class/crud/dominio.php">'+
+			'					<form class="needs-validation" onsubmit="return validarForm();" method="post" action="../class/crud/dominio.php">'+
 			'	    				<div class="modal-header" style="color:#ffffff; background:'+ bodyCol +'">'+
 			'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+
 			'							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>'+
@@ -174,7 +180,7 @@ function setDominio(codElem, codAcc) {
 			'       					    <div class="row">'+
 			'       					        <div class="col-sm-12 col-md-4">'+
 			'       					            <div class="form-group">'+
-			'       					                <label for="var01">Estado</label>'+
+			'       					                <label for="var01">Estado<span style="color:red;"> * </span></label>'+
 			'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 			'       					                    <optgroup label="Estado">'+
 			'													<option value="0" disabled selected> SELECCIONAR </option>' + selEstado+
@@ -192,14 +198,14 @@ function setDominio(codElem, codAcc) {
 			''+
 			'               				<div class="col-sm-12 col-md-4" style="display:none">'+
 			'               				    <div class="form-group">'+
-			'               				        <label for="var03">Parámetro</label>'+
+			'               				        <label for="var03">Parámetro <span style="color:red;"> * </span></label>'+
 			'               				        <input id="var03" name="var03" class="form-control" type="number" min="0" max="999" style="height:40px;" placeholder="PARÁMETRO" '+ bodyOnl +'>'+
 			'               				    </div>'+
 			'               				</div>'+
 			''+
 			'               				<div class="col-sm-12 col-md-12">'+
 			'               				    <div class="form-group">'+
-			'               				        <label for="var04">Nombre</label>'+
+			'               				        <label for="var04">Nombre <span style="color:red;"> * </span></label>'+
 			'               				        <input id="var04" name="var04" value="" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="TIPO" required="true" '+ bodyOnl +'>'+
 			'               				    </div>'+
 			'               				</div>'+
@@ -287,7 +293,7 @@ function setDominio(codElem, codAcc) {
 
 				html = 
 				'				<div class="modal-content">'+
-				'					<form class="needs-validation" method="post" action="../class/crud/dominio.php">'+
+				'					<form class="needs-validation" onsubmit="return validarForm();" method="post" action="../class/crud/dominio.php">'+
 				'	    				<div class="modal-header" style="color:#ffffff; background:'+ bodyCol +'">'+
 				'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+
 				'							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>'+
@@ -297,7 +303,7 @@ function setDominio(codElem, codAcc) {
 				'       					    <div class="row">'+
 				'       					        <div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var01">Estado</label>'+
+				'       					                <label for="var01">Estado <span style="color:red;"> * </span></label>'+
 				'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Estado">'+ selEstado +
 				'       					                    </optgroup>'+
@@ -314,14 +320,14 @@ function setDominio(codElem, codAcc) {
 				''+
 				'               					<div class="col-sm-12 col-md-4">'+
 				'               				    	<div class="form-group">'+
-				'               				        	<label for="var03">Parámetro</label>'+
+				'               				        	<label for="var03">Parámetro <span style="color:red;"> * </span></label>'+
 				'               				        	<input id="var03" name="var03" value="'+ tipoParametro +'" class="form-control" type="number" min="0" max="999" style="height:40px;" placeholder="PARÁMETRO" readonly'+ bodyOnl +'>'+
 				'               				    	</div>'+
 				'               					</div>'+
 				''+
 				'               					<div class="col-sm-12 col-md-12">'+
 				'               				    	<div class="form-group">'+
-				'               				        	<label for="var04">Nombre</label>'+
+				'               				        	<label for="var04">Nombre <span style="color:red;"> * </span></label>'+
 				'               				        	<input id="var04" name="var04" value="'+ tipoNombre +'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="TIPO" required="true" '+ bodyOnl +'>'+
 				'               				    	</div>'+
 				'               					</div>'+
@@ -388,4 +394,15 @@ function setDominio(codElem, codAcc) {
 
 	$("#modal-content").empty();
 	$("#modal-content").append(html);	
+}
+
+function validarForm(){
+	var todo_correcto = true;
+
+	if(document.getElementById('var01').value == 0){
+		todo_correcto = false;
+		swal('Estado debe ser distinto a SELECCIONAR');
+	}
+
+	return todo_correcto;
 }

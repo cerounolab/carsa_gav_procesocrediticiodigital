@@ -55,16 +55,7 @@ $(document).ready(function() {
 			{ data				: 'empresaOrden', name : 'empresaOrden'},
 			{ render			:
 				function (data, type, full, meta) {
-					var rowEST = '';
-					if (full.tipoEstadoParametro == 1) {
-						rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
-					} else if (full.tipoEstadoParametro == 2){
-					 	rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
-					} else if (full.tipoEstadoParametro == 3){
-						rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
-					} else {
-						rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
-					}
+					var rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
 					
 					return rowEST;
 				}
@@ -220,7 +211,7 @@ function setEmpresa(codElem, codAcc) {
 		});
 		html = 
 			'				<div class="modal-content">'+
-			'					<form class="needs-validation" method="post" action="../class/crud/empresa.php" enctype="multipart/form-data">'+
+			'					<form class="needs-validation" onsubmit="return validarForm();" method="post" action="../class/crud/empresa.php" enctype="multipart/form-data">'+
 			'	    				<div class="modal-header" style="color:#ffffff; background:'+ bodyCol +'">'+
 			'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+
 			'							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>'+
@@ -230,7 +221,7 @@ function setEmpresa(codElem, codAcc) {
 			'       					    <div class="row">'+
 			'       					        <div class="col-sm-12 col-md-4">'+
 			'       					            <div class="form-group">'+
-			'       					                <label for="var01">Estado</label>'+
+			'       					                <label for="var01">Estado<span style="color:red;"> * </span></label>'+
 			'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 			'       					                    <optgroup label="Estado">'+
 			'													<option value="0" disabled selected> SELECCIONAR </option>' + selEstado+
@@ -248,7 +239,7 @@ function setEmpresa(codElem, codAcc) {
 			''+
 			'									<div class="col-sm-12 col-md-4">'+
 			'       					            <div class="form-group">'+
-			'       					                <label for="var03">Tipo Rubro</label>'+
+			'       					                <label for="var03">Tipo Rubro<span style="color:red;"> * </span></label>'+
 			'       					                <select id="var03" name="var03" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 			'       					                    <optgroup label="Seleccionar">'+
 			'													<option value="0" disabled selected> SELECCIONAR </option>' + selRubro+
@@ -259,7 +250,7 @@ function setEmpresa(codElem, codAcc) {
 			''+
 			'									<div class="col-sm-12 col-md-4">'+
 			'       					            <div class="form-group">'+
-			'       					                <label for="var04">Tipo Acceso</label>'+
+			'       					                <label for="var04">Tipo Acceso<span style="color:red;"> * </span></label>'+
 			'       					                <select id="var04" name="var04" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 			'       					                    <optgroup label="Seleccionar">'+
 			'													<option value="0" disabled selected> SELECCIONAR </option>' + selAcceso+
@@ -270,14 +261,14 @@ function setEmpresa(codElem, codAcc) {
 			''+
 			'               					<div class="col-sm-12 col-md-8">'+
 			'               				    	<div class="form-group">'+
-			'               				        	<label for="var05">Nombre</label>'+
+			'               				        	<label for="var05">Nombre<span style="color:red;"> * </span></label>'+
 			'               				        	<input id="var05" name="var05" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" required="true" '+ bodyOnl +'>'+
 			'               				    	</div>'+
 			'               					</div>'+
 			''+
 			'               					<div class="col-sm-12 col-md-12">'+
 			'               				    	<div class="form-group">'+
-			'               				        	<label for="var06">Ruc</label>'+
+			'               				        	<label for="var06">Ruc<span style="color:red;"> * </span></label>'+
 			'               				        	<input id="var06" name="var06" value="" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Ruc" required="true" '+ bodyOnl +'>'+
 			'               				    	</div>'+
 			'               					</div>'+
@@ -305,7 +296,7 @@ function setEmpresa(codElem, codAcc) {
 			''+
 			'               					<div class="col-sm-12 col-md-4">'+
 			'               					    <div class="form-group">'+
-			'               					        <label for="var010">Correo</label>'+
+			'               					        <label for="var010">Correo<span style="color:red;"> * </span></label>'+
 			'               					        <input id="var010" name="var010" value="" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="Correo" required="true" '+ bodyOnl +'>'+
 			'               					    </div>'+
 			'               					</div>'+
@@ -420,7 +411,7 @@ function setEmpresa(codElem, codAcc) {
 				'       					    <div class="row">'+
 				'       					        <div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var01">Estado</label>'+
+				'       					                <label for="var01">Estado<span style="color:red;"> * </span></label>'+
 				'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Estado">'+ selEstado +
 				'       					                    </optgroup>'+
@@ -437,7 +428,7 @@ function setEmpresa(codElem, codAcc) {
 				''+
 				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var03">Tipo Rubro</label>'+
+				'       					                <label for="var03">Tipo Rubro<span style="color:red;"> * </span></label>'+
 				'       					                <select id="var03" name="var03" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Seleccionar">'+ selRubro +
 				'       					                    </optgroup>'+
@@ -447,7 +438,7 @@ function setEmpresa(codElem, codAcc) {
 				''+
 				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var04">Tipo Acceso</label>'+
+				'       					                <label for="var04">Tipo Acceso<span style="color:red;"> * </span></label>'+
 				'       					                <select id="var04" name="var04" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Seleccionar">'+selAcceso+
 				'       					                    </optgroup>'+
@@ -457,14 +448,14 @@ function setEmpresa(codElem, codAcc) {
 				''+
 				'               					<div class="col-sm-12 col-md-8">'+
 				'               				    	<div class="form-group">'+
-				'               				        	<label for="var05">Nombre</label>'+
+				'               				        	<label for="var05">Nombre<span style="color:red;"> * </span></label>'+
 				'               				        	<input id="var05" name="var05" value="'+ empresaNombre +'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" required="true" '+ bodyOnl +'>'+
 				'               				    	</div>'+
 				'               					</div>'+
 				''+
 				'               					<div class="col-sm-12 col-md-12">'+
 				'               				    	<div class="form-group">'+
-				'               				        	<label for="var06">Ruc</label>'+
+				'               				        	<label for="var06">Ruc<span style="color:red;"> * </span></label>'+
 				'               				        	<input id="var06" name="var06" value="'+ empresaRuc +'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Ruc" required="true" '+ bodyOnl +'>'+
 				'               				    	</div>'+
 				'               					</div>'+
@@ -492,7 +483,7 @@ function setEmpresa(codElem, codAcc) {
 				''+
 				'               					<div class="col-sm-12 col-md-4">'+
 				'               					    <div class="form-group">'+
-				'               					        <label for="var010">Correo</label>'+
+				'               					        <label for="var010">Correo<span style="color:red;"> * </span></label>'+
 				'               					        <input id="var010" name="var010" value="'+ empresaCorreo +'" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="Correo" required="true" '+ bodyOnl +'>'+
 				'               					    </div>'+
 				'               					</div>'+
@@ -560,4 +551,22 @@ function setEmpresa(codElem, codAcc) {
 	
 	$("#modal-content").empty();
 	$("#modal-content").append(html);
+}
+
+function validarForm(){
+	var todo_correcto = true;
+
+	if(document.getElementById('var01').value == 0){
+		todo_correcto = false;
+		swal('Estado debe ser distinto a SELECCIONAR');
+	} else if(document.getElementById('var03').value == 0){
+		todo_correcto = false;
+		swal('Tipo Rubro debe ser distinto a SELECCIONAR');
+	} else if(document.getElementById('var04').value == 0){
+		todo_correcto = false;
+		swal('Tipo Acceso debe ser distinto a SELECCIONAR');
+	}
+
+	
+	return todo_correcto;
 }

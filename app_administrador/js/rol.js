@@ -48,16 +48,7 @@ $(document).ready(function() {
 			{ data				: 'rolOrden', name : 'rolOrden'},
 			{ render			:
 				function (data, type, full, meta) {
-					var rowEST = '';
-					if (full.tipoEstadoParametro == 1) {
-						rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
-					} else if (full.tipoEstadoParametro == 2){
-					 	rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
-					} else if (full.tipoEstadoParametro == 3){
-						rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
-					} else {
-						rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
-					}
+					var rowEST = '<span class="label label-rounded" style="background-color:'+ full.tipoEstadoCss +'">'+ full.tipoEstadoNombre +'</span>';
 					
 					return rowEST;
 				}
@@ -183,7 +174,7 @@ function setRol(codElem, codAcc) {
 
 		html = 
 			'				<div class="modal-content">'+
-			'					<form class="needs-validation" method="post" action="../class/crud/rol.php">'+
+			'					<form class="needs-validation" onsubmit="return validarForm();" method="post" action="../class/crud/rol.php">'+
 			'	    				<div class="modal-header" style="color:#ffffff; background:'+ bodyCol +'">'+
 			'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+
 			'							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>'+
@@ -193,7 +184,7 @@ function setRol(codElem, codAcc) {
 			'       					    <div class="row">'+
 			'       					        <div class="col-sm-12 col-md-4">'+
 			'       					            <div class="form-group">'+
-			'       					                <label for="var01">Estado</label>'+
+			'       					                <label for="var01">Estado<span style="color:red;"> * </span></label>'+
 			'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 			'       					                    <optgroup label="Estado">'+
 			'													<option value="0" disabled selected> SELECCIONAR </option>' + selEstado+
@@ -211,7 +202,7 @@ function setRol(codElem, codAcc) {
 			''+
 			'									<div class="col-sm-12 col-md-4">'+
 			'       					            <div class="form-group">'+
-			'       					                <label for="var03">Empresa</label>'+
+			'       					                <label for="var03">Empresa<span style="color:red;"> * </span></label>'+
 			'       					                <select id="var03" name="var03" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 			'       					                    <optgroup label="Seleccionar">'+ 
 			'													<option value="0" disabled selected> SELECCIONAR </option>' + selEmpresa +
@@ -222,14 +213,14 @@ function setRol(codElem, codAcc) {
 			''+
 			'               					<div class="col-sm-12 col-md-4">'+
 			'               				    	<div class="form-group">'+
-			'               				        	<label for="var04">Nombre</label>'+
+			'               				        	<label for="var04">Nombre<span style="color:red;"> * </span></label>'+
 			'               				        	<input id="var04" name="var04" value="" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" required="true" '+ bodyOnl +'>'+
 			'               				    	</div>'+
 			'               					</div>'+
 			''+
 			'               					<div class="col-sm-12 col-md-4">'+
 			'               					    <div class="form-group">'+
-			'               					        <label for="var05">Fecha Desde</label>'+
+			'               					        <label for="var05">Fecha Desde<span style="color:red;"> * </span></label>'+
 			'               					        <input id="var05" name="var05" class="form-control" type="date" style="text-transform:uppercase; height:40px;" placeholder="Fecha Desde" required="true" '+ bodyOnl +'>'+
 			'               					    </div>'+
 			'               					</div>'+
@@ -313,7 +304,7 @@ function setRol(codElem, codAcc) {
 				'       					    <div class="row">'+
 				'       					        <div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var01">Estado</label>'+
+				'       					                <label for="var01">Estado<span style="color:red;"> * </span></label>'+
 				'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Estado">'+selEstado+
 				'       					                    </optgroup>'+
@@ -330,7 +321,7 @@ function setRol(codElem, codAcc) {
 				''+
 				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var03">Empresa</label>'+
+				'       					                <label for="var03">Empresa<span style="color:red;"> * </span></label>'+
 				'       					                <select id="var03" name="var03" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Seleccionar">'+ selEmpresa +
 				'       					                    </optgroup>'+
@@ -340,14 +331,14 @@ function setRol(codElem, codAcc) {
 				''+
 				'               					<div class="col-sm-12 col-md-4">'+
 				'               				    	<div class="form-group">'+
-				'               				        	<label for="var04">Nombre</label>'+
+				'               				        	<label for="var04">Nombre<span style="color:red;"> * </span></label>'+
 				'               				        	<input id="var04" name="var04" value="'+rolNombre+'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" required="true" '+ bodyOnl +'>'+
 				'               				    	</div>'+
 				'               					</div>'+
 				''+
 				'               					<div class="col-sm-12 col-md-4">'+
 				'               					    <div class="form-group">'+
-				'               					        <label for="var05">Fecha Desde</label>'+
+				'               					        <label for="var05">Fecha Desde<span style="color:red;"> * </span></label>'+
 				'               					        <input id="var05" name="var05" value="'+rolFechaDesde2+'" class="form-control" type="date" style="text-transform:uppercase; height:40px;" placeholder="Fecha Desde" required="true" '+ bodyOnl +'>'+
 				'               					    </div>'+
 				'               					</div>'+
@@ -394,4 +385,18 @@ function setRol(codElem, codAcc) {
 
 	$("#modal-content").empty();
 	$("#modal-content").append(html);
+}
+
+function validarForm(){
+	var todo_correcto = true;
+
+	if(document.getElementById('var01').value == 0){
+		todo_correcto = false;
+		swal('Estado debe ser distinto a SELECCIONAR');
+	} else if(document.getElementById('var03').value == 0){
+		todo_correcto = false;
+		swal('Empresa debe ser distinto a SELECCIONAR');
+	}
+
+	return todo_correcto;
 }
