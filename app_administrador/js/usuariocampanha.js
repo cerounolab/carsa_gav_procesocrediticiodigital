@@ -179,7 +179,7 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 
 		html = 
 		'				<div class="modal-content">'+
-		'					<form class="needs-validation" method="post" action="../class/crud/usuariocampanha.php">'+
+		'					<form class="needs-validation" onsubmit="return validarForm();" method="post" action="../class/crud/usuariocampanha.php">'+
 		'	    				<div class="modal-header" style="color:#ffffff; background:'+ bodyCol +'">'+
 		'							<h5 class="modal-title" id="modal-title">'+ bodyTit +' </h5>'+
 		'							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>'+
@@ -189,7 +189,7 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 		'       					    <div class="row">'+
 		'       					        <div class="col-sm-12 col-md-6">'+
 		'       					            <div class="form-group">'+
-		'       					                <label for="var01">Estado</label>'+
+		'       					                <label for="var01">Estado<span style="color:red;"> * </span></label>'+
 		'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 		'       					                    <optgroup label="Estado">'+
 		'													<option value="0" disabled selected> SELECCIONAR </option>' + selEstado+
@@ -207,7 +207,7 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 		''+
 		'									<div class="col-sm-12 col-md-4">'+
 		'       					            <div class="form-group">'+
-		'       					                <label for="var03">Empresa</label>'+
+		'       					                <label for="var03">Empresa<span style="color:red;"> * </span></label>'+
 		`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresaCampanha('var04','var03', 1, 1); selectEmpresaUsuarioListado('var05','var03', 1, 1);" style="width:100%; height:40px;" required="true">`+
 		'       					                    <optgroup label="Seleccionar">'+
 		'													<option value="0" disabled selected> SELECCIONAR </option>' + selEmpresa +
@@ -218,7 +218,7 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 		''+
 		'									<div class="col-sm-12 col-md-4">'+
 		'       					            <div class="form-group">'+
-		'       					                <label for="var04">Campaña</label>'+
+		'       					                <label for="var04">Campaña<span style="color:red;"> * </span></label>'+
 		'       					                <select id="var04" name="var04" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 		'       					                    <optgroup label="Seleccionar">'+
 		'													<option value="0" disabled selected> SELECCIONAR </option>' + 
@@ -229,7 +229,7 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 		''+
 		'									<div class="col-sm-12 col-md-4">'+
 		'       					            <div class="form-group">'+
-		'       					                <label for="var05">Usuario</label>'+
+		'       					                <label for="var05">Usuario<span style="color:red;"> * </span></label>'+
 		'       					                <select id="var05" name="var05" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 		'       					                    <optgroup label="Seleccionar">'+
 		'													<option value="0" disabled selected> SELECCIONAR </option>' + 
@@ -311,7 +311,7 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 				'       					    <div class="row">'+
 				'       					        <div class="col-sm-12 col-md-6">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var01">Estado</label>'+
+				'       					                <label for="var01">Estado<span style="color:red;"> * </span></label>'+
 				'       					                <select id="var01" name="var01" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Estado">'+selEstado+
 				'       					                    </optgroup>'+
@@ -328,7 +328,7 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 				''+
 				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var03">Empresa</label>'+
+				'       					                <label for="var03">Empresa<span style="color:red;"> * </span></label>'+
 				`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresaCampanha('var04','var03', 1, 1); selectEmpresaUsuarioListado('var05','var03', 1, 1);" style="width:100%; height:40px;" required="true">`+
 				'       					                    <optgroup label="Seleccionar">'+ selEmpresa +
 				'       					                    </optgroup>'+
@@ -338,7 +338,7 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 				''+
 				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var04">Campaña</label>'+
+				'       					                <label for="var04">Campaña<span style="color:red;"> * </span></label>'+
 				'       					                <select id="var04" name="var04" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Seleccionar">'+
 				'       					                    </optgroup>'+ selCamp +
@@ -348,7 +348,7 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 				''+
 				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
-				'       					                <label for="var05">Usuario</label>'+
+				'       					                <label for="var05">Usuario<span style="color:red;"> * </span></label>'+
 				'       					                <select id="var05" name="var05" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Seleccionar">'+ selUsu +
 				'       					                    </optgroup>'+
@@ -396,4 +396,24 @@ function setUsuarioCampanha(codUsu, codCamp, codEmp, codAcc) {
 		selectEmpresaCampanha('var04','var03', 1, 1); 
 		selectEmpresaUsuarioListado('var05','var03', 1, 1);	
 	}
+}
+
+function validarForm(){
+	var todo_correcto = true;
+
+	if(document.getElementById('var01').value == 0){
+		todo_correcto = false;
+		swal('Estado debe ser distinto a SELECCIONAR');
+	} else if(document.getElementById('var03').value == 0){
+		todo_correcto = false;
+		swal('Empresa debe ser distinto a SELECCIONAR');
+	} else if(document.getElementById('var04').value == 0){
+		todo_correcto = false;
+		swal('Campaña debe ser distinto a SELECCIONAR');
+	} else if(document.getElementById('var05').value == 0){
+		todo_correcto = false;
+		swal('Usuario debe ser distinto a SELECCIONAR');
+	}
+
+	return todo_correcto;
 }
