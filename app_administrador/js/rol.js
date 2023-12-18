@@ -306,7 +306,7 @@ function setRol(codElem, codAcc) {
 
 				xJSON3.forEach(element1 => {
 					if (element1.tipoEstadoParametro == 1) {
-						if (element1.tipoParametro == element.tipoEstadoParametro) {
+						if (element1.tipoParametro == element.tipoPlataformaParametro) {
 							selTipoPlat = selTipoPlat + '            			<option value="'+ element1.tipoParametro +'" selected>'+ element1.tipoNombre +'</option>';
 						}
 					}
