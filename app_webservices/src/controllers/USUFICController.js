@@ -20,7 +20,7 @@ const getUsuario    = (apiREQ, apiRES) => {
 
     if (_codigo != 'undefined' && _codigo != '' && _codigo != null && _codigo > 0){
         (async () => {
-            const xDATA = await selectUSUARIO(1, _codigo, '');
+            const xDATA = await selectUSUARIO(1, _codigo, '', 0);
             _code       = xDATA[0];
             _dataJSON   = xDATA[1];
 
@@ -58,7 +58,7 @@ const getUsuarioId  = (apiREQ, apiRES) => {
     if (_codigo != 'undefined' && _codigo != '' && _codigo != null && _codigo > 0){
 
         (async () => {
-            const xDATA = await selectUSUARIO(2, _codigo, '');
+            const xDATA = await selectUSUARIO(2, _codigo, '', 0);
             _code       = xDATA[0];
             _dataJSON   = xDATA[1];
                 
@@ -97,7 +97,7 @@ const getUsuarioDocumento   = (apiREQ, apiRES) => {
     if (_valor != 'undefined' && _valor != ''){
 
         (async () => {
-            const xDATA = await selectUSUARIO(3, 0, _valor);
+            const xDATA = await selectUSUARIO(3, 0, _valor, 0);
             _code       = xDATA[0];
             _dataJSON   = xDATA[1];
     
@@ -136,7 +136,7 @@ const getUsuarioUsu = (apiREQ, apiRES) => {
     if (_valor != 'undefined' && _valor != ''){
 
         (async () => {
-            const xDATA = await selectUSUARIO(4, 0, _valor);
+            const xDATA = await selectUSUARIO(4, 0, _valor, 0);
             _code       = xDATA[0];
             _dataJSON   = xDATA[1];
     
@@ -175,7 +175,7 @@ const getUsuarioEmpresaId = (apiREQ, apiRES) => {
     if (_codigo != 'undefined' && _codigo != ''){
 
         (async () => {
-            const xDATA = await selectUSUARIO(5, _codigo, '');
+            const xDATA = await selectUSUARIO(5, _codigo, '', 0);
             _code       = xDATA[0];
             _dataJSON   = xDATA[1];
     
@@ -213,7 +213,7 @@ const getUsuarioSucursalId = (apiREQ, apiRES) => {
 
     if (_codigo != 'undefined' && _codigo != '' && _codigo != null && _codigo > 0){
         (async () => {
-            const xDATA = await selectUSUARIO(6, _codigo, '');
+            const xDATA = await selectUSUARIO(6, _codigo, '', 0);
             _code       = xDATA[0];
             _dataJSON   = xDATA[1];
     
@@ -252,7 +252,7 @@ const getUsuarioDashboardEmpresa  = (apiREQ, apiRES) => {
     if (_codigo != 'undefined' && _codigo != '' && _codigo != null && _codigo > 0){
 
         (async () => {
-            const xDATA = await selectUSUARIO(7, _codigo, '');
+            const xDATA = await selectUSUARIO(7, _codigo, '', 0);
             _code       = xDATA[0];
             _dataJSON   = xDATA[1];
                 
@@ -292,7 +292,7 @@ const getUsuarioDocumentoEmpresa = (apiREQ, apiRES) => {
     if (_codigo != 'undefined' && _codigo > 0 && _valor != 'undefined' && _valor != ''){
 
         (async () => {
-            const xDATA = await selectUSUARIOEMPRESA(1, _codigo, _valor);
+            const xDATA = await selectUSUARIOEMPRESA(1, _codigo, _valor, 0);
             _code       = xDATA[0];
             _dataJSON   = xDATA[1];
     
@@ -406,7 +406,7 @@ const postUsuarioLogin   = (apiREQ, apiRES) => {
 
     let _USUFICUSU  = (apiREQ.body.usuario_usuario != undefined && apiREQ.body.usuario_usuario != null && apiREQ.body.usuario_usuario != '') ? "'"+apiREQ.body.usuario_usuario.trim().toUpperCase()+"'" : false;
     let _USUFICPAS  = (apiREQ.body.usuario_password != undefined && apiREQ.body.usuario_password != null && apiREQ.body.usuario_password != '') ? "'"+apiREQ.body.usuario_password.trim()+"'" : false;
-
+    let _ROLFICTPC  = (apiREQ.body.tipo_plataforma_parametro != undefined && apiREQ.body.tipo_plataforma_parametro != null && apiREQ.body.tipo_plataforma_parametro != '' && apiREQ.body.tipo_plataforma_parametro > 0) ? Number.parseInt(apiREQ.body.tipo_plataforma_parametro) : false; 
     let _USUFICAEM  = (apiREQ.body.auditoria_empresa_codigo != undefined && apiREQ.body.auditoria_empresa_codigo != null && apiREQ.body.auditoria_empresa_codigo != '' && apiREQ.body.auditoria_empresa_codigo > 0) ? Number.parseInt(apiREQ.body.auditoria_empresa_codigo) : false; 
     let _USUFICAUS  = (apiREQ.body.auditoria_usuario != undefined && apiREQ.body.auditoria_usuario != null && apiREQ.body.auditoria_usuario != '') ? "'"+apiREQ.body.auditoria_usuario.trim().toUpperCase()+"'" : false; 
     let _USUFICAIP  = (apiREQ.body.auditoria_ip != undefined && apiREQ.body.auditoria_ip != null && apiREQ.body.auditoria_ip != '') ? "'"+apiREQ.body.auditoria_ip.trim().toUpperCase()+"'" : false; 
@@ -421,9 +421,9 @@ const postUsuarioLogin   = (apiREQ, apiRES) => {
     let _USUFICIPAS = 0;
     let _empresacodigo   = 0;
     
-    if (_USUFICUSU && _USUFICPAS && _USUFICAEM && _USUFICAUS && _USUFICAIP && _USUFICAPR){
+    if (_USUFICUSU && _USUFICPAS && _ROLFICTPC && _USUFICAEM && _USUFICAUS && _USUFICAIP && _USUFICAPR){
             (async () => {
-                const xDATA = await selectUSUARIO(8, 0, _USUFICUSU);
+                const xDATA = await selectUSUARIO(8, 0, _USUFICUSU, 0);
                 _code       = xDATA[0];
                 _dataJSON   = xDATA[1];
                 if (_code == 200) {
@@ -431,7 +431,7 @@ const postUsuarioLogin   = (apiREQ, apiRES) => {
                     _empresacodigo  = _dataJSON[0].empresa_codigo;
 
                     if (_USUFICIPAS < 3){
-                        const xDATA = await selectUSUARIO(4, 0, _USUFICUSU);
+                        const xDATA = await selectUSUARIO(4, 0, _USUFICUSU, _ROLFICTPC);
                         _code       = xDATA[0];
                         _dataJSON   = xDATA[1];
 
