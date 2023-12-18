@@ -242,8 +242,7 @@ const selectSUCURSAL    = async(actionType, codigo, valor) => {
     return Array(_code, _data);
 }
 
-
-const selectUSUARIO = async(actionType, codigo, valor) => {
+const selectUSUARIO = async(actionType, codigo, valor, codigo2) => {
         let _code   = 200;
         let _data   = [];
         let query00 = '';
@@ -284,14 +283,14 @@ const selectUSUARIO = async(actionType, codigo, valor) => {
                                 FROM
                                     adm.USUARIOROL
                                 WHERE
-                                    usuario_usuario   = ${valor} AND empresa_codigo = ${_empresaCodigo}
-                                    AND tipo_estado_usuario_codigo IN (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOESTADO' AND DOMFICPAR = 1)`;
-                               
+                                    usuario_usuario = ${valor} AND empresa_codigo = ${_empresaCodigo}
+                                    AND tipo_estado_usuario_codigo IN (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOESTADO' AND DOMFICPAR = 1) AND 
+                                    tipo_plataforma_codigo IN (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMROLPLATAFORMATIPO' AND DOMFICPAR = ${codigo2})`       
                     break;
 
             case 5:
                 query00 = `SELECT
-                                *
+                                *   
                             FROM
                                 adm.USUARIO
                             WHERE
@@ -357,7 +356,6 @@ const selectUSUARIO = async(actionType, codigo, valor) => {
             })
             .catch(e => {
                 _code = 500;
-                console.log(e);
                 errorBody(_code, 'Code: '+ e.code +' '+e.severity+', '+e.hint, 'Function: selectUSUARIO')
                     .then(result => _data = result);
             })
@@ -1080,7 +1078,6 @@ const selectUSUARIOLOG  = async(actionType, codigo, codigo2, codigo3) => {
         })
         .catch(e => {
             _code = 500;
-            console.log(e);
             errorBody(_code, 'Code: '+ e.code +' '+e.severity+', '+e.hint, 'Function: selectUSUARIOLOG')
                 .then(result => _data = result);
         })
