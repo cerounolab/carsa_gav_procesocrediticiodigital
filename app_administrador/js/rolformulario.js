@@ -96,7 +96,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 	var xJSON1     		= getDominioValor('ADMROLFORMULARIOESTADO');
 	var xJSON2     		= getEmpresaList(_parm06BASE);
 	var xJSON3     		= getRolList(_parm06BASE);
-	var xJSON4     		= getFormularioList(_parm06BASE);
+	var xJSON4     		= getFormularioList(_parm06BASE, 1);
 	var html			= '';
 	var bodyCol     	= '';
 	var bodyTit     	= '';
@@ -188,7 +188,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 				selRol = selRol + '            										<option value="'+ element1.rolCodigo +'">'+ element1.rolNombre +'</option>';
 			}
 		});
-
+		
 		xJSON4.forEach(element1 => {
 			if (element1.tipoEstadoParametro == 1) {
 				selForm = selForm + '            									<option value="'+ element1.formularioCodigo +'">'+ element1.formularioNombre +'</option>';
