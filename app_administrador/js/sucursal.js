@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var dataJSON	= getSucursalList(_parm06BASE);
+    var dataJSON	= getSucursalList(_parm06BASE, 0);
 
 	$('#tableLoads').DataTable({
 		processing	: true,
@@ -104,7 +104,7 @@ function setEmpSucursal(codElem, codAcc) {
 	var xJSON       = [];
 	var xJSON1     	= getDominioValor('ADMSUCURSALESTADO');
 	var xJSON2     	= getDominioValor('ADMSUCURSALTIPO');
-	var xJSON3     	= getEmpresaList(_parm06BASE);
+	var xJSON3     	= getEmpresaList(_parm06BASE, 1);
 
 	var html		= '';
 	var bodyCol     = '';
