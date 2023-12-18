@@ -97,6 +97,7 @@ function setRol(codElem, codAcc) {
 	var xJSON       = [];
 	var xJSON1     	= getDominioValor('ADMROLESTADO');
 	var xJSON2     	= getEmpresaList(_parm06BASE);
+	var xJSON3     	= getDominioValor('ADMROLPLATAFORMATIPO');
 	var html		= '';
 	var bodyCol     = '';
 	var bodyTit     = '';
@@ -107,6 +108,7 @@ function setRol(codElem, codAcc) {
 	var selEmpresa  = '';
 	var selTipSuc	= '';
 	var bodAcc		= 0;
+	var selTipoPlat = '';
 
 	switch (codAcc) {
 		case 1:
@@ -172,6 +174,12 @@ function setRol(codElem, codAcc) {
 			}
 		});
 
+		xJSON3.forEach(element1 => {
+			if (element1.tipoEstadoParametro == 1) {
+				selTipoPlat = selTipoPlat + '            							<option value="'+ element1.tipoParametro +'">'+ element1.tipoNombre +'</option>';
+			}
+		});
+
 		html = 
 			'				<div class="modal-content">'+
 			'					<form class="needs-validation" onsubmit="return validarForm();" method="post" action="../class/crud/rol.php">'+
@@ -202,6 +210,17 @@ function setRol(codElem, codAcc) {
 			''+
 			'									<div class="col-sm-12 col-md-4">'+
 			'       					            <div class="form-group">'+
+			'       					                <label for="var08">Tipo Plataforma<span style="color:red;"> * </span></label>'+
+			'       					                <select id="var08" name="var08" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
+			'       					                    <optgroup label="Seleccionar">'+ 
+			'													<option value="0" disabled selected> SELECCIONAR </option>' + selTipoPlat +
+			'       					                    </optgroup>'+
+			'       					                </select>'+
+			'       					            </div>'+
+			'       					        </div>'+
+			''+
+			'									<div class="col-sm-12 col-md-4">'+
+			'       					            <div class="form-group">'+
 			'       					                <label for="var03">Empresa<span style="color:red;"> * </span></label>'+
 			'       					                <select id="var03" name="var03" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 			'       					                    <optgroup label="Seleccionar">'+ 
@@ -211,7 +230,7 @@ function setRol(codElem, codAcc) {
 			'       					            </div>'+
 			'       					        </div>'+
 			''+
-			'               					<div class="col-sm-12 col-md-4">'+
+			'               					<div class="col-sm-12 col-md-8">'+
 			'               				    	<div class="form-group">'+
 			'               				        	<label for="var04">Nombre<span style="color:red;"> * </span></label>'+
 			'               				        	<input id="var04" name="var04" value="" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" required="true" '+ bodyOnl +'>'+
@@ -285,6 +304,14 @@ function setRol(codElem, codAcc) {
 					}
 				});
 
+				xJSON3.forEach(element1 => {
+					if (element1.tipoEstadoParametro == 1) {
+						if (element1.tipoParametro == element.tipoEstadoParametro) {
+							selTipoPlat = selTipoPlat + '            			<option value="'+ element1.tipoParametro +'" selected>'+ element1.tipoNombre +'</option>';
+						}
+					}
+				});
+
 				var rolCodigo			= (element.rolCodigo == null) ? '' : element.rolCodigo;
 				var rolOrden			= (element.rolOrden == null) ? '' : element.rolOrden;
 				var rolNombre			= (element.rolNombre == null) ? '' : element.rolNombre;
@@ -321,6 +348,16 @@ function setRol(codElem, codAcc) {
 				''+
 				'									<div class="col-sm-12 col-md-4">'+
 				'       					            <div class="form-group">'+
+				'       					                <label for="var08">Tipo Plataforma<span style="color:red;"> * </span></label>'+
+				'       					                <select id="var08" name="var08" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
+				'       					                    <optgroup label="Seleccionar">'+ selTipoPlat +
+				'       					                    </optgroup>'+
+				'       					                </select>'+
+				'       					            </div>'+
+				'       					        </div>'+
+				''+
+				'									<div class="col-sm-12 col-md-4">'+
+				'       					            <div class="form-group">'+
 				'       					                <label for="var03">Empresa<span style="color:red;"> * </span></label>'+
 				'       					                <select id="var03" name="var03" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Seleccionar">'+ selEmpresa +
@@ -329,7 +366,7 @@ function setRol(codElem, codAcc) {
 				'       					            </div>'+
 				'       					        </div>'+
 				''+
-				'               					<div class="col-sm-12 col-md-4">'+
+				'               					<div class="col-sm-12 col-md-8">'+
 				'               				    	<div class="form-group">'+
 				'               				        	<label for="var04">Nombre<span style="color:red;"> * </span></label>'+
 				'               				        	<input id="var04" name="var04" value="'+rolNombre+'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Nombre" required="true" '+ bodyOnl +'>'+

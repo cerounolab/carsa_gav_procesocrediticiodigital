@@ -19,6 +19,7 @@
         array(
             'usuario_usuario'               => $val_01,
             'usuario_password'              => $val_02,
+            'tipo_plataforma_parametro'		=> 1,
 
             'auditoria_empresa_codigo'		=> $codEmp,
             'auditoria_usuario'				=> $val_01,
