@@ -904,7 +904,7 @@ function getcampanhaEmp(codEmp, codEst){
 }
 
 
-function getFormularioList(codElem){
+function getFormularioList(codElem, codEst){
     localStorage.removeItem('formularioListJSON');
 
     if (localStorage.getItem('formularioListJSON') === null){
@@ -916,7 +916,11 @@ function getFormularioList(codElem){
 
     if (xJSON['code'] == 200) {
         xJSON['data'].forEach(element => {
-            xDATA.push(element);
+            if (codEst == 0) {
+                xDATA.push(element);
+            } else if (element.tipoEstadoParametro == codEst){
+                xDATA.push(element);
+            }
         });
     }
 
