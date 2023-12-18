@@ -53,9 +53,9 @@ $(document).ready(function() {
 				}
 			},
 			{ data				: 'empresaNombre', name : 'empresaNombre'},
-			{ data				: 'rolSubordinadoNombre', name : 'rolSubordinadoNombre'},
-			{ data				: 'usuarioSuperiorNombre', name : 'usuarioSuperiorNombre'},
 			{ data				: 'rolSuperiorNombre', name : 'rolSuperiorNombre'},
+			{ data				: 'usuarioSuperiorNombre', name : 'usuarioSuperiorNombre'},
+			{ data				: 'rolSubordinadoNombre', name : 'rolSubordinadoNombre'},
 			{ data				: 'usuarioSubordinadoNombre', name : 'usuarioSubordinadoNombre'},
 			{ data				: 'usuarioFlujoObservacion', name : 'usuarioFlujoObservacion'},
 			{ data				: 'auditoriaUsuario', name : 'auditoriaUsuario'},

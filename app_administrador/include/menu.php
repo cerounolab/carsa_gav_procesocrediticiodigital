@@ -127,6 +127,7 @@
 
                                         <li class="header"> ABM Rol </li>
                                         <li><a href="./../public/dominio.php?dominio=ADMROLESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Rol Estado </a></li>
+                                        <li><a href="./../public/dominio.php?dominio=ADMROLPLATAFORMATIPO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Tipo Plataforma </a></li>
 
                                         <li class="header"> ABM Formulario </li>
                                         <li><a href="./../public/dominio.php?dominio=ADMFORMULARIOESTADO"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Formulario Estado </a></li> 

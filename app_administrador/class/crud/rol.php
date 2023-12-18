@@ -13,7 +13,8 @@
 	$val04          = strtoupper(strtolower(trim($_POST['var04'])));
 	$val05          = $_POST['var05'];
 	$val06          = $_POST['var06'];
-	$val07         = strtoupper(strtolower(trim($_POST['var07'])));
+	$val07         	= strtoupper(strtolower(trim($_POST['var07'])));
+	$val08         	= intval($_POST['var08']);
 
     $work01         = $_POST['workCodigo'];
 	$work02         = $_POST['workModo'];
@@ -34,6 +35,7 @@
 				'tipo_estado_parametro'			=> $val01,
 				'rol_orden'						=> $val02,
 				'empresa_codigo'				=> $val03,
+				'tipo_plataforma_parametro'		=> $val08,
 				
 				'rol_nombre'					=> $val04,
 				
