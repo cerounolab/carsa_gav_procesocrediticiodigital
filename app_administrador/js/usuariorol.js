@@ -96,7 +96,7 @@ $(document).ready(function() {
 function setUsuarioRol(codUsu, codRol, codEmp, codAcc) {
 	var xJSON       	= [];
 	var xJSON1     		= getDominioValor('ADMUSUARIOROLESTADO');
-	var xJSON2     		= getEmpresaList(_parm06BASE);
+	var xJSON2     		= getEmpresaList(_parm06BASE, 1);
 	var html			= '';
 	var bodyCol     	= '';
 	var bodyTit     	= '';

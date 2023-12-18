@@ -94,8 +94,8 @@ $(document).ready(function() {
 function setRolFormulario(codRol, codForm, codAcc) {
 	var xJSON       	= [];
 	var xJSON1     		= getDominioValor('ADMROLFORMULARIOESTADO');
-	var xJSON2     		= getEmpresaList(_parm06BASE);
-	var xJSON3     		= getRolList(_parm06BASE);
+	var xJSON2     		= getEmpresaList(_parm06BASE, 1);
+	var xJSON3     		= getRolList(_parm06BASE, 1);
 	var xJSON4     		= getFormularioList(_parm06BASE, 1);
 	var html			= '';
 	var bodyCol     	= '';
