@@ -97,7 +97,7 @@ function setUsuarioFlujo(codRolC, codUsuC, codRolS, codUsuS, codEmp, codAcc) {
 	var xJSON1     		= getDominioValor('ADMUSUARIOFLUJOESTADO');
 	var xJSON2     		= getEmpresaList(_parm06BASE);
 	var xJSON3     		= getRolList(_parm06BASE);
-	var xJSON4     		= getUsuarioList(_parm06BASE);
+	var xJSON4     		= getUsuarioList(_parm06BASE, 0);
 	var html			= '';
 	var bodyCol     	= '';
 	var bodyTit     	= '';
@@ -294,7 +294,7 @@ function setUsuarioFlujo(codRolC, codUsuC, codRolS, codUsuS, codEmp, codAcc) {
 
 	} else if (codAcc > 1 && codAcc < 5) {
 		xJSON       = getUsuarioFlujoId(codRolC, codUsuC, codRolS, codUsuS, codEmp);
-		
+
 		xJSON.forEach(element => {
 			if (element.usuarioSuperiorCodigo == codUsuS && element.rolSuperiorCodigo == codRolS && element.usuarioSubordinadoCodigo == codUsuC && element.rolSubordinadoCodigo == codRolC) {
 				xJSON1.forEach(element1 => {
