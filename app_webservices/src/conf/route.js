@@ -82,10 +82,10 @@ router.group('/v1/', (routerGroup) => {
   routerGroup.get('/rolformulario/listado/empresa/:empresa', getRolFormulario);
   routerGroup.get('/rolformulario/empresa/:empresa', getRolFormularioEmpresaId);
   routerGroup.get('/rolformulario/codigorol/:codigorol/empresa/:empresa', getRolFormularioRolId);
-  routerGroup.get('/rolformulario/codigorol/:codigorol/codigoformulario/:codigoformulario', getRolFormularioId);
+  routerGroup.get('/rolformulario/codigorol/:codigorol/tipoformulario/:tipoformulario', getRolFormularioId);
   routerGroup.post('/rolformulario', postRolFormulario);
-  routerGroup.put('/rolformulario/codigorol/:codigorol/codigoformulario/:codigoformulario', putRolFormulario);
-  routerGroup.delete('/rolformulario/codigorol/:codigorol/codigoformulario/:codigoformulario', deleteRolFormulario);
+  routerGroup.put('/rolformulario/codigorol/:codigorol/tipoformulario/:tipoformulario', putRolFormulario);
+  routerGroup.delete('/rolformulario/codigorol/:codigorol/tipoformulario/:tipoformulario', deleteRolFormulario);
 
   routerGroup.get('/usuariorol/listado/empresa/:empresa', getUsuarioRol);
   routerGroup.get('/usuariorol/codigousuario/:codigousuario/codigorol/:codigorol/empresa/:empresa', getUsuarioRolId);
