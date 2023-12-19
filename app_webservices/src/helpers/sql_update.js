@@ -838,7 +838,7 @@ const {errorBody}   = require('../utils/_json');
                                 ROLFORAPR	= ${_ROLFORAPR},    
                                 ROLFORAIN	= ${_ROLFORAIN}
                                 
-                            WHERE ROLFORROC = ${codigo} AND ROLFORFOC = ${codigo2} AND ROLFOREMC = ${_ROLFOREMC}`;
+                            WHERE ROLFORROC = ${codigo} AND ROLFORTFC = (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMFORMULARIOTIPO' AND DOMFICPAR = ${codigo2}) AND ROLFOREMC = ${_ROLFOREMC}`;
 
             break;
 
@@ -853,7 +853,7 @@ const {errorBody}   = require('../utils/_json');
                                 ROLFORAPR	= ${_ROLFORAPR},    
                                 ROLFORAIN	= ${_ROLFORAIN}
                                 
-                                WHERE ROLFORROC = ${codigo} AND ROLFORFOC = ${codigo2} AND ROLFOREMC = ${_ROLFOREMC}`;
+                                WHERE ROLFORROC = ${codigo} AND ROLFORTFC = (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMFORMULARIOTIPO' AND DOMFICPAR = ${codigo2}) AND ROLFOREMC = ${_ROLFOREMC}`;
             break;	
 
         }
