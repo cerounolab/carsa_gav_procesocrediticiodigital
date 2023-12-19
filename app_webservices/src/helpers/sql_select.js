@@ -716,7 +716,7 @@ const selectROLFORMULARIO  = async(actionType, codigo, codigo2) => {
                             adm.ROLFORMULARIO 
 
                         WHERE 
-                            rol_codigo = ${codigo} AND formulario_codigo = ${codigo2}`;
+                            rol_codigo = ${codigo} AND tipo_formulario_codigo = (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMFORMULARIOTIPO' AND DOMFICPAR = ${codigo2})`;
             break;
 
 
