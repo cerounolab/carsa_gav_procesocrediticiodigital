@@ -32,15 +32,16 @@
                             </li>
 
                             <li class="btn-group d-xs-inline-flex">
-                                <a href="#" class="waves-effect waves-light dropdown-toggle w-auto l-h-12 bg-transparent p-0 no-shadow" data-bs-toggle="dropdown" title="">
+                                <a href="#" class="waves-light dropdown-toggle w-auto l-h-12 bg-transparent p-0 no-shadow" data-bs-toggle="dropdown" title="">
                                     <img src="./../images/avatar/avatar-13.png" class="avatar rounded bg-primary-light" alt="" />
                                 </a>
 
                                 <div class="dropdown-menu">
-                                    <div class="dropdown-item my-5">
-                                        <h4><?php echo $usu_01; ?></h4>
-                                        <p><?php echo $usu_07; ?></p>
-                                    </div>
+                                    <h4 class="dropdown-item my-5"><?php echo $usu_03.' '.$usu_04; ?></h4>
+                                    <p class="dropdown-item my-5"><?php echo $usu_01; ?></p>
+                                    <p class="dropdown-item my-5"><?php echo $usu_07; ?></p>
+                                    <p class="dropdown-item my-5"><?php echo $log_03; ?></p>
+                                
                                     <a class="dropdown-item my-5" href="./../class/session/session_logout.php"> Cerrar sesi&oacute;n </a>
                                 </div>
                             </li>
