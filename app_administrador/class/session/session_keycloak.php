@@ -44,20 +44,22 @@
                 if ($resultJSON != []) {
                     if ($xJSON001['code'] == 200) {
                         foreach ($xJSON001['data'] as $key => $value) {
-                            $bandOK  = true;
-                            $arrayIAM = array(
-                                'formularioNombre'              => $value['formularioNombre'],
-                                'rolFormularioAcceso'           => $value['rolFormularioAcceso'],
-                                'rolFormularioAccesoDsp'        => $value['rolFormularioAccesoDsp'],
-                                'rolFormularioAccesoUpd'        => $value['rolFormularioAccesoUpd'],
-                                'rolFormularioAccesoDlt'        => $value['rolFormularioAccesoDlt'],
-                                
-                                'rolFormularioAccesoIns'        => $value['rolFormularioAccesoIns'],
-                                'rolFormularioAccesoXls'        => $value['rolFormularioAccesoXls'],
-                                'rolFormularioAccesoPdf'        => $value['rolFormularioAccesoPdf'],
-                                'rolFormularioAcesoImpresion'   => $value['rolFormularioAcesoImpresion']
-                            );
-                            $jsIAM[] = $arrayIAM;
+                            if ($value['tipoEstadoParametro'] == 1) {                           
+                                $bandOK  = true;
+                                $arrayIAM = array(
+                                    'tipoFormularioNombre'          => $value['tipoFormularioNombre'],
+                                    'rolFormularioAcceso'           => $value['rolFormularioAcceso'],
+                                    'rolFormularioAccesoDsp'        => $value['rolFormularioAccesoDsp'],
+                                    'rolFormularioAccesoUpd'        => $value['rolFormularioAccesoUpd'],
+                                    'rolFormularioAccesoDlt'        => $value['rolFormularioAccesoDlt'],
+                                    
+                                    'rolFormularioAccesoIns'        => $value['rolFormularioAccesoIns'],
+                                    'rolFormularioAccesoXls'        => $value['rolFormularioAccesoXls'],
+                                    'rolFormularioAccesoPdf'        => $value['rolFormularioAccesoPdf'],
+                                    'rolFormularioAcesoImpresion'   => $value['rolFormularioAcesoImpresion']
+                                );
+                                $jsIAM[] = $arrayIAM;
+                            }
                         }
                     }
                 } else {

@@ -981,11 +981,11 @@ function getRolFormularioList(codElem){
     return xDATA;
 }
 
-function getRolFormularioId(codigorol, codigoformulario){
+function getRolFormularioId(codigorol, tipoformulario){
     localStorage.removeItem('rolformularioIdJSON');
 
     if (localStorage.getItem('rolformularioIdJSON') === null){
-        getJSON('rolformularioIdJSON', 'rolformulario/codigorol/'+codigorol+'/codigoformulario/'+codigoformulario);
+        getJSON('rolformularioIdJSON', 'rolformulario/codigorol/'+codigorol+'/tipoformulario/'+tipoformulario);
     }
 
     var xJSON = JSON.parse(localStorage.getItem('rolformularioIdJSON'));
