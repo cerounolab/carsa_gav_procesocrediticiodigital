@@ -48,7 +48,7 @@
 
 				'empresa_codigo'					=> $val03,
 				'rol_codigo'						=> $val04,
-				'formulario_codigo'					=> $val05,
+				'tipo_formulario_parametro'			=> $val05,
 				
 				'rol_formulario_acceso'				=> $val06,
 				'rol_formulario_acceso_dsp'			=> $val07,
@@ -80,10 +80,10 @@
 				$result	= post_curl('/rolformulario', $dataJSON);
 				break;
 			case 'U':
-				$result	= put_curl('/rolformulario/codigorol/'.$work01.'/codigoformulario/'.$work06, $dataJSON);
+				$result	= put_curl('/rolformulario/codigorol/'.$work01.'/tipoformulario/'.$work06, $dataJSON);
 				break;
 			case 'D':
-				$result	= delete_curl('/rolformulario/codigorol/'.$work01.'/codigoformulario/'.$work06, $dataJSON);
+				$result	= delete_curl('/rolformulario/codigorol/'.$work01.'/tipoformulario/'.$work06, $dataJSON);
 				break;
 		}
 	}
