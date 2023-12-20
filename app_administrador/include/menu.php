@@ -129,7 +129,7 @@
         if ($menuACC == 'sucursal' && $menuDSP == 'S' && $bandSubMenu02 == false) {
             $bandSubMenu02 = true;
             $menuHTML = $menuHTML.'
-                                    <li><a href="./../public/empresa.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> ABM Empresa </a></li>
+                                    <li><a href="./../public/sucursal.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> ABM Sucursal </a></li>
                                 ';
         }
 
