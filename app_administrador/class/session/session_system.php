@@ -69,7 +69,7 @@
                 $urlBand= false;
 
                 foreach ($seg_01["apps"] as $seg_01Key => $seg_01Value) {
-                    if ($urlApp === trim(strtolower($seg_01Value['formularioNombre']))){
+                    if ($urlApp === trim(strtolower($seg_01Value['tipoFormularioNombre']))){
                         $priv_access = trim(strtoupper(strtolower($seg_01Value['rolFormularioAcceso'])));
                         if (trim(strtoupper(strtolower($seg_01Value['rolFormularioAcceso']))) === 'S'){
                             $priv_display   = ($seg_01Value['rolFormularioAccesoDsp'] === 'S') ? 'S' : 'N';

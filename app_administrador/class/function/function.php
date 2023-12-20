@@ -543,6 +543,12 @@
                 $grupoParm  = 0;
                 break;
 
+            case 'ADMFORMULARIOTIPO':
+                $result = 'Formulario Tipo';
+                $grupoDom   = '';
+                $grupoParm  = 0;
+                break;
+
             case 'ADMUSUARIOESTADO':
                 $result = 'Usuario Estado';
                 $grupoDom   = '';
