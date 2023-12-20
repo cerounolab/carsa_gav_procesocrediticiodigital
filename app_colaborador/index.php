@@ -109,7 +109,7 @@
 		<!-- Vendor JS -->
 		<script src="./src/js/vendors.min.js"></script>
 		<script src="./src/js/pages/chat-popup.js"></script>
-		<script src="./src/js/chatbot.js"></script>
+		<!-- <script src="./src/js/chatbot.js"></script> -->
 		<script src="./assets/icons/feather-icons/feather.min.js"></script>
 		<script src="./assets/vendor_components/jquery-toast-plugin-master/src/jquery.toast.js"></script>
 
