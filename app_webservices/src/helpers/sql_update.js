@@ -375,33 +375,18 @@ const {errorBody}   = require('../utils/_json');
             break;	
 
             case 3:
-                if (_USUFICEST == 4){
-                    query00 = `UPDATE adm.USUFIC SET
-                                    USUFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOESTADO' AND DOMFICPAR	= ${_USUFICEST}), 
-                                    USUFICPAS   = '${_USUFICPAS}',
-                                    USUFICIPA   = 0,
-                                    USUFICAFH   = NOW(),    
-                                    USUFICAEM	= ${_USUFICAEM}, 
-                                    USUFICAUS	= ${_USUFICAUS},   
-                                    USUFICAIP	= ${_USUFICAIP}, 
-                                    USUFICAPR	= ${_USUFICAPR},  
-                                    USUFICAIN	= ${_USUFICAIN}
+                query00 = `UPDATE adm.USUFIC SET
+                                USUFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOESTADO' AND DOMFICPAR	= ${_USUFICEST}), 
+                                USUFICPAS   = '${_USUFICPAS}',
+                                USUFICIPA   = 0,
+                                USUFICAFH   = NOW(),    
+                                USUFICAEM	= ${_USUFICAEM}, 
+                                USUFICAUS	= ${_USUFICAUS},   
+                                USUFICAIP	= ${_USUFICAIP}, 
+                                USUFICAPR	= ${_USUFICAPR},  
+                                USUFICAIN	= ${_USUFICAIN}
 
-                                WHERE USUFICCOD =  ${codigo}  AND USUFICEMC = ${_USUFICEMC} RETURNING USUFICCOD`;
-                }else{
-                    query00 = `UPDATE adm.USUFIC SET
-                                    USUFICPAS   = '${_USUFICPAS}',
-                                    USUFICIPA   = 0,
-                                    USUFICAFH   = NOW(),    
-                                    USUFICAEM	= ${_USUFICAEM}, 
-                                    USUFICAUS	= ${_USUFICAUS},   
-                                    USUFICAIP	= ${_USUFICAIP}, 
-                                    USUFICAPR	= ${_USUFICAPR},  
-                                    USUFICAIN	= ${_USUFICAIN}
-
-                                WHERE USUFICCOD =  ${codigo}  AND USUFICEMC = ${_USUFICEMC} RETURNING USUFICCOD`;
-                }
-               
+                            WHERE USUFICCOD =  ${codigo}  AND USUFICEMC = ${_USUFICEMC} RETURNING USUFICCOD`;
             break;
         }
 
