@@ -531,8 +531,20 @@
                 $grupoParm  = 0;
                 break;
 
+            case 'ADMROLPLATAFORMATIPO':
+                $result = 'Rol Tipo Plataforma';
+                $grupoDom   = '';
+                $grupoParm  = 0;
+                break;
+
             case 'ADMFORMULARIOESTADO':
                 $result = 'Formulario Estado';
+                $grupoDom   = '';
+                $grupoParm  = 0;
+                break;
+
+            case 'ADMFORMULARIOTIPO':
+                $result = 'Formulario Tipo';
                 $grupoDom   = '';
                 $grupoParm  = 0;
                 break;

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var dataJSON	= getFormularioList(_parm06BASE);
+    var dataJSON	= getFormularioList(_parm06BASE, 0);
 
 	$('#tableLoads').DataTable({
 		processing	: true,
@@ -92,7 +92,7 @@ $(document).ready(function() {
 function setFormulario(codElem, codAcc) {
 	var xJSON       = [];
 	var xJSON1     	= getDominioValor('ADMROLESTADO');
-	var xJSON2     	= getEmpresaList(_parm06BASE);
+	var xJSON2     	= getEmpresaList(_parm06BASE, 1);
 	var html		= '';
 	var bodyCol     = '';
 	var bodyTit     = '';
@@ -274,8 +274,6 @@ function setFormulario(codElem, codAcc) {
 					if (element1.tipoEstadoParametro == 1) {
 						if (element1.empresaCodigo == element.empresaCodigo) {
 							selEmpresa = selEmpresa + '            			<option value="'+ element1.empresaCodigo +'" selected>'+ element1.empresaNombre +'</option>';
-						} else {
-							selEmpresa = selEmpresa + '            			<option value="'+ element1.empresaCodigo +'">'+ element1.empresaNombre +'</option>';
 						}
 					}
 				});

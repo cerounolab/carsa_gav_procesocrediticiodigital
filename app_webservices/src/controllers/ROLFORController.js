@@ -128,12 +128,12 @@ const getRolFormularioId  = (apiREQ, apiRES) => {
     let _code       = 200;
     let _dataJSON   = [];
     let _codigorol          = parseInt(apiREQ.params.codigorol);
-    let _codigoformulario   = parseInt(apiREQ.params.codigoformulario);
+    let _tipoformulario   = parseInt(apiREQ.params.tipoformulario);
 
-    if (_codigorol != 'undefined' && _codigorol != '' && _codigorol != null && _codigorol > 0 && _codigoformulario != 'undefined' && _codigoformulario != '' && _codigoformulario != null && _codigoformulario > 0){
+    if (_codigorol != 'undefined' && _codigorol != '' && _codigorol != null && _codigorol > 0 && _tipoformulario != 'undefined' && _tipoformulario != '' && _tipoformulario != null && _tipoformulario > 0){
 
         (async () => {
-            const xDATA = await selectROLFORMULARIO(4, _codigorol, _codigoformulario);
+            const xDATA = await selectROLFORMULARIO(4, _codigorol, _tipoformulario);
             _code       = xDATA[0];
             _dataJSON   = xDATA[1];
                 
@@ -167,7 +167,7 @@ const getRolFormularioId  = (apiREQ, apiRES) => {
 const postRolFormulario   = (apiREQ, apiRES) => {
     let  xDATA      = []; 
     let _ROLFORROC  = (apiREQ.body.rol_codigo != undefined && apiREQ.body.rol_codigo != null && apiREQ.body.rol_codigo != '' && apiREQ.body.rol_codigo > 0) ? Number.parseInt(apiREQ.body.rol_codigo) : false; (apiREQ.body.rol_codigo != undefined && apiREQ.body.rol_codigo != null && apiREQ.body.rol_codigo != '' && apiREQ.body.rol_codigo > 0) ? Number.parseInt(apiREQ.body.rol_codigo) : false;   
-    let _ROLFORFOC  = (apiREQ.body.formulario_codigo != undefined && apiREQ.body.formulario_codigo != null && apiREQ.body.formulario_codigo != '' && apiREQ.body.formulario_codigo > 0) ? Number.parseInt(apiREQ.body.formulario_codigo) : false; (apiREQ.body.formulario_codigo != undefined && apiREQ.body.formulario_codigo != null && apiREQ.body.formulario_codigo != '' && apiREQ.body.formulario_codigo > 0) ? Number.parseInt(apiREQ.body.formulario_codigo) : false;  
+    let _ROLFORTFC  = (apiREQ.body.tipo_formulario_parametro != undefined && apiREQ.body.tipo_formulario_parametro != null && apiREQ.body.tipo_formulario_parametro != '' && apiREQ.body.tipo_formulario_parametro > 0) ? Number.parseInt(apiREQ.body.tipo_formulario_parametro) : false;
     let _ROLFOREST  = (apiREQ.body.tipo_estado_parametro != undefined && apiREQ.body.tipo_estado_parametro != null && apiREQ.body.tipo_estado_parametro != '' && apiREQ.body.tipo_estado_parametro > 0) ? Number.parseInt(apiREQ.body.tipo_estado_parametro) : false;   
     let _ROLFOREMC  = (apiREQ.body.empresa_codigo != undefined && apiREQ.body.empresa_codigo != null && apiREQ.body.empresa_codigo != '' && apiREQ.body.empresa_codigo > 0) ? Number.parseInt(apiREQ.body.empresa_codigo) : false;  
     let _ROLFORORD  = (apiREQ.body.rol_formulario_orden != undefined && apiREQ.body.rol_formulario_orden != null && apiREQ.body.rol_formulario_orden != '') ? Number.parseInt(apiREQ.body.rol_formulario_orden) : 999;  
@@ -192,12 +192,12 @@ const postRolFormulario   = (apiREQ, apiRES) => {
     let _ROLFORAPR  = (apiREQ.body.auditoria_programa != undefined && apiREQ.body.auditoria_programa != null && apiREQ.body.auditoria_programa != '') ? "'"+apiREQ.body.auditoria_programa.trim()+"'" : false; 
     let _ROLFORAIN  = (apiREQ.body.auditoria_incidencia != undefined && apiREQ.body.auditoria_incidencia != null && apiREQ.body.auditoria_incidencia != '') ? "'"+apiREQ.body.auditoria_incidencia.trim()+"'" : null;  
 
-    if (_ROLFORROC && _ROLFORFOC && _ROLFOREST && _ROLFOREMC && _ROLFORACC && _ROLFORDSP && _ROLFORUPD && _ROLFORDLT && _ROLFORINS && _ROLFORXLS && _ROLFORPDF && _ROLFORIMP && _ROLFORCEM && _ROLFORCUS && 
+    if (_ROLFORROC && _ROLFORTFC && _ROLFOREST && _ROLFOREMC && _ROLFORACC && _ROLFORDSP && _ROLFORUPD && _ROLFORDLT && _ROLFORINS && _ROLFORXLS && _ROLFORPDF && _ROLFORIMP && _ROLFORCEM && _ROLFORCUS && 
         _ROLFORCIP && _ROLFORCPR && _ROLFORAEM && _ROLFORAUS && _ROLFORAIP && _ROLFORAPR){
             
         (async () => {
             xDATA = await insertROLFOR(_ROLFORROC,
-            _ROLFORFOC,
+            _ROLFORTFC,
             _ROLFOREST,
             _ROLFOREMC,
             _ROLFORORD,
@@ -254,7 +254,7 @@ const putRolFormulario    = (apiREQ, apiRES) => {
 
     let xDATA       =   []; 
     let _ROLFORROC  = Number.parseInt(apiREQ.params.codigorol); 
-    let _ROLFORFOC  = Number.parseInt(apiREQ.params.codigoformulario);  
+    let _ROLFORTFC  = Number.parseInt(apiREQ.params.tipoformulario);  
     let _ACCION     = (apiREQ.body.tipo_accion_codigo != undefined && apiREQ.body.tipo_accion_codigo != null && apiREQ.body.tipo_accion_codigo != '' && apiREQ.body.tipo_accion_codigo > 0) ? Number.parseInt(apiREQ.body.tipo_accion_codigo) : false;
     let _ROLFOREST  = (apiREQ.body.tipo_estado_parametro != undefined && apiREQ.body.tipo_estado_parametro != null && apiREQ.body.tipo_estado_parametro != '' && apiREQ.body.tipo_estado_parametro > 0) ? Number.parseInt(apiREQ.body.tipo_estado_parametro) : false;   
     let _ROLFOREMC  = (apiREQ.body.empresa_codigo != undefined && apiREQ.body.empresa_codigo != null && apiREQ.body.empresa_codigo != '' && apiREQ.body.empresa_codigo > 0) ? Number.parseInt(apiREQ.body.empresa_codigo) : false;  
@@ -280,13 +280,13 @@ const putRolFormulario    = (apiREQ, apiRES) => {
     let _ROLFORAPR  = (apiREQ.body.auditoria_programa != undefined && apiREQ.body.auditoria_programa != null && apiREQ.body.auditoria_programa != '') ? "'"+apiREQ.body.auditoria_programa.trim()+"'" : false; 
     let _ROLFORAIN  = (apiREQ.body.auditoria_incidencia != undefined && apiREQ.body.auditoria_incidencia != null && apiREQ.body.auditoria_incidencia != '') ? "'"+apiREQ.body.auditoria_incidencia.trim()+"'" : null;  
 
-    if (_ACCION && _ROLFORROC && _ROLFORFOC && _ROLFOREST && _ROLFOREMC && _ROLFORACC && _ROLFORDSP && _ROLFORUPD && _ROLFORDLT && _ROLFORINS && _ROLFORXLS && _ROLFORPDF && _ROLFORIMP && _ROLFORCEM && _ROLFORCUS && 
+    if (_ACCION && _ROLFORROC && _ROLFORTFC && _ROLFOREST && _ROLFOREMC && _ROLFORACC && _ROLFORDSP && _ROLFORUPD && _ROLFORDLT && _ROLFORINS && _ROLFORXLS && _ROLFORPDF && _ROLFORIMP && _ROLFORCEM && _ROLFORCUS && 
         _ROLFORCIP && _ROLFORCPR && _ROLFORAEM && _ROLFORAUS && _ROLFORAIP && _ROLFORAPR){
             
             (async () => {
                 xDATA = await updateROLFOR(_ACCION,
                 _ROLFORROC,
-                _ROLFORFOC,
+                _ROLFORTFC,
                 _ROLFOREST,
                 _ROLFOREMC,
                 _ROLFORORD,
@@ -341,7 +341,7 @@ const putRolFormulario    = (apiREQ, apiRES) => {
 const deleteRolFormulario    = (apiREQ, apiRES) => {
     let xDATA       =   []; 
     let _ROLFORROC  = Number.parseInt(apiREQ.params.codigorol); 
-    let _ROLFORFOC  = Number.parseInt(apiREQ.params.codigoformulario);  
+    let _ROLFORTFC  = Number.parseInt(apiREQ.params.tipoformulario);  
     let _ACCION     = (apiREQ.body.tipo_accion_codigo != undefined && apiREQ.body.tipo_accion_codigo != null && apiREQ.body.tipo_accion_codigo != '' && apiREQ.body.tipo_accion_codigo > 0) ? Number.parseInt(apiREQ.body.tipo_accion_codigo) : false;
     let _ROLFOREST  = (apiREQ.body.tipo_estado_parametro != undefined && apiREQ.body.tipo_estado_parametro != null && apiREQ.body.tipo_estado_parametro != '' && apiREQ.body.tipo_estado_parametro > 0) ? Number.parseInt(apiREQ.body.tipo_estado_parametro) : false;   
     let _ROLFOREMC  = (apiREQ.body.empresa_codigo != undefined && apiREQ.body.empresa_codigo != null && apiREQ.body.empresa_codigo != '' && apiREQ.body.empresa_codigo > 0) ? Number.parseInt(apiREQ.body.empresa_codigo) : false;  
@@ -367,11 +367,11 @@ const deleteRolFormulario    = (apiREQ, apiRES) => {
     let _ROLFORAPR  = (apiREQ.body.auditoria_programa != undefined && apiREQ.body.auditoria_programa != null && apiREQ.body.auditoria_programa != '') ? "'"+apiREQ.body.auditoria_programa.trim()+"'" : false; 
     let _ROLFORAIN  = (apiREQ.body.auditoria_incidencia != undefined && apiREQ.body.auditoria_incidencia != null && apiREQ.body.auditoria_incidencia != '') ? "'"+apiREQ.body.auditoria_incidencia.trim()+"'" : null;  
 
-    if (_ACCION && _ROLFORROC && _ROLFORFOC && _ROLFOREST && _ROLFOREMC && _ROLFORACC && _ROLFORDSP && _ROLFORUPD && _ROLFORDLT && _ROLFORINS && _ROLFORXLS && _ROLFORPDF && _ROLFORIMP && _ROLFORCEM && _ROLFORCUS && 
+    if (_ACCION && _ROLFORROC && _ROLFORTFC && _ROLFOREST && _ROLFOREMC && _ROLFORACC && _ROLFORDSP && _ROLFORUPD && _ROLFORDLT && _ROLFORINS && _ROLFORXLS && _ROLFORPDF && _ROLFORIMP && _ROLFORCEM && _ROLFORCUS && 
         _ROLFORCIP && _ROLFORCPR && _ROLFORAEM && _ROLFORAUS && _ROLFORAIP && _ROLFORAPR){
 
         (async () => {
-            xDATA = await deleteROLFOR(_ROLFORROC, _ROLFORFOC);
+            xDATA = await deleteROLFOR(_ROLFORROC, _ROLFORTFC);
 
             _code   = xDATA[0];
             xJSON   = xDATA[1];

@@ -576,14 +576,18 @@ function getPersonaDocumento(parm01){
     return xDATA;
 }
 
-function getEmpresaList(codEmp){
+function getEmpresaList(codEmp, codEst){
     getJSON('empresaListJSON', 'empresa/listado/empresa/'+codEmp);
 
     var xJSON = JSON.parse(localStorage.getItem('empresaListJSON'));
     var xDATA = [];
     if (xJSON['code'] == 200) {
         xJSON['data'].forEach(element => {
-            xDATA.push(element);
+            if (codEst == 0) {
+                xDATA.push(element);
+            } else if (element.tipoEstadoParametro == codEst){
+                xDATA.push(element);
+            }
         });
     }
 
@@ -636,7 +640,7 @@ function getEmpresaTipoRubro(codElem){
     return xDATA; 
 }
 
-function getSucursalList(codElem){
+function getSucursalList(codElem, codEst){
     localStorage.removeItem('sucursalListJSON');
 
     if (localStorage.getItem('sucursalListJSON') === null){
@@ -648,7 +652,11 @@ function getSucursalList(codElem){
 
     if (xJSON['code'] == 200) {
         xJSON['data'].forEach(element => {
-            xDATA.push(element);
+            if (codEst == 0) {
+                xDATA.push(element);
+            } else if (element.tipoEstadoParametro == codEst){
+                xDATA.push(element);
+            }
         });
     }
 
@@ -779,7 +787,7 @@ function getUsuarioEmp(codEmp, codRol, codEst){
 }
 
 
-function getRolList(codElem){
+function getRolList(codElem, codEst){
     localStorage.removeItem('rolListJSON');
 
     if (localStorage.getItem('rolListJSON') === null){
@@ -791,7 +799,11 @@ function getRolList(codElem){
 
     if (xJSON['code'] == 200) {
         xJSON['data'].forEach(element => {
-            xDATA.push(element);
+            if (codEst == 0) {
+                xDATA.push(element);
+            } else if (element.tipoEstadoParametro == codEst){
+                xDATA.push(element);
+            }
         });
     }
 
@@ -841,7 +853,7 @@ function getRolEmp(codEmp, codEst){
     return xDATA;
 }
 
-function getcampanhaList(codElem){
+function getcampanhaList(codElem, codEst){
     localStorage.removeItem('campanhaListJSON');
 
     if (localStorage.getItem('campanhaListJSON') === null){
@@ -853,7 +865,11 @@ function getcampanhaList(codElem){
 
     if (xJSON['code'] == 200) {
         xJSON['data'].forEach(element => {
-            xDATA.push(element);
+            if (codEst == 0) {
+                xDATA.push(element);
+            } else if (element.tipoEstadoParametro == codEst){
+                xDATA.push(element);
+            }
         });
     }
 
@@ -904,7 +920,7 @@ function getcampanhaEmp(codEmp, codEst){
 }
 
 
-function getFormularioList(codElem){
+function getFormularioList(codElem, codEst){
     localStorage.removeItem('formularioListJSON');
 
     if (localStorage.getItem('formularioListJSON') === null){
@@ -916,7 +932,11 @@ function getFormularioList(codElem){
 
     if (xJSON['code'] == 200) {
         xJSON['data'].forEach(element => {
-            xDATA.push(element);
+            if (codEst == 0) {
+                xDATA.push(element);
+            } else if (element.tipoEstadoParametro == codEst){
+                xDATA.push(element);
+            }
         });
     }
 
@@ -961,11 +981,11 @@ function getRolFormularioList(codElem){
     return xDATA;
 }
 
-function getRolFormularioId(codigorol, codigoformulario){
+function getRolFormularioId(codigorol, tipoformulario){
     localStorage.removeItem('rolformularioIdJSON');
 
     if (localStorage.getItem('rolformularioIdJSON') === null){
-        getJSON('rolformularioIdJSON', 'rolformulario/codigorol/'+codigorol+'/codigoformulario/'+codigoformulario);
+        getJSON('rolformularioIdJSON', 'rolformulario/codigorol/'+codigorol+'/tipoformulario/'+tipoformulario);
     }
 
     var xJSON = JSON.parse(localStorage.getItem('rolformularioIdJSON'));

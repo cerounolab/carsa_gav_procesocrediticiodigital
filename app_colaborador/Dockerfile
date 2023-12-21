@@ -1,4 +1,4 @@
-FROM php:8.1.18-apache-bullseye
+FROM php:8.1-apache
 
 RUN apt-get update -y && apt-get upgrade -y
 RUN apt-get install -y zip unzip libpq-dev zlib1g-dev libpng-dev libzip-dev gnupg
@@ -7,9 +7,6 @@ RUN apt-get install -y zip unzip libpq-dev zlib1g-dev libpng-dev libzip-dev gnup
 RUN docker-php-ext-install zip
 RUN docker-php-ext-install gd
 RUN docker-php-ext-install bcmath
-RUN docker-php-ext-install pdo pdo_mysql && docker-php-ext-enable pdo_mysql
-RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
-RUN docker-php-ext-install pdo_pgsql pgsql && docker-php-ext-enable pdo_pgsql
 
 #Install XDebug
 RUN pecl install xdebug && docker-php-ext-enable xdebug

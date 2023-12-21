@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var dataJSON	= getEmpresaList(_parm06BASE);
+    var dataJSON	= getEmpresaList(_parm06BASE, 0);
 
 	$('#tableLoads').DataTable({
 		processing	: true,

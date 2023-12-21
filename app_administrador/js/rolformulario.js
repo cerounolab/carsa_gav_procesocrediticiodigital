@@ -53,7 +53,7 @@ $(document).ready(function() {
 			},
 			{ data				: 'empresaNombre', name : 'empresaNombre'},
 			{ data				: 'rolNombre', name : 'rolNombre'},
-			{ data				: 'formularioNombre', name : 'formularioNombre'},
+			{ data				: 'tipoFormularioNombre', name : 'tipoFormularioNombre'},
 			{ data				: 'rolFormularioAcceso', name : 'rolFormularioAcceso'},
 			{ data				: 'rolFormularioAccesoObservacion', name : 'rolFormularioAccesoObservacion'},
 			{ data				: 'auditoriaUsuario', name : 'auditoriaUsuario'},
@@ -61,10 +61,10 @@ $(document).ready(function() {
 			{ data				: 'auditoriaIp', name : 'auditoriaIp'},
             { render			: 
 				function (data, type, full, meta) {
-					var btnDSP	= '<button onclick="setRolFormulario('+ full.rolCodigo +', '+ full.formularioCodigo +', 2);" title="Ver" type="button" class="btn btn-primary btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-eye"></i></button>';
-					var btnUPD	= '<button onclick="setRolFormulario('+ full.rolCodigo +', '+ full.formularioCodigo +', 3);" title="Editar" type="button" class="btn btn-success btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-edit"></i></button>';
-					var btnDLT	= '<button onclick="setRolFormulario('+ full.rolCodigo +', '+ full.formularioCodigo +', 4);" title="Anular" type="button" class="btn btn-danger btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-eraser"></i></button>';
-					var btnAUD	= '<button onclick="setRolFormulario('+ full.rolCodigo +', '+ full.formularioCodigo +', 5);" title="Auditoria" type="button" class="btn btn-warning btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-user-secret"></i></button>';
+					var btnDSP	= '<button onclick="setRolFormulario('+ full.rolCodigo +', '+ full.tipoFormularioParametro +', 2);" title="Ver" type="button" class="btn btn-primary btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-eye"></i></button>';
+					var btnUPD	= '<button onclick="setRolFormulario('+ full.rolCodigo +', '+ full.tipoFormularioParametro +', 3);" title="Editar" type="button" class="btn btn-success btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-edit"></i></button>';
+					var btnDLT	= '<button onclick="setRolFormulario('+ full.rolCodigo +', '+ full.tipoFormularioParametro +', 4);" title="Anular" type="button" class="btn btn-danger btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-eraser"></i></button>';
+					var btnAUD	= '<button onclick="setRolFormulario('+ full.rolCodigo +', '+ full.tipoFormularioParametro +', 5);" title="Auditoria" type="button" class="btn btn-warning btn-icon" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="fa fa-user-secret"></i></button>';
 
 					if (_parm00DSP == 'N') {
 						btnDSP = '';
@@ -94,9 +94,10 @@ $(document).ready(function() {
 function setRolFormulario(codRol, codForm, codAcc) {
 	var xJSON       	= [];
 	var xJSON1     		= getDominioValor('ADMROLFORMULARIOESTADO');
-	var xJSON2     		= getEmpresaList(_parm06BASE);
-	var xJSON3     		= getRolList(_parm06BASE);
-	var xJSON4     		= getFormularioList(_parm06BASE);
+	var xJSON2     		= getEmpresaList(_parm06BASE, 1);
+	var xJSON3     		= getRolList(_parm06BASE, 1);
+	var xJSON4     		= getDominioValor('ADMFORMULARIOTIPO');
+
 	var html			= '';
 	var bodyCol     	= '';
 	var bodyTit     	= '';
@@ -191,7 +192,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 
 		xJSON4.forEach(element1 => {
 			if (element1.tipoEstadoParametro == 1) {
-				selForm = selForm + '            									<option value="'+ element1.formularioCodigo +'">'+ element1.formularioNombre +'</option>';
+				selForm = selForm + '            									<option value="'+ element1.tipoParametro +'">'+ element1.tipoNombre +'</option>';
 			}
 		});
 
@@ -226,7 +227,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 		'									<div class="col-sm-12 col-md-4">'+
 		'       					            <div class="form-group">'+
 		'       					                <label for="var03">Empresa<span style="color:red;"> * </span></label>'+
-		`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresaRol('var04','var03', 1, 1); selectEmpresaForm('var05','var03', 1, 1);" style="width:100%; height:40px;" required="true">`+
+		`       					                <select id="var03" name="var03" value="" class="select2 form-control custom-select" onchange="selectEmpresaRol('var04','var03', 1, 1);" style="width:100%; height:40px;" required="true">`+
 		'       					                    <optgroup label="Seleccionar">'+ 
 		'													<option value="0" disabled selected> SELECCIONAR </option>' + selEmpresa +
 		'       					                    </optgroup>'+
@@ -250,7 +251,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 		'       					                <label for="var05">Formulario<span style="color:red;"> * </span></label>'+
 		'       					                <select id="var05" name="var05" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 		'       					                    <optgroup label="Seleccionar">'+
-		'													<option value="0" disabled selected> SELECCIONAR </option>' + 
+		'													<option value="0" disabled selected> SELECCIONAR </option>' + selForm +
 		'       					                    </optgroup>'+
 		'       					                </select>'+
 		'       					            </div>'+
@@ -387,7 +388,7 @@ function setRolFormulario(codRol, codForm, codAcc) {
 		xJSON       = getRolFormularioId(codRol, codForm);
 
 		xJSON.forEach(element => {
-			if (element.rolCodigo == codRol && element.formularioCodigo == codForm) {
+			if (element.rolCodigo == codRol && element.tipoFormularioParametro == codForm) {
 				xJSON1.forEach(element1 => {
 					if (element1.tipoEstadoParametro == 1) {
 						if (element1.tipoParametro == element.tipoEstadoParametro) {
@@ -406,7 +407,6 @@ function setRolFormulario(codRol, codForm, codAcc) {
 					}
 				});
 
-
 				xJSON3.forEach(element1 => {
 					if (element1.tipoEstadoParametro == 1) {
 						if (element1.rolCodigo == element.rolCodigo) {
@@ -417,8 +417,8 @@ function setRolFormulario(codRol, codForm, codAcc) {
 
 				xJSON4.forEach(element1 => {
 					if (element1.tipoEstadoParametro == 1) {
-						if (element1.formularioCodigo == element.formularioCodigo) {
-							selForm = selForm + '            		<option value="'+ element1.formularioCodigo +'" selected>'+ element1.formularioNombre +'</option>';
+						if (element1.tipoParametro == element.tipoFormularioParametro) {
+							selForm = selForm + '            		<option value="'+ element1.tipoParametro +'" selected>'+ element1.tipoNombre +'</option>';
 						}
 					}
 				});
@@ -689,7 +689,6 @@ function setRolFormulario(codRol, codForm, codAcc) {
 
 	if (codAcc == 1) {
 		selectEmpresaRol('var04','var03', 1, 1); 
-		selectEmpresaForm('var05','var03', 1, 1);	
 	}
 }
 

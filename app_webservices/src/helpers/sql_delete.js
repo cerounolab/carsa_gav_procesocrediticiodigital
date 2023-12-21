@@ -315,7 +315,7 @@ const deleteROLFOR  = async(codigo, codigo2) => {
    
     let query00 = '';
 
-    query00 = `DELETE FROM adm.ROLFOR WHERE ROLFORROC =  ${codigo} AND ROLFORFOC = ${codigo2}`;	
+    query00 = `DELETE FROM adm.ROLFOR WHERE ROLFORROC =  ${codigo} AND ROLFORTFC = (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMFORMULARIOTIPO' AND DOMFICPAR = ${codigo2})`;	
 
     const connPGSQL = new Client(initPGSQL);
     

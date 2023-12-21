@@ -774,7 +774,7 @@ function selectFormaPago(parm01, parm02, parm03, parm04, parm05) {
 
 function selectEmpresa2(parm01, parm02, parm03, parm04) {
     var selOption   = document.getElementById(parm01);
-    var xJSON       = getEmpresaList(_parm06BASE);
+    var xJSON       = getEmpresaList(_parm06BASE, 1);
     
     while (selOption.length > 0) {
         selOption.remove(0);
@@ -1222,7 +1222,7 @@ function selectEmpresaForm(parm01, parm02, parm03, parm04) {
             break;
     }
 
-    xJSON   = getFormularioList(codEmp.value);
+    xJSON   = getFormularioList(codEmp.value, 1);
 
     if (parm04 == 1) {
         xJSON.forEach(element => {
@@ -1236,8 +1236,6 @@ function selectEmpresaForm(parm01, parm02, parm03, parm04) {
                 option.selected = false;
             }
             selOption.add(option, null);
-    
-           
         });
     } else if (parm04 == 2) {
         xJSON.forEach(element => {
@@ -1248,8 +1246,6 @@ function selectEmpresaForm(parm01, parm02, parm03, parm04) {
             if (element.formularioCodigo !=  codUsu) {
                 selOption.add(option, null);
             } 
-    
-           
         });
     }
 }

@@ -376,6 +376,7 @@ const {errorBody}   = require('../utils/_json');
 
             case 3:
                 query00 = `UPDATE adm.USUFIC SET
+                                USUFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOESTADO' AND DOMFICPAR	= ${_USUFICEST}), 
                                 USUFICPAS   = '${_USUFICPAS}',
                                 USUFICIPA   = 0,
                                 USUFICAFH   = NOW(),    
@@ -514,6 +515,7 @@ const {errorBody}   = require('../utils/_json');
     const updateROLFIC  = async(_ACCION,
         codigo,
         _ROLFICEST,
+        _ROLFICTPC,
         _ROLFICEMC,
         _ROLFICORD,
         _ROLFICNOM,
@@ -534,7 +536,8 @@ const {errorBody}   = require('../utils/_json');
         switch (_ACCION) {
             case 1:
                 query00 = `UPDATE adm.ROLFIC SET																				
-                                ROLFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMROLESTADO' AND DOMFICPAR = ${_ROLFICEST}), 	  
+                                ROLFICEST	= (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMROLESTADO' AND DOMFICPAR = ${_ROLFICEST}),
+                                ROLFICTPC   = (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMROLPLATAFORMATIPO' AND DOMFICPAR = ${_ROLFICTPC}),  	  
                                 ROLFICEMC	= ${_ROLFICEMC}, 	  
                                 ROLFICORD	= ${_ROLFICORD}, 	
                                 ROLFICNOM	= ${_ROLFICNOM}, 		
@@ -836,7 +839,7 @@ const {errorBody}   = require('../utils/_json');
                                 ROLFORAPR	= ${_ROLFORAPR},    
                                 ROLFORAIN	= ${_ROLFORAIN}
                                 
-                            WHERE ROLFORROC = ${codigo} AND ROLFORFOC = ${codigo2} AND ROLFOREMC = ${_ROLFOREMC}`;
+                            WHERE ROLFORROC = ${codigo} AND ROLFORTFC = (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMFORMULARIOTIPO' AND DOMFICPAR = ${codigo2}) AND ROLFOREMC = ${_ROLFOREMC}`;
 
             break;
 
@@ -851,7 +854,7 @@ const {errorBody}   = require('../utils/_json');
                                 ROLFORAPR	= ${_ROLFORAPR},    
                                 ROLFORAIN	= ${_ROLFORAIN}
                                 
-                                WHERE ROLFORROC = ${codigo} AND ROLFORFOC = ${codigo2} AND ROLFOREMC = ${_ROLFOREMC}`;
+                                WHERE ROLFORROC = ${codigo} AND ROLFORTFC = (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMFORMULARIOTIPO' AND DOMFICPAR = ${codigo2}) AND ROLFOREMC = ${_ROLFOREMC}`;
             break;	
 
         }
