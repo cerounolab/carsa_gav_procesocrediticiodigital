@@ -1,12 +1,16 @@
 <?php
     require __DIR__.'./../../vendor/autoload.php';
 	
-	$dotenv         = Dotenv\Dotenv::createImmutable(__DIR__.'./../../');
-	$dotenv->load();
+    $dotenv         = Dotenv\Dotenv::createImmutable(__DIR__.'./../../');
+    $dotenv->load();
 
-    $api            = $_ENV['API_URL'];
-    $aut            = $_ENV['API_KEY'];
+    $api  = $_ENV['API_URL01'];
+    $aut  = $_ENV['API_KEY01'];
 
+
+    $api02  = $_ENV['API_URL02'];
+    $aut02  = $_ENV['API_KEY02'];
+    
     function get_curl($ext){
         global $api;
         global $aut;
@@ -28,6 +32,27 @@
         return $result;
     }
 
+    function get_curl02($ext){
+        global $api02;
+        global $aut02;
+        $urlAPI                     = $api02.'/'.$ext;
+        $ch                         = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $urlAPI);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 0);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/json", "Authorization: Basic ".$aut02, "Content-Type: application/json"));
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $result                     = curl_exec($ch);
+        curl_close($ch);
+        $result                     = json_decode($result, TRUE);
+        return $result;
+    }
+    
     function post_curl($ext, $data){
         global $api;
         global $aut;
