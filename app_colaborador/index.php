@@ -51,7 +51,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="">
-		<meta name="author" content="CEROUNO Labs - https://cerouno.com.py">
+		<meta name="author" content="HOLIX - https://holixpy.com.py">
 
 		<link rel="icon" href="./images/wscheduov1/favicon.png">	
 		
@@ -77,7 +77,7 @@
 								</div>
 
 								<div class="p-40">
-									<form action="./class/session/session_index.php" method="post">
+									<form action="./class/session/session_keycloak.php" method="post">
 										<div class="form-group">
 											<div class="input-group mb-3">
 												<span class="input-group-text bg-transparent"><i class="text-fade ti-user"></i></span>
@@ -135,7 +135,7 @@
 <?php
 	}
 
-	if (($codeRest == 201) || ($codeRest == 204) || ($codeRest == 400) || ($codeRest == 401)) {
+	if (($codeRest == 201) || ($codeRest == 204) || ($codeRest == 400) || ($codeRest == 401) || ($codeRest == 500)) {
 ?>
 			$(document).ready(function () {
 				$.toast({

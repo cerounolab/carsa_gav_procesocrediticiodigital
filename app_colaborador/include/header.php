@@ -39,6 +39,7 @@
 			let xxxURL	= '';
             
 			<?php echo getKey(); ?>
+			<?php echo getKey2(); ?>
 
 		</script>
 
