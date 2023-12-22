@@ -14,6 +14,21 @@
         return $result;
     }
 
+    function getKey2() {
+        global $api02;
+        global $aut02;
+        
+        $result = "xxxBASE= '$aut02';
+            xxxURL = '$api02';
+
+            localStorage.removeItem('urlBASE');
+            localStorage.removeItem('autBASE');
+            
+            localStorage.setItem('urlBASE', xxxURL);
+            localStorage.setItem('autBASE', xxxBASE);";
+        return $result;
+    }
+
     function getUUID(){
         $data    = random_bytes(16);
         $data[6] = chr(ord($data[6]) & 0x0f | 0x40); 
