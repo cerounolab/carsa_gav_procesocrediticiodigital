@@ -6,8 +6,8 @@
 	$pageTitle		= 'Inicio';
 	$pageTitleNav	= '';
 
-	$dominio01JSON	= get_curl02('parametros/dominio/valor/WSCHEDUOSOLICITUDESTADONIVEL2');
-	$dominio02JSON	= get_curl02('parametros/dominio/valor/WSCHEDUOSOLICITUDFORMAPAGO');
+	$dominio01JSON	= get_curl('parametros/dominio/valor/WSCHEDUOSOLICITUDESTADONIVEL2');
+	$dominio02JSON	= get_curl('parametros/dominio/valor/WSCHEDUOSOLICITUDFORMAPAGO');
 ?>
 <!DOCTYPE html>
 <html lang="es">
