@@ -95,7 +95,7 @@
             $_SESSION['rolNombre']              = ($resultJSON['data']['0']['rolNombre'] == null) ? '' : trim(strtoupper(strtolower($resultJSON['data']['0']['rolNombre'])));
             $_SESSION['empresaSitoWeb']         = ($resultJSON['data']['0']['empresaSitoWeb'] == null) ? '' : trim($resultJSON['data']['0']['empresaSitoWeb']);
             $_SESSION['empresaCorreo']          = (trim(strtolower($resultJSON['data']['0']['empresaCorreo'])) == null) ? '' : trim(strtolower($resultJSON['data']['0']['empresaCorreo']));
-            $_SESSION['empresaDireccion']       = (trim($resultJSON['data']['0']['empresaDireccion']) == null) ? '' : trim($resultJSON['data']['0']['empresaDireccion']);
+            $_SESSION['empresaDireccion']       = ($resultJSON['data']['0']['empresaDireccion'] == null) ? '' : trim($resultJSON['data']['0']['empresaDireccion']);
 
             $_SESSION['expire'] = time() + 1800;
 

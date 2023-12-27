@@ -303,14 +303,14 @@ function setUsuario(codElem, codAcc) {
 			''+
 			'               					<div class="col-sm-12 col-md-6" id="row_var011">'+
 			'               					    <div class="form-group">'+
-			'               					        <label for="var011">Celular</label>'+
+			'               					        <label for="var011">Celular<span style="color:red;"> * </span></label>'+
 			'               					        <input id="var011" name="var011" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="Celular" required="true" '+ bodyOnl +'>'+
 			'               					    </div>'+
 			'               					</div>'+
 			''+
 			'               					<div class="col-sm-12 col-md-6" id="row_var012">'+
 			'               					    <div class="form-group">'+
-			'               					        <label for="var010">Email</label>'+
+			'               					        <label for="var010">Email<span style="color:red;"> * </span></label>'+
 			'               					        <input id="var010" name="var010" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="Email" required="true" '+ bodyOnl +'>'+
 			'               					    </div>'+
 			'               					</div>'+
@@ -477,21 +477,21 @@ function setUsuario(codElem, codAcc) {
 				''+
 				'               					<div class="col-sm-12 col-md-4">'+
 				'               					    <div class="form-group">'+
-				'               					        <label for="var09">Password</label>'+
+				'               					        <label for="var09">Password<span style="color:red;"> * </span></label>'+
 				'											<input id="var09" name="var09" value="'+ usuarioPassword +'" class="form-control" type="password" style="height:40px;" required="true" readonly>'+
 				'               					    </div>'+
 				'               					</div>'+
 				''+
 				'               					<div class="col-sm-12 col-md-6">'+
 				'               					    <div class="form-group">'+
-				'               					        <label for="var011">Celular</label>'+
+				'               					        <label for="var011">Celular<span style="color:red;"> * </span></label>'+
 				'               					        <input id="var011" name="var011" value="'+ usuarioCelular +'" class="form-control" type="text" style="height:40px;" placeholder="" required="true" '+ bodyOnl +'>'+
 				'               					    </div>'+
 				'               					</div>'+
 				''+
 				'               					<div class="col-sm-12 col-md-6">'+
 				'               					    <div class="form-group">'+
-				'               					        <label for="var010">Email</label>'+
+				'               					        <label for="var010">Email<span style="color:red;"> * </span></label>'+
 				'               					        <input id="var010" name="var010" value="'+ usuarioEmail +'" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="" required="true" '+ bodyOnl +'>'+
 				'               					    </div>'+
 				'               					</div>'+
