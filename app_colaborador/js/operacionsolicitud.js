@@ -95,7 +95,7 @@ function validarDocumento() {
         personTipoNac.value     = xJSON[0].localidad_pais_codigo;
     }
 
-    selectDominio('tipo_persona_parametro', 'WSCHEDUOPERSONATIPO', 0, 1, personTipoPers.value);
+    //selectDominio('tipo_persona_parametro', 'WSCHEDUOPERSONATIPO', 0, 1, personTipoPers.value);
     selectDominio('tipo_sexo_parametro', 'WSCHEDUOPERSONASEXO', 0, 1, personTipoSexo.value);
     selectDominio('tipo_estadocivil_parametro', 'WSCHEDUOPERSONAESTADOCIVIL', 0, 1, personTipoEstCiv.value);
     selectLocalidadPais('localidad_pais_codigo', null, 0, 1, personTipoNac.value);
