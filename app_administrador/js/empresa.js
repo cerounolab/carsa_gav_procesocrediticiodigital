@@ -310,8 +310,8 @@ function setEmpresa(codElem, codAcc) {
 			''+
 			'               					<div class="col-sm-12 col-md-4">'+
 			'               					    <div class="form-group">'+
-			'               					        <label for="var012">Dirección</label>'+
-			'               					        <input id="var012" name="var012" value="" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="Dirección" '+ bodyOnl +'>'+
+			'               					        <label for="var012">Dirección<span style="color:red;"> * </span></label>'+
+			'               					        <input id="var012" name="var012" value="" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="Dirección" required="true" '+ bodyOnl +'>'+
 			'               					    </div>'+
 			'               					</div>'+
 			''+
@@ -497,8 +497,8 @@ function setEmpresa(codElem, codAcc) {
 				''+
 				'               					<div class="col-sm-12 col-md-4">'+
 				'               					    <div class="form-group">'+
-				'               					        <label for="var012">Dirección</label>'+
-				'               					        <input id="var012" name="var012" value="'+ empresaDireccion +'" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="Dirección" '+ bodyOnl +'>'+
+				'               					        <label for="var012">Dirección<span style="color:red;"> * </span></label>'+
+				'               					        <input id="var012" name="var012" value="'+ empresaDireccion +'" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="Dirección" required="true" '+ bodyOnl +'>'+
 				'               					    </div>'+
 				'               					</div>'+
 				''+
