@@ -15,8 +15,12 @@ const { getRolFormulario, getRolFormularioEmpresaId, getRolFormularioRolId, getR
 const { getUsuarioRol, getUsuarioRolId, getUsuarioRolEmpresa, postUsuarioRol, putUsuarioRol, deleteUsuarioRol } = require('../controllers/USUROLController');
 const { getUsuarioCampanha, getUsuarioCampanhaId, postUsuarioCampanha, putUsuarioCampanha, deleteUsuarioCampanha } = require('../controllers/USUCAMController');
 const { getUsuarioFlujo, getUsuarioFlujoUsuarioSup, getUsuarioFlujoUsuarioSub, getUsuarioFlujoRolSup, getUsuarioFlujoRolSub, getUsuarioFlujoRolSubEmpresa,
-  getUsuarioFlujoRolSupEmpresa, getUsuarioFlujoId, postUsuarioFlujo, putUsuarioFlujo, deleteUsuarioFlujo } = require('../controllers/USUFLUController');
+getUsuarioFlujoRolSupEmpresa, getUsuarioFlujoId, postUsuarioFlujo, putUsuarioFlujo, deleteUsuarioFlujo } = require('../controllers/USUFLUController');
 const { getUsuarioLog} = require('../controllers/USULOGController');
+const { postOperacionSolicitud } = require('../controllers/OPESOLController');
+const { getParametro} = require('../controllers/FGPARAMController');
+const { getPersona, getPersonaCuenta} = require('../controllers/PERFICController');
+
 
 router.group('/v1/', (routerGroup) => {
   routerGroup.get('/dominio/listado', getDominio);
@@ -114,6 +118,14 @@ router.group('/v1/', (routerGroup) => {
   routerGroup.delete('/usuarioflujo/usuariosuperior/:usuariosuperior/rolsuperior/:rolsuperior/usuariosubordinado/:usuariosubordinado/rolsubordinado/:rolsubordinado', deleteUsuarioFlujo);
 
   routerGroup.get('/usuariolog/dashboard/empresa/:empresa/fecha/:fecha/cantidadregistro/:cantidadregistro', getUsuarioLog);
+
+  routerGroup.post('/operacionsolicitud', postOperacionSolicitud);
+
+  routerGroup.get('/parametros/parametro/codigo/:codigo', getParametro);
+
+  routerGroup.get('/persona/cuenta/:codigo', getPersona);
+  routerGroup.get('/persona/datoparticular/cuenta/:cuenta/codigoactual', getPersonaCuenta);
+
 
 }); 
 

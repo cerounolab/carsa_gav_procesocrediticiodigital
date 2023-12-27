@@ -757,6 +757,159 @@ const insertUSULOG  = async(_USULOGEST,
     return Array(_code, _data);
 }
 
+const insertPERFIC  = async(_PERFICTPC, _PERFICTDC, _PERFICTSC, _aPERFICTSC, _PERFICTEC, _aPERFICTEC, _PERFICNAC, _aPERFICNAC, 
+    _aPERFICEMC, _PERFICNO1, _PERFICNO2, _PERFICAP1, _PERFICAP2, _PERFICAP3, _aPERFICDNU, _PERFICDVE, _PERFICFNA, _PERFICCEL, 
+    _PERFICEMA, _OPESOLCEM, _OPESOLCUS, _OPESOLCIP, _OPESOLCPR, _OPESOLAEM, _OPESOLAUS, _OPESOLAIP, _OPESOLAPR) => {
+        
+        
+    let _code   = 200;
+    let _data   = [];
+
+    let query00 = '';
+
+    query00 = 	`INSERT INTO per.PERFIC (                                                                           PERFICEST,                                                                                                PERFICTPC,                                                                                                     PERFICTDC,                                                                                                                                                                                                          PERFICTSC,                                                                                                                                                                                                                            PERFICTEC,      PERFICNAC,      PERFICEMC,       PERFICNO1,       PERFICNO2,       PERFICAP1,       PERFICAP2,       PERFICAP3,      PERFICDNU,     PERFICDVE,       PERFICFNA,     PERFICCEL,     PERFICEMA,     PERFICCEM,      PERFICCUS,     PERFICCIP,     PERFICCPR,    PERFICAEM,     PERFICAUS,     PERFICAIP,     PERFICAPR) 
+                        SELECT (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'PERPERSONAFICHAESTADO' AND DOMFICPAR = 1), (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'PERPERSONAFICHATIPO' AND DOMFICPAR = ${_PERFICTPC}), (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'PERPERSONAFICHADOCUMENTO' AND DOMFICPAR = ${_PERFICTDC}), (SELECT DOMFICCOD FROM adm.DOMFIC WHERE ((DOMFICVAL = 'PERPERSONAFICHASEXO' AND DOMFICEQU = '${_PERFICTSC}') OR (DOMFICVAL = 'PERPERSONAFICHASEXO' AND DOMFICPAR = ${_aPERFICTSC})) ORDER BY DOMFICORD DESC LIMIT 1), (SELECT DOMFICCOD FROM adm.DOMFIC WHERE ((DOMFICVAL = 'PERPERSONAFICHAESTADOCIVIL' AND DOMFICEQU = '${_PERFICTEC}') OR (DOMFICVAL = 'PERPERSONAFICHAESTADOCIVIL' AND DOMFICPAR = ${_aPERFICTEC})) ORDER BY DOMFICORD DESC LIMIT 1), ${_aPERFICNAC}, ${_aPERFICEMC},   ${_PERFICNO1},   ${_PERFICNO2},   ${_PERFICAP1},   ${_PERFICAP2},   ${_PERFICAP3}, ${_aPERFICDNU}, ${_PERFICDVE}, '${_PERFICFNA}', ${_PERFICCEL}, ${_PERFICEMA}, ${_OPESOLCEM}, ${_OPESOLCUS}, ${_OPESOLCIP}, ${_OPESOLCPR}, ${_OPESOLAEM}, ${_OPESOLAUS}, ${_OPESOLAIP}, ${_OPESOLAPR}
+                        WHERE NOT EXISTS(SELECT * FROM per.PERFIC WHERE PERFICDNU = ${_aPERFICDNU}) RETURNING PERFICCOD AS persona_codigo`;	            
+    
+    console.log(query00);
+    const connPGSQL = new Client(initPGSQL);
+
+    await connPGSQL
+        .connect()
+        .catch(e => {
+            _code = 401;
+            errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertPERFIC', true)
+                .then(result => _data = result);
+        }
+    );
+
+    if (_code == 200) {
+        await connPGSQL
+            .query(query00)
+            .then(result => {
+                _code = 200;
+                _data = result.rows;
+
+            })
+            .catch(e => {
+                _code   = 500;
+                console.log(e);
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertPERFIC', true)
+                    .then(result => _data = result);
+            })
+            .then(() => {
+                connPGSQL.end();
+            }
+        );
+    }
+
+    if (_data == '') {
+        _code   = 404;
+    }
+    
+    return Array(_code, _data);
+}
+
+const insertCLIFIC  = async(_CLIFICTCC, _CLIFICTOC, _CLIFICTAC, _CLIFICEMC, _CLIFICPER, _CLIFICEQU, _CLIFICFIN, 
+    _OPESOLCEM, _OPESOLCUS, _OPESOLCIP, _OPESOLCPR, _OPESOLAEM, _OPESOLAUS, _OPESOLAIP, _OPESOLAPR) => {
+        
+    let _code   = 200;
+    let _data   = [];
+    let query00 = '';
+
+    query00 = 	`INSERT INTO cli.CLIFIC (                                                                           CLIFICEST,                                                                                                CLIFICTCC,                                                                                                  CLIFICTOC,                                                                                                        CLIFICTAC,     CLIFICEMC,                                                          CLIFICPER,     CLIFICEQU,     CLIFICFIN,     CLIFICCEM,     CLIFICCUS,     CLIFICCIP,     CLIFICCPR,     CLIFICAEM,     CLIFICAUS,     CLIFICAIP,    CLIFICAPR)
+                        SELECT (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'CLICLIENTEFICHAESTADO' AND DOMFICPAR = 1), (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'CLICLIENTEFICHATIPO' AND DOMFICPAR = ${_CLIFICTCC}), (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'CLICLIENTEFICHAORIGEN' AND DOMFICPAR = ${_CLIFICTOC}), (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'CLICLIENTEFICHACALIFICACION' AND DOMFICPAR = ${_CLIFICTAC}), ${_CLIFICEMC}, (SELECT PERFICCOD FROM per.PERFIC WHERE PERFICDNU = ${_CLIFICPER}), ${_CLIFICEQU}, ${_CLIFICFIN}, ${_OPESOLCEM}, ${_OPESOLCUS}, ${_OPESOLCIP}, ${_OPESOLCPR}, ${_OPESOLAEM}, ${_OPESOLAUS}, ${_OPESOLAIP},  ${_OPESOLAPR}
+                        WHERE NOT EXISTS(SELECT * FROM cli.CLIFIC WHERE CLIFICEQU = ${_CLIFICEQU} AND CLIFICPER = (SELECT PERFICCOD FROM per.PERFIC WHERE PERFICDNU = ${_CLIFICPER}))`;	            
+    
+    console.log(query00);
+    const connPGSQL = new Client(initPGSQL);
+
+    await connPGSQL
+        .connect()
+        .catch(e => {
+            _code = 401;
+            errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertCLIFIC', true)
+                .then(result => _data = result);
+        }
+    );
+
+    if (_code == 200) {
+        await connPGSQL
+            .query(query00)
+            .then(result => {
+                _code = 200;
+                _data = result.rows;
+
+            })
+            .catch(e => {
+                _code   = 500;
+                console.log(e);
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertCLIFIC', true)
+                    .then(result => _data = result);
+            })
+            .then(() => {
+                connPGSQL.end();
+            }
+        );
+    }
+
+    if (_data == '') {
+        _code   = 404;
+    }
+    
+    return Array(_code, _data);
+}
+
+const insertOPESOL  = async(_OPESOLTNC, _OPESOLTBC, _OPESOLTPC, _OPESOLTAC, _OPESOLTCC, _OPESOLTMC, _OPESOLEMC, _OPESOLTEM, 
+    _OPESOLCLI, _aPERFICDNU, _OPESOLEQU, _OPESOLSIS, _OPESOLSIC, _OPESOLSPL, _OPESOLSPV, _OPESOLSSU, _OPESOLSEJ, 
+    _OPESOLSLA, _OPESOLSLO, _OPESOLCEM, _OPESOLCUS, _OPESOLCIP, _OPESOLCPR, _OPESOLAEM, _OPESOLAUS, _OPESOLAIP, _OPESOLAPR) => {
+        
+    let _code   = 200;
+    let _data   = [];
+    let query00 = '';
+
+    query00 = 	`INSERT INTO ope.OPESOL (                                                                                 OPESOLEST,     OPESOLTNC,     OPESOLTBC,     OPESOLTPC,     OPESOLTAC,     OPESOLTCC,     OPESOLTMC,     OPESOLEMC,     OPESOLTEM,                                                                                                                                              OPESOLCLI,     OPESOLEQU,     OPESOLSIS,     OPESOLSIC,                                                                                                       OPESOLSPL,     OPESOLSPV,     OPESOLSSU,     OPESOLSEJ,     OPESOLSLA,     OPESOLSLO,     OPESOLCUS,     OPESOLCIP,     OPESOLCPR,     OPESOLAUS,     OPESOLAIP,    OPESOLAPR)
+                  SELECT (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'OPEOPERACIONSOLICITUDESTADONIVEL2' AND DOMFICPAR = 1), ${_OPESOLTNC}, ${_OPESOLTBC}, ${_OPESOLTPC}, ${_OPESOLTAC}, ${_OPESOLTCC}, ${_OPESOLTMC}, ${_OPESOLEMC}, ${_OPESOLTEM}, (SELECT CLIFICCOD FROM cli.CLIFIC WHERE CLIFICEQU = ${_OPESOLCLI} AND CLIFICPER = (SELECT PERFICCOD FROM per.PERFIC WHERE PERFICDNU = ${_aPERFICDNU})), ${_OPESOLEQU}, ${_OPESOLSIS}, ${_OPESOLSIC}, (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'OPEOPERACIONSOLICITUDPLAZO' AND DOMFICEQU = ${_OPESOLSPL}), ${_OPESOLSPV}, ${_OPESOLSSU}, ${_OPESOLSEJ}, ${_OPESOLSLA}, ${_OPESOLSLO}, ${_OPESOLCUS}, ${_OPESOLCIP}, ${_OPESOLCPR}, ${_OPESOLAUS}, ${_OPESOLAIP}, ${_OPESOLAPR}
+                  WHERE NOT EXISTS(SELECT * FROM ope.OPESOL WHERE OPESOLEST = (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'OPEOPERACIONSOLICITUDESTADONIVEL2' AND DOMFICPAR = 1) AND OPESOLEQU = ${_OPESOLEQU} AND OPESOLCLI = (SELECT CLIFICCOD FROM cli.CLIFIC WHERE CLIFICEQU = ${_OPESOLCLI} AND CLIFICPER = (SELECT PERFICCOD FROM per.PERFIC WHERE PERFICDNU = ${_aPERFICDNU})))`;	            
+    
+    console.log(query00);
+    const connPGSQL = new Client(initPGSQL);
+
+    await connPGSQL
+        .connect()
+        .catch(e => {
+            _code = 401;
+            errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertOPESOL', true)
+                .then(result => _data = result);
+        }
+    );
+
+    if (_code == 200) {
+        await connPGSQL
+            .query(query00)
+            .then(result => {
+                _code = 200;
+                _data = result.rows;
+
+            })
+            .catch(e => {
+                _code   = 500;
+                errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertOPESOL', true)
+                    .then(result => _data = result);
+            })
+            .then(() => {
+                connPGSQL.end();
+            }
+        );
+    }
+
+    if (_data == '') {
+        _code   = 404;
+    }
+    
+    return Array(_code, _data);
+}
+
 module.exports = {
     insertDOMFIC,
     insertEMPFIC,
@@ -769,6 +922,23 @@ module.exports = {
     insertUSUROL,
     insertUSUCAM,
     insertUSUFLU, 
-    insertUSULOG
+    insertUSULOG,
+    insertPERFIC,
+    insertCLIFIC,
+    insertOPESOL
 
 };
+
+
+/*_aPERFICTPC, _aPERFICTDC, _aPERFICTSC, _aPERFICTEC, _aPERFICNAC, _aPERFICNO1, 
+    _aPERFICNO2, _aPERFICAP1, _aPERFICAP2, _aPERFICAP3, _aPERFICDNU, _aPERFICDVE, _aPERFICFNA, _aPERFICCEL,
+    _mPERFICCEL, _aPERFICEMA, _aPERFICNOM, _aPERDICEST, _aPERDICTVC, _aPERDICLDC,_aPERDICLCC, _aPERDICLBC,
+    _aPERDICPER, _aPERDICORD, _aPERDICEQU, _aPERDICEDI, _aPERDICAPA, _aPERDICNRO, _aPERDICBAR, _aPERDICCA1,
+    _aPERDICCA2, _aPERDICCA3, _aPERDICREF, _aPERDICMLA, _aPERDICMLO, _aPERDICMUR, _aPERDICMGE, _aPERDICPAT,
+    _aPERDICFIL, _aPERDICAYU, _aPERDICOBS, _aPEROCUEST, _aPEROCUTOC, _aPEROCUPER, _aPEROCUORD, _aPEROCUEQU,
+    _aPEROCUOCU, _aPEROCUFDE, _aPEROCUFHA, _aPEROCUPAT, _aPEROCUFIL, _aPEROCUAYU, _aPEROCUOBS, _OPESOLEQU,
+    _OPESOLSIS, _OPESOLSIC, _OPESOLSPL, _OPESOLSPV, _OPESOLSLA, _OPESOLSLO, _OPESOLCEM, _OPESOLCUS, _OPESOLCIP,
+    _OPESOLAEM, _OPESOLAUS, _OPESOLAIP*/
+
+
+
