@@ -19,18 +19,13 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 RUN php -r "unlink('composer-setup.php');"
 
-#Install SqlServer PHP driver
-RUN cat /etc/os-release \
-    && apt-get update \
-    && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
-    && curl https://packages.microsoft.com/config/debian/11/prod.list > /etc/apt/sources.list.d/mssql-release.list \
-    && apt-get install -y --no-install-recommends apt-transport-https \
-    && apt-get update \
-    && ACCEPT_EULA=Y apt-get -y --no-install-recommends install unixodbc unixodbc-dev msodbcsql17
-
 #Set working directory
 WORKDIR /var/www/html
 RUN mkdir -p /var/www/html/colab
+RUN mkdir -p /var/www/html/colab/uploads
+
+COPY ./.env ./colab
+COPY ./composer.json ./colab
 
 #APACHE Configuration
 RUN chown -R www-data:www-data /var/www/html
