@@ -39,8 +39,7 @@
 			let xxxURL	= '';
             
 			<?php echo getKey(); ?>
-			<?php echo getKey2(); ?>
 
 		</script>
 
-        <title>.: CheD&Uacute;O Aliados | C.A.R.S.A. :.</title>
+        <title>.: Che D&Uacute;O PCD | C.A.R.S.A. :.</title>
