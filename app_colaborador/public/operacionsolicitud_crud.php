@@ -30,7 +30,7 @@
 	//CUENTA
 	$persona_cuenta						= 0;
 	$persona_documento_numero			= '';
-	$persona_documento_fechaemision_1	= '';
+	$persona_documento_fechaemision_1	= '2030-12-31';
 	$persona_documento_fechaemision_2	= '';
 	$persona_nombre_completo			= '';
 	$persona_apellido_paterno			= '';
@@ -243,12 +243,41 @@
 								<div class="box">
 									<form method="post" action="<?php echo $form01_action; ?>" enctype="multipart/form-data" class="validation-wizard wizard-circle form">
 										<div class="form-group">
-											<input id="workCodigo"		name="workCodigo"		class="form-control" type="hidden" value="<?php echo $solicCuenta; ?>" />
-											<input id="workModo"		name="workModo"			class="form-control" type="hidden" value="C" />
-											<input id="workPage"		name="workPage"			class="form-control" type="hidden" value="public/operacionsolicitud_crud.php?" />
-											<input id="workAction"		name="workAction"		class="form-control" type="hidden" value="1" />
-											<input id="workTasa"		name="workTasa"			class="form-control" type="hidden" value="6"/>
-											<input id="workPlazo"		name="workPlazo"		class="form-control" type="hidden" value="6"/>
+											<input id="workCodigo"										name="workCodigo"										class="form-control" type="hidden" value="<?php echo $solicCuenta; ?>" />
+											<input id="workModo"										name="workModo"											class="form-control" type="hidden" value="C" />
+											<input id="workPage"										name="workPage"											class="form-control" type="hidden" value="public/operacionsolicitud_crud.php?" />
+											<input id="workAction"										name="workAction"										class="form-control" type="hidden" value="1" />
+											<input id="workTasa"										name="workTasa"											class="form-control" type="hidden" value="6"/>
+											<input id="workPlazo"										name="workPlazo"										class="form-control" type="hidden" value="6"/>
+											<input id="tipo_persona_parametro"							name="tipo_persona_parametro"							class="form-control" type="hidden" value="<?php echo $tipo_persona_parametro; ?>"/>
+											<input id="persona_documento_fechaemision"					name="persona_documento_fechaemision"					class="form-control" type="hidden" value="<?php echo $persona_documento_fechaemision_1; ?>" />
+											<input id="persona_datoparticular_tipo_vivienda_parametro"	name="persona_datoparticular_tipo_vivienda_parametro"	class="form-control" type="hidden" value="<?php echo $persona_datoparticular_tipo_vivienda_parametro; ?>" />
+											<input id="persona_datoparticular_telefonofamiliar"			name="persona_datoparticular_telefonofamiliar"			class="form-control" type="hidden" value="<?php echo $persona_datoparticular_telefonofamiliar; ?>" />
+											<input id="persona_datolaboral_profesion_codigo"			name="persona_datolaboral_profesion_codigo"				class="form-control" type="hidden" value="<?php echo $persona_datolaboral_profesion_codigo; ?>" />
+											<input id="persona_datolaboral_actividad_codigo"			name="persona_datolaboral_actividad_codigo"				class="form-control" type="hidden" value="<?php echo $persona_datolaboral_actividad_codigo; ?>" />
+											<input id="persona_datolaboral_area_codigo"					name="persona_datolaboral_area_codigo"					class="form-control" type="hidden" value="<?php echo $persona_datolaboral_area_codigo; ?>" />
+											<input id="persona_datolaboral_barrio_nombre"				name="persona_datolaboral_barrio_nombre"				class="form-control" type="hidden" value="<?php echo $persona_datolaboral_barrio_nombre; ?>" />
+											<input id="persona_datolaboral_interno"						name="persona_datolaboral_interno"						class="form-control" type="hidden" value="<?php echo $persona_datolaboral_interno; ?>" />
+											<input id="persona_datolaboral_email"						name="persona_datolaboral_email"						class="form-control" type="hidden" value="<?php echo $persona_datolaboral_email; ?>" />
+											<input id="persona_datolaboral_fechaingreso"				name="persona_datolaboral_fechaingreso"					class="form-control" type="hidden" value="<?php echo $persona_datolaboral_fechaingreso; ?>" />
+											<input id="persona_datolaboral_hora_desde"					name="persona_datolaboral_hora_desde"					class="form-control" type="hidden" value="<?php echo $persona_datolaboral_hora_desde; ?>" />
+											<input id="persona_datolaboral_hora_hasta"					name="persona_datolaboral_hora_hasta"					class="form-control" type="hidden" value="<?php echo $persona_datolaboral_hora_hasta; ?>" />
+											<input id="persona_datolaboral_dialunes"					name="persona_datolaboral_dialunes"						class="form-control" type="hidden" value="<?php echo $persona_datolaboral_dialunes; ?>" />
+											<input id="persona_datolaboral_diamartes"					name="persona_datolaboral_diamartes"					class="form-control" type="hidden" value="<?php echo $persona_datolaboral_diamartes; ?>" />
+											<input id="persona_datolaboral_diamiercoles"				name="persona_datolaboral_diamiercoles"					class="form-control" type="hidden" value="<?php echo $persona_datolaboral_diamiercoles; ?>" />
+											<input id="persona_datolaboral_diajueves"					name="persona_datolaboral_diajueves"					class="form-control" type="hidden" value="<?php echo $persona_datolaboral_diajueves; ?>" />
+											<input id="persona_datolaboral_diaviernes"					name="persona_datolaboral_diaviernes"					class="form-control" type="hidden" value="<?php echo $persona_datolaboral_diaviernes; ?>" />
+											<input id="persona_datolaboral_diasabado"					name="persona_datolaboral_diasabado"					class="form-control" type="hidden" value="<?php echo $persona_datolaboral_diasabado; ?>" />
+											<input id="persona_datolaboral_diadomingo"					name="persona_datolaboral_diadomingo"					class="form-control" type="hidden" value="<?php echo $persona_datolaboral_diadomingo; ?>" />
+											<input id="persona_datoreferencia_contacto1_nombre"			name="persona_datoreferencia_contacto1_nombre"			class="form-control" type="hidden" value="<?php echo $persona_datoreferencia_contacto1_nombre; ?>" />
+											<input id="persona_datoreferencia_contacto1_parentesco"		name="persona_datoreferencia_contacto1_parentesco"		class="form-control" type="hidden" value="<?php echo $persona_datoreferencia_contacto1_parentesco; ?>" />
+											<input id="persona_datoreferencia_contacto1_telefono"		name="persona_datoreferencia_contacto1_telefono"		class="form-control" type="hidden" value="<?php echo $persona_datoreferencia_contacto1_telefono; ?>" />
+											<input id="persona_datoreferencia_contacto2_nombre"			name="persona_datoreferencia_contacto2_nombre"			class="form-control" type="hidden" value="<?php echo $persona_datoreferencia_contacto2_nombre; ?>" />
+											<input id="persona_datoreferencia_contacto2_parentesco"		name="persona_datoreferencia_contacto2_parentesco"		class="form-control" type="hidden" value="<?php echo $persona_datoreferencia_contacto2_parentesco; ?>" />
+											<input id="persona_datoreferencia_contacto2_telefono"		name="persona_datoreferencia_contacto2_telefono"		class="form-control" type="hidden" value="<?php echo $persona_datoreferencia_contacto2_telefono; ?>" />
+											<input id="persona_datoreferencia_contacto3_nombre"			name="persona_datoreferencia_contacto3_nombre"			class="form-control" type="hidden" value="<?php echo $persona_datoreferencia_contacto3_nombre; ?>" />
+											<input id="persona_datoreferencia_contacto3_parentesco"		name="persona_datoreferencia_contacto3_parentesco"		class="form-control" type="hidden" value="<?php echo $persona_datoreferencia_contacto3_parentesco; ?>" />
+											<input id="persona_datoreferencia_contacto3_telefono"		name="persona_datoreferencia_contacto3_telefono"		class="form-control" type="hidden" value="<?php echo $persona_datoreferencia_contacto3_telefono; ?>" />
 										</div>
 
 										<div class="box-body">
@@ -282,11 +311,35 @@
 														<input type="text" id="persona_documento_numero" name="persona_documento_numero" value="<?php echo $persona_documento_numero; ?>" onblur="validarDocumento(); this.reportValidity();" class="form-control required" required />
 													</div>
 												</div>
+<!--
+												<div class="col-md-3" style="display:none;">
+													<div class="form-group">
+														<label class="form-label">Tipo</label>
+														<select id="tipo_persona_parametro" name="tipo_persona_parametro" onblur="this.reportValidity()" class="form-select select2">
+															<option selected disabled>--- Seleccionar ---</option>
+															<optgroup label="Seleccionar"></optgroup>
+														</select> 
+													</div>
+												</div>
+
+												<div class="col-md-3" style="display:none;">
+													<div class="form-group">
+														<label class="form-label">Fecha Emisi&oacute;n C.I.</label>
+														<input type="date" id="persona_documento_fechaemision" name="persona_documento_fechaemision" value="<?php //echo $persona_documento_fechaemision_1; ?>" min="<?php //echo $persona_documento_fechaemision_min; ?>" max="<?php //echo $persona_documento_fechaemision_max; ?>" onblur="this.reportValidity()" class="form-control" />
+													</div>
+												</div>
+-->
+												<div class="col-md-3">
+													<div class="form-group">
+														<label class="form-label">Fecha Nacimiento <span class="text-danger">*</span></label>
+														<input type="date" id="persona_fecha_nacimiento" name="persona_fecha_nacimiento" value="<?php echo $persona_fecha_nacimiento_1; ?>" min="<?php echo $persona_fecha_nacimiento_min; ?>" max="<?php echo $persona_fecha_nacimiento_max; ?>" onblur="this.reportValidity()" class="form-control required" required />
+													</div>
+												</div>
 
 												<div class="col-md-3">
 													<div class="form-group">
-														<label class="form-label">Tipo <span class="text-danger">*</span></label>
-														<select id="tipo_persona_parametro" name="tipo_persona_parametro" onblur="this.reportValidity()" class="form-select select2 required" required>
+														<label class="form-label">Sexo <span class="text-danger">*</span></label>
+														<select id="tipo_sexo_parametro" name="tipo_sexo_parametro" onblur="this.reportValidity()" class="form-select select2 required" required>
 															<option selected disabled>--- Seleccionar ---</option>
 															<optgroup label="Seleccionar"></optgroup>
 														</select> 
@@ -295,15 +348,11 @@
 
 												<div class="col-md-3">
 													<div class="form-group">
-														<label class="form-label">Fecha Emisi&oacute;n C.I. <span class="text-danger">*</span></label>
-														<input type="date" id="persona_documento_fechaemision" name="persona_documento_fechaemision" value="<?php echo $persona_documento_fechaemision_1; ?>" min="<?php echo $persona_documento_fechaemision_min; ?>" max="<?php echo $persona_documento_fechaemision_max; ?>" onblur="this.reportValidity()" class="form-control required" required />
-													</div>
-												</div>
-
-												<div class="col-md-3">
-													<div class="form-group">
-														<label class="form-label">Fecha Nacimiento <span class="text-danger">*</span></label>
-														<input type="date" id="persona_fecha_nacimiento" name="persona_fecha_nacimiento" value="<?php echo $persona_fecha_nacimiento_1; ?>" min="<?php echo $persona_fecha_nacimiento_min; ?>" max="<?php echo $persona_fecha_nacimiento_max; ?>" onblur="this.reportValidity()" class="form-control required" required />
+														<label class="form-label">Estado Civil <span class="text-danger">*</span></label>
+														<select id="tipo_estadocivil_parametro" name="tipo_estadocivil_parametro" onblur="this.reportValidity()" class="form-select select2 required" required>
+															<option selected disabled>--- Seleccionar ---</option>
+															<optgroup label="Seleccionar"></optgroup>
+														</select> 
 													</div>
 												</div>
 
@@ -339,26 +388,6 @@
 													<div class="form-group">
 														<label class="form-label">Apellido Casada</label>
 														<input type="text" id="persona_apellido_casada" name="persona_apellido_casada" value="<?php echo $persona_apellido_casada; ?>" class="form-control" />
-													</div>
-												</div>
-
-												<div class="col-md-3">
-													<div class="form-group">
-														<label class="form-label">Sexo <span class="text-danger">*</span></label>
-														<select id="tipo_sexo_parametro" name="tipo_sexo_parametro" onblur="this.reportValidity()" class="form-select select2 required" required>
-															<option selected disabled>--- Seleccionar ---</option>
-															<optgroup label="Seleccionar"></optgroup>
-														</select> 
-													</div>
-												</div>
-
-												<div class="col-md-3">
-													<div class="form-group">
-														<label class="form-label">Estado Civil <span class="text-danger">*</span></label>
-														<select id="tipo_estadocivil_parametro" name="tipo_estadocivil_parametro" onblur="this.reportValidity()" class="form-select select2 required" required>
-															<option selected disabled>--- Seleccionar ---</option>
-															<optgroup label="Seleccionar"></optgroup>
-														</select> 
 													</div>
 												</div>
 
@@ -409,14 +438,14 @@
 														</select>
 													</div>
 												</div>
-
+<!--
 												<div class="col-md-12">
 													<div class="form-group">
 														<label class="form-label">Barrio </label>
-														<input type="text" id="persona_datoparticular_barrio_nombre" name="persona_datoparticular_barrio_nombre" value="<?php echo $persona_datoparticular_barrio_nombre; ?>" class="form-control" />
+														<input type="text" id="persona_datoparticular_barrio_nombre" name="persona_datoparticular_barrio_nombre" value="<?php //echo $persona_datoparticular_barrio_nombre; ?>" class="form-control" />
 													</div>
 												</div>
-
+-->
 												<div class="col-md-4">
 													<div class="form-group">
 														<label class="form-label">Calle Principal <span class="text-danger">*</span></label>
@@ -430,7 +459,7 @@
 														<input type="text" id="persona_datoparticular_esquina" name="persona_datoparticular_esquina" value="<?php echo $persona_datoparticular_esquina; ?>" onblur="this.reportValidity()" class="form-control required" required />
 													</div>
 												</div>
-
+<!--
 												<div class="col-md-2">
 													<div class="form-group">
 														<label class="form-label">Vivienda <span class="text-danger">*</span></label>
@@ -440,8 +469,8 @@
 														</select> 
 													</div>
 												</div>
-
-												<div class="col-md-2">
+-->
+												<div class="col-md-4">
 													<div class="form-group">
 														<label class="form-label">Nro. Casa </label>
 														<input type="text" id="persona_datoparticular_casanumero" name="persona_datoparticular_casanumero" value="<?php echo $persona_datoparticular_casanumero; ?>" class="form-control" />
@@ -461,14 +490,14 @@
 														<input type="text" id="persona_datoparticular_telefono2" name="persona_datoparticular_telefono2" value="<?php echo $persona_datoparticular_telefono2; ?>" minlength="13" maxlength="13" data-inputmask="'mask':[ '(999) 999-999']" data-mask class="form-control" />
 													</div>
 												</div>
-
+<!--
 												<div class="col-md-4">
 													<div class="form-group">
 														<label class="form-label">Telf. Familiar </label>
-														<input type="text" id="persona_datoparticular_telefonofamiliar" name="persona_datoparticular_telefonofamiliar" value="<?php echo $persona_datoparticular_telefonofamiliar; ?>" minlength="13" maxlength="13" data-inputmask="'mask':[ '(999) 999-999']" data-mask class="form-control" />
+														<input type="text" id="persona_datoparticular_telefonofamiliar" name="persona_datoparticular_telefonofamiliar" value="<?php //echo $persona_datoparticular_telefonofamiliar; ?>" minlength="13" maxlength="13" data-inputmask="'mask':[ '(999) 999-999']" data-mask class="form-control" />
 													</div>
 												</div>
-
+-->
 												<div class="col-md-4">
 													<div class="form-group">
 														<label class="form-label">Celular Principal <span class="text-danger">*</span></label>
@@ -503,7 +532,7 @@
 											<hr class="my-15">
 
 											<div class="row">
-												<div class="col-md-3">
+												<div class="col-md-4">
 													<div class="form-group">
 														<label class="form-label">Empresa </label>
 														<select id="persona_datolaboral_empresa_codigo" name="persona_datolaboral_empresa_codigo" class="form-select select2">
@@ -511,7 +540,7 @@
 													</div>
 												</div>
 
-												<div class="col-md-3">
+												<div class="col-md-4">
 													<div class="form-group">
 														<label class="form-label">Cargo <span class="text-danger">*</span></label>
 														<select id="persona_datolaboral_cargo_codigo" name="persona_datolaboral_cargo_codigo" onblur="this.reportValidity()" class="form-select select2 required" required>
@@ -520,7 +549,7 @@
 														</select>
 													</div>
 												</div>
-
+<!--
 												<div class="col-md-3">
 													<div class="form-group">
 														<label class="form-label">Profesi&oacute;n</label>
@@ -530,14 +559,14 @@
 														</select>
 													</div>
 												</div>
-
-												<div class="col-md-3">
+-->
+												<div class="col-md-4">
 													<div class="form-group">
 														<label class="form-label">Salario Mensual <span class="text-danger">*</span></label>
 														<input type="number" id="persona_datolaboral_salario" name="persona_datolaboral_salario" value="<?php echo $persona_datolaboral_salario; ?>" onblur="this.reportValidity()" class="form-control required" required />
 													</div>
 												</div>
-
+<!--
 												<div class="col-md-3">
 													<div class="form-group">
 														<label class="form-label">Actividad </label>
@@ -547,7 +576,8 @@
 														</select>
 													</div>
 												</div>
-
+-->
+<!--
 												<div class="col-md-3">
 													<div class="form-group">
 														<label class="form-label">&Aacute;rea </label>
@@ -557,13 +587,13 @@
 														</select>
 													</div>
 												</div>
-
+-->
 												<div class="col-md-12">
 													<div class="form-group">
 													</div>
 												</div>
 
-												<div class="col-md-3">
+												<div class="col-md-4">
 													<div class="form-group">
 														<label class="form-label">Departamento <span class="text-danger">*</span></label>
 														<select id="persona_datolaboral_localidad_departamento_codigo" name="persona_datolaboral_localidad_departamento_codigo" onchange="selectLocalidadCiudad('persona_datolaboral_localidad_ciudad_codigo', 'persona_datolaboral_localidad_departamento_codigo', 0, 1, 0);" onblur="this.reportValidity()" class="form-select select2 required" required>
@@ -573,7 +603,7 @@
 													</div>
 												</div>
 
-												<div class="col-md-3">
+												<div class="col-md-4">
 													<div class="form-group">
 														<label class="form-label">Ciudad <span class="text-danger">*</span></label>
 														<select id="persona_datolaboral_localidad_ciudad_codigo" name="persona_datolaboral_localidad_ciudad_codigo" onchange="selectLocalidadBarrio('persona_datolaboral_localidad_barrio_codigo', 'persona_datolaboral_localidad_departamento_codigo', 'persona_datolaboral_localidad_ciudad_codigo', 0, 1, 0);" onblur="this.reportValidity()" class="form-select select2 required" required>
@@ -583,7 +613,7 @@
 													</div>
 												</div>
 
-												<div class="col-md-3">
+												<div class="col-md-4">
 													<div class="form-group">
 														<label class="form-label">Barrio </label>
 														<select id="persona_datolaboral_localidad_barrio_codigo" name="persona_datolaboral_localidad_barrio_codigo" class="form-select select2">
@@ -592,29 +622,29 @@
 														</select>
 													</div>
 												</div>
-
+<!--
 												<div class="col-md-3">
 													<div class="form-group">
 														<label class="form-label">Barrio </label>
-														<input type="text" id="persona_datolaboral_barrio_nombre" name="persona_datolaboral_barrio_nombre" value="<?php echo $persona_datolaboral_barrio_nombre; ?>" class="form-control" />
+														<input type="text" id="persona_datolaboral_barrio_nombre" name="persona_datolaboral_barrio_nombre" value="<?php //echo $persona_datolaboral_barrio_nombre; ?>" class="form-control" />
 													</div>
 												</div>
-
-												<div class="col-md-3">
+-->
+												<div class="col-md-4">
 													<div class="form-group">
 														<label class="form-label">Calle Principal <span class="text-danger">*</span></label>
 														<input type="text" id="persona_datolaboral_principal" name="persona_datolaboral_principal" value="<?php echo $persona_datolaboral_principal; ?>" onblur="this.reportValidity()" class="form-control required" required />
 													</div>
 												</div>
 
-												<div class="col-md-3">
+												<div class="col-md-4">
 													<div class="form-group">
 														<label class="form-label">Calle Esquina <span class="text-danger">*</span></label>
 														<input type="text" id="persona_datolaboral_esquina" name="persona_datolaboral_esquina" value="<?php echo $persona_datolaboral_esquina; ?>" onblur="this.reportValidity()" class="form-control required" required />
 													</div>
 												</div>
 
-												<div class="col-md-3">
+												<div class="col-md-4">
 													<div class="form-group">
 														<label class="form-label">Nro. Casa </label>
 														<input type="text" id="persona_datolaboral_casanumero" name="persona_datolaboral_casanumero" value="<?php echo $persona_datolaboral_casanumero; ?>" class="form-control" />
@@ -626,87 +656,92 @@
 													</div>
 												</div>
 
-												<div class="col-md-3">
+												<div class="col-md-4">
 													<div class="form-group">
 														<label class="form-label">Telf. Principal <span class="text-danger">*</span></label>
 														<input type="text" id="persona_datolaboral_telefono1" name="persona_datolaboral_telefono1" value="<?php echo $persona_datolaboral_telefono1; ?>" minlength="13" maxlength="13" data-inputmask="'mask':[ '(999) 999-999']" data-mask onblur="this.reportValidity()" class="form-control required" required />
 													</div>
 												</div>
 
-												<div class="col-md-3">
+												<div class="col-md-4">
 													<div class="form-group">
 														<label class="form-label">Telf. Opcional 1 </label>
 														<input type="text" id="persona_datolaboral_telefono2" name="persona_datolaboral_telefono2" value="<?php echo $persona_datolaboral_telefono2; ?>" minlength="13" maxlength="13" data-inputmask="'mask':[ '(999) 999-999']" data-mask class="form-control" />
 													</div>
 												</div>
 
-												<div class="col-md-3">
+												<div class="col-md-4">
 													<div class="form-group">
 														<label class="form-label">Telf. Opcional 2 </label>
 														<input type="text" id="persona_datolaboral_telefono3" name="persona_datolaboral_telefono3" value="<?php echo $persona_datolaboral_telefono3; ?>" minlength="13" maxlength="13" data-inputmask="'mask':[ '(999) 999-999']" data-mask class="form-control" />
 													</div>
 												</div>
-
+<!--
 												<div class="col-md-3">
 													<div class="form-group">
 														<label class="form-label">Interno </label>
-														<input type="number" id="persona_datolaboral_interno" name="persona_datolaboral_interno" value="<?php echo $persona_datolaboral_interno; ?>" class="form-control" />
+														<input type="number" id="persona_datolaboral_interno" name="persona_datolaboral_interno" value="<?php //echo $persona_datolaboral_interno; ?>" class="form-control" />
 													</div>
 												</div>
-
+-->
+<!--
 												<div class="col-md-3">
 													<div class="form-group">
 														<label class="form-label">Correo Electr&oacute;nico </label>
-														<input type="email" id="persona_datolaboral_email" name="persona_datolaboral_email" value="<?php echo $persona_datolaboral_email; ?>" onblur="this.reportValidity()" class="form-control" />
+														<input type="email" id="persona_datolaboral_email" name="persona_datolaboral_email" value="<?php //echo $persona_datolaboral_email; ?>" onblur="this.reportValidity()" class="form-control" />
 													</div>
 												</div>
-
+-->
+<!--
 												<div class="col-md-3">
 													<div class="form-group">
 														<label class="form-label">Fecha Ingreso </label>
-														<input type="date" id="persona_datolaboral_fechaingreso" name="persona_datolaboral_fechaingreso" value="<?php echo $persona_datolaboral_fechaingreso; ?>" class="form-control" />
+														<input type="date" id="persona_datolaboral_fechaingreso" name="persona_datolaboral_fechaingreso" value="<?php //echo $persona_datolaboral_fechaingreso; ?>" class="form-control" />
 													</div>
 												</div>
-
+-->
+<!--
 												<div class="col-md-3">
 													<div class="form-group">
 														<label class="form-label">Horario Laboral Desde </label>
-														<input type="time" id="persona_datolaboral_hora_desde" name="persona_datolaboral_hora_desde" value="<?php echo $persona_datolaboral_hora_desde; ?>" class="form-control" />
+														<input type="time" id="persona_datolaboral_hora_desde" name="persona_datolaboral_hora_desde" value="<?php //echo $persona_datolaboral_hora_desde; ?>" class="form-control" />
 													</div>
 												</div>
-
+-->
+<!--
 												<div class="col-md-3">
 													<div class="form-group">
 														<label class="form-label">Horario Laboral Hasta </label>
-														<input type="time" id="persona_datolaboral_hora_hasta" name="persona_datolaboral_hora_hasta" value="<?php echo $persona_datolaboral_hora_hasta; ?>" class="form-control" />
+														<input type="time" id="persona_datolaboral_hora_hasta" name="persona_datolaboral_hora_hasta" value="<?php //echo $persona_datolaboral_hora_hasta; ?>" class="form-control" />
 													</div>
 												</div>
-
+-->
+<!--
 												<label class="form-label">D&iacute;as Laborales </label>
 												<div class="demo-checkbox">
-													<input type="checkbox" id="persona_datolaboral_dialunes" name="persona_datolaboral_dialunes" value="Lunes" <?php echo $persona_datolaboral_dialunes; ?> />
+													<input type="checkbox" id="persona_datolaboral_dialunes" name="persona_datolaboral_dialunes" value="Lunes" <?php //echo $persona_datolaboral_dialunes; ?> />
 													<label for="persona_datolaboral_dialunes">Lunes</label>
 
-													<input type="checkbox" id="persona_datolaboral_diamartes" name="persona_datolaboral_diamartes" value="Martes" <?php echo $persona_datolaboral_diamartes; ?> />
+													<input type="checkbox" id="persona_datolaboral_diamartes" name="persona_datolaboral_diamartes" value="Martes" <?php //echo $persona_datolaboral_diamartes; ?> />
 													<label for="persona_datolaboral_diamartes">Martes</label>
 
-													<input type="checkbox" id="persona_datolaboral_diamiercoles" name="persona_datolaboral_diamiercoles" value="Miercoles" <?php echo $persona_datolaboral_diamiercoles; ?> />
+													<input type="checkbox" id="persona_datolaboral_diamiercoles" name="persona_datolaboral_diamiercoles" value="Miercoles" <?php //echo $persona_datolaboral_diamiercoles; ?> />
 													<label for="persona_datolaboral_diamiercoles">Mi&eacute;rcoles</label>
 
-													<input type="checkbox" id="persona_datolaboral_diajueves" name="persona_datolaboral_diajueves" value="Jueves" <?php echo $persona_datolaboral_diajueves; ?> />
+													<input type="checkbox" id="persona_datolaboral_diajueves" name="persona_datolaboral_diajueves" value="Jueves" <?php //echo $persona_datolaboral_diajueves; ?> />
 													<label for="persona_datolaboral_diajueves">Jueves</label>
 
-													<input type="checkbox" id="persona_datolaboral_diaviernes" name="persona_datolaboral_diaviernes" value="Viernes" <?php echo $persona_datolaboral_diaviernes; ?> />
+													<input type="checkbox" id="persona_datolaboral_diaviernes" name="persona_datolaboral_diaviernes" value="Viernes" <?php //echo $persona_datolaboral_diaviernes; ?> />
 													<label for="persona_datolaboral_diaviernes">Viernes</label>
 
-													<input type="checkbox" id="persona_datolaboral_diasabado" name="persona_datolaboral_diasabado" value="Sabado" <?php echo $persona_datolaboral_diasabado; ?> />
+													<input type="checkbox" id="persona_datolaboral_diasabado" name="persona_datolaboral_diasabado" value="Sabado" <?php //echo $persona_datolaboral_diasabado; ?> />
 													<label for="persona_datolaboral_diasabado">S&aacute;bado</label>
 
-													<input type="checkbox" id="persona_datolaboral_diadomingo" name="persona_datolaboral_diadomingo" value="Domingo" <?php echo $persona_datolaboral_diadomingo; ?> />
+													<input type="checkbox" id="persona_datolaboral_diadomingo" name="persona_datolaboral_diadomingo" value="Domingo" <?php //echo $persona_datolaboral_diadomingo; ?> />
 													<label for="persona_datolaboral_diadomingo">Domingo</label>
 												</div>
-
-												<div class="col-md-3">
+-->
+												<div class="col-md-4">
 													<div class="form-group">
 														<label class="form-label">Forma de Acreditaci&oacute;n <span class="text-danger">*</span></label>
 														<select id="persona_datolaboral_forma_pago_codigo" name="persona_datolaboral_forma_pago_codigo" class="form-select select2 required" required>
@@ -716,7 +751,7 @@
 													</div>
 												</div>
 
-												<div class="col-md-3">
+												<div class="col-md-4">
 													<div class="form-group">
 														<label class="form-label">Entidad de Acreditaci&oacute;n </label>
 														<select id="persona_datolaboral_banco_codigo" name="persona_datolaboral_banco_codigo" class="form-select select2">
@@ -726,14 +761,14 @@
 													</div>
 												</div>
 
-												<div class="col-md-3">
+												<div class="col-md-4">
 													<div class="form-group">
 														<label class="form-label">D&iacute;a de Acreditaci&oacute;n	</label>
 														<input type="number" id="persona_datolaboral_diacobro" name="persona_datolaboral_diacobro" value="<?php echo $persona_datolaboral_diacobro; ?>" min="0" max="31" class="form-control" />
 													</div>
 												</div>
 											</div>
-
+<!--
 											<h4 class="box-title text-primary mb-0 mt-20"><i class="ti-settings me-15"></i> Datos Referencias Personales </h4>
 											
 											<hr class="my-15">
@@ -742,67 +777,67 @@
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="form-label"> Ref. 1 - Nombre y Apellido <span class="text-danger">*</span></label>
-														<input type="text" id="persona_datoreferencia_contacto1_nombre" name="persona_datoreferencia_contacto1_nombre" value="<?php echo $persona_datoreferencia_contacto1_nombre; ?>" onblur="this.reportValidity()" class="form-control required" required />
+														<input type="text" id="persona_datoreferencia_contacto1_nombre" name="persona_datoreferencia_contacto1_nombre" value="<?php //echo $persona_datoreferencia_contacto1_nombre; ?>" onblur="this.reportValidity()" class="form-control required" required />
 													</div>
 												</div>
 
 												<div class="col-md-3">
 													<div class="form-group">
 														<label class="form-label"> Parentesco <span class="text-danger">*</span></label>
-														<input type="text" id="persona_datoreferencia_contacto1_parentesco" name="persona_datoreferencia_contacto1_parentesco" value="<?php echo $persona_datoreferencia_contacto1_parentesco; ?>" onblur="this.reportValidity()" class="form-control required" required />
+														<input type="text" id="persona_datoreferencia_contacto1_parentesco" name="persona_datoreferencia_contacto1_parentesco" value="<?php //echo $persona_datoreferencia_contacto1_parentesco; ?>" onblur="this.reportValidity()" class="form-control required" required />
 													</div>
 												</div>
 
 												<div class="col-md-3">
 													<div class="form-group">
 														<label class="form-label"> Telf. <span class="text-danger">*</span></label>
-														<input type="text" id="persona_datoreferencia_contacto1_telefono" name="persona_datoreferencia_contacto1_telefono" value="<?php echo $persona_datoreferencia_contacto1_telefono; ?>" minlength="14" maxlength="14" data-inputmask="'mask':[ '(9999) 999-999']" data-mask onblur="this.reportValidity()" class="form-control required" required />
+														<input type="text" id="persona_datoreferencia_contacto1_telefono" name="persona_datoreferencia_contacto1_telefono" value="<?php //echo $persona_datoreferencia_contacto1_telefono; ?>" minlength="14" maxlength="14" data-inputmask="'mask':[ '(9999) 999-999']" data-mask onblur="this.reportValidity()" class="form-control required" required />
 													</div>
 												</div>
 
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="form-label"> Ref. 2 - Nombre y Apellido <span class="text-danger">*</span></label>
-														<input type="text" id="persona_datoreferencia_contacto2_nombre" name="persona_datoreferencia_contacto2_nombre" value="<?php echo $persona_datoreferencia_contacto2_nombre; ?>" onblur="this.reportValidity()" class="form-control required" required />
+														<input type="text" id="persona_datoreferencia_contacto2_nombre" name="persona_datoreferencia_contacto2_nombre" value="<?php //echo $persona_datoreferencia_contacto2_nombre; ?>" onblur="this.reportValidity()" class="form-control required" required />
 													</div>
 												</div>
 
 												<div class="col-md-3">
 													<div class="form-group">
 														<label class="form-label"> Parentesco <span class="text-danger">*</span></label>
-														<input type="text" id="persona_datoreferencia_contacto2_parentesco" name="persona_datoreferencia_contacto2_parentesco" value="<?php echo $persona_datoreferencia_contacto2_parentesco; ?>" onblur="this.reportValidity()" class="form-control required" required />
+														<input type="text" id="persona_datoreferencia_contacto2_parentesco" name="persona_datoreferencia_contacto2_parentesco" value="<?php //echo $persona_datoreferencia_contacto2_parentesco; ?>" onblur="this.reportValidity()" class="form-control required" required />
 													</div>
 												</div>
 
 												<div class="col-md-3">
 													<div class="form-group">
 														<label class="form-label"> Telf. <span class="text-danger">*</span></label>
-														<input type="text" id="persona_datoreferencia_contacto2_telefono" name="persona_datoreferencia_contacto2_telefono" value="<?php echo $persona_datoreferencia_contacto2_telefono; ?>" minlength="14" maxlength="14" data-inputmask="'mask':[ '(9999) 999-999']" data-mask onblur="this.reportValidity()" class="form-control required" required />
+														<input type="text" id="persona_datoreferencia_contacto2_telefono" name="persona_datoreferencia_contacto2_telefono" value="<?php //echo $persona_datoreferencia_contacto2_telefono; ?>" minlength="14" maxlength="14" data-inputmask="'mask':[ '(9999) 999-999']" data-mask onblur="this.reportValidity()" class="form-control required" required />
 													</div>
 												</div>
 
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="form-label"> Ref. 3 - Nombre y Apellido </label>
-														<input type="text" id="persona_datoreferencia_contacto3_nombre" name="persona_datoreferencia_contacto3_nombre" value="<?php echo $persona_datoreferencia_contacto3_nombre; ?>" class="form-control" />
+														<input type="text" id="persona_datoreferencia_contacto3_nombre" name="persona_datoreferencia_contacto3_nombre" value="<?php //echo $persona_datoreferencia_contacto3_nombre; ?>" class="form-control" />
 													</div>
 												</div>
 
 												<div class="col-md-3">
 													<div class="form-group">
 														<label class="form-label"> Parentesco </label>
-														<input type="text" id="persona_datoreferencia_contacto3_parentesco" name="persona_datoreferencia_contacto3_parentesco" value="<?php echo $persona_datoreferencia_contacto3_parentesco; ?>" class="form-control"  />
+														<input type="text" id="persona_datoreferencia_contacto3_parentesco" name="persona_datoreferencia_contacto3_parentesco" value="<?php //echo $persona_datoreferencia_contacto3_parentesco; ?>" class="form-control"  />
 													</div>
 												</div>
 
 												<div class="col-md-3">
 													<div class="form-group">
 														<label class="form-label"> Telf. </label>
-														<input type="text" id="persona_datoreferencia_contacto3_telefono" name="persona_datoreferencia_contacto3_telefono" value="<?php echo $persona_datoreferencia_contacto3_telefono; ?>" minlength="14" maxlength="14" data-inputmask="'mask':[ '(9999) 999-999']" data-mask class="form-control" />
+														<input type="text" id="persona_datoreferencia_contacto3_telefono" name="persona_datoreferencia_contacto3_telefono" value="<?php //echo $persona_datoreferencia_contacto3_telefono; ?>" minlength="14" maxlength="14" data-inputmask="'mask':[ '(9999) 999-999']" data-mask class="form-control" />
 													</div>
 												</div>
 											</div>
-
+-->
 											<h4 class="box-title text-primary mb-0 mt-20"><i class="ti-settings me-15"></i> Solicitud de Cr&eacute;dito</h4>
 											
 											<hr class="my-15">
@@ -917,7 +952,7 @@
 		<script src="./../js/operacionsolicitud.js?<?php echo date('Ymd');?>"></script>
 
 		<script>
-			selectDominio('tipo_persona_parametro', 'WSCHEDUOPERSONATIPO', 0, 1, <?php echo $tipo_persona_parametro; ?>);
+			//selectDominio('tipo_persona_parametro', 'WSCHEDUOPERSONATIPO', 0, 1, <?php //echo $tipo_persona_parametro; ?>);
 			selectDominio('tipo_sexo_parametro', 'WSCHEDUOPERSONASEXO', 0, 1, <?php echo $tipo_sexo_parametro; ?>);
 			selectDominio('tipo_estadocivil_parametro', 'WSCHEDUOPERSONAESTADOCIVIL', 0, 1, <?php echo $tipo_estadocivil_parametro; ?>);
 			selectLocalidadPais('localidad_pais_codigo', null, 0, 1, <?php echo $localidad_pais_codigo; ?>);
@@ -927,15 +962,15 @@
 			selectLocalidadDepto('persona_datoparticular_localidad_departamento_codigo', null, 0, 1, <?php echo $persona_datoparticular_localidad_departamento_codigo; ?>);
 			selectLocalidadCiudad('persona_datoparticular_localidad_ciudad_codigo', 'persona_datoparticular_localidad_departamento_codigo', 0, 1, <?php echo $persona_datoparticular_localidad_ciudad_codigo; ?>);
 			selectLocalidadBarrio('persona_datoparticular_localidad_barrio_codigo', 'persona_datoparticular_localidad_departamento_codigo', 'persona_datoparticular_localidad_ciudad_codigo', 0, 1, <?php echo $persona_datoparticular_localidad_barrio_codigo; ?>);
-			selectDominio('persona_datoparticular_tipo_vivienda_parametro', 'WSCHEDUOPERSONAVIVIENDA', 0, 1, <?php echo $persona_datoparticular_tipo_vivienda_parametro; ?>);
+			//selectDominio('persona_datoparticular_tipo_vivienda_parametro', 'WSCHEDUOPERSONAVIVIENDA', 0, 1, <?php //echo $persona_datoparticular_tipo_vivienda_parametro; ?>);
 
 			selectLocalidadDepto('persona_datolaboral_localidad_departamento_codigo', null, 0, 1, <?php echo $persona_datolaboral_localidad_departamento_codigo; ?>);
 			selectLocalidadCiudad('persona_datolaboral_localidad_ciudad_codigo', 'persona_datolaboral_localidad_departamento_codigo', 0, 1, <?php echo $persona_datolaboral_localidad_ciudad_codigo; ?>);
 			selectLocalidadBarrio('persona_datolaboral_localidad_barrio_codigo', 'persona_datolaboral_localidad_departamento_codigo', 'persona_datolaboral_localidad_ciudad_codigo', 0, 1, <?php echo $persona_datolaboral_localidad_barrio_codigo; ?>);
 			selectCargo('persona_datolaboral_cargo_codigo', null, 0, 1, <?php echo $persona_datolaboral_cargo_codigo;?>);
-			selectProfesion('persona_datolaboral_profesion_codigo', null, 0, 1, <?php echo $persona_datolaboral_profesion_codigo;?>);
-			selectActividad('persona_datolaboral_actividad_codigo', null, 0, 1, <?php echo $persona_datolaboral_actividad_codigo;?>);
-			selectArea('persona_datolaboral_area_codigo', null, 0, 1, <?php echo $persona_datolaboral_area_codigo;?>);
+			//selectProfesion('persona_datolaboral_profesion_codigo', null, 0, 1, <?php //echo $persona_datolaboral_profesion_codigo;?>);
+			//selectActividad('persona_datolaboral_actividad_codigo', null, 0, 1, <?php //echo $persona_datolaboral_actividad_codigo;?>);
+			//selectArea('persona_datolaboral_area_codigo', null, 0, 1, <?php //echo $persona_datolaboral_area_codigo;?>);
 			selectFormaPago('persona_datolaboral_forma_pago_codigo', null, 0, 1, <?php echo $persona_datolaboral_forma_pago_codigo;?>);
 			selectBancoSalario('persona_datolaboral_banco_codigo', null, 0, 1, <?php echo $persona_datolaboral_banco_codigo;?>);
 

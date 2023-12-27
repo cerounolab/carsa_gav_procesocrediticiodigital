@@ -31,7 +31,7 @@
             'usuario_log_referencia'        => $_SERVER['HTTP_REFERER']
         ));
         
-    $resultJSON = post_curl('usuario/login', $dataJSON);
+    $resultJSON = post_curl02('usuario/login', $dataJSON);
     $resultJSON = json_decode($resultJSON, true);
 
     if ($resultJSON != []) {
@@ -39,7 +39,7 @@
             foreach ($resultJSON['data'] as $value) {
                 $codRol         = intval($value['rolCodigo']);
                 $codEmpresa     = intval($value['empresaCodigo']);
-                $xJSON001       =  get_curl('rolformulario/codigorol/'.$codRol.'/empresa/'.$codEmpresa);
+                $xJSON001       =  get_curl02('rolformulario/codigorol/'.$codRol.'/empresa/'.$codEmpresa);
                 
                 if ($resultJSON != []) {
                     if ($xJSON001['code'] == 200) {
