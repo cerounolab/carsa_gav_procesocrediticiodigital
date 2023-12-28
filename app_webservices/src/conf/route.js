@@ -19,7 +19,7 @@ getUsuarioFlujoRolSupEmpresa, getUsuarioFlujoId, postUsuarioFlujo, putUsuarioFlu
 const { getUsuarioLog} = require('../controllers/USULOGController');
 const { postOperacionSolicitud } = require('../controllers/OPESOLController');
 const { getParametro} = require('../controllers/FGPARAMController');
-const { getPersona, getPersonaCuenta} = require('../controllers/PERFICController');
+const { getPersonaCuenta, getPersonaDatoParticular, getPersonaCuentaDatoLaboral} = require('../controllers/PERFICController');
 
 
 router.group('/v1/', (routerGroup) => {
@@ -123,10 +123,12 @@ router.group('/v1/', (routerGroup) => {
 
   routerGroup.get('/parametros/parametro/codigo/:codigo', getParametro);
 
-  routerGroup.get('/persona/cuenta/:codigo', getPersona);
-  routerGroup.get('/persona/datoparticular/cuenta/:cuenta/codigoactual', getPersonaCuenta);
+  routerGroup.get('/persona/cuenta/:codigo', getPersonaCuenta);
+  routerGroup.get('/persona/datoparticular/cuenta/:cuenta/codigoactual', getPersonaDatoParticular);
+  routerGroup.get('/persona/datolaboral/cuenta/:cuenta/codigoactual', getPersonaCuentaDatoLaboral);
 
 
 }); 
 
 module.exports = router;
+
