@@ -9,7 +9,7 @@
 	$solicCuenta	= (isset($_GET['cuenta']) && intval($_GET['cuenta']) > 0) ? $_GET['cuenta'] : 0;
 	$cuentaJSON		= ($solicCuenta !== 0) ? get_curl02('persona/cuenta/'.$solicCuenta) : [];
 	$datosPartJSON	= ($solicCuenta !== 0) ? get_curl02('persona/datoparticular/cuenta/'.$solicCuenta.'/codigoactual') : [];
-	$datosLabJSON	= ($solicCuenta !== 0) ? get_curl('persona/datolaboral/cuenta/'.$solicCuenta.'/codigoactual') : [];
+	$datosLabJSON	= ($solicCuenta !== 0) ? get_curl02('persona/datolaboral/cuenta/'.$solicCuenta.'/codigoactual') : [];
 
 	$primVencJSON	= get_curl02('parametros/parametro/codigo/4001039');
 	$fecha_actual	= date('Y-m-d');
