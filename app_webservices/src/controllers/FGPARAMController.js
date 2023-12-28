@@ -28,7 +28,7 @@ const getParametro = (apiREQ, apiRES) => {
                 _dataJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
             }
     
-            _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
+            //_dataJSON = camelcaseKeys(_dataJSON, {deep: true});
     
              return apiRES.status(200).json(_dataJSON);
         })();
