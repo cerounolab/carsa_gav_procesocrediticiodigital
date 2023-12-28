@@ -62,6 +62,11 @@
                                 </a>
 
                                 <div class="dropdown-menu">
+                                    <h4 class="dropdown-item my-5"><?php echo $usu_03.' '.$usu_04; ?></h4>
+                                    <p class="dropdown-item my-5"><?php echo $usu_01; ?></p>
+                                    <p class="dropdown-item my-5"><?php echo $usu_07; ?></p>
+                                    <p class="dropdown-item my-5"><?php echo $log_03; ?></p>
+                                
                                     <a class="dropdown-item my-5" href="./../class/session/session_logout.php"> Cerrar sesi&oacute;n </a>
                                 </div>
                             </li>
