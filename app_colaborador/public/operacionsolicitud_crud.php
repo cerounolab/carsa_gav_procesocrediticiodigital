@@ -7,11 +7,11 @@
 	$pageTitleNav	= 'Solicitud de Operación';
 
 	$solicCuenta	= (isset($_GET['cuenta']) && intval($_GET['cuenta']) > 0) ? $_GET['cuenta'] : 0;
-	$cuentaJSON		= ($solicCuenta !== 0) ? get_curl('persona/cuenta/'.$solicCuenta) : [];
-	$datosPartJSON	= ($solicCuenta !== 0) ? get_curl('persona/datoparticular/cuenta/'.$solicCuenta.'/codigoactual') : [];
+	$cuentaJSON		= ($solicCuenta !== 0) ? get_curl02('persona/cuenta/'.$solicCuenta) : [];
+	$datosPartJSON	= ($solicCuenta !== 0) ? get_curl02('persona/datoparticular/cuenta/'.$solicCuenta.'/codigoactual') : [];
 	$datosLabJSON	= ($solicCuenta !== 0) ? get_curl('persona/datolaboral/cuenta/'.$solicCuenta.'/codigoactual') : [];
 
-	$primVencJSON	= get_curl('parametros/parametro/codigo/4001039');
+	$primVencJSON	= get_curl02('parametros/parametro/codigo/4001039');
 	$fecha_actual	= date('Y-m-d');
 	$solicitud_primer_vencimiento_min	= date('Y-m-d', strtotime($fecha_actual.'+30 days'));
 	$solicitud_primer_vencimiento_max	= date('Y-m-d', strtotime($fecha_actual.'+60 days'));
