@@ -62,7 +62,7 @@
 		<link rel="stylesheet" href="./src/css/style.css">
 		<link rel="stylesheet" href="./src/css/skin_color.css">	
 
-		<title>.: CheD&Uacute;O Aliados | C.A.R.S.A. :.</title>
+		<title>.: Proceso Crediticio Digital | C.A.R.S.A. :.</title>
 	</head>
 	
 	<body class="hold-transition theme-primary bg-img" style="background-image: url(./images/wscheduov1/wallpaper.png); background-color: #aacde3;">
@@ -73,7 +73,7 @@
 						<div class="col-lg-5 col-md-5 col-12">
 							<div class="bg-white rounded10 shadow-lg">
 								<div class="content-top-agile p-20 pb-0">
-									<h2 class="text-primary fw-600">Bienvenido a CheD&Uacute;O Aliados</h2>						
+									<h2 class="text-primary fw-600">Bienvenido a Proceso Crediticio Digital</h2>						
 								</div>
 
 								<div class="p-40">
