@@ -7,12 +7,12 @@
 		<link rel="icon" href="./../images/wscheduov1/favicon.png">	
 		
 		<!-- Vendors Style-->
-		<link rel="stylesheet" href="./../src/css/vendors_css.css">
+		<link rel="stylesheet" href="./../src/css/vendors_css.css?<?php echo date('Ymd'); ?>">
 		
 		<!-- Style-->  
-		<link rel="stylesheet" href="./../src/css/style.css">
-		<link rel="stylesheet" href="./../src/css/skin_color.css">
-		<link rel="stylesheet" href="./../src/css/custom.css">
+		<link rel="stylesheet" href="./../src/css/style.css?<?php echo date('Ymd'); ?>">
+		<link rel="stylesheet" href="./../src/css/skin_color.css?<?php echo date('Ymd'); ?>">
+		<link rel="stylesheet" href="./../src/css/custom.css?<?php echo date('Ymd'); ?>">
 
 		<style>
 			@font-face {
@@ -31,6 +31,23 @@
 
 			h1, h2, h3, h4, h5, h6, .light-logo {
 				font-family: 'Museo Sans 500', sans-serif !important;
+			}
+
+			.bg-warning1 {
+				color:#fff5e8;
+				background-color:#fff5e8;
+				border-color:#fff5e8
+			}
+
+			.modal-header .modal-title {
+				color: #FFFFFF;
+			}
+
+			@media (min-width: 576px) {
+				.modal-dialog {
+					max-width: 900px;
+					margin: 1.75rem auto;
+				}
 			}
 		</style>
 
