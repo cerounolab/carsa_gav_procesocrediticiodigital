@@ -4,6 +4,7 @@ const camelcaseKeys = require('camelcase-keys');
 
 const {selectPERFIC} = require('../helpers/sql_select');
 const {jsonBody}    = require('../utils/_json');
+const {errorBody}   = require('../utils/_json');
 
     const getPersonaCuenta = (apiREQ, apiRES) => {
         let _code       = 200;
