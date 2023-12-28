@@ -372,14 +372,14 @@
 
 												<div class="col-md-3">
 													<div class="form-group">
-														<label class="form-label">Apellido Paterno <span class="text-danger">*</span></label>
+														<label class="form-label">Primer Apellido <span class="text-danger">*</span></label>
 														<input type="text" id="persona_apellido_paterno" name="persona_apellido_paterno" value="<?php echo $persona_apellido_paterno; ?>" onblur="this.reportValidity()" class="form-control required" required />
 													</div>
 												</div>
 
 												<div class="col-md-3">
 													<div class="form-group">
-														<label class="form-label">Apellido Materno</label>
+														<label class="form-label">Segundo Apellido</label>
 														<input type="text" id="persona_apellido_materno" name="persona_apellido_materno" value="<?php echo $persona_apellido_materno; ?>" class="form-control" />
 													</div>
 												</div>

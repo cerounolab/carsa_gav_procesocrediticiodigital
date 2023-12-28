@@ -98,7 +98,7 @@
 	$solicitud_plazo										= (isset($_POST['solicitud_plazo'])) ? intval($_POST['solicitud_plazo']) : 0;
 	$solicitud_primer_vencimiento							= (isset($_POST['solicitud_primer_vencimiento'])) ? $_POST['solicitud_primer_vencimiento'] : '';
     $solicitud_cuota_importe								= (isset($_POST['solicitud_cuota_importe'])) ? intval($_POST['solicitud_cuota_importe']) : 0;
-    $solicitud_ejecutivoventa_codigo                        = $usu_04;
+    $solicitud_ejecutivoventa_codigo                        = 10110;
     $solicitud_tipooperacion_codigo                         = 4001012;
 	$solicitud_estadooperacion_codigo                       = 'PV';
     $solicitud_medio_codigo                                 = 362;

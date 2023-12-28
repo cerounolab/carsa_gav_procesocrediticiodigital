@@ -60,4 +60,4 @@
 
 		</script>
 
-        <title>.: CheD&Uacute;O Aliados | C.A.R.S.A. :.</title>
+		<title>.: Proceso Crediticio Digital | C.A.R.S.A. :.</title>
