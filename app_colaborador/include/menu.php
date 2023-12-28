@@ -13,31 +13,6 @@
 				</div>
 
 				<nav class="navbar navbar-static-top">
-                    <div class="app-menu">
-                        <ul class="header-megamenu nav">
-                            <li class="btn-group nav-item">
-				                <a href="#" class="waves-effect waves-light nav-link push-btn btn-primary-light" data-toggle="push-menu" role="button">
-					                <i data-feather="menu"></i>
-			                    </a>
-			                </li>
-
-                            <li class="btn-group d-lg-inline-flex d-none">
-                                <div class="app-menu">
-                                    <div class="search-bx mx-5">
-                                        <form>
-                                            <div class="input-group">
-                                                <input type="search" class="form-control" placeholder="Buscar">
-                                                <div class="input-group-append">
-                                                    <button class="btn" type="submit" id="button-addon3"><i class="icon-Search"><span class="path1"></span><span class="path2"></span></i></button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul> 
-                    </div>
-					
                     <div class="navbar-custom-menu r-side">
                         <ul class="nav navbar-nav">
                             <li class="btn-group d-md-inline-flex d-none">
@@ -79,9 +54,9 @@
                 <!-- sidebar-->
                 <section class="sidebar position-relative"> 
 	  	            <div class="multinav">
-		                <div class="multinav-scroll" style="height: 97%;">	
+		                <div class="multinav-scroll ps" style="height: 100%;">	
 			                <!-- sidebar menu-->
-			                <ul class="sidebar-menu" data-widget="tree">				
+			                <ul class="sidebar-menu tree" data-widget="tree">				
 				                <li>
 				                    <a href="./../public/dashboardv1.php">
 					                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
