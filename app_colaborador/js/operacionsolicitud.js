@@ -104,8 +104,9 @@ function validarDocumento() {
 function viewMotor() {
     const workBuscaMotor    = document.getElementById('workBuscaMotor');
     const personDocumento   = document.getElementById('persona_documento_numero');
-
-    validateMotorDocument();
+    const personCuenta      = document.getElementById('persona_cuenta');
+    
+    validateMotorDocument('btnConsultaMotor');
 
     if (workBuscaMotor.value === 'S') {
         let htmlMODAL =
@@ -128,11 +129,11 @@ function viewMotor() {
         $("#modal-content").empty();
 	    $("#modal-content").append(htmlMODAL);
 
-        consultMotor(personDocumento.value);
+        consultMotor(personDocumento.value, personCuenta.value);
     }
 }
 
-function validateMotorDocument() {
+function validateMotorDocument(parmButton) {
     const workModo          = document.getElementById('workModo');
     const workBuscaMotor    = document.getElementById('workBuscaMotor');
     const personCuenta      = document.getElementById('persona_cuenta');
@@ -142,8 +143,8 @@ function validateMotorDocument() {
     const personNomSeg      = document.getElementById('persona_nombre_segundo');
     const personApePat      = document.getElementById('persona_apellido_paterno');
     const personApeMat      = document.getElementById('persona_apellido_materno');
-    const btnSubmit         = document.getElementById('btnConsultaMotor');
-
+    const btnSubmit         = document.getElementById(parmButton);
+    
     if (personDocumento.value.length > 5) {
         const xJSON = getPersonaDocumento(personDocumento.value);
 
@@ -155,11 +156,11 @@ function validateMotorDocument() {
 
         if (xJSON.length > 0) {
             if (xJSON[0].persona_cliente === 'RECURRENTE') {
-                workBuscaMotor.value                = 'N';
+                //workBuscaMotor.value                = 'N';
                 personCliente.value                 = 'RECURRENTE';
                 personCliente.style.backgroundColor = 'rgb(254, 200, 1)';
                 personCliente.style.borderColor     = 'rgb(254, 200, 1)';
-                btnSubmit.style.display             = 'none';
+                //btnSubmit.style.display             = 'none';
             }
     
             workModo.value          = 'U';
@@ -181,7 +182,7 @@ function validateMotorDocument() {
     }
 }
 
-function consultMotor(personDocument) {
+function consultMotor(personDocument, personCuenta) {
     $(function () {
         "use strict";
         $.ajax({
@@ -201,7 +202,7 @@ function consultMotor(personDocument) {
             data: {},
             success: function (data) {
                 if (data.code == 200) {
-                    
+                    window.location.replace('../public/operacionsolicitud_crud.php?cuenta='+ personCuenta);
                 } else {
                     Swal.fire({
                         icon: 'error',

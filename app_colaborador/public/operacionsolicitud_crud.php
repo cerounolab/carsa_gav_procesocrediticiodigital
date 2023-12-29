@@ -282,6 +282,9 @@
 										</div>
 
 										<div class="box-body">
+<?php
+	if ($solicCuenta === 0) {
+?>
 											<h4 class="box-title text-primary mb-0"><i class="ti-settings me-15"></i> Consulta de Documento </h4>
 											
 											<hr class="my-15">
@@ -290,7 +293,7 @@
 												<div class="col-md-4">
 													<div class="form-group">
 														<label class="form-label">Documento <span class="text-danger">*</span></label>
-														<input type="text" id="persona_documento_numero" name="persona_documento_numero" value="<?php echo $persona_documento_numero; ?>" onblur="validateMotorDocument(); this.reportValidity();" class="form-control required" required />
+														<input type="text" id="persona_documento_numero" name="persona_documento_numero" value="<?php echo $persona_documento_numero; ?>" onblur="validateMotorDocument('btnConsultaMotor'); this.reportValidity();" class="form-control required" required />
 													</div>
 												</div>
 
@@ -338,7 +341,7 @@
 											</div>
 										</div>
 <?php
-	if ($solicCuenta !== 0) {
+	} else {
 ?>
 										<div class="box-body">
 											<h4 class="box-title text-primary mb-0"><i class="ti-settings me-15"></i> Datos Personales </h4>
@@ -368,7 +371,7 @@
 												<div class="col-md-3">
 													<div class="form-group">
 														<label class="form-label">Documento <span class="text-danger">*</span></label>
-														<input type="text" id="persona_documento_numero" name="persona_documento_numero" value="<?php echo $persona_documento_numero; ?>" onblur="validarDocumento(); this.reportValidity();" class="form-control required" readonly required />
+														<input type="text" id="persona_documento_numero" name="persona_documento_numero" value="<?php echo $persona_documento_numero; ?>" onblur="validateMotorDocument('btnSubmit'); this.reportValidity();" class="form-control required" readonly required />
 													</div>
 												</div>
 <!--
@@ -1056,7 +1059,7 @@
 			selectBanco('solicitud_banco_codigo', '', 0, 1, <?php echo $solicitud_banco_codigo; ?>);
 			selectDominio('solicitud_banco_tipo', 'WSCHEDUOSOLICITUDBANCOCUENTA', 0, 1, <?php echo $solicitud_banco_tipo; ?>);
 
-			validarDocumento();
+			validateMotorDocument('btnSubmit');
 			validarTasa();
 
 			$(document).ready(function() {
