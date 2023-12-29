@@ -9,20 +9,20 @@ const {jsonBody}        = require('../utils/_json');
 
 const postOperacionSolicitud  = (apiREQ, apiRES) => {
     let  xDATA      = []; 
-/*
-    $SCID       = 0;
-    $SCAACUEN   = $request->getParsedBody()['persona_cuenta'];
-    $SCGP       = strtoupper(trim($request->getParsedBody()['solicitud_parentesco']));
-    $SCFECHA    = date('d/m/Y');
-    $SCMONTO    = $request->getParsedBody()['solicitud_monto'];
-    $SCCUOTA    = $request->getParsedBody()['solicitud_cuota'];
-    $SCPLAZO    = $request->getParsedBody()['solicitud_plazo'];
-    $SCFEVENC   = date('d/m/Y', strtotime($request->getParsedBody()['solicitud_primer_vencimiento']));
-    $SCEJEVENT  = intval($request->getParsedBody()['solicitud_ejecutivoventa_codigo']);
-    $SCEJEVENOM = $SCEJEVENT;
-    $SCSUPVENT  = $SCEJEVENT;
-    $SCTIPOPE   = intval($request->getParsedBody()['solicitud_tipooperacion_codigo']);
 
+    _SCID       = 0;
+    _SCAACUEN   = (apiREQ.body.persona_cuenta != undefined && apiREQ.body.persona_cuenta != null && apiREQ.body.persona_cuenta != '' && apiREQ.body.persona_cuenta > 0) ? Number.parseInt(apiREQ.body.persona_cuenta) : false;
+    _SCGP       = (apiREQ.body.solicitud_parentesco != undefined && apiREQ.body.solicitud_parentesco != null && apiREQ.body.solicitud_parentesco != '') ? "'"+apiREQ.body.solicitud_parentesco.trim()+"'" : null;
+    //_SCFECHA    = date('d/m/Y');
+    _SCMONTO    = (apiREQ.body.solicitud_monto != undefined && apiREQ.body.solicitud_monto != null && apiREQ.body.solicitud_monto != '' && apiREQ.body.solicitud_monto > 0) ? Number.parseInt(apiREQ.body.solicitud_monto) : false;
+    _SCCUOTA    = (apiREQ.body.solicitud_cuota != undefined && apiREQ.body.solicitud_cuota != null && apiREQ.body.solicitud_cuota != '' && apiREQ.body.solicitud_cuota > 0) ? Number.parseInt(apiREQ.body.solicitud_cuota) : false;
+    _SCPLAZO    = (apiREQ.body.solicitud_plazo != undefined && apiREQ.body.solicitud_plazo != null && apiREQ.body.solicitud_plazo != '' && apiREQ.body.solicitud_plazo > 0) ? Number.parseInt(apiREQ.body.solicitud_plazo) : false;
+    _SCFEVENC   = (apiREQ.body.solicitud_primer_vencimiento == undefined || apiREQ.body.solicitud_primer_vencimiento == null || apiREQ.body.solicitud_primer_vencimiento == '') ? null: new Date(apiREQ.body.solicitud_primer_vencimiento);
+    _SCEJEVENT  = (apiREQ.body.solicitud_ejecutivoventa_codigo != undefined && apiREQ.body.solicitud_ejecutivoventa_codigo != null && apiREQ.body.solicitud_ejecutivoventa_codigo != '' && apiREQ.body.solicitud_ejecutivoventa_codigo > 0) ? Number.parseInt(apiREQ.body.solicitud_ejecutivoventa_codigo) : false;
+    _SCEJEVENOM = _SCEJEVENT;
+    _SCSUPVENT  = _SCEJEVENT;
+    _SCTIPOPE   = (apiREQ.body.solicitud_tipooperacion_codigo != undefined && apiREQ.body.solicitud_tipooperacion_codigo != null && apiREQ.body.solicitud_tipooperacion_codigo != '' && apiREQ.body.solicitud_tipooperacion_codigo > 0) ? Number.parseInt(apiREQ.body.solicitud_tipooperacion_codigo) : false;
+/*
     //DATOS PERSONA
     $SCNOM      = strtoupper(trim($request->getParsedBody()['persona_nombre']));
     $SCAPE      = strtoupper(trim($request->getParsedBody()['persona_apellido']));
