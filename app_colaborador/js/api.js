@@ -1,9 +1,16 @@
-const urlBASE   = localStorage.getItem('urlBASE');
-const autBASE   = localStorage.getItem('autBASE');
+const urlBASE01 = localStorage.getItem('urlBASE01');
+const autBASE01 = localStorage.getItem('autBASE01');
+
+const urlBASE02 = localStorage.getItem('urlBASE02');
+const autBASE02 = localStorage.getItem('autBASE02');
+
+const urlBASE03 = localStorage.getItem('urlBASE03');
+const autBASE03 = localStorage.getItem('autBASE03');
+
 const xHTTP	    = new XMLHttpRequest();
 
 function getJSON(codJSON, codURL) {
-    var urlJSON = urlBASE + '/' + codURL;
+    var urlJSON = urlBASE01 + '/' + codURL;
 
     xHTTP.open('GET', urlJSON, false);
     xHTTP.onreadystatechange = function() {
@@ -14,13 +21,13 @@ function getJSON(codJSON, codURL) {
         }
     };
     xHTTP.setRequestHeader('Accept', 'application/json;charset=UTF-8');
-    xHTTP.setRequestHeader('Authorization', 'Basic ' + autBASE);
+    xHTTP.setRequestHeader('Authorization', 'Basic ' + autBASE01);
     xHTTP.setRequestHeader('Content-type', 'application/json;charset=UTF-8');
     xHTTP.send();
 }
 
 function postJSON(codPAGE, codURL, codPARS, codLOAD) {
-    var urlJSON = urlBASE + '/' + codURL;
+    var urlJSON = urlBASE01 + '/' + codURL;
     xHTTP.open('POST', urlJSON, true);
     xHTTP.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -38,13 +45,13 @@ function postJSON(codPAGE, codURL, codPARS, codLOAD) {
         }
     };
     xHTTP.setRequestHeader('Accept', 'application/json;charset=UTF-8');
-    xHTTP.setRequestHeader('Authorization', 'Basic ' + autBASE);
+    xHTTP.setRequestHeader('Authorization', 'Basic ' + autBASE01);
     xHTTP.setRequestHeader('Content-type', 'application/json;charset=UTF-8');
     xHTTP.send(codPARS);
 }
 
 function putJSON(codPAGE, codURL, codPARS, codLOAD) {
-    var urlJSON = urlBASE + '/' + codURL;
+    var urlJSON = urlBASE01 + '/' + codURL;
 
     xHTTP.open('PUT', urlJSON, true);
     xHTTP.onreadystatechange = function() {
@@ -63,7 +70,7 @@ function putJSON(codPAGE, codURL, codPARS, codLOAD) {
         }
     };
     xHTTP.setRequestHeader('Accept', 'application/json;charset=UTF-8');
-    xHTTP.setRequestHeader('Authorization', 'Basic ' + autBASE);
+    xHTTP.setRequestHeader('Authorization', 'Basic ' + autBASE01);
     xHTTP.setRequestHeader('Content-type', 'application/json;charset=UTF-8');
     xHTTP.send(codPARS);
 }

@@ -25,6 +25,8 @@
         <script src="./../js/api.js?<?php echo date('Ymd');?>"></script>
         <script src="./../js/select.js?<?php echo date('Ymd');?>"></script>
 
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
         <script>
                 $(function () {
                         "use strict";
@@ -34,8 +36,6 @@
                         $('[data-mask]').inputmask();
                 });
         </script>
-
-
 
 <?php
     if(isset($_GET['code'])){
