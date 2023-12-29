@@ -47,7 +47,7 @@
 	$localidad_pais_codigo				= 586;
 	$workModoCuenta						= 'C';
 	$persona_cliente_style				= 'background-color:#51ce8a; border-color:#51ce8a; color:#ffffff';
-	$form01_submit						= 'Guardar';
+	$form01_submit						= 'Consultar';
 	$form01_action						= '../class/crud/operacionsolicitud.php';
 
 	if ($solicCuenta !== 0 && $cuentaJSON['code'] === 200) {
@@ -249,6 +249,7 @@
 											<input id="workAction"										name="workAction"										class="form-control" type="hidden" value="1" />
 											<input id="workTasa"										name="workTasa"											class="form-control" type="hidden" value="6"/>
 											<input id="workPlazo"										name="workPlazo"										class="form-control" type="hidden" value="6"/>
+											<input id="workBuscaMotor"									name="workBuscaMotor"									class="form-control" type="hidden" value="N" />
 											<input id="tipo_persona_parametro"							name="tipo_persona_parametro"							class="form-control" type="hidden" value="<?php echo $tipo_persona_parametro; ?>"/>
 											<input id="persona_documento_fechaemision"					name="persona_documento_fechaemision"					class="form-control" type="hidden" value="<?php echo $persona_documento_fechaemision_1; ?>" />
 											<input id="persona_datoparticular_tipo_vivienda_parametro"	name="persona_datoparticular_tipo_vivienda_parametro"	class="form-control" type="hidden" value="<?php echo $persona_datoparticular_tipo_vivienda_parametro; ?>" />
@@ -281,10 +282,69 @@
 										</div>
 
 										<div class="box-body">
-											<h4 class="box-title text-primary mb-0"><i class="ti-settings me-15"></i> Persona </h4>
+											<h4 class="box-title text-primary mb-0"><i class="ti-settings me-15"></i> Consulta de Documento </h4>
 											
 											<hr class="my-15">
-											
+
+											<div class="row">
+												<div class="col-md-4">
+													<div class="form-group">
+														<label class="form-label">Documento <span class="text-danger">*</span></label>
+														<input type="text" id="persona_documento_numero" name="persona_documento_numero" value="<?php echo $persona_documento_numero; ?>" onblur="validateMotorDocument(); this.reportValidity();" class="form-control required" required />
+													</div>
+												</div>
+
+												<div class="col-md-4">
+													<div class="form-group">
+														<label class="form-label">Cliente</label>
+														<input type="text" id="persona_cliente" name="persona_cliente" value="<?php echo $persona_cliente; ?>" class="form-control" style="<?php echo $persona_cliente_style; ?>" readonly />
+													</div>
+												</div>
+
+												<div class="col-md-4">
+													<div class="form-group">
+														<label class="form-label">N&uacute;mero de Cuenta</label>
+														<input type="text" id="persona_cuenta" name="persona_cuenta" value="<?php echo $persona_cuenta; ?>" class="form-control" readonly />
+													</div>
+												</div>
+
+												<div class="col-md-3">
+													<div class="form-group">
+														<label class="form-label">Primer Nombre <span class="text-danger">*</span></label>
+														<input type="text" id="persona_nombre_primer" name="persona_nombre_primer" value="<?php echo $persona_nombre_primer; ?>" class="form-control" readonly />
+													</div>
+												</div>
+
+												<div class="col-md-3">
+													<div class="form-group">
+														<label class="form-label">Segundo Nombre</label>
+														<input type="text" id="persona_nombre_segundo" name="persona_nombre_segundo" value="<?php echo $persona_nombre_segundo; ?>" class="form-control" readonly />
+													</div>
+												</div>
+
+												<div class="col-md-3">
+													<div class="form-group">
+														<label class="form-label">Primer Apellido <span class="text-danger">*</span></label>
+														<input type="text" id="persona_apellido_paterno" name="persona_apellido_paterno" value="<?php echo $persona_apellido_paterno; ?>" class="form-control" readonly />
+													</div>
+												</div>
+
+												<div class="col-md-3">
+													<div class="form-group">
+														<label class="form-label">Segundo Apellido</label>
+														<input type="text" id="persona_apellido_materno" name="persona_apellido_materno" value="<?php echo $persona_apellido_materno; ?>" class="form-control" readonly />
+													</div>
+												</div>
+											</div>
+										</div>
+<?php
+	if ($solicCuenta !== 0) {
+?>
+										<div class="box-body">
+											<h4 class="box-title text-primary mb-0"><i class="ti-settings me-15"></i> Datos Personales </h4>
+
+											<hr class="my-15">
+
 											<div class="row">
 												<div class="col-md-3">
 													<div class="form-group">
@@ -308,7 +368,7 @@
 												<div class="col-md-3">
 													<div class="form-group">
 														<label class="form-label">Documento <span class="text-danger">*</span></label>
-														<input type="text" id="persona_documento_numero" name="persona_documento_numero" value="<?php echo $persona_documento_numero; ?>" onblur="validarDocumento(); this.reportValidity();" class="form-control required" required />
+														<input type="text" id="persona_documento_numero" name="persona_documento_numero" value="<?php echo $persona_documento_numero; ?>" onblur="validarDocumento(); this.reportValidity();" class="form-control required" readonly required />
 													</div>
 												</div>
 <!--
@@ -401,9 +461,7 @@
 													</div>
 												</div>
 											</div>
-<?php
-	if ($solicCuenta !== 0) {
-?>
+
 											<h4 class="box-title text-primary mb-0 mt-20"><i class="ti-settings me-15"></i> Datos Particulares</h4>
 											
 											<hr class="my-15">
@@ -911,21 +969,39 @@
 													</div>
 												</div>
 											</div>
+										</div>
 <?php
 	}
 ?>
-										</div>
 
 										<div class="box-footer">
 											<button type="button" id="btnCancel" name="btnCancel" class="btn btn-primary-light me-1"><i class="ti-trash"></i> Cancelar </button>
+<?php
+	if ($solicCuenta === 0) {
+?>
+											<button type="button" id="btnConsultaMotor" name="btnConsultaMotor" onclick="viewMotor();" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="ti-pulse"></i> Consultar Oferta </button>
+<?php
+	} else {
+?>
 											<button type="submit" id="btnSubmit" name="btnSubmit" class="btn btn-primary"><i class="ti-save-alt"></i> <?php echo $form01_submit; ?> </button>
-										</div>  
+<?php
+	}
+?>
+											
+										</div>
 									</form>
 								</div>	
 							</div>
 						</div>
                         <!-- ContentEnd -->
                     </section>
+				</div>
+			</div>
+		</div>
+
+		<div id="modal-dialog" class="modal fade" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-sm modal-dialog-centered">
+				<div class="modal-content" id="modal-content">
 				</div>
 			</div>
 		</div>
@@ -951,14 +1027,15 @@
 
 		<script src="./../js/operacionsolicitud.js?<?php echo date('Ymd');?>"></script>
 
+<?php
+	if ($solicCuenta !== 0) {
+?>
 		<script>
 			//selectDominio('tipo_persona_parametro', 'WSCHEDUOPERSONATIPO', 0, 1, <?php //echo $tipo_persona_parametro; ?>);
 			selectDominio('tipo_sexo_parametro', 'WSCHEDUOPERSONASEXO', 0, 1, <?php echo $tipo_sexo_parametro; ?>);
 			selectDominio('tipo_estadocivil_parametro', 'WSCHEDUOPERSONAESTADOCIVIL', 0, 1, <?php echo $tipo_estadocivil_parametro; ?>);
 			selectLocalidadPais('localidad_pais_codigo', null, 0, 1, <?php echo $localidad_pais_codigo; ?>);
-<?php
-	if ($solicCuenta !== 0) {
-?>
+
 			selectLocalidadDepto('persona_datoparticular_localidad_departamento_codigo', null, 0, 1, <?php echo $persona_datoparticular_localidad_departamento_codigo; ?>);
 			selectLocalidadCiudad('persona_datoparticular_localidad_ciudad_codigo', 'persona_datoparticular_localidad_departamento_codigo', 0, 1, <?php echo $persona_datoparticular_localidad_ciudad_codigo; ?>);
 			selectLocalidadBarrio('persona_datoparticular_localidad_barrio_codigo', 'persona_datoparticular_localidad_departamento_codigo', 'persona_datoparticular_localidad_ciudad_codigo', 0, 1, <?php echo $persona_datoparticular_localidad_barrio_codigo; ?>);
@@ -985,11 +1062,11 @@
 			$(document).ready(function() {
 				$('#persona_datolaboral_empresa_codigo').select2({
 					ajax: {
-						url: xxxURL + '/parametros/empresa/listado',
+						url: xxxURL01 + '/parametros/empresa/listado',
 						delay: 250,
 						type: 'GET',
 						headers: {
-							"Authorization": "Basic " + xxxBASE
+							"Authorization": "Basic " + xxxBASE01
 						},
 						data: function (params) {
 							var query = {
@@ -1081,9 +1158,9 @@
 				});  
 			});
 */
+		</script>
 <?php
 	}
 ?>
-		</script>
 	</body>
 </html>

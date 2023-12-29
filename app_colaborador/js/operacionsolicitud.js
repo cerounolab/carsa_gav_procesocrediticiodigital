@@ -101,6 +101,130 @@ function validarDocumento() {
     selectLocalidadPais('localidad_pais_codigo', null, 0, 1, personTipoNac.value);
 }
 
+function viewMotor() {
+    const workBuscaMotor    = document.getElementById('workBuscaMotor');
+    const personDocumento   = document.getElementById('persona_documento_numero');
+
+    validateMotorDocument();
+
+    if (workBuscaMotor.value === 'S') {
+        let htmlMODAL =
+                    '<div class="modal-content modal-filled btn-primary" style="padding:0px 20px;">'+
+                    '   <div class="modal-dialog modal-dialog-centered">'+
+                    '	    <div class="modal-content">'+
+                    '		    <div class="modal-header">'+
+                    '			    <h4 class="modal-title text-primary">.: Proceso Crediticio Digital :.</h4>'+
+                    '			    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>'+
+                    '           </div>'+
+                    ''+
+                    '           <div class="modal-body">'+
+                    '               <h5>Aguarde un momento por favor, estamos generando una oferta.</h5>'+
+                    '               <iframe width="100%" height="200" src="https://lottie.host/embed/5be6c9fa-efb3-41ef-9ae8-7828edd31ba0/eGgOuSExfg.json"></iframe>'+
+                    '           </div>'+
+                    '       </div'+
+                    '   </div>'+
+                    '</div>';
+
+        $("#modal-content").empty();
+	    $("#modal-content").append(htmlMODAL);
+
+        consultMotor(personDocumento.value);
+    }
+}
+
+function validateMotorDocument() {
+    const workModo          = document.getElementById('workModo');
+    const workBuscaMotor    = document.getElementById('workBuscaMotor');
+    const personCuenta      = document.getElementById('persona_cuenta');
+    const personDocumento   = document.getElementById('persona_documento_numero');
+    const personCliente     = document.getElementById('persona_cliente');
+    const personNomPri      = document.getElementById('persona_nombre_primer');
+    const personNomSeg      = document.getElementById('persona_nombre_segundo');
+    const personApePat      = document.getElementById('persona_apellido_paterno');
+    const personApeMat      = document.getElementById('persona_apellido_materno');
+    const btnSubmit         = document.getElementById('btnConsultaMotor');
+
+    if (personDocumento.value.length > 5) {
+        const xJSON = getPersonaDocumento(personDocumento.value);
+
+        workBuscaMotor.value                = 'S';
+        personCliente.value                 = 'NUEVO';
+        personCliente.style.backgroundColor = 'rgb(81, 206, 138)';
+        personCliente.style.borderColor     = 'rgb(81, 206, 138)';
+        btnSubmit.style.display             = '';
+
+        if (xJSON.length > 0) {
+            if (xJSON[0].persona_cliente === 'RECURRENTE') {
+                workBuscaMotor.value                = 'N';
+                personCliente.value                 = 'RECURRENTE';
+                personCliente.style.backgroundColor = 'rgb(254, 200, 1)';
+                personCliente.style.borderColor     = 'rgb(254, 200, 1)';
+                btnSubmit.style.display             = 'none';
+            }
+    
+            workModo.value          = 'U';
+            personCuenta.value      = xJSON[0].persona_cuenta;
+            personNomPri.value      = xJSON[0].persona_nombre_primer;
+            personNomSeg.value      = xJSON[0].persona_nombre_segundo;
+            personApePat.value      = xJSON[0].persona_apellido_paterno;
+            personApeMat.value      = xJSON[0].persona_apellido_materno;
+
+        } else {
+            workModo.value          = 'C';
+            personCliente.value     = 'NUEVO - SIN FICHA';
+            personCuenta.value      = 0;
+            personNomPri.value      = '';
+            personNomSeg.value      = '';
+            personApePat.value      = '';
+            personApeMat.value      = '';
+        }
+    }
+}
+
+function consultMotor(personDocument) {
+    $(function () {
+        "use strict";
+        $.ajax({
+            url: urlBASE03+'/scarfos/lineaoferta/33/entidad/1/registrar/N/documento/'+personDocument+'/oferta/0',
+            type: 'GET',
+            dataType: 'json',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Basic '+autBASE03);
+            },
+            xhr: function() {
+                var xhr = $.ajaxSettings.xhr();
+                xhr.upload.onprogress = function(e) {
+                    console.log(Math.floor(e.loaded / e.total *100) + '%');
+                };
+                return xhr;
+            },
+            data: {},
+            success: function (data) {
+                if (data.code == 200) {
+                    
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Cliente sin oferta.',
+                        text:'Ahora mismo no contamos con una linea para el cliente.',
+                        showConfirmButton: true,
+                        confirmButtonText: 'Entiendo.'
+                    }).then((result) => {
+                        $(function () {
+                            $("#modal-content").empty();
+                            $('#modal-dialog').modal('toggle');
+                         });
+                    });
+                }
+                
+            },
+            error: function (e) {
+                console.log('error', e);
+            },
+        });
+    });
+}
+
 function validarTasa() {
     const workTasa      = document.getElementById('workPlazo');
     const solicPlazo    = document.getElementById('solicitud_plazo');

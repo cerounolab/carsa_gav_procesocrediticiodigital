@@ -1,31 +1,41 @@
 <?php
     function getKey() {
-        global $api;
-        global $aut;
-        
-        $result = "xxxBASE= '$aut';
-            xxxURL = '$api';
+        global $api01;
+        global $aut01;
 
-            localStorage.removeItem('urlBASE');
-            localStorage.removeItem('autBASE');
-            
-            localStorage.setItem('urlBASE', xxxURL);
-            localStorage.setItem('autBASE', xxxBASE);";
-        return $result;
-    }
-
-    function getKey2() {
         global $api02;
         global $aut02;
-        
-        $result = "xxxBASE= '$aut02';
-            xxxURL = '$api02';
 
-            localStorage.removeItem('urlBASE');
-            localStorage.removeItem('autBASE');
+        global $api03;
+        global $aut03;
+        
+        $result = "
+            xxxBASE01= '$aut01';
+            xxxURL01 = '$api01';
+
+            localStorage.removeItem('urlBASE01');
+            localStorage.removeItem('autBASE01');
             
-            localStorage.setItem('urlBASE', xxxURL);
-            localStorage.setItem('autBASE', xxxBASE);";
+            localStorage.setItem('urlBASE01', xxxURL01);
+            localStorage.setItem('autBASE01', xxxBASE01);
+            
+            xxxBASE02= '$aut02';
+            xxxURL02 = '$api02';
+
+            localStorage.removeItem('urlBASE02');
+            localStorage.removeItem('autBASE02');
+            
+            localStorage.setItem('urlBASE02', xxxURL02);
+            localStorage.setItem('autBASE02', xxxBASE02);
+            
+            xxxBASE03= '$aut03';
+            xxxURL03 = '$api03';
+
+            localStorage.removeItem('urlBASE03');
+            localStorage.removeItem('autBASE03');
+            
+            localStorage.setItem('urlBASE03', xxxURL03);
+            localStorage.setItem('autBASE03', xxxBASE03);";
         return $result;
     }
 
