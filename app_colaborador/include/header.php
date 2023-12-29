@@ -52,8 +52,12 @@
 		</style>
 
         <script>
-			let xxxBASE = '';
-			let xxxURL	= '';
+			let xxxBASE01	= '';
+			let xxxURL01	= '';
+			let xxxBASE02	= '';
+			let xxxURL02	= '';
+			let xxxBASE03	= '';
+			let xxxURL03	= '';
             
 			<?php echo getKey(); ?>
 

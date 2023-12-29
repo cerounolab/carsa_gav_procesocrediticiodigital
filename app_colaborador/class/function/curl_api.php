@@ -4,16 +4,19 @@
     $dotenv         = Dotenv\Dotenv::createImmutable(__DIR__.'./../../');
     $dotenv->load();
 
-    $api  = $_ENV['API_URL01'];
-    $aut  = $_ENV['API_KEY01'];
+    $api01  = $_ENV['API_URL01'];
+    $aut01  = $_ENV['API_KEY01'];
 
     $api02  = $_ENV['API_URL02'];
     $aut02  = $_ENV['API_KEY02'];
+
+    $api03  = $_ENV['API_URL03'];
+    $aut03  = $_ENV['API_KEY03'];
     
     function get_curl($ext){
-        global $api;
-        global $aut;
-        $urlAPI                     = $api.'/'.$ext;
+        global $api01;
+        global $aut01;
+        $urlAPI                     = $api01.'/'.$ext;
         $ch                         = curl_init();
         curl_setopt($ch, CURLOPT_URL, $urlAPI);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -22,7 +25,7 @@
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/json", "Authorization: Basic ".$aut, "Content-Type: application/json"));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/json", "Authorization: Basic ".$aut01, "Content-Type: application/json"));
         curl_setopt($ch, CURLOPT_HEADER, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         $result                     = curl_exec($ch);
@@ -53,9 +56,9 @@
     }
     
     function post_curl($ext, $data){
-        global $api;
-        global $aut;
-        $urlAPI                     = $api.'/'.$ext;
+        global $api01;
+        global $aut01;
+        $urlAPI                     = $api01.'/'.$ext;
         $ch                         = curl_init();
         curl_setopt($ch, CURLOPT_URL, $urlAPI);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -65,7 +68,7 @@
         curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST"); 
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/json", "Authorization: Basic ".$aut, "Content-Type: application/json"));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/json", "Authorization: Basic ".$aut01, "Content-Type: application/json"));
         curl_setopt($ch, CURLOPT_HEADER, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         $result                     = curl_exec($ch);
@@ -95,9 +98,9 @@
     }
 
     function put_curl($ext, $data){
-        global $api;
-        global $aut;
-        $urlAPI                     = $api.'/'.$ext;
+        global $api01;
+        global $aut01;
+        $urlAPI                     = $api01.'/'.$ext;
         $ch                         = curl_init();
         curl_setopt($ch, CURLOPT_URL, $urlAPI);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -107,7 +110,7 @@
         curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT"); 
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/json", "Authorization: Basic ".$aut, "Content-Type: application/json"));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/json", "Authorization: Basic ".$aut01, "Content-Type: application/json"));
         curl_setopt($ch, CURLOPT_HEADER, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         $result                     = curl_exec($ch);
@@ -116,9 +119,9 @@
     }
 
     function delete_curl($ext, $data){
-        global $api;
-        global $aut;
-        $urlAPI                     = $api.'/'.$ext;
+        global $api01;
+        global $aut01;
+        $urlAPI                     = $api01.'/'.$ext;
         $ch                         = curl_init();
         curl_setopt($ch, CURLOPT_URL, $urlAPI);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -128,7 +131,7 @@
         curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE"); 
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/json", "Authorization: Basic ".$aut, "Content-Type: application/json"));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/json", "Authorization: Basic ".$aut01, "Content-Type: application/json"));
         curl_setopt($ch, CURLOPT_HEADER, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         $result                     = curl_exec($ch);
