@@ -7,6 +7,7 @@
 	$pageTitleNav	= 'Solicitud de Operación';
 
 	$solicCuenta	= (isset($_GET['cuenta']) && intval($_GET['cuenta']) > 0) ? $_GET['cuenta'] : 0;
+	$solicOferta	= (isset($_GET['oferta']) && trim($_GET['oferta']) !== '') ? $_GET['oferta'] : 0;
 	$cuentaJSON		= ($solicCuenta !== 0) ? get_curl02('persona/cuenta/'.$solicCuenta) : [];
 	$datosPartJSON	= ($solicCuenta !== 0) ? get_curl02('persona/datoparticular/cuenta/'.$solicCuenta.'/codigoactual') : [];
 	$datosLabJSON	= ($solicCuenta !== 0) ? get_curl02('persona/datolaboral/cuenta/'.$solicCuenta.'/codigoactual') : [];
@@ -902,19 +903,12 @@
 											<h4 class="box-title text-primary mb-0 mt-20"><i class="ti-settings me-15"></i> Solicitud de Cr&eacute;dito</h4>
 											
 											<hr class="my-15">
-
+											
 											<div class="row">
-												<div class="col-md-3">
+												<div class="col-md-12">
 													<div class="form-group">
-														<label class="form-label">Monto Solicitado <span class="text-danger">*</span></label>
-														<input type="text" id="solicitud_monto" name="solicitud_monto" value="<?php echo $solicitud_monto; ?>" onblur="changeTextToInt(this.id); calcpago(); this.reportValidity();" class="form-control required" required />
-													</div>
-												</div>
-
-												<div class="col-md-3">
-													<div class="form-group">
-														<label class="form-label">Plazo <span class="text-danger">*</span></label>
-														<select id="solicitud_plazo" name="solicitud_plazo" onchange="validarTasa(); calcpago();" onblur="this.reportValidity()" class="form-select select2 required" required>
+														<label class="form-label">Oferta Generada (Monto Solicitud | Plazo | Importe Cuota) <span class="text-danger">*</span></label>
+														<select id="solicitud_monto_selected" name="solicitud_monto_selected" class="form-select select2 required" onchange="loadMotorSelectedOferta(this.id, 'solicitud_monto', 'solicitud_plazo', 'solicitud_cuota_importe'); this.reportValidity();" required>
 															<option selected disabled>--- Seleccionar ---</option>
 															<optgroup label="Seleccionar"></optgroup>
 														</select>
@@ -923,8 +917,22 @@
 
 												<div class="col-md-3">
 													<div class="form-group">
+														<label class="form-label">Monto <span class="text-danger">*</span></label>
+														<input type="text" id="solicitud_monto" name="solicitud_monto" class="form-control required" onblur="this.reportValidity()" readonly required />
+													</div>
+												</div>
+
+												<div class="col-md-3">
+													<div class="form-group">
+														<label class="form-label">Plazo <span class="text-danger">*</span></label>
+														<input type="text" id="solicitud_plazo" name="solicitud_plazo" class="form-control required" onblur="this.reportValidity()" readonly required />
+													</div>
+												</div>
+
+												<div class="col-md-3">
+													<div class="form-group">
 														<label class="form-label">Cuota Aproximada <span class="text-danger">*</span></label>
-														<input type="text" id="solicitud_cuota_importe" name="solicitud_cuota_importe" value="<?php echo $solicitud_cuota_importe; ?>" class="form-control required" required readonly />
+														<input type="text" id="solicitud_cuota_importe" name="solicitud_cuota_importe" class="form-control required" readonly required />
 													</div>
 												</div>
 
@@ -1054,10 +1062,12 @@
 			selectFormaPago('persona_datolaboral_forma_pago_codigo', null, 0, 1, <?php echo $persona_datolaboral_forma_pago_codigo;?>);
 			selectBancoSalario('persona_datolaboral_banco_codigo', null, 0, 1, <?php echo $persona_datolaboral_banco_codigo;?>);
 
-			selectDominio('solicitud_plazo', 'WSCHEDUOSOLICITUDCUOTA', 0, 1, <?php echo $solicitud_plazo; ?>);
+			//selectDominio('solicitud_plazo', 'WSCHEDUOSOLICITUDCUOTA', 0, 1, <?php echo $solicitud_plazo; ?>);
 			selectDominio('solicitud_formapago_codigo', 'WSCHEDUOSOLICITUDFORMAPAGO', 0, 1, <?php echo $solicitud_formapago_codigo; ?>);
 			selectBanco('solicitud_banco_codigo', '', 0, 1, <?php echo $solicitud_banco_codigo; ?>);
 			selectDominio('solicitud_banco_tipo', 'WSCHEDUOSOLICITUDBANCOCUENTA', 0, 1, <?php echo $solicitud_banco_tipo; ?>);
+
+			generateMotorOferta('solicitud_monto_selected', '<?php echo $solicOferta; ?>');
 
 			validateMotorDocument('btnSubmit');
 			validarTasa();
