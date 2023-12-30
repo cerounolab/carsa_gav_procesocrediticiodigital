@@ -202,7 +202,27 @@ function consultMotor(personDocument, personCuenta) {
             data: {},
             success: function (data) {
                 if (data.code == 200) {
-                    window.location.replace('../public/operacionsolicitud_crud.php?cuenta='+ personCuenta);
+                    if (data.data.estadoCore == 12) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Cliente sin oferta.',
+                            text:'Ahora mismo no contamos con una linea para el cliente.',
+                            showConfirmButton: true,
+                            confirmButtonText: 'Entiendo.'
+                        }).then((result) => {
+                            $(function () {
+                                $("#modal-content").empty();
+                                $('#modal-dialog').modal('toggle');
+                             });
+                        });
+                    } else {
+                        $(function () {
+                            $("#modal-content").empty();
+                            $('#modal-dialog').modal('toggle');
+                        });
+
+                        window.location.replace('../public/operacionsolicitud_crud.php?cuenta='+ personCuenta + '&oferta=' + data.data.listaOpcionesPrestamo);
+                    }
                 } else {
                     Swal.fire({
                         icon: 'error',
@@ -224,6 +244,41 @@ function consultMotor(personDocument, personCuenta) {
             },
         });
     });
+}
+
+function generateMotorOferta(parm01, parm02) {
+    var selOption   = document.getElementById(parm01);
+    var xJSON       = parm02.split('|');
+
+    while (selOption.length > 0) {
+        selOption.remove(0);
+    }
+    
+    xJSON.forEach(element => {
+        var auxElement  = element.split('_');
+        var auxSelMonto = 'Monto Solicitud Gs. ' + round(auxElement[0]);
+        var auxSelPlazo = 'Plazo ' + auxElement[1];
+        var auxSelCuota = 'Importe Cuota Gs. ' + round(auxElement[2]);
+        var option      = document.createElement('option');
+        option.value    = element;
+        option.text     = auxSelMonto + ' - ' + auxSelPlazo + ' - ' + auxSelCuota;
+
+        selOption.add(option, null);
+    });
+
+    loadMotorSelectedOferta(parm01, 'solicitud_monto', 'solicitud_plazo', 'solicitud_cuota_importe');
+}
+
+function loadMotorSelectedOferta(parm01, parm02, parm03, parm04){
+    const solicSelect   = document.getElementById(parm01);
+    const solicMonto    = document.getElementById(parm02);
+    const solicPlazo    = document.getElementById(parm03);
+    const solicCuota    = document.getElementById(parm04);
+
+    var auxElement  = solicSelect.value.split('_');
+    solicMonto.value = round(auxElement[0]);
+    solicPlazo.value = round(auxElement[1]);
+    solicCuota.value = round(auxElement[2]);
 }
 
 function validarTasa() {
