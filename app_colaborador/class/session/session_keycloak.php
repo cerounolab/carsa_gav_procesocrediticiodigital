@@ -80,7 +80,7 @@
             $_SESSION['log_01'] = trim(strtoupper($val_01));
             $_SESSION['log_02'] = $val_02;
             $_SESSION['log_03'] = $val_03;
-            $_SESSION['log_04'] = 'PROCREDIG';
+            $_SESSION['log_04'] = trim(strtoupper($val_01));
 
             $_SESSION['usuarioUsuario']         = ($resultJSON['data']['0']['usuarioUsuario'] == null) ? '' : trim(strtoupper(strtolower($resultJSON['data']['0']['usuarioUsuario'])));
             $_SESSION['usuarioDocumento']       = ($resultJSON['data']['0']['usuarioDocumento']) == null ? '' : (trim($resultJSON['data']['0']['usuarioDocumento']));
