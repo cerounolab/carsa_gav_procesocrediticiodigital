@@ -989,13 +989,18 @@
 											<button type="button" id="btnCancel" name="btnCancel" class="btn btn-primary-light me-1"><i class="ti-trash"></i> Cancelar </button>
 <?php
 	if ($solicCuenta === 0) {
+		if ($priv_insert === 'S'){
 ?>
 											<button type="button" id="btnConsultaMotor" name="btnConsultaMotor" onclick="viewMotor();" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-dialog"><i class="ti-pulse"></i> Consultar Oferta </button>
 <?php
+		} 
 	} else {
+		if ($priv_insert === 'S'){
+
 ?>
 											<button type="submit" id="btnSubmit" name="btnSubmit" class="btn btn-primary"><i class="ti-save-alt"></i> <?php echo $form01_submit; ?> </button>
 <?php
+		}
 	}
 ?>
 											

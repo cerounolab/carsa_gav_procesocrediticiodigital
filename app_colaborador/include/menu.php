@@ -56,20 +56,61 @@
 	  	            <div class="multinav">
 		                <div class="multinav-scroll ps" style="height: 100%;">	
 			                <!-- sidebar menu-->
-			                <ul class="sidebar-menu tree" data-widget="tree">				
-				                <li>
-				                    <a href="./../public/dashboardv1.php">
-					                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-					                    <span>Dashboard</span>
-				                    </a>
-				                </li>
 
-                                <li>
-				                    <a href="./../public/operacionsolicitud_crud.php">
-                                        <i data-feather="edit"></i><span>Alta de Solicitud</span>
-                                    </a>
-				                </li>
+
+<?php
+    $bandMENU = false;
+    $menuHTML = '';
+
+    $bandSubMenu01 = false;
+    $bandSubMenu02 = false;
+
+    foreach ($seg_01['apps'] as $seg_01Key=>$seg_01Value) {
+        $menuACC = trim(strtolower($seg_01Value['tipoFormularioNombre']));
+        $menuDSP = trim(strtoupper(strtolower($seg_01Value['rolFormularioAcceso'])));
+
+        if(
+            (
+                ($menuACC == 'dashboardv1' && $menuDSP == 'S') || 
+                ($menuACC == 'operacionsolicitud_crud' && $menuDSP == 'S')
+            )
+        ) {
+            $bandMENU   = true;
+        }
+
+        if ($menuACC == 'dashboardv1' && $menuDSP == 'S' && $bandSubMenu01 == false) {
+            $bandSubMenu01 = true;
+            $menuHTML = $menuHTML.'
+                                    <li>
+                                        <a href="./../public/dashboardv1.php">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                                            <span>Dashboard</span>
+                                        </a>
+                                    </li> 
+                                ';
+        }
+
+        if ($menuACC == 'operacionsolicitud_crud' && $menuDSP == 'S' && $bandSubMenu02 == false) {
+            $bandSubMenu02 = true;
+            $menuHTML = $menuHTML.'
+                                    <li>
+                                        <a href="./../public/operacionsolicitud_crud.php">
+                                            <i data-feather="edit"></i><span>Alta de Solicitud</span>
+                                        </a>
+                                    </li>    
+                                ';
+        }
+
+    }
+
+    if ($bandMENU) {
+?>
+			                <ul class="sidebar-menu tree" data-widget="tree">				
+                                <?php echo $menuHTML; ?>
                             </ul>
+<?php 
+    }
+?>
                         </div>
                     </div>
                 </section>
