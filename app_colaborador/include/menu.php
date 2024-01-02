@@ -13,31 +13,6 @@
 				</div>
 
 				<nav class="navbar navbar-static-top">
-                    <div class="app-menu">
-                        <ul class="header-megamenu nav">
-                            <li class="btn-group nav-item">
-				                <a href="#" class="waves-effect waves-light nav-link push-btn btn-primary-light" data-toggle="push-menu" role="button">
-					                <i data-feather="menu"></i>
-			                    </a>
-			                </li>
-
-                            <li class="btn-group d-lg-inline-flex d-none">
-                                <div class="app-menu">
-                                    <div class="search-bx mx-5">
-                                        <form>
-                                            <div class="input-group">
-                                                <input type="search" class="form-control" placeholder="Buscar">
-                                                <div class="input-group-append">
-                                                    <button class="btn" type="submit" id="button-addon3"><i class="icon-Search"><span class="path1"></span><span class="path2"></span></i></button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul> 
-                    </div>
-					
                     <div class="navbar-custom-menu r-side">
                         <ul class="nav navbar-nav">
                             <li class="btn-group d-md-inline-flex d-none">
@@ -62,6 +37,11 @@
                                 </a>
 
                                 <div class="dropdown-menu">
+                                    <h4 class="dropdown-item my-5"><?php echo $usu_03.' '.$usu_04; ?></h4>
+                                    <p class="dropdown-item my-5"><?php echo $usu_01; ?></p>
+                                    <p class="dropdown-item my-5"><?php echo $usu_07; ?></p>
+                                    <p class="dropdown-item my-5"><?php echo $log_03; ?></p>
+                                
                                     <a class="dropdown-item my-5" href="./../class/session/session_logout.php"> Cerrar sesi&oacute;n </a>
                                 </div>
                             </li>
@@ -74,22 +54,63 @@
                 <!-- sidebar-->
                 <section class="sidebar position-relative"> 
 	  	            <div class="multinav">
-		                <div class="multinav-scroll" style="height: 97%;">	
+		                <div class="multinav-scroll ps" style="height: 100%;">	
 			                <!-- sidebar menu-->
-			                <ul class="sidebar-menu" data-widget="tree">				
-				                <li>
-				                    <a href="./../public/dashboardv1.php">
-					                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-					                    <span>Dashboard</span>
-				                    </a>
-				                </li>
 
-                                <li>
-				                    <a href="./../public/operacionsolicitud_crud.php">
-                                        <i data-feather="edit"></i><span>Alta de Solicitud</span>
-                                    </a>
-				                </li>
+
+<?php
+    $bandMENU = false;
+    $menuHTML = '';
+
+    $bandSubMenu01 = false;
+    $bandSubMenu02 = false;
+
+    foreach ($seg_01['apps'] as $seg_01Key=>$seg_01Value) {
+        $menuACC = trim(strtolower($seg_01Value['tipoFormularioNombre']));
+        $menuDSP = trim(strtoupper(strtolower($seg_01Value['rolFormularioAcceso'])));
+
+        if(
+            (
+                ($menuACC == 'dashboardv1' && $menuDSP == 'S') || 
+                ($menuACC == 'operacionsolicitud_crud' && $menuDSP == 'S')
+            )
+        ) {
+            $bandMENU   = true;
+        }
+
+        if ($menuACC == 'dashboardv1' && $menuDSP == 'S' && $bandSubMenu01 == false) {
+            $bandSubMenu01 = true;
+            $menuHTML = $menuHTML.'
+                                    <li>
+                                        <a href="./../public/dashboardv1.php">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                                            <span>Dashboard</span>
+                                        </a>
+                                    </li> 
+                                ';
+        }
+
+        if ($menuACC == 'operacionsolicitud_crud' && $menuDSP == 'S' && $bandSubMenu02 == false) {
+            $bandSubMenu02 = true;
+            $menuHTML = $menuHTML.'
+                                    <li>
+                                        <a href="./../public/operacionsolicitud_crud.php">
+                                            <i data-feather="edit"></i><span>Alta de Solicitud</span>
+                                        </a>
+                                    </li>    
+                                ';
+        }
+
+    }
+
+    if ($bandMENU) {
+?>
+			                <ul class="sidebar-menu tree" data-widget="tree">				
+                                <?php echo $menuHTML; ?>
                             </ul>
+<?php 
+    }
+?>
                         </div>
                     </div>
                 </section>

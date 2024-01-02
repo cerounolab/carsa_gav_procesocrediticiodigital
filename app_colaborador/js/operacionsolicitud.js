@@ -95,10 +95,190 @@ function validarDocumento() {
         personTipoNac.value     = xJSON[0].localidad_pais_codigo;
     }
 
-    selectDominio('tipo_persona_parametro', 'WSCHEDUOPERSONATIPO', 0, 1, personTipoPers.value);
+    //selectDominio('tipo_persona_parametro', 'WSCHEDUOPERSONATIPO', 0, 1, personTipoPers.value);
     selectDominio('tipo_sexo_parametro', 'WSCHEDUOPERSONASEXO', 0, 1, personTipoSexo.value);
     selectDominio('tipo_estadocivil_parametro', 'WSCHEDUOPERSONAESTADOCIVIL', 0, 1, personTipoEstCiv.value);
     selectLocalidadPais('localidad_pais_codigo', null, 0, 1, personTipoNac.value);
+}
+
+function viewMotor() {
+    const workBuscaMotor    = document.getElementById('workBuscaMotor');
+    const personDocumento   = document.getElementById('persona_documento_numero');
+    const personCuenta      = document.getElementById('persona_cuenta');
+    
+    validateMotorDocument('btnConsultaMotor');
+
+    if (workBuscaMotor.value === 'S') {
+        let htmlMODAL =
+                    '<div class="modal-content modal-filled btn-primary" style="padding:0px 20px;">'+
+                    '   <div class="modal-dialog modal-dialog-centered">'+
+                    '	    <div class="modal-content">'+
+                    '		    <div class="modal-header">'+
+                    '			    <h4 class="modal-title text-primary">.: Proceso Crediticio Digital :.</h4>'+
+                    '			    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>'+
+                    '           </div>'+
+                    ''+
+                    '           <div class="modal-body">'+
+                    '               <h5>Aguarde un momento por favor, estamos generando una oferta.</h5>'+
+                    '               <iframe width="100%" height="200" src="https://lottie.host/embed/5be6c9fa-efb3-41ef-9ae8-7828edd31ba0/eGgOuSExfg.json"></iframe>'+
+                    '           </div>'+
+                    '       </div'+
+                    '   </div>'+
+                    '</div>';
+
+        $("#modal-content").empty();
+	    $("#modal-content").append(htmlMODAL);
+
+        consultMotor(personDocumento.value, personCuenta.value);
+    }
+}
+
+function validateMotorDocument(parmButton) {
+    const workModo          = document.getElementById('workModo');
+    const workBuscaMotor    = document.getElementById('workBuscaMotor');
+    const personCuenta      = document.getElementById('persona_cuenta');
+    const personDocumento   = document.getElementById('persona_documento_numero');
+    const personCliente     = document.getElementById('persona_cliente');
+    const personNomPri      = document.getElementById('persona_nombre_primer');
+    const personNomSeg      = document.getElementById('persona_nombre_segundo');
+    const personApePat      = document.getElementById('persona_apellido_paterno');
+    const personApeMat      = document.getElementById('persona_apellido_materno');
+    const btnSubmit         = document.getElementById(parmButton);
+    
+    if (personDocumento.value.length > 5) {
+        const xJSON = getPersonaDocumento(personDocumento.value);
+
+        workBuscaMotor.value                = 'S';
+        personCliente.value                 = 'NUEVO';
+        personCliente.style.backgroundColor = 'rgb(81, 206, 138)';
+        personCliente.style.borderColor     = 'rgb(81, 206, 138)';
+        btnSubmit.style.display             = '';
+
+        if (xJSON.length > 0) {
+            if (xJSON[0].persona_cliente === 'RECURRENTE') {
+                //workBuscaMotor.value                = 'N';
+                personCliente.value                 = 'RECURRENTE';
+                personCliente.style.backgroundColor = 'rgb(254, 200, 1)';
+                personCliente.style.borderColor     = 'rgb(254, 200, 1)';
+                //btnSubmit.style.display             = 'none';
+            }
+    
+            workModo.value          = 'U';
+            personCuenta.value      = xJSON[0].persona_cuenta;
+            personNomPri.value      = xJSON[0].persona_nombre_primer;
+            personNomSeg.value      = xJSON[0].persona_nombre_segundo;
+            personApePat.value      = xJSON[0].persona_apellido_paterno;
+            personApeMat.value      = xJSON[0].persona_apellido_materno;
+
+        } else {
+            workModo.value          = 'C';
+            personCliente.value     = 'NUEVO - SIN FICHA';
+            personCuenta.value      = 0;
+            personNomPri.value      = '';
+            personNomSeg.value      = '';
+            personApePat.value      = '';
+            personApeMat.value      = '';
+        }
+    }
+}
+
+function consultMotor(personDocument, personCuenta) {
+    $(function () {
+        "use strict";
+        $.ajax({
+            url: urlBASE03+'/scarfos/lineaoferta/33/entidad/1/registrar/N/documento/'+personDocument+'/oferta/0',
+            type: 'GET',
+            dataType: 'json',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Basic '+autBASE03);
+            },
+            xhr: function() {
+                var xhr = $.ajaxSettings.xhr();
+                xhr.upload.onprogress = function(e) {
+                    console.log(Math.floor(e.loaded / e.total *100) + '%');
+                };
+                return xhr;
+            },
+            data: {},
+            success: function (data) {
+                if (data.code == 200) {
+                    if (data.data.estadoCore == 12) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Cliente sin oferta.',
+                            text:'Ahora mismo no contamos con una linea para el cliente.',
+                            showConfirmButton: true,
+                            confirmButtonText: 'Entiendo.'
+                        }).then((result) => {
+                            $(function () {
+                                $("#modal-content").empty();
+                                $('#modal-dialog').modal('toggle');
+                             });
+                        });
+                    } else {
+                        $(function () {
+                            $("#modal-content").empty();
+                            $('#modal-dialog').modal('toggle');
+                        });
+
+                        window.location.replace('../public/operacionsolicitud_crud.php?cuenta='+ personCuenta + '&oferta=' + data.data.listaOpcionesPrestamo);
+                    }
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Cliente sin oferta.',
+                        text:'Ahora mismo no contamos con una linea para el cliente.',
+                        showConfirmButton: true,
+                        confirmButtonText: 'Entiendo.'
+                    }).then((result) => {
+                        $(function () {
+                            $("#modal-content").empty();
+                            $('#modal-dialog').modal('toggle');
+                         });
+                    });
+                }
+                
+            },
+            error: function (e) {
+                console.log('error', e);
+            },
+        });
+    });
+}
+
+function generateMotorOferta(parm01, parm02) {
+    var selOption   = document.getElementById(parm01);
+    var xJSON       = parm02.split('|');
+
+    while (selOption.length > 0) {
+        selOption.remove(0);
+    }
+    
+    xJSON.forEach(element => {
+        var auxElement  = element.split('_');
+        var auxSelMonto = 'Monto Solicitud Gs. ' + round(auxElement[0]);
+        var auxSelPlazo = 'Plazo ' + auxElement[1];
+        var auxSelCuota = 'Importe Cuota Gs. ' + round(auxElement[2]);
+        var option      = document.createElement('option');
+        option.value    = element;
+        option.text     = auxSelMonto + ' - ' + auxSelPlazo + ' - ' + auxSelCuota;
+
+        selOption.add(option, null);
+    });
+
+    loadMotorSelectedOferta(parm01, 'solicitud_monto', 'solicitud_plazo', 'solicitud_cuota_importe');
+}
+
+function loadMotorSelectedOferta(parm01, parm02, parm03, parm04){
+    const solicSelect   = document.getElementById(parm01);
+    const solicMonto    = document.getElementById(parm02);
+    const solicPlazo    = document.getElementById(parm03);
+    const solicCuota    = document.getElementById(parm04);
+
+    var auxElement  = solicSelect.value.split('_');
+    solicMonto.value = round(auxElement[0]);
+    solicPlazo.value = round(auxElement[1]);
+    solicCuota.value = round(auxElement[2]);
 }
 
 function validarTasa() {

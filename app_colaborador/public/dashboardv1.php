@@ -6,8 +6,8 @@
 	$pageTitle		= 'Inicio';
 	$pageTitleNav	= '';
 
-	$dominio01JSON	= get_curl02('parametros/dominio/valor/WSCHEDUOSOLICITUDESTADONIVEL2');
-	$dominio02JSON	= get_curl02('parametros/dominio/valor/WSCHEDUOSOLICITUDFORMAPAGO');
+	$dominio01JSON	= get_curl('parametros/dominio/valor/WSCHEDUOSOLICITUDESTADONIVEL2');
+	$dominio02JSON	= get_curl('parametros/dominio/valor/WSCHEDUOSOLICITUDFORMAPAGO');
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -18,7 +18,7 @@
 
 	</head>
 
-    <body class="hold-transition light-skin sidebar-mini theme-primary fixed sidebar-collapse">
+    <body class="light-skin sidebar-mini theme-primary fixed">
 		<div class="wrapper">
 			<div id="loader"></div>
 
@@ -163,7 +163,7 @@
 			const _parm02BASE = '<?php echo date('Y-m-d'); ?>';
 			const _parm03BASE = '<?php echo $log_03; ?>';
 			const _parm04BASE = 'public/dashboardv1.php?';
-			const _parm05BASE = '<?php echo $usu_04; ?>';
+			const _parm05BASE = '10110';
 		</script>
 
 		<script src="./../js/dashboardv1.js?<?php echo date('Ymd');?>"></script>

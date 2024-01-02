@@ -7,18 +7,17 @@
 		<link rel="icon" href="./../images/wscheduov1/favicon.png">
 		
 		<!-- Vendors Style-->
-		<link rel="stylesheet" href="./../src/css/vendors_css.css?<?php echo date('YmdHis'); ?>">
+		<link rel="stylesheet" href="./../src/css/vendors_css.css?<?php echo date('Ymd'); ?>">
 		
 		<!-- Style-->  
-		<link rel="stylesheet" href="./../src/css/style.css?<?php echo date('YmdHis'); ?>">
-		<link rel="stylesheet" href="./../src/css/skin_color.css?<?php echo date('YmdHis'); ?>">
-		<link rel="stylesheet" href="./../src/css/custom.css?<?php echo date('YmdHis'); ?>">
+		<link rel="stylesheet" href="./../src/css/style.css?<?php echo date('Ymd'); ?>">
+		<link rel="stylesheet" href="./../src/css/skin_color.css?<?php echo date('Ymd'); ?>">
+		<link rel="stylesheet" href="./../src/css/custom.css?<?php echo date('Ymd'); ?>">
 
 		<style>	
 			@font-face {
 				font-family: 'Museo Sans 500';
 				src: url('./../src/font/museo-sans/museo-sans-500.otf') format("opentype");
-
 			}
 
 			@font-face {
@@ -60,4 +59,4 @@
 
 		</script>
 
-        <title>.: CheD&Uacute;O Aliados | C.A.R.S.A. :.</title>
+		<title>.: Proceso Crediticio Digital | C.A.R.S.A. :.</title>

@@ -1,29 +1,31 @@
         <!-- Vendor JS -->
-        <script src="./../src/js/vendors.min.js"></script>
-        <script src="./../src/js/pages/chat-popup.js"></script>
+        <script src="./../src/js/vendors.min.js?<?php echo date('Ymd'); ?>"></script>
+        <script src="./../src/js/pages/chat-popup.js?<?php echo date('Ymd'); ?>"></script>
         
-        <script src="./../assets/icons/feather-icons/feather.min.js"></script>
-        <script src="./../assets/vendor_plugins/bootstrap-slider/bootstrap-slider.js"></script>
-        <script src="./../assets/vendor_components/OwlCarousel2/dist/owl.carousel.js"></script>
-        <script src="./../assets/vendor_components/flexslider/jquery.flexslider.js"></script>
-        <script src="./../assets/vendor_components/apexcharts-bundle/dist/apexcharts.js"></script>
-        <script src="./../assets/vendor_components/jquery-steps-master/build/jquery.steps.js"></script>
-        <script src="./../assets/vendor_components/jquery-validation-1.17.0/dist/jquery.validate.js"></script>
-        <script src="./../assets/vendor_components/sweetalert/sweetalert.min.js"></script>
-        <script src="./../assets/vendor_components/select2/dist/js/select2.full.js"></script>
-        <script src="./../assets/vendor_plugins/input-mask/jquery.inputmask.js"></script>
-        <script src="./../assets/vendor_plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-        <script src="./../assets/vendor_plugins/input-mask/jquery.inputmask.extensions.js"></script>
-        <script src="./../assets/vendor_components/moment/min/moment.min.js"></script>
-        <script src="./../assets/vendor_components/jquery-toast-plugin-master/src/jquery.toast.js"></script>
-        <script src="./../assets/vendor_components/datatable/datatables.min.js"></script>
+        <script src="./../assets/icons/feather-icons/feather.min.js?<?php echo date('Ymd'); ?>"></script>
+        <script src="./../assets/vendor_plugins/bootstrap-slider/bootstrap-slider.js?<?php echo date('Ymd'); ?>"></script>
+        <script src="./../assets/vendor_components/OwlCarousel2/dist/owl.carousel.js?<?php echo date('Ymd'); ?>"></script>
+        <script src="./../assets/vendor_components/flexslider/jquery.flexslider.js?<?php echo date('Ymd'); ?>"></script>
+        <script src="./../assets/vendor_components/apexcharts-bundle/dist/apexcharts.js?<?php echo date('Ymd'); ?>"></script>
+        <script src="./../assets/vendor_components/jquery-steps-master/build/jquery.steps.js?<?php echo date('Ymd'); ?>"></script>
+        <script src="./../assets/vendor_components/jquery-validation-1.17.0/dist/jquery.validate.js?<?php echo date('Ymd'); ?>"></script>
+        <script src="./../assets/vendor_components/sweetalert/sweetalert.min.js?<?php echo date('Ymd'); ?>"></script>
+        <script src="./../assets/vendor_components/select2/dist/js/select2.full.js?<?php echo date('Ymd'); ?>"></script>
+        <script src="./../assets/vendor_plugins/input-mask/jquery.inputmask.js?<?php echo date('Ymd'); ?>"></script>
+        <script src="./../assets/vendor_plugins/input-mask/jquery.inputmask.date.extensions.js?<?php echo date('Ymd'); ?>"></script>
+        <script src="./../assets/vendor_plugins/input-mask/jquery.inputmask.extensions.js?<?php echo date('Ymd'); ?>"></script>
+        <script src="./../assets/vendor_components/moment/min/moment.min.js?<?php echo date('Ymd'); ?>"></script>
+        <script src="./../assets/vendor_components/jquery-toast-plugin-master/src/jquery.toast.js?<?php echo date('Ymd'); ?>"></script>
+        <script src="./../assets/vendor_components/datatable/datatables.min.js?<?php echo date('Ymd'); ?>"></script>
 
         <!-- Custom App -->
-        <script src="./../src/js/template.js"></script>
-        <script src="./../src/js/demo.js"></script>
-        <script src="./../src/js/pages/slider.js"></script>
+        <script src="./../src/js/template.js?<?php echo date('Ymd'); ?>"></script>
+        <script src="./../src/js/demo.js?<?php echo date('Ymd'); ?>"></script>
+        <script src="./../src/js/pages/slider.js?<?php echo date('Ymd'); ?>"></script>
         <script src="./../js/api.js?<?php echo date('Ymd');?>"></script>
         <script src="./../js/select.js?<?php echo date('Ymd');?>"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <script>
                 $(function () {
@@ -34,8 +36,6 @@
                         $('[data-mask]').inputmask();
                 });
         </script>
-
-
 
 <?php
     if(isset($_GET['code'])){
