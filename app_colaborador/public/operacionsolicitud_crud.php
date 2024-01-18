@@ -196,7 +196,7 @@
 	$solicitud_monto										= 0;
 	$solicitud_plazo										= 1;
 	$solicitud_cuota_importe								= 0;
-	$solicitud_formapago_codigo								= 2;
+	$solicitud_formapago_codigo								= 0;
 	$solicitud_banco_codigo									= 0;
 	$solicitud_banco_tipo									= 0;
 	$solicitud_primer_vencimiento							= '';
@@ -1048,29 +1048,29 @@
 ?>
 		<script>
 			//selectDominio('tipo_persona_parametro', 'WSCHEDUOPERSONATIPO', 0, 1, <?php //echo $tipo_persona_parametro; ?>);
-			selectDominio('tipo_sexo_parametro', 'WSCHEDUOPERSONASEXO', 0, 1, <?php echo $tipo_sexo_parametro; ?>);
-			selectDominio('tipo_estadocivil_parametro', 'WSCHEDUOPERSONAESTADOCIVIL', 0, 1, <?php echo $tipo_estadocivil_parametro; ?>);
-			selectLocalidadPais('localidad_pais_codigo', null, 0, 1, <?php echo $localidad_pais_codigo; ?>);
+			selectDominio('tipo_sexo_parametro', 'WSCHEDUOPERSONASEXO', 1, 1, <?php echo $tipo_sexo_parametro; ?>);
+			selectDominio('tipo_estadocivil_parametro', 'WSCHEDUOPERSONAESTADOCIVIL', 1, 1, <?php echo $tipo_estadocivil_parametro; ?>);
+			selectLocalidadPais('localidad_pais_codigo', null, 1, 1, <?php echo $localidad_pais_codigo; ?>);
 
-			selectLocalidadDepto('persona_datoparticular_localidad_departamento_codigo', null, 0, 1, <?php echo $persona_datoparticular_localidad_departamento_codigo; ?>);
-			selectLocalidadCiudad('persona_datoparticular_localidad_ciudad_codigo', 'persona_datoparticular_localidad_departamento_codigo', 0, 1, <?php echo $persona_datoparticular_localidad_ciudad_codigo; ?>);
+			selectLocalidadDepto('persona_datoparticular_localidad_departamento_codigo', null, 1, 1, <?php echo $persona_datoparticular_localidad_departamento_codigo; ?>);
+			selectLocalidadCiudad('persona_datoparticular_localidad_ciudad_codigo', 'persona_datoparticular_localidad_departamento_codigo', 1, 1, <?php echo $persona_datoparticular_localidad_ciudad_codigo; ?>);
 			selectLocalidadBarrio('persona_datoparticular_localidad_barrio_codigo', 'persona_datoparticular_localidad_departamento_codigo', 'persona_datoparticular_localidad_ciudad_codigo', 0, 1, <?php echo $persona_datoparticular_localidad_barrio_codigo; ?>);
 			//selectDominio('persona_datoparticular_tipo_vivienda_parametro', 'WSCHEDUOPERSONAVIVIENDA', 0, 1, <?php //echo $persona_datoparticular_tipo_vivienda_parametro; ?>);
 
 			selectLocalidadDepto('persona_datolaboral_localidad_departamento_codigo', null, 0, 1, <?php echo $persona_datolaboral_localidad_departamento_codigo; ?>);
 			selectLocalidadCiudad('persona_datolaboral_localidad_ciudad_codigo', 'persona_datolaboral_localidad_departamento_codigo', 0, 1, <?php echo $persona_datolaboral_localidad_ciudad_codigo; ?>);
-			selectLocalidadBarrio('persona_datolaboral_localidad_barrio_codigo', 'persona_datolaboral_localidad_departamento_codigo', 'persona_datolaboral_localidad_ciudad_codigo', 0, 1, <?php echo $persona_datolaboral_localidad_barrio_codigo; ?>);
-			selectCargo('persona_datolaboral_cargo_codigo', null, 0, 1, <?php echo $persona_datolaboral_cargo_codigo;?>);
+			selectLocalidadBarrio('persona_datolaboral_localidad_barrio_codigo', 'persona_datolaboral_localidad_departamento_codigo', 'persona_datolaboral_localidad_ciudad_codigo', 1, 1, <?php echo $persona_datolaboral_localidad_barrio_codigo; ?>);
+			selectCargo('persona_datolaboral_cargo_codigo', null, 1, 1, <?php echo $persona_datolaboral_cargo_codigo;?>);
 			//selectProfesion('persona_datolaboral_profesion_codigo', null, 0, 1, <?php //echo $persona_datolaboral_profesion_codigo;?>);
 			//selectActividad('persona_datolaboral_actividad_codigo', null, 0, 1, <?php //echo $persona_datolaboral_actividad_codigo;?>);
 			//selectArea('persona_datolaboral_area_codigo', null, 0, 1, <?php //echo $persona_datolaboral_area_codigo;?>);
-			selectFormaPago('persona_datolaboral_forma_pago_codigo', null, 0, 1, <?php echo $persona_datolaboral_forma_pago_codigo;?>);
-			selectBancoSalario('persona_datolaboral_banco_codigo', null, 0, 1, <?php echo $persona_datolaboral_banco_codigo;?>);
+			selectFormaPago('persona_datolaboral_forma_pago_codigo', null, 1, 1, <?php echo $persona_datolaboral_forma_pago_codigo;?>);
+			selectBancoSalario('persona_datolaboral_banco_codigo', null, 1, 1, <?php echo $persona_datolaboral_banco_codigo;?>);
 
 			//selectDominio('solicitud_plazo', 'WSCHEDUOSOLICITUDCUOTA', 0, 1, <?php echo $solicitud_plazo; ?>);
-			selectDominio('solicitud_formapago_codigo', 'WSCHEDUOSOLICITUDFORMAPAGO', 0, 1, <?php echo $solicitud_formapago_codigo; ?>);
-			selectBanco('solicitud_banco_codigo', '', 0, 1, <?php echo $solicitud_banco_codigo; ?>);
-			selectDominio('solicitud_banco_tipo', 'WSCHEDUOSOLICITUDBANCOCUENTA', 0, 1, <?php echo $solicitud_banco_tipo; ?>);
+			selectDominio('solicitud_formapago_codigo', 'WSCHEDUOSOLICITUDFORMAPAGO', 1, 1, <?php echo $solicitud_formapago_codigo; ?>);
+			selectBanco('solicitud_banco_codigo', '', 1, 1, <?php echo $solicitud_banco_codigo; ?>);
+			selectDominio('solicitud_banco_tipo', 'WSCHEDUOSOLICITUDBANCOCUENTA', 1, 1, <?php echo $solicitud_banco_tipo; ?>);
 
 			generateMotorOferta('solicitud_monto_selected', '<?php echo $solicOferta; ?>');
 
