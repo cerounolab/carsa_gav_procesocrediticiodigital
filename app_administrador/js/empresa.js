@@ -121,23 +121,26 @@ $(document).ready(function() {
 
 
 function setEmpresa(codElem, codAcc) {
-	var xJSON       = [];
-	var html		= '';
-	var bodyCol     = '';
-	var bodyTit     = '';
-	var bodyMod     = '';
-	var bodyOnl     = '';
-	var bodyBot     = '';
-	var selEstado   = '';
+	var xJSON       	= [];
+	var html			= '';
+	var bodyCol     	= '';
+	var bodyTit     	= '';
+	var bodyMod     	= '';
+	var bodyOnl     	= '';
+	var bodyBot     	= '';
+	var selEstado   	= '';
 
-	var xJSON1     	= getDominioValorAll('ADMEMPRESAESTADO', 0); 
-	var xJSON2     	= getDominioValorAll('ADMEMPRESARUBRO', 0);
-	var xJSON3     	= getDominioValorAll('ADMEMPRESAACCESO', 0); 
+	var xJSON1     		= getDominioValorAll('ADMEMPRESAESTADO', 0); 
+	var xJSON2     		= getDominioValorAll('ADMEMPRESARUBRO', 0);
+	var xJSON3     		= getDominioValorAll('ADMEMPRESAACCESO', 0); 
 
-	var selEstado	= '';
-	var selRubro	= '';
-	var selAcceso	= '';
-	var bodAcc		= 0;
+	var selEstado		= '';
+	var selRubro		= '';
+	var selAcceso		= '';
+	var bodAcc			= 0;
+	var selNuevo		= '';
+	var selRecurrente	= '';
+
 
 
 	switch (codAcc) {
@@ -274,6 +277,37 @@ function setEmpresa(codElem, codAcc) {
 			'               					</div>'+
 			''+
 			'               					<div class="col-sm-12 col-md-4">'+
+			'               				    	<div class="form-group">'+
+			'               				        	<label for="var014">Código EV<span style="color:red;"> * </span></label>'+
+			'               				        	<input id="var014" name="var014" value="" class="form-control" type="number" min="0" style="text-transform:uppercase; height:40px;" placeholder="Código EV" required="true" '+ bodyOnl +'>'+
+			'               				    	</div>'+
+			'               					</div>'+
+			''+
+			'									<div class="col-sm-12 col-md-4">'+
+			'       					            <div class="form-group">'+
+			'       					                <label for="var016"> Carga Nuevo <span style="color:red;"> * </span></label>'+
+			'       					                <select id="var016" name="var016" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
+			'       					                    <optgroup label="Seleccionar">'+
+			'							   						<option value="N">NO</option>'+
+			'													<option value="S">SI</option>'+
+			'       					                    </optgroup>'+
+			'       					                </select>'+
+			'       					            </div>'+
+			'       					        </div>'+
+			''+
+			'									<div class="col-sm-12 col-md-4">'+
+			'       					            <div class="form-group">'+
+			'       					                <label for="var017"> Carga Recurrente <span style="color:red;"> * </span></label>'+
+			'       					                <select id="var017" name="var017" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
+			'       					                    <optgroup label="Seleccionar">'+
+			'							   						<option value="N">NO</option>'+
+			'													<option value="S">SI</option>'+
+			'       					                    </optgroup>'+
+			'       					                </select>'+
+			'       					            </div>'+
+			'       					        </div>'+
+			''+
+			'               					<div class="col-sm-12 col-md-4">'+
 			'               					    <div class="form-group">'+
 			'               					        <label for="var07">Teléfono</label>'+
 			'               					        <input id="var07" name="var07" class="form-control" type="text" style="text-transform:lowercase; height:40px;" placeholder="Teléfono" '+ bodyOnl +'>'+
@@ -386,18 +420,42 @@ function setEmpresa(codElem, codAcc) {
 					}
 				});
 
-				var empresaOrden		= (element.empresaOrden == null) ? '' : element.empresaOrden;
-				var empresaRuc			= (element.empresaRuc == null) ? '' : element.empresaRuc;
-				var empresaNombre		= (element.empresaNombre == null) ? '' : element.empresaNombre;
-				var empresaCelular		= (element.empresaCelular == null) ? '' : element.empresaCelular;
-				var empresaTelefono		= (element.empresaTelefono == null) ? '' : element.empresaTelefono;
-				var empresaSitoWeb		= (element.empresaSitoWeb == null) ? '' : element.empresaSitoWeb;
-				var empresaCorreo		= (element.empresaCorreo == null) ? '' : element.empresaCorreo;
-				var empresaUbicacion	= (element.empresaUbicacion == null) ? '' : element.empresaUbicacion;
-				var empresaDireccion	= (element.empresaDireccion == null) ? '' : element.empresaDireccion;
-				var empresaObservacion	= (element.empresaObservacion == null) ? '' : element.empresaObservacion;
-				var empresaLogo			= (element.empresaLogo == null) ? '' : element.empresaLogo;
-				var viewDisplay			= (empresaLogo == '') ? 'display:none' : '';
+				var empresaOrden				= (element.empresaOrden == null) ? '' : element.empresaOrden;
+				var empresaRuc					= (element.empresaRuc == null) ? '' : element.empresaRuc;
+				var empresaNombre				= (element.empresaNombre == null) ? '' : element.empresaNombre;
+				var empresaCelular				= (element.empresaCelular == null) ? '' : element.empresaCelular;
+				var empresaTelefono				= (element.empresaTelefono == null) ? '' : element.empresaTelefono;
+				var empresaSitoWeb				= (element.empresaSitoWeb == null) ? '' : element.empresaSitoWeb;
+				var empresaCorreo				= (element.empresaCorreo == null) ? '' : element.empresaCorreo;
+				var empresaUbicacion			= (element.empresaUbicacion == null) ? '' : element.empresaUbicacion;
+				var empresaDireccion			= (element.empresaDireccion == null) ? '' : element.empresaDireccion;
+				var empresaObservacion			= (element.empresaObservacion == null) ? '' : element.empresaObservacion;
+				var empresaLogo					= (element.empresaLogo == null) ? '' : element.empresaLogo;
+
+				var empresaVentaCodigo			= (element.empresaVentaCodigo == null) ? '' : element.empresaVentaCodigo;
+				var empresaClienteNuevo			= (element.empresaClienteNuevo == null) ? '' : element.empresaClienteNuevo;
+				var empresaClienteRecurrente	= (element.empresaClienteRecurrente == null) ? '' : element.empresaClienteRecurrente;
+				var viewDisplay					= (empresaLogo == '') ? 'display:none' : '';
+
+				if (empresaClienteNuevo == 'S') {
+					selNuevo  =                     
+					'                               <option value="S" selected>SI</option>'+
+					'                               <option value="N">NO</option>';
+				} else { 
+					selNuevo  =                     
+					'                               <option value="S">SI</option>'+
+					'                               <option value="N" selected>NO</option>';
+				}
+
+				if (empresaClienteRecurrente == 'S') {
+					selRecurrente  =                     
+					'                               <option value="S" selected>SI</option>'+
+					'                               <option value="N">NO</option>';
+				} else { 
+					selRecurrente  =                     
+					'                               <option value="S">SI</option>'+
+					'                               <option value="N" selected>NO</option>';
+				}
 
 				html = 
 				'				<div class="modal-content">'+
@@ -459,6 +517,33 @@ function setEmpresa(codElem, codAcc) {
 				'               				        	<input id="var06" name="var06" value="'+ empresaRuc +'" class="form-control" type="text" style="text-transform:uppercase; height:40px;" placeholder="Ruc" required="true" '+ bodyOnl +'>'+
 				'               				    	</div>'+
 				'               					</div>'+
+				''+
+				'               					<div class="col-sm-12 col-md-4">'+
+				'               				    	<div class="form-group">'+
+				'               				        	<label for="var014">Código EV<span style="color:red;"> * </span></label>'+
+				'               				        	<input id="var014" name="var014" value="'+ empresaVentaCodigo +'" class="form-control" type="number" style="text-transform:uppercase; height:40px;" placeholder="Código EV" readonly>'+
+				'               				    	</div>'+
+				'               					</div>'+
+				''+
+				'									<div class="col-sm-12 col-md-4">'+
+				'       					            <div class="form-group">'+
+				'       					                <label for="var016"> Carga Nuevo <span style="color:red;"> * </span></label>'+
+				'       					                <select id="var016" name="var016" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
+				'       					                    <optgroup label="Seleccionar">'+ selNuevo +
+				'       					                    </optgroup>'+
+				'       					                </select>'+
+				'       					            </div>'+
+				'       					        </div>'+
+				''+
+				'									<div class="col-sm-12 col-md-4">'+
+				'       					            <div class="form-group">'+
+				'       					                <label for="var017"> Carga Recurrente <span style="color:red;"> * </span></label>'+
+				'       					                <select id="var017" name="var017" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
+				'       					                    <optgroup label="Seleccionar">'+ selRecurrente +
+				'       					                    </optgroup>'+
+				'       					                </select>'+
+				'       					            </div>'+
+				'       					        </div>'+
 				''+
 				'               					<div class="col-sm-12 col-md-4">'+
 				'               					    <div class="form-group">'+
