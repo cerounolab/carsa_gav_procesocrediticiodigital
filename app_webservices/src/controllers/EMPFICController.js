@@ -182,6 +182,9 @@ const postEmpresa   = (apiREQ, apiRES) => {
     let _EMPFICUBI  = (apiREQ.body.empresa_ubicacion != undefined && apiREQ.body.empresa_ubicacion != null && apiREQ.body.empresa_ubicacion != '') ? "'"+apiREQ.body.empresa_ubicacion.trim()+"'" : null; 
     let _EMPFICDIR  = (apiREQ.body.empresa_direccion != undefined && apiREQ.body.empresa_direccion != null && apiREQ.body.empresa_direccion != '') ? "'"+apiREQ.body.empresa_direccion.trim()+"'" : null; 
     let _EMPFICLOG  = (apiREQ.body.empresa_logo != undefined && apiREQ.body.empresa_logo != null && apiREQ.body.empresa_logo != '') ? "'"+apiREQ.body.empresa_logo.trim()+"'" : null; 
+    let _EMPFICVEC  = (apiREQ.body.empresa_venta_codigo != undefined && apiREQ.body.empresa_venta_codigo != null && apiREQ.body.empresa_venta_codigo != '' && apiREQ.body.empresa_venta_codigo > 0) ? Number.parseInt(apiREQ.body.empresa_venta_codigo) : false; 
+    let _EMPFICTCN  = (apiREQ.body.empresa_cliente_nuevo != undefined && apiREQ.body.empresa_cliente_nuevo != null && apiREQ.body.empresa_cliente_nuevo != '') ? "'"+apiREQ.body.empresa_cliente_nuevo.trim().toUpperCase()+"'" : false; 
+    let _EMPFICTCR  = (apiREQ.body.empresa_cliente_recurrente != undefined && apiREQ.body.empresa_cliente_recurrente != null && apiREQ.body.empresa_cliente_recurrente != '') ? "'"+apiREQ.body.empresa_cliente_recurrente.trim().toUpperCase()+"'" : false; 
     let _EMPFICOBS  = (apiREQ.body.empresa_observacion != undefined && apiREQ.body.empresa_observacion != null && apiREQ.body.empresa_observacion != '') ? "'"+apiREQ.body.empresa_observacion.trim()+"'" : null;
     
     let _EMPFICCEM  = (apiREQ.body.alta_empresa_codigo != undefined && apiREQ.body.alta_empresa_codigo != null && apiREQ.body.alta_empresa_codigo != '' && apiREQ.body.alta_empresa_codigo > 0) ? Number.parseInt(apiREQ.body.alta_empresa_codigo) : false; 
@@ -195,7 +198,7 @@ const postEmpresa   = (apiREQ, apiRES) => {
     let _EMPFICAPR  = (apiREQ.body.auditoria_programa != undefined && apiREQ.body.auditoria_programa != null && apiREQ.body.auditoria_programa != '') ? "'"+apiREQ.body.auditoria_programa.trim()+"'" : false; 
     let _EMPFICAIN  = (apiREQ.body.auditoria_incidencia != undefined && apiREQ.body.auditoria_incidencia != null && apiREQ.body.auditoria_incidencia != '') ? "'"+apiREQ.body.auditoria_incidencia.trim()+"'" : null;
   
-    if (_EMPFICEST && _EMPFICTRC && _EMPFICTAC && _EMPFICNOM && _EMPFICRUC && _EMPFICCOR && _EMPFICCEM && _EMPFICCUS && _EMPFICCIP && _EMPFICCPR && _EMPFICAEM && _EMPFICAUS && _EMPFICAIP && _EMPFICAPR) {
+    if (_EMPFICEST && _EMPFICTRC && _EMPFICTAC && _EMPFICNOM && _EMPFICRUC && _EMPFICCOR && _EMPFICVEC && _EMPFICTCN && _EMPFICTCR && _EMPFICCEM && _EMPFICCUS && _EMPFICCIP && _EMPFICCPR && _EMPFICAEM && _EMPFICAUS && _EMPFICAIP && _EMPFICAPR) {
 
         (async () => {
             xDATA = await insertEMPFIC(_EMPFICEST,
@@ -211,6 +214,9 @@ const postEmpresa   = (apiREQ, apiRES) => {
             _EMPFICUBI,
             _EMPFICDIR,
             _EMPFICLOG,
+            _EMPFICVEC,
+            _EMPFICTCN,
+            _EMPFICTCR,
             _EMPFICOBS,
             _EMPFICCEM,
             _EMPFICCUS,
@@ -268,10 +274,13 @@ const putEmpresa    = (apiREQ, apiRES) => {
     let _EMPFICTEL  = (apiREQ.body.empresa_telefono != undefined && apiREQ.body.empresa_telefono != null && apiREQ.body.empresa_telefono != '') ? "'"+apiREQ.body.empresa_telefono.trim().toLowerCase()+"'" : null;
     let _EMPFICCEL  = (apiREQ.body.empresa_celular != undefined && apiREQ.body.empresa_celular != null && apiREQ.body.empresa_celular != '') ? "'"+apiREQ.body.empresa_celular.trim().toLowerCase()+"'" : null;
     let _EMPFICWEB  = (apiREQ.body.empresa_web != undefined && apiREQ.body.empresa_web != null && apiREQ.body.empresa_web != '') ? "'"+apiREQ.body.empresa_web.trim()+"'" : null;
-    let _EMPFICCOR  = (apiREQ.body.empresa_correo != undefined && apiREQ.body.empresa_correo != null && apiREQ.body.empresa_correo != '') ? "'"+apiREQ.body.empresa_correo.trim().toLowerCase()+"'" : null;
+    let _EMPFICCOR  = (apiREQ.body.empresa_correo != undefined && apiREQ.body.empresa_correo != null && apiREQ.body.empresa_correo != '') ? "'"+apiREQ.body.empresa_correo.trim().toLowerCase()+"'" : false;
     let _EMPFICUBI  = (apiREQ.body.empresa_ubicacion != undefined && apiREQ.body.empresa_ubicacion != null && apiREQ.body.empresa_ubicacion != '') ? "'"+apiREQ.body.empresa_ubicacion.trim()+"'" : null; 
     let _EMPFICDIR  = (apiREQ.body.empresa_direccion != undefined && apiREQ.body.empresa_direccion != null && apiREQ.body.empresa_direccion != '') ? "'"+apiREQ.body.empresa_direccion.trim()+"'" : null; 
     let _EMPFICLOG  = (apiREQ.body.empresa_logo != undefined && apiREQ.body.empresa_logo != null && apiREQ.body.empresa_logo != '') ? "'"+apiREQ.body.empresa_logo.trim()+"'" : null; 
+    let _EMPFICVEC  = (apiREQ.body.empresa_venta_codigo != undefined && apiREQ.body.empresa_venta_codigo != null && apiREQ.body.empresa_venta_codigo != '' && apiREQ.body.empresa_venta_codigo > 0) ? Number.parseInt(apiREQ.body.empresa_venta_codigo) : false; 
+    let _EMPFICTCN  = (apiREQ.body.empresa_cliente_nuevo != undefined && apiREQ.body.empresa_cliente_nuevo != null && apiREQ.body.empresa_cliente_nuevo != '') ? "'"+apiREQ.body.empresa_cliente_nuevo.trim().toUpperCase()+"'" : false; 
+    let _EMPFICTCR  = (apiREQ.body.empresa_cliente_recurrente != undefined && apiREQ.body.empresa_cliente_recurrente != null && apiREQ.body.empresa_cliente_recurrente != '') ? "'"+apiREQ.body.empresa_cliente_recurrente.trim().toUpperCase()+"'" : false; 
     let _EMPFICOBS  = (apiREQ.body.empresa_observacion != undefined && apiREQ.body.empresa_observacion != null && apiREQ.body.empresa_observacion != '') ? "'"+apiREQ.body.empresa_observacion.trim()+"'" : null;
     
     let _EMPFICCEM  = (apiREQ.body.alta_empresa_codigo != undefined && apiREQ.body.alta_empresa_codigo != null && apiREQ.body.alta_empresa_codigo != '' && apiREQ.body.alta_empresa_codigo > 0) ? Number.parseInt(apiREQ.body.alta_empresa_codigo) : false; 
@@ -303,6 +312,9 @@ const putEmpresa    = (apiREQ, apiRES) => {
             _EMPFICUBI,
             _EMPFICDIR,
             _EMPFICLOG,
+            _EMPFICVEC,
+            _EMPFICTCN,
+            _EMPFICTCR,
             _EMPFICOBS,
             _EMPFICAEM,
             _EMPFICAUS,
@@ -356,10 +368,13 @@ const deleteEmpresa = (apiREQ, apiRES) => {
     let _EMPFICTEL  = (apiREQ.body.empresa_telefono != undefined && apiREQ.body.empresa_telefono != null && apiREQ.body.empresa_telefono != '') ? "'"+apiREQ.body.empresa_telefono.trim().toLowerCase()+"'" : null;
     let _EMPFICCEL  = (apiREQ.body.empresa_celular != undefined && apiREQ.body.empresa_celular != null && apiREQ.body.empresa_celular != '') ? "'"+apiREQ.body.empresa_celular.trim().toLowerCase()+"'" : null;
     let _EMPFICWEB  = (apiREQ.body.empresa_web != undefined && apiREQ.body.empresa_web != null && apiREQ.body.empresa_web != '') ? "'"+apiREQ.body.empresa_web.trim()+"'" : null;
-    let _EMPFICCOR  = (apiREQ.body.empresa_correo != undefined && apiREQ.body.empresa_correo != null && apiREQ.body.empresa_correo != '') ? "'"+apiREQ.body.empresa_correo.trim().toLowerCase()+"'" : null;
+    let _EMPFICCOR  = (apiREQ.body.empresa_correo != undefined && apiREQ.body.empresa_correo != null && apiREQ.body.empresa_correo != '') ? "'"+apiREQ.body.empresa_correo.trim().toLowerCase()+"'" : false;
     let _EMPFICUBI  = (apiREQ.body.empresa_ubicacion != undefined && apiREQ.body.empresa_ubicacion != null && apiREQ.body.empresa_ubicacion != '') ? "'"+apiREQ.body.empresa_ubicacion.trim()+"'" : null; 
     let _EMPFICDIR  = (apiREQ.body.empresa_direccion != undefined && apiREQ.body.empresa_direccion != null && apiREQ.body.empresa_direccion != '') ? "'"+apiREQ.body.empresa_direccion.trim()+"'" : null; 
     let _EMPFICLOG  = (apiREQ.body.empresa_logo != undefined && apiREQ.body.empresa_logo != null && apiREQ.body.empresa_logo != '') ? "'"+apiREQ.body.empresa_logo.trim()+"'" : null; 
+    let _EMPFICVEC  = (apiREQ.body.empresa_venta_codigo != undefined && apiREQ.body.empresa_venta_codigo != null && apiREQ.body.empresa_venta_codigo != '' && apiREQ.body.empresa_venta_codigo > 0) ? Number.parseInt(apiREQ.body.empresa_venta_codigo) : false; 
+    let _EMPFICTCN  = (apiREQ.body.empresa_cliente_nuevo != undefined && apiREQ.body.empresa_cliente_nuevo != null && apiREQ.body.empresa_cliente_nuevo != '') ? "'"+apiREQ.body.empresa_cliente_nuevo.trim()+"'" : false; 
+    let _EMPFICTCR  = (apiREQ.body.empresa_cliente_recurrente != undefined && apiREQ.body.empresa_cliente_recurrente != null && apiREQ.body.empresa_cliente_recurrente != '') ? "'"+apiREQ.body.empresa_cliente_recurrente.trim()+"'" : false; 
     let _EMPFICOBS  = (apiREQ.body.empresa_observacion != undefined && apiREQ.body.empresa_observacion != null && apiREQ.body.empresa_observacion != '') ? "'"+apiREQ.body.empresa_observacion.trim()+"'" : null;
     
     let _EMPFICCEM  = (apiREQ.body.alta_empresa_codigo != undefined && apiREQ.body.alta_empresa_codigo != null && apiREQ.body.alta_empresa_codigo != '' && apiREQ.body.alta_empresa_codigo > 0) ? Number.parseInt(apiREQ.body.alta_empresa_codigo) : false; 
@@ -399,7 +414,7 @@ const deleteEmpresa = (apiREQ, apiRES) => {
         (async () => {
             _code   = 400;
             xJSON   = await jsonBody(_code, 'Error', 'deleteEmpresa', 'Error: Verifique algún campo esta vacío', null, 0, 0, 0, 0, []);
-            xJSON = camelcaseKeys(xJSON, {deep: true});
+            xJSON   = camelcaseKeys(xJSON, {deep: true});
             return apiRES.status(_code).json(xJSON);
         })();
     
