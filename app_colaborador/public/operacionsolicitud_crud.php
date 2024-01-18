@@ -474,7 +474,7 @@
 												<div class="col-md-4">
 													<div class="form-group">
 														<label class="form-label">Departamento <span class="text-danger">*</span></label>
-														<select id="persona_datoparticular_localidad_departamento_codigo" name="persona_datoparticular_localidad_departamento_codigo" onchange="selectLocalidadCiudad('persona_datoparticular_localidad_ciudad_codigo', 'persona_datoparticular_localidad_departamento_codigo', 0, 1, 0);" onblur="this.reportValidity()" class="form-select select2 required" required>
+														<select id="persona_datoparticular_localidad_departamento_codigo" name="persona_datoparticular_localidad_departamento_codigo" onchange="selectLocalidadCiudad('persona_datoparticular_localidad_ciudad_codigo', 'persona_datoparticular_localidad_departamento_codigo', 1, 1, 0);" onblur="this.reportValidity()" class="form-select select2 required" required>
 															<option selected disabled>--- Seleccionar ---</option>
 															<optgroup label="Seleccionar"></optgroup>
 														</select>
@@ -484,7 +484,7 @@
 												<div class="col-md-4">
 													<div class="form-group">
 														<label class="form-label">Ciudad <span class="text-danger">*</span></label>
-														<select id="persona_datoparticular_localidad_ciudad_codigo" name="persona_datoparticular_localidad_ciudad_codigo" onchange="selectLocalidadBarrio('persona_datoparticular_localidad_barrio_codigo', 'persona_datoparticular_localidad_departamento_codigo', 'persona_datoparticular_localidad_ciudad_codigo', 0, 1, 0);" onblur="this.reportValidity()" class="form-select select2 required" required>
+														<select id="persona_datoparticular_localidad_ciudad_codigo" name="persona_datoparticular_localidad_ciudad_codigo" onchange="selectLocalidadBarrio('persona_datoparticular_localidad_barrio_codigo', 'persona_datoparticular_localidad_departamento_codigo', 'persona_datoparticular_localidad_ciudad_codigo', 1, 1, 0);" onblur="this.reportValidity()" class="form-select select2 required" required>
 															<option selected disabled>--- Seleccionar ---</option>
 															<optgroup label="Seleccionar"></optgroup>
 														</select>
@@ -658,7 +658,7 @@
 												<div class="col-md-4">
 													<div class="form-group">
 														<label class="form-label">Departamento <span class="text-danger">*</span></label>
-														<select id="persona_datolaboral_localidad_departamento_codigo" name="persona_datolaboral_localidad_departamento_codigo" onchange="selectLocalidadCiudad('persona_datolaboral_localidad_ciudad_codigo', 'persona_datolaboral_localidad_departamento_codigo', 0, 1, 0);" onblur="this.reportValidity()" class="form-select select2 required" required>
+														<select id="persona_datolaboral_localidad_departamento_codigo" name="persona_datolaboral_localidad_departamento_codigo" onchange="selectLocalidadCiudad('persona_datolaboral_localidad_ciudad_codigo', 'persona_datolaboral_localidad_departamento_codigo', 1, 1, 0);" onblur="this.reportValidity()" class="form-select select2 required" required>
 															<option selected disabled>--- Seleccionar ---</option>
 															<optgroup label="Seleccionar"></optgroup>
 														</select>
@@ -668,7 +668,7 @@
 												<div class="col-md-4">
 													<div class="form-group">
 														<label class="form-label">Ciudad <span class="text-danger">*</span></label>
-														<select id="persona_datolaboral_localidad_ciudad_codigo" name="persona_datolaboral_localidad_ciudad_codigo" onchange="selectLocalidadBarrio('persona_datolaboral_localidad_barrio_codigo', 'persona_datolaboral_localidad_departamento_codigo', 'persona_datolaboral_localidad_ciudad_codigo', 0, 1, 0);" onblur="this.reportValidity()" class="form-select select2 required" required>
+														<select id="persona_datolaboral_localidad_ciudad_codigo" name="persona_datolaboral_localidad_ciudad_codigo" onchange="selectLocalidadBarrio('persona_datolaboral_localidad_barrio_codigo', 'persona_datolaboral_localidad_departamento_codigo', 'persona_datolaboral_localidad_ciudad_codigo', 1, 1, 0);" onblur="this.reportValidity()" class="form-select select2 required" required>
 															<option selected disabled>--- Seleccionar ---</option>
 															<optgroup label="Seleccionar"></optgroup>
 														</select>
