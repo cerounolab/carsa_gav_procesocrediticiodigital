@@ -21,8 +21,10 @@
 	$val011         = trim($_POST['var011']); 
 	$val012         = strtoupper(strtolower(trim($_POST['var012'])));
 	$val013         = '';
-	// $val014         = trim($_POST['val014']); //equi
+	$val014         = intval($_POST['var014']);
 	$val015          = strtoupper(strtolower(trim($_POST['var015'])));
+	$val016         = trim($_POST['var016']);
+	$val017         = trim($_POST['var017']);
 
     $work01         = $_POST['workCodigo'];
 	$work02         = $_POST['workModo'];
@@ -51,32 +53,35 @@
     if (isset($val01) && isset($val03)) {
         $dataJSON = json_encode(
             array(
-				'tipo_accion_codigo'     	=> $work05,
-				'tipo_estado_parametro'     => $val01,
-				'empresa_orden'    		    => $val02,
-                'tipo_rubro_parametro'		=> $val03,
-                'tipo_acceso_parametro'		=> $val04,
-                'empresa_nombre'			=> $val05,
-				'empresa_ruc'				=> $val06,
-				'empresa_telefono'			=> $val07,
-				'empresa_celular'			=> $val08,
-				'empresa_web'				=> $var09,
-				'empresa_correo'			=> $val010,
-				'empresa_ubicacion'			=> $val011,
-				'empresa_direccion'			=> $val012,
+				'tipo_accion_codigo'     		=> $work05,
+				'tipo_estado_parametro'     	=> $val01,
+				'empresa_orden'    		    	=> $val02,
+                'tipo_rubro_parametro'			=> $val03,
+                'tipo_acceso_parametro'			=> $val04,
+                'empresa_nombre'				=> $val05,
+				'empresa_ruc'					=> $val06,
+				'empresa_telefono'				=> $val07,
+				'empresa_celular'				=> $val08,
+				'empresa_web'					=> $var09,
+				'empresa_correo'				=> $val010,
+				'empresa_ubicacion'				=> $val011,
+				'empresa_direccion'				=> $val012,
 
-				'empresa_logo'          	=> $val013,
-				'empresa_observacion'       => $val015,
+				'empresa_logo'          		=> $val013,
+				'empresa_observacion'       	=> $val015,
+				'empresa_venta_codigo'      	=> $val014,
+				'empresa_cliente_nuevo'     	=> $val016,
+				'empresa_cliente_recurrente'	=> $val017,
 
-				'alta_empresa_codigo' 		=> $usu_06,
-				'alta_programa'        		=> $work04,
-				'alta_usuario'         		=> $usu_03,
-                'alta_ip'        	    	=> $log_03,
+				'alta_empresa_codigo' 			=> $usu_06,
+				'alta_programa'        			=> $work04,
+				'alta_usuario'         			=> $usu_03,
+                'alta_ip'        	    		=> $log_03,
 
-				'auditoria_empresa_codigo'  => $usu_06,
-				'auditoria_programa'        => $work04,
-				'auditoria_usuario'         => $usu_03,
-                'auditoria_ip'        	    => $log_03
+				'auditoria_empresa_codigo'  	=> $usu_06,
+				'auditoria_programa'        	=> $work04,
+				'auditoria_usuario'         	=> $usu_03,
+                'auditoria_ip'        	    	=> $log_03
 			));
 		
 		switch($work02){
