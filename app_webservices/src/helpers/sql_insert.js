@@ -217,6 +217,9 @@ const insertUSUFIC  = async(_USUFICEST,
     _USUFICPAS,
     _USUFICEMA,
     _USUFICCEL,
+    _USUFICEJC,
+    _USUFICTCN,
+    _USUFICTCR,
     _USUFICOBS,
     _USUFICCEM,
     _USUFICCUS,
@@ -232,10 +235,18 @@ const insertUSUFIC  = async(_USUFICEST,
     let _data   = [];
 
     let query00 = '';
-
-    query00 = `INSERT INTO adm.USUFIC(																					   USUFICEST, 	  USUFICEMC, 	 USUFICSUC,     USUFICORD, 	   USUFICDOC, 	  USUFICNOM, 	 USUFICAPE, 	USUFICUSU, 	  USUFICPAS, 	 USUFICEMA, 	 USUFICCEL, 	USUFICOBS, 	  USUFICCEM, 	  USUFICCUS, 	 USUFICCIP, 	USUFICCPR,     USUFICAEM,     USUFICAUS,     USUFICAIP, 	   USUFICAPR, USUFICAIN)
-                        SELECT (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOESTADO' AND DOMFICPAR = ${_USUFICEST}), ${_USUFICEMC}, ${_USUFICSUC}, ${_USUFICORD}, ${_USUFICDOC}, ${_USUFICNOM}, ${_USUFICAPE}, ${_USUFICUSU}, '${_USUFICPAS}', ${_USUFICEMA}, ${_USUFICCEL}, ${_USUFICOBS}, ${_USUFICCEM}, ${_USUFICCUS}, ${_USUFICCIP}, ${_USUFICCPR}, ${_USUFICAEM}, ${_USUFICAUS}, ${_USUFICAIP}, ${_USUFICAPR}, ${_USUFICAIN}
-                        WHERE NOT EXISTS (SELECT * FROM adm.USUFIC WHERE USUFICUSU = ${_USUFICUSU} AND USUFICEMC = ${_USUFICEMC}) RETURNING USUFICUSU, USUFICEMC`;	            
+                                                                                                                                                                                            
+    query00 = `INSERT INTO adm.USUFIC(																					   USUFICEST, 	  USUFICEMC, 	 USUFICSUC,     USUFICORD, 	   USUFICDOC, 	  USUFICNOM, 	 USUFICAPE, 	USUFICUSU, 	     USUFICPAS, 	USUFICEMA, 	   USUFICCEL,                                                                                                                                                                          USUFICEJC,                                                       USUFICTCN,                                                         USUFICTCR,    USUFICOBS, 	  USUFICCEM, 	 USUFICCUS, 	USUFICCIP, 	   USUFICCPR,     USUFICAEM,     USUFICAUS,     USUFICAIP,     USUFICAPR, USUFICAIN)
+                        SELECT (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'ADMUSUARIOESTADO' AND DOMFICPAR = ${_USUFICEST}), ${_USUFICEMC}, ${_USUFICSUC}, ${_USUFICORD}, ${_USUFICDOC}, ${_USUFICNOM}, ${_USUFICAPE}, ${_USUFICUSU}, '${_USUFICPAS}', ${_USUFICEMA}, ${_USUFICCEL}, (
+                                                                                                                                                                                                                                                                                                CASE 
+                                                                                                                                                                                                                                                                                                    WHEN                                                                  
+                                                                                                                                                                                                                                                                                                        (SELECT EMPFICVEC FROM adm.EMPFIC WHERE EMPFICCOD <> 1 AND EMPFICCOD = ${_USUFICEMC}) IS NOT NULL THEN (SELECT EMPFICVEC FROM adm.EMPFIC WHERE EMPFICCOD = ${_USUFICEMC})
+                                                                                                                                                                                                                                                                                                    ELSE '0'   
+                                                                                                                                                                                                                                                                                                END
+                                                                                                                                                                                                                                                                                                )                                                                                                                                                                           , (SELECT EMPFICTCN FROM adm.EMPFIC WHERE EMPFICCOD = ${_USUFICEMC}), (SELECT EMPFICTCR FROM adm.EMPFIC WHERE EMPFICCOD = ${_USUFICEMC}), ${_USUFICOBS}, ${_USUFICCEM}, ${_USUFICCUS}, ${_USUFICCIP}, ${_USUFICCPR}, ${_USUFICAEM}, ${_USUFICAUS}, ${_USUFICAIP}, ${_USUFICAPR}, ${_USUFICAIN}
+                        WHERE NOT EXISTS (SELECT * FROM adm.USUFIC WHERE USUFICUSU = ${_USUFICUSU} AND USUFICEMC = ${_USUFICEMC}) RETURNING USUFICUSU, USUFICEMC`;	  
+                        
+                        console.log(query00);
 
     const connPGSQL = new Client(initPGSQL);
 
@@ -257,6 +268,7 @@ const insertUSUFIC  = async(_USUFICEST,
             })
             .catch(e => {
                 _code = 500;
+                console.log(e);
                 errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine, 'Function: insertUSUFIC')
                     .then(result => _data = result);
             })
@@ -774,7 +786,6 @@ const insertPERFIC  = async(_PERFICTPC, _PERFICTDC, _PERFICTSC, _aPERFICTSC, _PE
                         SELECT (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'PERPERSONAFICHAESTADO' AND DOMFICPAR = 1), (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'PERPERSONAFICHATIPO' AND DOMFICPAR = ${_PERFICTPC}), (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'PERPERSONAFICHADOCUMENTO' AND DOMFICPAR = ${_PERFICTDC}), (SELECT DOMFICCOD FROM adm.DOMFIC WHERE ((DOMFICVAL = 'PERPERSONAFICHASEXO' AND DOMFICEQU = '${_PERFICTSC}') OR (DOMFICVAL = 'PERPERSONAFICHASEXO' AND DOMFICPAR = ${_aPERFICTSC})) ORDER BY DOMFICORD DESC LIMIT 1), (SELECT DOMFICCOD FROM adm.DOMFIC WHERE ((DOMFICVAL = 'PERPERSONAFICHAESTADOCIVIL' AND DOMFICEQU = '${_PERFICTEC}') OR (DOMFICVAL = 'PERPERSONAFICHAESTADOCIVIL' AND DOMFICPAR = ${_aPERFICTEC})) ORDER BY DOMFICORD DESC LIMIT 1), ${_aPERFICNAC}, ${_aPERFICEMC},   ${_PERFICNO1},   ${_PERFICNO2},   ${_PERFICAP1},   ${_PERFICAP2},   ${_PERFICAP3}, ${_aPERFICDNU}, ${_PERFICDVE}, '${_PERFICFNA}', ${_PERFICCEL}, ${_PERFICEMA}, ${_OPESOLCEM}, ${_OPESOLCUS}, ${_OPESOLCIP}, ${_OPESOLCPR}, ${_OPESOLAEM}, ${_OPESOLAUS}, ${_OPESOLAIP}, ${_OPESOLAPR}
                         WHERE NOT EXISTS(SELECT * FROM per.PERFIC WHERE PERFICDNU = ${_aPERFICDNU}) RETURNING PERFICCOD AS persona_codigo`;	            
     
-    console.log(query00);
     const connPGSQL = new Client(initPGSQL);
 
     await connPGSQL
@@ -796,7 +807,6 @@ const insertPERFIC  = async(_PERFICTPC, _PERFICTDC, _PERFICTSC, _aPERFICTSC, _PE
             })
             .catch(e => {
                 _code   = 500;
-                console.log(e);
                 errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertPERFIC', true)
                     .then(result => _data = result);
             })
@@ -824,7 +834,6 @@ const insertCLIFIC  = async(_CLIFICTCC, _CLIFICTOC, _CLIFICTAC, _CLIFICEMC, _CLI
                         SELECT (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'CLICLIENTEFICHAESTADO' AND DOMFICPAR = 1), (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'CLICLIENTEFICHATIPO' AND DOMFICPAR = ${_CLIFICTCC}), (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'CLICLIENTEFICHAORIGEN' AND DOMFICPAR = ${_CLIFICTOC}), (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'CLICLIENTEFICHACALIFICACION' AND DOMFICPAR = ${_CLIFICTAC}), ${_CLIFICEMC}, (SELECT PERFICCOD FROM per.PERFIC WHERE PERFICDNU = ${_CLIFICPER}), ${_CLIFICEQU}, ${_CLIFICFIN}, ${_OPESOLCEM}, ${_OPESOLCUS}, ${_OPESOLCIP}, ${_OPESOLCPR}, ${_OPESOLAEM}, ${_OPESOLAUS}, ${_OPESOLAIP},  ${_OPESOLAPR}
                         WHERE NOT EXISTS(SELECT * FROM cli.CLIFIC WHERE CLIFICEQU = ${_CLIFICEQU} AND CLIFICPER = (SELECT PERFICCOD FROM per.PERFIC WHERE PERFICDNU = ${_CLIFICPER}))`;	            
     
-    console.log(query00);
     const connPGSQL = new Client(initPGSQL);
 
     await connPGSQL
@@ -846,7 +855,6 @@ const insertCLIFIC  = async(_CLIFICTCC, _CLIFICTOC, _CLIFICTAC, _CLIFICEMC, _CLI
             })
             .catch(e => {
                 _code   = 500;
-                console.log(e);
                 errorBody(_code, 'Code: '+ e.code + ', Routine: ' + e.routine + ', Function: insertCLIFIC', true)
                     .then(result => _data = result);
             })
@@ -875,7 +883,6 @@ const insertOPESOL  = async(_OPESOLTNC, _OPESOLTBC, _OPESOLTPC, _OPESOLTAC, _OPE
                   SELECT (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'OPEOPERACIONSOLICITUDESTADONIVEL2' AND DOMFICPAR = 1), ${_OPESOLTNC}, ${_OPESOLTBC}, ${_OPESOLTPC}, ${_OPESOLTAC}, ${_OPESOLTCC}, ${_OPESOLTMC}, ${_OPESOLEMC}, ${_OPESOLTEM}, (SELECT CLIFICCOD FROM cli.CLIFIC WHERE CLIFICEQU = ${_OPESOLCLI} AND CLIFICPER = (SELECT PERFICCOD FROM per.PERFIC WHERE PERFICDNU = ${_aPERFICDNU})), ${_OPESOLEQU}, ${_OPESOLSIS}, ${_OPESOLSIC}, (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'OPEOPERACIONSOLICITUDPLAZO' AND DOMFICEQU = ${_OPESOLSPL}), ${_OPESOLSPV}, ${_OPESOLSSU}, ${_OPESOLSEJ}, ${_OPESOLSLA}, ${_OPESOLSLO}, ${_OPESOLCUS}, ${_OPESOLCIP}, ${_OPESOLCPR}, ${_OPESOLAUS}, ${_OPESOLAIP}, ${_OPESOLAPR}
                   WHERE NOT EXISTS(SELECT * FROM ope.OPESOL WHERE OPESOLEST = (SELECT DOMFICCOD FROM adm.DOMFIC WHERE DOMFICVAL = 'OPEOPERACIONSOLICITUDESTADONIVEL2' AND DOMFICPAR = 1) AND OPESOLEQU = ${_OPESOLEQU} AND OPESOLCLI = (SELECT CLIFICCOD FROM cli.CLIFIC WHERE CLIFICEQU = ${_OPESOLCLI} AND CLIFICPER = (SELECT PERFICCOD FROM per.PERFIC WHERE PERFICDNU = ${_aPERFICDNU})))`;	            
     
-    console.log(query00);
     const connPGSQL = new Client(initPGSQL);
 
     await connPGSQL
