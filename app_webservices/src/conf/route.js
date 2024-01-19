@@ -18,7 +18,7 @@ const { getUsuarioFlujo, getUsuarioFlujoUsuarioSup, getUsuarioFlujoUsuarioSub, g
 getUsuarioFlujoRolSupEmpresa, getUsuarioFlujoId, postUsuarioFlujo, putUsuarioFlujo, deleteUsuarioFlujo } = require('../controllers/USUFLUController');
 const { getUsuarioLog} = require('../controllers/USULOGController');
 const { postOperacionSolicitud } = require('../controllers/OPESOLController');
-const { getParametro} = require('../controllers/FGPARAMController');
+const { getParametro, getBanca} = require('../controllers/FGPARAMController');
 const { getPersonaCuenta, getPersonaDatoParticular, getPersonaCuentaDatoLaboral} = require('../controllers/PERFICController');
 
 
@@ -34,6 +34,7 @@ router.group('/v1/', (routerGroup) => {
   routerGroup.get('/empresa/codigo/:codigo', getEmpresaId);
   routerGroup.get('/empresa/ruc/:ruc', getEmpresaRUC);
   routerGroup.get('/empresa/tiporubro/:tiporubro', getEmpresaTipoRubro);
+  routerGroup.get('/ejecutivoventa/codigo/:codigo', getEjecutivoVentaCodigo);
   routerGroup.post('/empresa', postEmpresa);
   routerGroup.put('/empresa/:codigo', putEmpresa);
   routerGroup.delete('/empresa/:codigo', deleteEmpresa);
@@ -122,12 +123,13 @@ router.group('/v1/', (routerGroup) => {
   routerGroup.post('/operacionsolicitud', postOperacionSolicitud);
 
   routerGroup.get('/parametros/parametro/codigo/:codigo', getParametro);
+  routerGroup.get('/banca/listado', getBanca);
 
   routerGroup.get('/persona/cuenta/:codigo', getPersonaCuenta);
   routerGroup.get('/persona/datoparticular/cuenta/:cuenta/codigoactual', getPersonaDatoParticular);
   routerGroup.get('/persona/datolaboral/cuenta/:cuenta/codigoactual', getPersonaCuentaDatoLaboral);
 
-  routerGroup.get('/ejecutivoventa/codigo/:codigo', getEjecutivoVentaCodigo);
+
 
 
 }); 
