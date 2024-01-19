@@ -2,7 +2,7 @@ require('dotenv').config({ path:__dirname+'/./../../.env' });
 
 const camelcaseKeys = require('camelcase-keys');
 
-const {selectFGPARAM} = require('../helpers/sql_select');
+const {selectFGPARAM, selectFST020} = require('../helpers/sql_select');
 const {jsonBody}    = require('../utils/_json');
 
 const getParametro = (apiREQ, apiRES) => {
@@ -44,6 +44,33 @@ const getParametro = (apiREQ, apiRES) => {
     }
 }
 
+const getBanca = (apiREQ, apiRES) => {
+    let _code       = 200;
+    let _dataJSON   = [];
+
+    (async () => {
+        const xDATA = await selectFST020(1);
+        _code       = xDATA[0];
+        _dataJSON   = xDATA[1];
+
+        if (_code == 200) {
+            _dataJSON = await jsonBody(_code, 'Success', null, null, null, 0, 0, 0, 0, _dataJSON);
+
+        } else if (_code == 404){
+            _dataJSON   = xDATA[1];
+            _dataJSON   = await jsonBody(_code, 'No hay registros', null, null, null, 0, 0, 0, 0, []);
+        }else{
+            _dataJSON   = xDATA[1];
+            _dataJSON   = await jsonBody(_code, 'Error', null, null, null, 0, 0, 0, 0, []);
+        }
+
+        _dataJSON = camelcaseKeys(_dataJSON, {deep: true});
+
+        return apiRES.status(200).json(_dataJSON);
+    })();
+}
+
 module.exports  = {
-    getParametro
+    getParametro,
+    getBanca
 }
