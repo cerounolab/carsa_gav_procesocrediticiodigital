@@ -331,6 +331,9 @@ const postUsuario   = (apiREQ, apiRES) => {
     let _USUFICPAS  = (apiREQ.body.usuario_password != undefined && apiREQ.body.usuario_password != null && apiREQ.body.usuario_password != '') ? "'"+apiREQ.body.usuario_password.trim()+"'" : false;
     let _USUFICEMA  = (apiREQ.body.usuario_correo != undefined && apiREQ.body.usuario_correo != null && apiREQ.body.usuario_correo != '') ? "'"+apiREQ.body.usuario_correo.trim().toLowerCase()+"'" : false;
     let _USUFICCEL  = (apiREQ.body.usuario_celular != undefined && apiREQ.body.usuario_celular != null && apiREQ.body.usuario_celular != '') ? "'"+apiREQ.body.usuario_celular.trim().toLowerCase()+"'" : null;
+    let _USUFICEJC  = (apiREQ.body.usuario_ejecutivo_venta_codigo != undefined && apiREQ.body.usuario_ejecutivo_venta_codigo != null && apiREQ.body.usuario_ejecutivo_venta_codigo != '' && apiREQ.body.usuario_ejecutivo_venta_codigo > 0) ? Number.parseInt(apiREQ.body.usuario_ejecutivo_venta_codigo) : false;
+    let _USUFICTCN  = (apiREQ.body.usuario_cliente_nuevo != undefined && apiREQ.body.usuario_cliente_nuevo != null && apiREQ.body.usuario_cliente_nuevo != '') ? "'"+apiREQ.body.usuario_cliente_nuevo.trim().toUpperCase()+"'" : false; 
+    let _USUFICTCR  = (apiREQ.body.usuario_cliente_recurrente != undefined && apiREQ.body.usuario_cliente_recurrente != null && apiREQ.body.usuario_cliente_recurrente != '') ? "'"+apiREQ.body.usuario_cliente_recurrente.trim().toUpperCase()+"'" : false; 
     let _USUFICOBS  = (apiREQ.body.usuario_observacion != undefined && apiREQ.body.usuario_observacion != null && apiREQ.body.usuario_observacion != '') ? "'"+apiREQ.body.usuario_observacion.trim()+"'" : null;
 
     let _USUFICCEM  = (apiREQ.body.alta_empresa_codigo != undefined && apiREQ.body.alta_empresa_codigo != null && apiREQ.body.alta_empresa_codigo != '' && apiREQ.body.alta_empresa_codigo > 0) ? Number.parseInt(apiREQ.body.alta_empresa_codigo) : false; 
@@ -346,7 +349,7 @@ const postUsuario   = (apiREQ, apiRES) => {
     
     const rondasDeSal   =   12;
 
-    if (_USUFICEST && _USUFICEMC && _USUFICSUC && _USUFICDOC && _USUFICNOM && _USUFICAPE && _USUFICUSU && _USUFICPAS && _USUFICEMA && _USUFICCEM && _USUFICCUS && _USUFICCIP && _USUFICCPR && _USUFICAEM && _USUFICAUS && _USUFICAIP && _USUFICAPR){
+    if (_USUFICEST && _USUFICEMC && _USUFICSUC && _USUFICDOC && _USUFICNOM && _USUFICAPE && _USUFICUSU && _USUFICPAS && _USUFICEMA /*&& _USUFICEJC && _USUFICTCN && _USUFICTCR*/ && _USUFICCEM && _USUFICCUS && _USUFICCIP && _USUFICCPR && _USUFICAEM && _USUFICAUS && _USUFICAIP && _USUFICAPR){
             (async () => {
                 bcrypt.hash(_USUFICPAS, rondasDeSal, async (err, _USUFICPAS2) => {
                     xDATA = await insertUSUFIC(_USUFICEST,
@@ -360,6 +363,9 @@ const postUsuario   = (apiREQ, apiRES) => {
                     _USUFICPAS2,
                     _USUFICEMA,
                     _USUFICCEL,
+                    _USUFICEJC,
+                    _USUFICTCN,
+                    _USUFICTCR,
                     _USUFICOBS,
                     _USUFICCEM,
                     _USUFICCUS,
@@ -515,6 +521,9 @@ const putUsuario    = (apiREQ, apiRES) => {
     let _USUFICPAS  = (apiREQ.body.usuario_password != undefined && apiREQ.body.usuario_password != null && apiREQ.body.usuario_password != '') ? "'"+apiREQ.body.usuario_password.trim()+"'" : false;
     let _USUFICEMA  = (apiREQ.body.usuario_correo != undefined && apiREQ.body.usuario_correo != null && apiREQ.body.usuario_correo != '') ? "'"+apiREQ.body.usuario_correo.trim().toLowerCase()+"'" : false;
     let _USUFICCEL  = (apiREQ.body.usuario_celular != undefined && apiREQ.body.usuario_celular != null && apiREQ.body.usuario_celular != '') ? "'"+apiREQ.body.usuario_celular.trim().toLowerCase()+"'" : null;
+    let _USUFICEJC  = (apiREQ.body.usuario_ejecutivo_venta_codigo != undefined && apiREQ.body.usuario_ejecutivo_venta_codigo != null && apiREQ.body.usuario_ejecutivo_venta_codigo != '' && apiREQ.body.usuario_ejecutivo_venta_codigo > 0) ? Number.parseInt(apiREQ.body.usuario_ejecutivo_venta_codigo) : false;
+    let _USUFICTCN  = (apiREQ.body.usuario_cliente_nuevo != undefined && apiREQ.body.usuario_cliente_nuevo != null && apiREQ.body.usuario_cliente_nuevo != '') ? "'"+apiREQ.body.usuario_cliente_nuevo.trim().toUpperCase()+"'" : false; 
+    let _USUFICTCR  = (apiREQ.body.usuario_cliente_recurrente != undefined && apiREQ.body.usuario_cliente_recurrente != null && apiREQ.body.usuario_cliente_recurrente != '') ? "'"+apiREQ.body.usuario_cliente_recurrente.trim().toUpperCase()+"'" : false; 
     let _USUFICOBS  = (apiREQ.body.usuario_observacion != undefined && apiREQ.body.usuario_observacion != null && apiREQ.body.usuario_observacion != '') ? "'"+apiREQ.body.usuario_observacion.trim()+"'" : null;
 
     let _USUFICCEM  = (apiREQ.body.alta_empresa_codigo != undefined && apiREQ.body.alta_empresa_codigo != null && apiREQ.body.alta_empresa_codigo != '' && apiREQ.body.alta_empresa_codigo > 0) ? Number.parseInt(apiREQ.body.alta_empresa_codigo) : false; 
@@ -531,7 +540,7 @@ const putUsuario    = (apiREQ, apiRES) => {
 
     let rondasDeSal = 12;
  
-    if (_ACCION && _USUFICEST && _USUFICEMC && _USUFICSUC && _USUFICDOC && _USUFICNOM && _USUFICAPE && _USUFICUSU && _USUFICPAS && _USUFICEMA && _USUFICAEM && _USUFICAUS && _USUFICAIP && _USUFICAPR) {
+    if (_ACCION && _USUFICEST && _USUFICEMC && _USUFICSUC && _USUFICDOC && _USUFICNOM && _USUFICAPE && _USUFICUSU && _USUFICPAS && _USUFICEMA && _USUFICEJC && _USUFICTCN && _USUFICTCR && _USUFICAEM && _USUFICAUS && _USUFICAIP && _USUFICAPR) {
 
         (async () => {
             bcrypt.hash(_USUFICPAS, rondasDeSal, async (err, _USUFICPAS2) => {
@@ -549,6 +558,9 @@ const putUsuario    = (apiREQ, apiRES) => {
                 _USUFICEMA,
                 _USUFICCEL,
                 _USUFICIPA,
+                _USUFICEJC,
+                _USUFICTCN,
+                _USUFICTCR,
                 _USUFICOBS,
                 _USUFICAEM,
                 _USUFICAUS,
@@ -603,6 +615,9 @@ const deleteUsuario = (apiREQ, apiRES) => {
     let _USUFICPAS  = (apiREQ.body.usuario_password != undefined && apiREQ.body.usuario_password != null && apiREQ.body.usuario_password != '') ? "'"+apiREQ.body.usuario_password.trim()+"'" : false;
     let _USUFICEMA  = (apiREQ.body.usuario_correo != undefined && apiREQ.body.usuario_correo != null && apiREQ.body.usuario_correo != '') ? "'"+apiREQ.body.usuario_correo.trim().toLowerCase()+"'" : false;
     let _USUFICCEL  = (apiREQ.body.usuario_celular != undefined && apiREQ.body.usuario_celular != null && apiREQ.body.usuario_celular != '') ? "'"+apiREQ.body.usuario_celular.trim().toLowerCase()+"'" : null;
+    let _USUFICEJC  = (apiREQ.body.usuario_ejecutivo_venta_codigo != undefined && apiREQ.body.usuario_ejecutivo_venta_codigo != null && apiREQ.body.usuario_ejecutivo_venta_codigo != '' && apiREQ.body.usuario_ejecutivo_venta_codigo > 0) ? Number.parseInt(apiREQ.body.usuario_ejecutivo_venta_codigo) : false;
+    let _USUFICTCN  = (apiREQ.body.usuario_cliente_nuevo != undefined && apiREQ.body.usuario_cliente_nuevo != null && apiREQ.body.usuario_cliente_nuevo != '') ? "'"+apiREQ.body.usuario_cliente_nuevo.trim().toUpperCase()+"'" : false; 
+    let _USUFICTCR  = (apiREQ.body.usuario_cliente_recurrente != undefined && apiREQ.body.usuario_cliente_recurrente != null && apiREQ.body.usuario_cliente_recurrente != '') ? "'"+apiREQ.body.usuario_cliente_recurrente.trim().toUpperCase()+"'" : false; 
     let _USUFICOBS  = (apiREQ.body.usuario_observacion != undefined && apiREQ.body.usuario_observacion != null && apiREQ.body.usuario_observacion != '') ? "'"+apiREQ.body.usuario_observacion.trim()+"'" : null;
 
     let _USUFICCEM  = (apiREQ.body.alta_empresa_codigo != undefined && apiREQ.body.alta_empresa_codigo != null && apiREQ.body.alta_empresa_codigo != '' && apiREQ.body.alta_empresa_codigo > 0) ? Number.parseInt(apiREQ.body.alta_empresa_codigo) : false; 

@@ -5,7 +5,7 @@ require('express-group-routes');
 
 //ENDPOINTS
 const { getDominio, getDominioId, getDominioValor, postDominio, putDominio, deleteDominio} = require('../controllers/DOMFICController');
-const { getEmpresa, getEmpresaId, getEmpresaRUC, getEmpresaTipoRubro, postEmpresa, putEmpresa, deleteEmpresa } = require('../controllers/EMPFICController');
+const { getEmpresa, getEmpresaId, getEmpresaRUC, getEmpresaTipoRubro, getEjecutivoVentaCodigo, postEmpresa, putEmpresa, deleteEmpresa } = require('../controllers/EMPFICController');
 const { getSucursal, getSucursalId, getSucursalEmpresaId, getEmpresaTipoSucursal, postSucursal, putSucursal, deleteSucursal } = require('../controllers/SUCFICController');
 const { getUsuario, getUsuarioId, getUsuarioEmpresaId, getUsuarioSucursalId, getUsuarioDocumento, getUsuarioUsu, getUsuarioDashboardEmpresa, getUsuarioDocumentoEmpresa, postUsuario,  postUsuarioLogin, putUsuario, deleteUsuario} = require('../controllers/USUFICController');
 const { getRol, getRolId, getRolEmpresaId, getRolEmpresadashboard, postRol, putRol, deleteRol } = require('../controllers/ROLFICController');
@@ -126,6 +126,8 @@ router.group('/v1/', (routerGroup) => {
   routerGroup.get('/persona/cuenta/:codigo', getPersonaCuenta);
   routerGroup.get('/persona/datoparticular/cuenta/:cuenta/codigoactual', getPersonaDatoParticular);
   routerGroup.get('/persona/datolaboral/cuenta/:cuenta/codigoactual', getPersonaCuentaDatoLaboral);
+
+  routerGroup.get('/ejecutivoventa/codigo/:codigo', getEjecutivoVentaCodigo);
 
 
 }); 

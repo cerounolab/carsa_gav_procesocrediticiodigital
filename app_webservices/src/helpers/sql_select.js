@@ -398,7 +398,7 @@ const selectUSUARIOEMPRESA = async(actionType, codigo, valor) => {
 
     await clientMSSQL.on('error', err => {
             _code = 401;
-            errorBody(_code, 'Erro: '+ err + ', Function: selectUSUARIOEMPRESA', true)
+            errorBody(_code, 'Error: '+ err + ', Function: selectUSUARIOEMPRESA', true)
                 .then(result => _data = result);
     });
 
@@ -1599,6 +1599,65 @@ const selectPERFIC = async(actionType, codigo, valor) => {
     return Array(_code, _data);
 }
 
+const selectEVcodigo = async(actionType, codigo) => {
+    let _code   = 200;
+    let _data   = [];
+    let query00 = '';
+
+    switch (actionType) {
+        case 1:
+            query00 = `SELECT 
+                            TRIM(a.CLUSU)							AS		usuario_usuario,
+                            a.CLCON									AS		usuario_password,
+                        
+                            TRIM(b.FUNOM) +' '+TRIM(b.FNOMB2)		AS		usuario_nombre,
+                            TRIM(b.FUAPE) +' '+TRIM(b.APELL2)		AS		usuario_apellido,
+                            b.FUMAIL								AS		usuario_mail,
+                            TRIM(b.FUCODCEL1) + TRIM(b.FUCEL1)      AS      usuario_celular
+                        
+                        FROM FSD050 a
+                        INNER JOIN FUNCIONARI b ON a.FUCIC  = b.FUCIC
+
+                        WHERE a.FUCOD = ${codigo}`;
+            break;
+
+        default:
+            break;
+    }
+
+    await clientMSSQL.on('error', err => {
+            _code = 401;
+            errorBody(_code, 'Error: '+ err + ', Function: selectEVcodigo', true)
+                .then(result => _data = result);
+    });
+
+    if(_code == 200){
+        await clientMSSQL.connect(initMSSQL01)
+            .then(pool => {
+                return pool.request().query(query00);
+            })
+            .then(result => {
+                _data = result;
+            })
+            .catch(err => {
+                _code = 401;
+                errorBody(_code, 'Code: '+ err.code + ', OriginalError: ' + err.originalError + ', Function: selectEVcodigo', true)
+                    .then(result => _data = result);
+            })
+            .then(() => {
+                clientMSSQL.close();
+            });
+    }
+
+    if (_data['rowsAffected'] == 0) {
+        _code   = 404;
+        _data   = await jsonBody(_code, 'Warning', 'selectEVcodigo', null, 'El código de ejecutivo de venta ingresado no existe', 0, 0, 0, 0, []);
+    }else{
+        _data   =  _data['recordset'];
+    }
+   
+    return Array(_code, _data);
+}
 
 module.exports  = {
     selectDOMINIOTIPO,
@@ -1616,5 +1675,6 @@ module.exports  = {
     selectUSUARIOLOG,
     selectPERSONA,
     selectFGPARAM,
-    selectPERFIC
+    selectPERFIC,
+    selectEVcodigo
 };
