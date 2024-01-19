@@ -1606,19 +1606,23 @@ const selectEVcodigo = async(actionType, codigo) => {
 
     switch (actionType) {
         case 1:
-            query00 = `SELECT 
-                            TRIM(a.CLUSU)							AS		usuario_usuario,
-                            a.CLCON									AS		usuario_password,
-                        
-                            TRIM(b.FUNOM) +' '+TRIM(b.FNOMB2)		AS		usuario_nombre,
-                            TRIM(b.FUAPE) +' '+TRIM(b.APELL2)		AS		usuario_apellido,
-                            b.FUMAIL								AS		usuario_mail,
-                            TRIM(b.FUCODCEL1) + TRIM(b.FUCEL1)      AS      usuario_celular
-                        
-                        FROM FSD050 a
-                        INNER JOIN FUNCIONARI b ON a.FUCIC  = b.FUCIC
+            query00 = `SELECT
+                            c.BZCLAV            AS		vendedor_codigo,
+                            TRIM(a.CLUSU)       AS		vendedor_usuario,
+                            TRIM(b.FuCIC)       AS		vendedor_documento,
+                            TRIM(b.NOMBC)       AS		vendedor_nombre_completo,
+                            TRIM(b.FUMAIL)		AS		vendedor_mail,
+                            
+                            c.CODSUP            AS		superior_codigo,
+                            TRIM(d.BCSNOM)		AS		superior_nombre,
+                            TRIM(d.BCUSU)       AS		superior_usuario
 
-                        WHERE a.FUCOD = ${codigo}`;
+                        FROM FSD050 a 
+                        LEFT JOIN FUNCIONARI b ON a.FuCIC	= b.FuCIC 
+                        LEFT JOIN FST062 c ON c.BZCLAV		= b.BZCLAV 
+                        LEFT JOIN FST027 d ON c.CODSUP		= d.BCSUPE
+                        
+                        WHERE c.BZCLAV = ${codigo}`;
             break;
 
         default:
@@ -1651,7 +1655,67 @@ const selectEVcodigo = async(actionType, codigo) => {
 
     if (_data['rowsAffected'] == 0) {
         _code   = 404;
-        _data   = await jsonBody(_code, 'Warning', 'selectEVcodigo', null, 'El código de ejecutivo de venta ingresado no existe', 0, 0, 0, 0, []);
+        _data   = await jsonBody(_code, 'Warning', 'selectEVcodigo', null, 'El código de ejecutivo de venta ingresado no existe, verifique', 0, 0, 0, 0, []);
+    }else{
+        _data   =  _data['recordset'];
+    }
+   
+    return Array(_code, _data);
+}
+
+const selectFST020 = async(actionType) => {
+    let _code   = 200;
+    let _data   = [];
+    let query00 = '';
+
+    switch (actionType) {
+        case 1:
+            query00 = `SELECT 
+                            a.CDOPER		AS		producto_codigo,
+                            TRIM(a.CDTITU)	AS		producto_nombre,
+                            a.CANTDIASLI	AS		producto_dia_maximo_vencimiento,
+                            
+                            b.CRBANCA		AS		banca_codigo,
+                            TRIM(b.CRNOMB)	AS		banca_nombre,
+                            TRIM(b.CRABRE)	AS		banca_abreviatura
+            
+                        FROM BFINE01 a 
+                        INNER JOIN FST020 b ON a.CRBANCA = b.CRBANCA
+                        
+                        WHERE a.CDOPER IN (201, 204) AND a.CRBANCA >= 200 AND a.CRBANCA <= 499 AND a.CRBANCA <> 379 AND b.CRABRE = 'CONV.'`;
+            break;
+
+        default:
+            break;
+    }
+
+    await clientMSSQL.on('error', err => {
+            _code = 401;
+            errorBody(_code, 'Error: '+ err + ', Function: selectFST020', true)
+                .then(result => _data = result);
+    });
+
+    if(_code == 200){
+        await clientMSSQL.connect(initMSSQL01)
+            .then(pool => {
+                return pool.request().query(query00);
+            })
+            .then(result => {
+                _data = result;
+            })
+            .catch(err => {
+                _code = 401;
+                errorBody(_code, 'Code: '+ err.code + ', OriginalError: ' + err.originalError + ', Function: selectFST020', true)
+                    .then(result => _data = result);
+            })
+            .then(() => {
+                clientMSSQL.close();
+            });
+    }
+
+    if (_data['rowsAffected'] == 0) {
+        _code   = 404;
+        _data   = await jsonBody(_code, 'Warning', 'selectFST020', null, 'No hay registros', 0, 0, 0, 0, []);
     }else{
         _data   =  _data['recordset'];
     }
@@ -1676,5 +1740,6 @@ module.exports  = {
     selectPERSONA,
     selectFGPARAM,
     selectPERFIC,
-    selectEVcodigo
+    selectEVcodigo,
+    selectFST020
 };
