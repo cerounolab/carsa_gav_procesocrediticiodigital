@@ -136,5 +136,6 @@
 		</script>
 
 		<script src="./../js/usuario.js?<?php echo date('Ymd');?>"></script>
+		<script src="./../js/select.js?<?php echo date('Ymd');?>"></script>
 	</body>
 </html>

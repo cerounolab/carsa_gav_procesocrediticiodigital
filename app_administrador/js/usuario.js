@@ -112,23 +112,25 @@ $(document).ready(function() {
 
 
 function setUsuario(codElem, codAcc) {
-	var xJSON       = [];
-	var xJSON1     	= getDominioValor('ADMUSUARIOESTADO');
-	var xJSON3     	= getEmpresaList(_parm06BASE, 1);
-	var xJSON4     	= getSucursalList(_parm06BASE, 1);
+	var xJSON       	= [];
+	var xJSON1     		= getDominioValor('ADMUSUARIOESTADO');
+	var xJSON3     		= getEmpresaList(_parm06BASE, 1);
+	var xJSON4     		= getSucursalList(_parm06BASE, 1);
 
-	var html		= '';
-	var bodyCol     = '';
-	var bodyTit     = '';
-	var bodyMod     = '';
-	var bodyOnl     = '';
-	var bodyBot     = '';
-	var selEstado   = '';
-	var selEmpresa  = '';
-	var selTipSuc	= '';
-	var codEmpr		= '';
-	var codSuc		= 0;
-	var bodAcc		= 0;
+	var html			= '';
+	var bodyCol     	= '';
+	var bodyTit     	= '';
+	var bodyMod     	= '';
+	var bodyOnl     	= '';
+	var bodyBot     	= '';
+	var selEstado   	= '';
+	var selEmpresa  	= '';
+	var selTipSuc		= '';
+	var codEmpr			= '';
+	var codSuc			= 0;
+	var bodAcc			= 0;
+	var selNuevo		= '';
+	var selRecurrente	= '';
 
 	switch (codAcc) {
 		case 1:
@@ -240,7 +242,7 @@ function setUsuario(codElem, codAcc) {
 			'									<div class="col-sm-12 col-md-6">'+
 			'       					            <div class="form-group">'+
 			'       					                <label for="var03">Empresa<span style="color:red;"> * </span></label>'+
-			`       					                <select id="var03" name="var03" class="select2 form-control custom-select" onchange="selectEmpresaSuc('var04','var03', 1, 0); setUsu('var03', 'var08_1'); setRecuperoDatos('var05', 'var03', 'var06', 'var07', 'var08', 'var09', 'var010', 'var011'); "  style="width:100%; height:40px;" required="true" ${bodyOnl}>`+
+			`       					                <select id="var03" name="var03" class="select2 form-control custom-select" onchange="selectEmpresaSuc('var04','var03', 1, 0); setUsu('var03', 'var08_1'); setRecuperoEV('var03', 'var013', 'var014', 'var015'); setRecuperoDatos('var05', 'var03', 'var06', 'var07', 'var08', 'var09', 'var010', 'var011'); "  style="width:100%; height:40px;" required="true" ${bodyOnl}>`+
 			'       					                    <optgroup label="Seleccionar">'+ 
 			'													<option value="0" disabled selected> SELECCIONAR </option>' + selEmpresa +
 			'       					                    </optgroup>'+
@@ -254,6 +256,37 @@ function setUsuario(codElem, codAcc) {
 			`       					                <select id="var04" name="var04" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" ${bodyOnl}>`+
 			'       					                    <optgroup label="Seleccionar">'+
 			'													<option value="0" disabled selected> SELECCIONAR </option>' + 
+			'       					                    </optgroup>'+
+			'       					                </select>'+
+			'       					            </div>'+
+			'       					        </div>'+
+			''+
+			'               					<div class="col-sm-12 col-md-4">'+
+			'               				    	<div class="form-group">'+
+			'               				        	<label for="var013">Código EV<span style="color:red;"> * </span></label>'+
+			`               				        	<input id="var013" name="var013" value="" class="form-control" onchange="setValidarEV('var013');" type="number" min="0" style="text-transform:uppercase; height:40px;" placeholder="Código EV" required="true" ${bodyOnl}>`+
+			'               				    	</div>'+
+			'               					</div>'+
+			''+
+			'									<div class="col-sm-12 col-md-4">'+
+			'       					            <div class="form-group">'+
+			'       					                <label for="var014"> Carga Nuevo <span style="color:red;"> * </span></label>'+
+			'       					                <select id="var014" name="var014" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
+			'       					                    <optgroup label="Seleccionar">'+
+			'							   						<option value="N">NO</option>'+
+			'													<option value="S">SI</option>'+
+			'       					                    </optgroup>'+
+			'       					                </select>'+
+			'       					            </div>'+
+			'       					        </div>'+
+			''+
+			'									<div class="col-sm-12 col-md-4">'+
+			'       					            <div class="form-group">'+
+			'       					                <label for="var015"> Carga Recurrente <span style="color:red;"> * </span></label>'+
+			'       					                <select id="var015" name="var015" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
+			'       					                    <optgroup label="Seleccionar">'+
+			'							   						<option value="N">NO</option>'+
+			'													<option value="S">SI</option>'+
 			'       					                    </optgroup>'+
 			'       					                </select>'+
 			'       					            </div>'+
@@ -378,20 +411,44 @@ function setUsuario(codElem, codAcc) {
 				});
 
 
-				var usuarioOrden		= (element.usuarioOrden == null) ? '' : element.usuarioOrden;
-				var usuarioDocumento	= (element.usuarioDocumento == null) ? '' : element.usuarioDocumento;
-				var usuarioNombre		= (element.usuarioNombre == null) ? '' : element.usuarioNombre;
-				var usuarioApellido		= (element.usuarioApellido == null) ? '' : element.usuarioApellido;
-				var usuarioUsuario		= (element.usuarioUsuario == null) ? '' : element.usuarioUsuario;
-				var usuarioPassword		= (element.usuarioPassword == null) ? '' : element.usuarioPassword;
-				var usuarioCelular		= (element.usuarioCelular == null) ? '' : element.usuarioCelular;
-				var usuarioEmail		= (element.usuarioEmail == null) ? '' : element.usuarioEmail;
-				var usuarioObservacion	= (element.usuarioObservacion == null) ? '' : element.usuarioObservacion;
-				codSuc					= (element.sucursalCodigo == null) ? 0 : element.sucursalCodigo;
+				var usuarioOrden				= (element.usuarioOrden == null) ? '' : element.usuarioOrden;
+				var usuarioDocumento			= (element.usuarioDocumento == null) ? '' : element.usuarioDocumento;
+				var usuarioNombre				= (element.usuarioNombre == null) ? '' : element.usuarioNombre;
+				var usuarioApellido				= (element.usuarioApellido == null) ? '' : element.usuarioApellido;
+				var usuarioUsuario				= (element.usuarioUsuario == null) ? '' : element.usuarioUsuario;
+				var usuarioPassword				= (element.usuarioPassword == null) ? '' : element.usuarioPassword;
+				var usuarioCelular				= (element.usuarioCelular == null) ? '' : element.usuarioCelular;
+				var usuarioEmail				= (element.usuarioEmail == null) ? '' : element.usuarioEmail;
+				var usuarioObservacion			= (element.usuarioObservacion == null) ? '' : element.usuarioObservacion;
+				codSuc							= (element.sucursalCodigo == null) ? 0 : element.sucursalCodigo;
 
-				usuarioUsuario			= usuarioUsuario.substr(4);
+				var usuarioEjecutivoVentaCodigo	= (element.usuarioEjecutivoVentaCodigo == null) ? '' : element.usuarioEjecutivoVentaCodigo;
+				var usuarioClienteNuevo			= (element.usuarioClienteNuevo == null) ? '' : element.usuarioClienteNuevo;
+				var usuarioClienteRecurrente	= (element.usuarioClienteRecurrente == null) ? '' : element.usuarioClienteRecurrente;
 
-				codEmpr	= element.empresaCodigo;
+				usuarioUsuario					= usuarioUsuario.substr(4);
+
+				codEmpr							= element.empresaCodigo;
+
+				if (usuarioClienteNuevo == 'S') {
+					selNuevo  =                     
+					'                               <option value="S" selected>SI</option>'+
+					'                               <option value="N">NO</option>';
+				} else { 
+					selNuevo  =                     
+					'                               <option value="S">SI</option>'+
+					'                               <option value="N" selected>NO</option>';
+				}
+
+				if (usuarioClienteRecurrente == 'S') {
+					selRecurrente  =                     
+					'                               <option value="S" selected>SI</option>'+
+					'                               <option value="N">NO</option>';
+				} else { 
+					selRecurrente  =                     
+					'                               <option value="S">SI</option>'+
+					'                               <option value="N" selected>NO</option>';
+				}
 
 				html = 
 				'				<div class="modal-content">'+
@@ -435,6 +492,33 @@ function setUsuario(codElem, codAcc) {
 				'       					                <label for="var04">Sucursal<span style="color:red;"> * </span></label>'+
 				'       					                <select id="var04" name="var04" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 				'       					                    <optgroup label="Seleccionar">'+ selTipSuc +
+				'       					                    </optgroup>'+
+				'       					                </select>'+
+				'       					            </div>'+
+				'       					        </div>'+
+				''+
+				'               					<div class="col-sm-12 col-md-4">'+
+				'               				    	<div class="form-group">'+
+				'               				        	<label for="var013">Código EV<span style="color:red;"> * </span></label>'+
+				'               				        	<input id="var013" name="var013" value="'+ usuarioEjecutivoVentaCodigo +'" class="form-control" type="number" min="0" style="text-transform:uppercase; height:40px;" placeholder="Código EV" required="true" readonly>'+
+				'               				    	</div>'+
+				'               					</div>'+
+				''+
+				'									<div class="col-sm-12 col-md-4">'+
+				'       					            <div class="form-group">'+
+				'       					                <label for="var014"> Carga Nuevo <span style="color:red;"> * </span></label>'+
+				'       					                <select id="var014" name="var014" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
+				'       					                    <optgroup label="Seleccionar">'+ selNuevo +
+				'       					                    </optgroup>'+
+				'       					                </select>'+
+				'       					            </div>'+
+				'       					        </div>'+
+				''+
+				'									<div class="col-sm-12 col-md-4">'+
+				'       					            <div class="form-group">'+
+				'       					                <label for="var015"> Carga Recurrente <span style="color:red;"> * </span></label>'+
+				'       					                <select id="var015" name="var015" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
+				'       					                    <optgroup label="Seleccionar">'+ selRecurrente +
 				'       					                    </optgroup>'+
 				'       					                </select>'+
 				'       					            </div>'+
@@ -725,6 +809,34 @@ function setUsu(parm01, parm02) {
 
 }
 
+function setRecuperoEV(parm01, parm02, parm03, parm04) {
+	var codEmp   	= document.getElementById(parm01).value;
+	var codEv		= document.getElementById(parm02);
+	var codNue		= document.getElementById(parm03);
+	var codRec		= document.getElementById(parm04);
+	var codView		= document.getElementById(parm02);
+	codView.readOnly= '';
+
+	var xJSON		= getEmpresaList(codEmp, 0);
+	if ((xJSON != []) || (xJSON != null) || xJSON != '') {
+		xJSON.forEach(element => {
+			if (codEmp != 1) {
+				codEv.value		= element.empresaVentaCodigo;
+				codNue.value	= (element.empresaClienteNuevo == null) ? 'N' : element.empresaClienteNuevo;
+				codRec.value	= (element.empresaClienteRecurrente == null) ? 'N' : element.empresaClienteRecurrente;
+		
+				codView.readOnly	= 'true';
+			} else {
+				if (element.empresaCodigo == codEmp) {
+					codEv.value		= 0;
+					codNue.value	= (element.empresaClienteNuevo == null) ? 'N' : element.empresaClienteNuevo;
+					codRec.value	= (element.empresaClienteRecurrente == null) ? 'N' : element.empresaClienteRecurrente;
+				}
+			}
+		});
+	}
+}
+
 function validarForm(){
 	var todo_correcto = true;
 
@@ -737,6 +849,9 @@ function validarForm(){
 	} else if(document.getElementById('var04').value == 0){
 		todo_correcto = false;
 		swal('Sucursal debe ser distinto a SELECCIONAR');
+	}else if(document.getElementById('var013').value == 0){
+		todo_correcto = false;
+		swal('Favor cargar el código ejecutivo de venta');
 	}
 	
 	return todo_correcto;
