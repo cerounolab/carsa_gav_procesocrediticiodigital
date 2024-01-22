@@ -1193,3 +1193,22 @@ function getUsuarioFlujoId(codRolC, codUsuC, codRolS, codUsuS, codEmp){
 
     return xDATA; 
 }
+
+function getEVCodigo(codEV){
+    localStorage.removeItem('evCodigoJSON');
+
+    if (localStorage.getItem('evCodigoJSON') === null){
+        getJSON('evCodigoJSON', 'ejecutivoventa/codigo/'+ codEV);
+    }
+
+    var xJSON = JSON.parse(localStorage.getItem('evCodigoJSON'));
+    var xDATA = [];
+
+    if (xJSON['code'] == 200) {
+        xJSON['data'].forEach(element => {
+            xDATA.push(element);
+        });
+    }
+
+    return xDATA; 
+}
