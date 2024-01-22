@@ -279,7 +279,7 @@ function setEmpresa(codElem, codAcc) {
 			'               					<div class="col-sm-12 col-md-4">'+
 			'               				    	<div class="form-group">'+
 			'               				        	<label for="var014">Código EV<span style="color:red;"> * </span></label>'+
-			'               				        	<input id="var014" name="var014" value="" class="form-control" type="number" min="0" style="text-transform:uppercase; height:40px;" placeholder="Código EV" required="true" '+ bodyOnl +'>'+
+			`               				        	<input id="var014" name="var014" value="" class="form-control" type="number" min="0" onchange="setValidarEV('var014');" style="text-transform:uppercase; height:40px;" placeholder="Código EV" required="true" ${bodyOnl}>`+
 			'               				    	</div>'+
 			'               					</div>'+
 			''+
@@ -650,8 +650,10 @@ function validarForm(){
 	} else if(document.getElementById('var04').value == 0){
 		todo_correcto = false;
 		swal('Tipo Acceso debe ser distinto a SELECCIONAR');
+	} else if(document.getElementById('var014').value == 0){
+		todo_correcto = false;
+		swal('Favor cargar el código ejecutivo de venta');
 	}
 
-	
 	return todo_correcto;
 }

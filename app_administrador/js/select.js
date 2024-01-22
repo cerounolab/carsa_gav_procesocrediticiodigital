@@ -1249,3 +1249,23 @@ function selectEmpresaForm(parm01, parm02, parm03, parm04) {
         });
     }
 }
+
+function setValidarEV(parm01) {
+	var codEv   	= document.getElementById(parm01).value;
+	var codEjv   	= document.getElementById(parm01);
+	var xJSON		= getEVCodigo(codEv, 0);
+
+	if ((xJSON != []) || (xJSON != ['']) || (xJSON != null) || (xJSON != '')) {
+        if (xJSON.length > 0) {
+			xJSON.forEach(element => {
+                if (element.vendedorCodigo != codEv) {
+					codEjv.value	= 0;
+					swal('El código de ejecutivo de venta ingresado no existe, verifique');
+				}				
+			});
+		} else {
+            codEjv.value = 0;
+			swal('El código de ejecutivo de venta ingresado no existe, verifique');
+		}
+	}
+}
