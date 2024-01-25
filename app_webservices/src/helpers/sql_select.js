@@ -1679,10 +1679,13 @@ const selectFST020 = async(actionType) => {
                             TRIM(b.CRNOMB)	AS		banca_nombre,
                             TRIM(b.CRABRE)	AS		banca_abreviatura
             
-                        FROM BFINE01 a 
-                        INNER JOIN FST020 b ON a.CRBANCA = b.CRBANCA
+                        FROM
+                            BFINE01 a 
+                            INNER JOIN FST020 b ON a.CRBANCA = b.CRBANCA
                         
-                        WHERE a.CDOPER IN (201, 204) AND a.CRBANCA >= 200 AND a.CRBANCA <= 499 AND a.CRBANCA <> 379 AND b.CRABRE = 'CONV.'`;
+                        WHERE
+                            a.CDOPER IN (201, 204) AND
+                            a.CRBANCA >= 200 AND a.CRBANCA <= 499 AND a.CRBANCA <> 379`;
             break;
 
         default:
