@@ -127,6 +127,8 @@
 														<th>Operaci&oacute;n</th>
 														<th>C.I.</th>
 														<th>Cuenta</th>
+														<th>Banca</th>
+														<th>Producto</th>
 														<th>Cliente</th>
 														<th>Monto Solicitado</th>
 														<th>Modalidad de Cobro</th>
