@@ -70,8 +70,8 @@ $(document).ready(function() {
 					return rowVIEW;	
 				}
 			},
-            { data : 'solicitud_producto_codigo', name : 'solicitud_producto_codigo'},
             { data : 'solicitud_banca_codigo', name : 'solicitud_banca_codigo'},
+            { data : 'solicitud_producto_codigo', name : 'solicitud_producto_codigo'},
             { data : 'persona_nombre_completo', name : 'persona_nombre_completo'},
             { render			: 
 				function (data, type, full, meta) {
