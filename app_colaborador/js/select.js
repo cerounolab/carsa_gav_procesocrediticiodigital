@@ -832,7 +832,7 @@ function cantidadFecha(parm01, parm02, parm03, parm04, parm05) {
                     dd = '0' + dd;
                 }
         
-                fechaVen.value =  aa + '-' + mm + '-' + dd;
+                fechaVen.max =  aa + '-' + mm + '-' + dd;
             }            
         });
     } 
