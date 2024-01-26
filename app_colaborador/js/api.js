@@ -75,6 +75,23 @@ function putJSON(codPAGE, codURL, codPARS, codLOAD) {
     xHTTP.send(codPARS);
 }
 
+function getJSON02(codJSON, codURL) {
+    var urlJSON = urlBASE02 + '/' + codURL;
+
+    xHTTP.open('GET', urlJSON, false);
+    xHTTP.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var xJSON = JSON.parse(this.responseText);
+            localStorage.removeItem(codJSON);
+            localStorage.setItem(codJSON, JSON.stringify(xJSON)); 
+        }
+    };
+    xHTTP.setRequestHeader('Accept', 'application/json;charset=UTF-8');
+    xHTTP.setRequestHeader('Authorization', 'Basic ' + autBASE02);
+    xHTTP.setRequestHeader('Content-type', 'application/json;charset=UTF-8');
+    xHTTP.send();
+}
+
 function pad(num, size) {
     var s = num + "";
     while (s.length < size) s = "0" + s;
@@ -462,6 +479,29 @@ function getPersonaDocumento(parm01){
     if (xJSON['code'] == 200) {
         xJSON['data'].forEach(element => {
             xDATA.push(element);
+        });
+    }
+
+    return xDATA;
+}
+
+function getBancaList(codEmp, codProd){
+    localStorage.removeItem('bancaListJSON');
+
+    if (localStorage.getItem('bancaListJSON') === null){
+        getJSON02('bancaListJSON', 'banca/listado');
+    }
+    var bancaAbreviatura    = (codEmp.value == 1) ? 'CCHD' : 'CONV.';
+    var xJSON = JSON.parse(localStorage.getItem('bancaListJSON'));
+    var xDATA = [];
+    
+    if (xJSON['code'] == 200) {
+        xJSON['data'].forEach(element => {
+            if (element.productoCodigo == codProd) {
+                if (element.bancaAbreviatura.trim() == bancaAbreviatura.trim()) {
+                    xDATA.push(element);
+                }   
+            }
         });
     }
 

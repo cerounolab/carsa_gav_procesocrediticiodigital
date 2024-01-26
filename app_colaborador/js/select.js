@@ -771,3 +771,69 @@ function selectFormaPago(parm01, parm02, parm03, parm04, parm05) {
         });
     }
 }
+
+function selectBanca(parm01, parm02, parm03, parm04, parm05) {
+    var selOption   = document.getElementById(parm01);
+    var xJSON       = getBancaList(parm02, parm03);
+
+    while (selOption.length > 0) {
+        selOption.remove(0);
+    }
+
+    switch (parm04) {
+        case 1:
+            var option      = document.createElement('option');
+            option.value    = '-';
+            option.text     = 'SELECCIONAR';
+            option.selected = true;
+            option.disabled = true;
+            selOption.add(option, null);
+            break;
+
+        case 2:
+            var option      = document.createElement('option');
+            option.text     = 'TODOS';
+            option.selected = true;
+            option.disabled = false;
+            selOption.add(option, null);
+            break;
+    }
+
+    if (parm05 == 1) {
+        xJSON.forEach(element => {
+            var option      = document.createElement('option');
+            option.value    = element.bancaCodigo;
+            option.text     = element.bancaNombre;
+    
+            selOption.add(option, null);
+        });
+    }
+}
+
+function cantidadFecha(parm01, parm02, parm03, parm04, parm05) {
+    var codBanca    = document.getElementById(parm01).value;
+    var fecha       = new Date(_parm02BASE.substring(0, 4), (_parm02BASE.substring(5, 7) - 1), _parm02BASE.substring(8, 10));
+    var fechaVen    = document.getElementById(parm02);
+    var xJSON       = getBancaList(parm03, parm04);
+
+    if (parm05 == 1) {
+        xJSON.forEach(element => {            
+            if (element.bancaCodigo == codBanca) {
+                fecha.setDate(fecha.getDate() + element.productoDiaMaximoVencimiento);
+                var dd      = fecha.getDate();
+                var mm      = fecha.getMonth() + 1;
+                var aa      = fecha.getFullYear();
+        
+                if (mm < 10){
+                    mm = '0' + mm;
+                }
+        
+                if (dd < 10){
+                    dd = '0' + dd;
+                }
+        
+                fechaVen.value =  aa + '-' + mm + '-' + dd;
+            }            
+        });
+    } 
+}
