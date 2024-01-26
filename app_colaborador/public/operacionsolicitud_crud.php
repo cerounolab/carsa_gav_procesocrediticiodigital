@@ -8,6 +8,7 @@
 
 	$solicCuenta	= (isset($_GET['cuenta']) && intval($_GET['cuenta']) > 0) ? $_GET['cuenta'] : 0;
 	$solicOferta	= (isset($_GET['oferta']) && trim($_GET['oferta']) !== '') ? $_GET['oferta'] : 0;
+	$solicProducto	= (isset($_GET['producto']) && trim($_GET['producto']) == 'SI') ? 204 : 201;
 	$cuentaJSON		= ($solicCuenta !== 0) ? get_curl02('persona/cuenta/'.$solicCuenta) : [];
 	$datosPartJSON	= ($solicCuenta !== 0) ? get_curl02('persona/datoparticular/cuenta/'.$solicCuenta.'/codigoactual') : [];
 	$datosLabJSON	= ($solicCuenta !== 0) ? get_curl02('persona/datolaboral/cuenta/'.$solicCuenta.'/codigoactual') : [];
@@ -102,12 +103,12 @@
 		$persona_datoparticular_principal						= $datosPartJSON['data'][0]['persona_datoparticular_principal'];
 		$persona_datoparticular_esquina							= $datosPartJSON['data'][0]['persona_datoparticular_esquina'];
 		$persona_datoparticular_casanumero						= $datosPartJSON['data'][0]['persona_datoparticular_casanumero'];
-		$persona_datoparticular_telefono1						= ($datosPartJSON['data'][0]['persona_datoparticular_telefono1']) ? '0'.$datosPartJSON['data'][0]['persona_datoparticular_telefono1'] : '';
-		$persona_datoparticular_telefono2						= ($datosPartJSON['data'][0]['persona_datoparticular_telefono2']) ? '0'.$datosPartJSON['data'][0]['persona_datoparticular_telefono2'] : '';
-		$persona_datoparticular_telefonofamiliar				= ($datosPartJSON['data'][0]['persona_datoparticular_telefonofamiliar']) ? '0'.$datosPartJSON['data'][0]['persona_datoparticular_telefonofamiliar'] : '';
-		$persona_datoparticular_celular1						= ($datosPartJSON['data'][0]['persona_datoparticular_celular1']) ? '0'.$datosPartJSON['data'][0]['persona_datoparticular_celular1'] : '';
-		$persona_datoparticular_celular2						= ($datosPartJSON['data'][0]['persona_datoparticular_celular2']) ? '0'.$datosPartJSON['data'][0]['persona_datoparticular_celular2'] : '';
-		$persona_datoparticular_celular3						= ($datosPartJSON['data'][0]['persona_datoparticular_celular3']) ? '0'.$datosPartJSON['data'][0]['persona_datoparticular_celular3'] : '';
+		$persona_datoparticular_telefono1						= ($datosPartJSON['data'][0]['persona_datoparticular_telefono1']) ? $datosPartJSON['data'][0]['persona_datoparticular_telefono1'] : '';
+		$persona_datoparticular_telefono2						= ($datosPartJSON['data'][0]['persona_datoparticular_telefono2']) ? $datosPartJSON['data'][0]['persona_datoparticular_telefono2'] : '';
+		$persona_datoparticular_telefonofamiliar				= ($datosPartJSON['data'][0]['persona_datoparticular_telefonofamiliar']) ? $datosPartJSON['data'][0]['persona_datoparticular_telefonofamiliar'] : '';
+		$persona_datoparticular_celular1						= ($datosPartJSON['data'][0]['persona_datoparticular_celular1']) ? $datosPartJSON['data'][0]['persona_datoparticular_celular1'] : '';
+		$persona_datoparticular_celular2						= ($datosPartJSON['data'][0]['persona_datoparticular_celular2']) ? $datosPartJSON['data'][0]['persona_datoparticular_celular2'] : '';
+		$persona_datoparticular_celular3						= ($datosPartJSON['data'][0]['persona_datoparticular_celular3']) ? $datosPartJSON['data'][0]['persona_datoparticular_celular3'] : '';
 		$persona_datoparticular_email							= $datosPartJSON['data'][0]['persona_datoparticular_email'];
 	}
 
@@ -160,9 +161,9 @@
 		$persona_datolaboral_fechaingreso						= $datosLabJSON['data'][0]['persona_datolaboral_fechaingreso_2'];
 		$persona_datolaboral_salario							= $datosLabJSON['data'][0]['persona_datolaboral_salario'];
 		$persona_datolaboral_email								= $datosLabJSON['data'][0]['persona_datolaboral_email'];
-		$persona_datolaboral_telefono1							= ($datosLabJSON['data'][0]['persona_datolaboral_telefono1']) ? '0'.$datosLabJSON['data'][0]['persona_datolaboral_telefono1'] : '';
-		$persona_datolaboral_telefono2							= ($datosLabJSON['data'][0]['persona_datolaboral_telefono2']) ? '0'.$datosLabJSON['data'][0]['persona_datolaboral_telefono2'] : '';
-		$persona_datolaboral_telefono3							= ($datosLabJSON['data'][0]['persona_datolaboral_telefono3']) ? '0'.$datosLabJSON['data'][0]['persona_datolaboral_telefono3'] : '';
+		$persona_datolaboral_telefono1							= ($datosLabJSON['data'][0]['persona_datolaboral_telefono1']) ? $datosLabJSON['data'][0]['persona_datolaboral_telefono1'] : '';
+		$persona_datolaboral_telefono2							= ($datosLabJSON['data'][0]['persona_datolaboral_telefono2']) ? $datosLabJSON['data'][0]['persona_datolaboral_telefono2'] : '';
+		$persona_datolaboral_telefono3							= ($datosLabJSON['data'][0]['persona_datolaboral_telefono3']) ? $datosLabJSON['data'][0]['persona_datolaboral_telefono3'] : '';
 		$persona_datolaboral_interno							= $datosLabJSON['data'][0]['persona_datolaboral_interno'];
 		$persona_datolaboral_hora_desde							= $datosLabJSON['data'][0]['persona_datolaboral_hora_desde'];
 		$persona_datolaboral_hora_hasta							= $datosLabJSON['data'][0]['persona_datolaboral_hora_hasta'];
@@ -936,6 +937,16 @@
 													</div>
 												</div>
 
+												<div class="col-md-3" id="col_solicitud_banca_codigo">
+													<div class="form-group">
+														<label class="form-label">Banca </label>
+														<select id="solicitud_banca_codigo" name="solicitud_banca_codigo" class="form-select select2" onchange="cantidadFecha(this.id, 'solicitud_primer_vencimiento', <?php echo $usu_06;?>, <?php echo $solicProducto; ?>, 1);" >
+															<option selected disabled>--- Seleccionar ---</option>
+															<optgroup label="Seleccionar"></optgroup>
+														</select>
+													</div>
+												</div>
+
 												<div class="col-md-3">
 													<div class="form-group">
 														<label class="form-label">Primer Vencimiento <span class="text-danger">*</span></label>
@@ -1071,6 +1082,7 @@
 			selectDominio('solicitud_formapago_codigo', 'WSCHEDUOSOLICITUDFORMAPAGO', 1, 1, <?php echo $solicitud_formapago_codigo; ?>);
 			selectBanco('solicitud_banco_codigo', '', 1, 1, <?php echo $solicitud_banco_codigo; ?>);
 			selectDominio('solicitud_banco_tipo', 'WSCHEDUOSOLICITUDBANCOCUENTA', 1, 1, <?php echo $solicitud_banco_tipo; ?>);
+			selectBanca('solicitud_banca_codigo', <?php echo $usu_06;?>, <?php echo $solicProducto;?>, 1, 1);
 
 			generateMotorOferta('solicitud_monto_selected', '<?php echo $solicOferta; ?>');
 

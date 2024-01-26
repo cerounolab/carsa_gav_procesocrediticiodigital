@@ -111,7 +111,7 @@
     $solicitud_documento_adjunto                            = 'S';
     $solicitud_tipooperador_codigo                          = 'N';
     $solicitud_cuota_dinamica                               = 'N';
-    $solicitud_banca_codigo                                 = 276;
+    $solicitud_banca_codigo									= (isset($_POST['solicitud_banca_codigo'])) ? intval($_POST['solicitud_banca_codigo']) : 0;
     $solicitud_tiposolicitud_codigo                         = 'TITULAR';
 
     $work01                                                 = intval($_POST['workCodigo']);

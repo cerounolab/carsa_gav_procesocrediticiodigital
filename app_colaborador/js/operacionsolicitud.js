@@ -221,7 +221,7 @@ function consultMotor(personDocument, personCuenta) {
                             $('#modal-dialog').modal('toggle');
                         });
 
-                        window.location.replace('../public/operacionsolicitud_crud.php?cuenta='+ personCuenta + '&oferta=' + data.data.listaOpcionesPrestamo);
+                        window.location.replace('../public/operacionsolicitud_crud.php?cuenta='+ personCuenta + '&oferta=' + data.data.listaOpcionesPrestamo + '&producto=' + data.data.item111);
                     }
                 } else {
                     Swal.fire({

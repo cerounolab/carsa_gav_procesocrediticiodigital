@@ -38,6 +38,8 @@ $(document).ready(function() {
             { targets : [4], visible : true, searchable : true,	orderData : [4, 0] },
             { targets : [5], visible : true, searchable : true,	orderData : [5, 0] },
             { targets : [6], visible : true, searchable : true,	orderData : [6, 0] },
+            { targets : [5], visible : true, searchable : true,	orderData : [5, 0] },
+            { targets : [6], visible : true, searchable : true,	orderData : [6, 0] },
             { targets : [7], visible : true, searchable : true,	orderData : [7, 0] },
             { targets : [8], visible : true, searchable : true,	orderData : [8, 0] },
             { targets : [9], visible : true, searchable : true,	orderData : [9, 0] },
@@ -68,6 +70,8 @@ $(document).ready(function() {
 					return rowVIEW;	
 				}
 			},
+            { data : 'solicitud_producto_codigo', name : 'solicitud_producto_codigo'},
+            { data : 'solicitud_banca_codigo', name : 'solicitud_banca_codigo'},
             { data : 'persona_nombre_completo', name : 'persona_nombre_completo'},
             { render			: 
 				function (data, type, full, meta) {
