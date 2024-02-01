@@ -641,16 +641,19 @@ function setUsuario(codElem, codAcc) {
 					}
 				});
 
-				var usuarioOrden		= (element.usuarioOrden == null) ? '' : element.usuarioOrden;
-				var usuarioDocumento	= (element.usuarioDocumento == null) ? '' : element.usuarioDocumento;
-				var usuarioNombre		= (element.usuarioNombre == null) ? '' : element.usuarioNombre;
-				var usuarioApellido		= (element.usuarioApellido == null) ? '' : element.usuarioApellido;
-				var usuarioUsuario		= (element.usuarioUsuario == null) ? '' : element.usuarioUsuario;
-				var usuarioPassword		= (element.usuarioPassword == null) ? '' : element.usuarioPassword;
-				var usuarioCelular		= (element.usuarioCelular == null) ? '' : element.usuarioCelular;
-				var usuarioEmail		= (element.usuarioEmail == null) ? '' : element.usuarioEmail;
-				var usuarioObservacion	= (element.usuarioObservacion == null) ? '' : element.usuarioObservacion;
-				codSuc					= (element.sucursalCodigo == null) ? 0 : element.sucursalCodigo;
+				var usuarioOrden				= (element.usuarioOrden == null) ? '' : element.usuarioOrden;
+				var usuarioDocumento			= (element.usuarioDocumento == null) ? '' : element.usuarioDocumento;
+				var usuarioNombre				= (element.usuarioNombre == null) ? '' : element.usuarioNombre;
+				var usuarioApellido				= (element.usuarioApellido == null) ? '' : element.usuarioApellido;
+				var usuarioUsuario				= (element.usuarioUsuario == null) ? '' : element.usuarioUsuario;
+				var usuarioPassword				= (element.usuarioPassword == null) ? '' : element.usuarioPassword;
+				var usuarioCelular				= (element.usuarioCelular == null) ? '' : element.usuarioCelular;
+				var usuarioEmail				= (element.usuarioEmail == null) ? '' : element.usuarioEmail;
+				var usuarioObservacion			= (element.usuarioObservacion == null) ? '' : element.usuarioObservacion;
+				codSuc							= (element.sucursalCodigo == null) ? 0 : element.sucursalCodigo;
+				var usuarioEjecutivoVentaCodigo	= (element.usuarioEjecutivoVentaCodigo == null) ? '' : element.usuarioEjecutivoVentaCodigo;
+				var usuarioClienteNuevo			= (element.usuarioClienteNuevo == null) ? '' : element.usuarioClienteNuevo;
+				var usuarioClienteRecurrente	= (element.usuarioClienteRecurrente == null) ? '' : element.usuarioClienteRecurrente;
 
 				usuarioUsuario			= usuarioUsuario.substr(4);
 
@@ -717,17 +720,20 @@ function setUsuario(codElem, codAcc) {
 				'           				</div>'+
 				''+
 				'           				<div class="form-group">'+
-				'           				    <input class="form-control" type="hidden" id="workCodigo"	name="workCodigo"	value="'+ codElem +'"		required readonly>'+
-				'           				    <input class="form-control" type="hidden" id="workModo"		name="workModo"		value="'+ bodyMod +'"		required readonly>'+
-				'           				    <input class="form-control" type="hidden" id="workPage"		name="workPage"		value="'+_parm04BASE+'"		required readonly>'+
-				'           				    <input class="form-control" type="hidden" id="workPrograma"	name="workPrograma"	value="usuario"		 		required readonly>'+
-				'           				    <input class="form-control" type="hidden" id="workAccion"	name="workAccion"	value="'+ bodAcc+'"			required readonly>'+
-				'           				    <input class="form-control" type="hidden" id="var01"		name="var01"		value="1"					required readonly>'+
-				'           				    <input class="form-control" type="hidden" id="var02"		name="var02"		value="'+ usuarioOrden+'"	required readonly>'+
-				'           				    <input class="form-control" type="hidden" id="var03"		name="var03"		value="'+ codEmpr+'"		required readonly>'+
-				'           				    <input class="form-control" type="hidden" id="var04"		name="var04"		value="'+ codSuc+'"			required readonly>'+
-				'           				    <input class="form-control" type="hidden" id="var010"		name="var010"		value="'+ usuarioEmail+'"	required readonly>'+
-				'           				    <input class="form-control" type="hidden" id="var011"		name="var011"		value="'+ usuarioCelular+'"	required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="workCodigo"	name="workCodigo"	value="'+ codElem +'"						required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="workModo"		name="workModo"		value="'+ bodyMod +'"						required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="workPage"		name="workPage"		value="'+_parm04BASE+'"						required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="workPrograma"	name="workPrograma"	value="usuario"		 						required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="workAccion"	name="workAccion"	value="'+ bodAcc+'"							required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="var01"		name="var01"		value="1"									required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="var02"		name="var02"		value="'+ usuarioOrden+'"					required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="var03"		name="var03"		value="'+ codEmpr+'"						required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="var04"		name="var04"		value="'+ codSuc+'"							required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="var010"		name="var010"		value="'+ usuarioEmail+'"					required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="var011"		name="var011"		value="'+ usuarioCelular+'"					required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="var013"		name="var013"		value="'+ usuarioEjecutivoVentaCodigo+'"	required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="var014"		name="var014"		value="'+ usuarioClienteNuevo+'"			required readonly>'+
+				'           				    <input class="form-control" type="hidden" id="var015"		name="var015"		value="'+ usuarioClienteRecurrente+'"		required readonly>'+
 				'           				</div>'+
 				'						</div>'+
 				''+
