@@ -242,7 +242,7 @@ function setUsuario(codElem, codAcc) {
 			'									<div class="col-sm-12 col-md-6">'+
 			'       					            <div class="form-group">'+
 			'       					                <label for="var03">Empresa<span style="color:red;"> * </span></label>'+
-			`       					                <select id="var03" name="var03" class="select2 form-control custom-select" onchange="selectEmpresaSuc('var04','var03', 1, 0); setUsu('var03', 'var08_1'); setRecuperoEV('var03', 'var013', 'var014', 'var015'); setRecuperoDatos('var05', 'var03', 'var06', 'var07', 'var08', 'var09', 'var010', 'var011'); "  style="width:100%; height:40px;" required="true" ${bodyOnl}>`+
+			`       					                <select id="var03" name="var03" class="select2 form-control custom-select" onchange="selectEmpresaSuc('var04','var03', 1, 0); setUsu('var03', 'var08_1'); setRecuperoEV('var03', 'var013', 'var014', 'var015', 1); setRecuperoDatos('var05', 'var03', 'var06', 'var07', 'var08', 'var09', 'var010', 'var011'); "  style="width:100%; height:40px;" required="true" ${bodyOnl}>`+
 			'       					                    <optgroup label="Seleccionar">'+ 
 			'													<option value="0" disabled selected> SELECCIONAR </option>' + selEmpresa +
 			'       					                    </optgroup>'+
@@ -273,8 +273,7 @@ function setUsuario(codElem, codAcc) {
 			'       					                <label for="var014"> Carga Nuevo <span style="color:red;"> * </span></label>'+
 			'       					                <select id="var014" name="var014" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 			'       					                    <optgroup label="Seleccionar">'+
-			'							   						<option value="N">NO</option>'+
-			'													<option value="S">SI</option>'+
+			'														<option value="0" disabled selected> SELECCIONAR </option>' + 
 			'       					                    </optgroup>'+
 			'       					                </select>'+
 			'       					            </div>'+
@@ -285,8 +284,7 @@ function setUsuario(codElem, codAcc) {
 			'       					                <label for="var015"> Carga Recurrente <span style="color:red;"> * </span></label>'+
 			'       					                <select id="var015" name="var015" class="select2 form-control custom-select" style="width:100%; height:40px;" required="true" '+ bodyOnl +'>'+
 			'       					                    <optgroup label="Seleccionar">'+
-			'							   						<option value="N">NO</option>'+
-			'													<option value="S">SI</option>'+
+			'														<option value="0" disabled selected> SELECCIONAR </option>' + 
 			'       					                    </optgroup>'+
 			'       					                </select>'+
 			'       					            </div>'+
@@ -383,7 +381,6 @@ function setUsuario(codElem, codAcc) {
 
 		xJSON.forEach(element => {
 			if (element.usuarioCodigo == codElem) {
-
 				xJSON1.forEach(element1 => {
 					if (element1.tipoEstadoParametro == 1) {
 						if (element1.tipoParametro == element.tipoEstadoParametro) {
@@ -422,6 +419,9 @@ function setUsuario(codElem, codAcc) {
 				var usuarioObservacion			= (element.usuarioObservacion == null) ? '' : element.usuarioObservacion;
 				codSuc							= (element.sucursalCodigo == null) ? 0 : element.sucursalCodigo;
 
+				var empresaClienteNuevo			= (element.empresaClienteNuevo == null) ? '' : element.empresaClienteNuevo;
+				var empresaClienteRecurrente	= (element.empresaClienteRecurrente == null) ? '' : element.empresaClienteRecurrente;
+
 				var usuarioEjecutivoVentaCodigo	= (element.usuarioEjecutivoVentaCodigo == null) ? '' : element.usuarioEjecutivoVentaCodigo;
 				var usuarioClienteNuevo			= (element.usuarioClienteNuevo == null) ? '' : element.usuarioClienteNuevo;
 				var usuarioClienteRecurrente	= (element.usuarioClienteRecurrente == null) ? '' : element.usuarioClienteRecurrente;
@@ -430,23 +430,31 @@ function setUsuario(codElem, codAcc) {
 
 				codEmpr							= element.empresaCodigo;
 
-				if (usuarioClienteNuevo == 'S') {
-					selNuevo  =                     
-					'                               <option value="S" selected>SI</option>'+
-					'                               <option value="N">NO</option>';
+				if (empresaClienteNuevo == 'S') {
+					if (usuarioClienteNuevo == 'S') {
+						selNuevo  =                     
+						'                               <option value="S" selected>SI</option>'+
+						'                               <option value="N">NO</option>';
+					} else { 
+						selNuevo  =                     
+						'                               <option value="N" selected>NO</option>';
+					}
 				} else { 
 					selNuevo  =                     
-					'                               <option value="S">SI</option>'+
 					'                               <option value="N" selected>NO</option>';
 				}
 
-				if (usuarioClienteRecurrente == 'S') {
-					selRecurrente  =                     
-					'                               <option value="S" selected>SI</option>'+
-					'                               <option value="N">NO</option>';
+				if (empresaClienteRecurrente == 'S') {
+					if (usuarioClienteRecurrente == 'S') {
+						selRecurrente  =                     
+						'                               <option value="S" selected>SI</option>'+
+						'                               <option value="N">NO</option>';
+					} else { 
+						selRecurrente  =                     
+						'                               <option value="N" selected>NO</option>';
+					}
 				} else { 
 					selRecurrente  =                     
-					'                               <option value="S">SI</option>'+
 					'                               <option value="N" selected>NO</option>';
 				}
 
@@ -815,32 +823,127 @@ function setUsu(parm01, parm02) {
 
 }
 
-function setRecuperoEV(parm01, parm02, parm03, parm04) {
+function setRecuperoEV(parm01, parm02, parm03, parm04, parm05) {
 	var codEmp   	= document.getElementById(parm01).value;
 	var codEv		= document.getElementById(parm02);
-	var codNue		= document.getElementById(parm03);
-	var codRec		= document.getElementById(parm04);
+	var selOption1	= document.getElementById(parm03);
+	var selOption2	= document.getElementById(parm04);
 	var codView		= document.getElementById(parm02);
+
+	var codNue		= '';
+	var codRec		= '';
+	var codNueText	= '';
 	codView.readOnly= '';
+
+	while (selOption1.length > 0) {
+        selOption1.remove(0);
+    }
+	while (selOption2.length > 0) {
+        selOption2.remove(0);
+    }
 
 	var xJSON		= getEmpresaList(codEmp, 0);
 	if ((xJSON != []) || (xJSON != null) || xJSON != '') {
 		xJSON.forEach(element => {
 			if (codEmp != 1) {
 				codEv.value		= element.empresaVentaCodigo;
-				codNue.value	= (element.empresaClienteNuevo == null) ? 'N' : element.empresaClienteNuevo;
-				codRec.value	= (element.empresaClienteRecurrente == null) ? 'N' : element.empresaClienteRecurrente;
-		
+				codNue	= (element.empresaClienteNuevo == null) ? 'N' : element.empresaClienteNuevo;
+				codRec	= (element.empresaClienteRecurrente == null) ? 'N' : element.empresaClienteRecurrente;
+
 				codView.readOnly	= 'true';
 			} else {
 				if (element.empresaCodigo == codEmp) {
 					codEv.value		= 0;
-					codNue.value	= (element.empresaClienteNuevo == null) ? 'N' : element.empresaClienteNuevo;
-					codRec.value	= (element.empresaClienteRecurrente == null) ? 'N' : element.empresaClienteRecurrente;
+					codNue	= (element.empresaClienteNuevo == null) ? 'N' : element.empresaClienteNuevo;
+					codRec	= (element.empresaClienteRecurrente == null) ? 'N' : element.empresaClienteRecurrente;
 				}
 			}
 		});
 	}
+
+	if (parm05 == 1) {
+		if (codNue == 'S') {
+			codNueText		= 'SI';
+	
+			for (let index = 0; index < 2; index++) {
+				var option1      = document.createElement('option');
+				option1.value    = codNue;
+				option1.text     = codNueText;
+	
+				selOption1.add(option1, null);
+				codNue	= 'N';
+				codNueText	= 'NO';
+			}
+		} else {
+			if (codNue == 'N') {
+				var option1      = document.createElement('option');
+				option1.value    = codNue;
+				option1.text     = 'NO';
+				selOption1.add(option1, null);
+			}
+		}
+	
+		if (codRec == 'S') {
+			codNueText		= 'SI';
+			for (let index = 0; index < 2; index++) {
+				var option2		= document.createElement('option');
+				option2.value	= codRec;
+				option2.text	= codNueText;
+	
+				selOption2.add(option2, null);
+				codRec			= 'N';
+				codNueText		= 'NO';
+			}
+		} else {
+			if (codRec == 'N') {
+				var option2      = document.createElement('option');
+				option2.value    = codRec;
+				option2.text     = 'NO';
+				selOption2.add(option2, null);
+			}
+		}
+	} else if (parm05 == 2) {
+		if (codNue == 'S') {
+			codNueText		= 'SI';
+			for (let index = 0; index < 2; index++) {
+				var option1      = document.createElement('option');
+				option1.value    = codNue;
+				option1.text     = codNueText;
+	
+				selOption1.add(option1, null);
+				codNue	= 'N';
+				codNueText	= 'NO';
+			}
+		} else {
+			if (codNue == 'N') {
+				var option1      = document.createElement('option');
+				option1.value    = codNue;
+				option1.text     = 'NO';
+				selOption1.add(option1, null);
+			}
+		}
+	
+		if (codRec == 'S') {
+			codNueText		= 'SI';
+			for (let index = 0; index < 2; index++) {
+				var option2		= document.createElement('option');
+				option2.value	= codRec;
+				option2.text	= codNueText;
+	
+				selOption2.add(option2, null);
+				codRec			= 'N';
+				codNueText		= 'NO';
+			}
+		} else {
+			if (codRec == 'N') {
+				var option2      = document.createElement('option');
+				option2.value    = codRec;
+				option2.text     = 'NO';
+				selOption2.add(option2, null);
+			}
+		}
+	}
+	
 }
 
 function validarForm(){
