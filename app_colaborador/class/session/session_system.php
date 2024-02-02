@@ -22,6 +22,10 @@
     $usu_12 = isset($_SESSION['empresaCorreo']) ? $_SESSION['empresaCorreo'] : '';
     $usu_13 = isset($_SESSION['empresaDireccion']) ? $_SESSION['empresaDireccion'] : '';
     // $usu_14 = isset($_SESSION['empresaLogo']) ? $_SESSION['empresaLogo'] : '';
+    $usu_15 = isset($_SESSION['ejecutivoVentaCodigo']) ? $_SESSION['ejecutivoVentaCodigo'] : 0;
+    $usu_16 = isset($_SESSION['usuarioClienteNuevo']) ? $_SESSION['usuarioClienteNuevo'] : 'N';
+    $usu_17 = isset($_SESSION['usuarioClienteRecurrente']) ? $_SESSION['usuarioClienteRecurrente'] : 'N';
+    
     $seg_01 = isset($_SESSION['seg_prg']) ? $_SESSION['seg_prg'] : '';
 
     $expire = isset($_SESSION['expire']) ? $_SESSION['expire'] : '';

@@ -22,6 +22,9 @@
     unset($_SESSION['empresaCorreo']);
     unset($_SESSION['empresaDireccion']);
     // unset($_SESSION['empresaLogo']);
+    unset($_SESSION['ejecutivoVentaCodigo']);
+    unset($_SESSION['usuarioClienteNuevo']);
+    unset($_SESSION['usuarioClienteRecurrente']);
 
     unset($_SESSION['seg_prg']);
 
