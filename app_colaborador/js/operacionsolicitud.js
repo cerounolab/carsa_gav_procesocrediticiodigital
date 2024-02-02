@@ -77,7 +77,6 @@ function validarDocumento() {
             personCliente.value                 = 'RECURRENTE';
             personCliente.style.backgroundColor = 'rgb(254, 200, 1)';
             personCliente.style.borderColor     = 'rgb(254, 200, 1)';
-            btnSubmit.style.display             = 'none';
         }
 
         workModo.value          = 'U';
@@ -144,7 +143,7 @@ function validateMotorDocument(parmButton) {
     const personApePat      = document.getElementById('persona_apellido_paterno');
     const personApeMat      = document.getElementById('persona_apellido_materno');
     const btnSubmit         = document.getElementById(parmButton);
-    
+
     if (personDocumento.value.length > 5) {
         const xJSON = getPersonaDocumento(personDocumento.value);
 
@@ -162,7 +161,7 @@ function validateMotorDocument(parmButton) {
                 personCliente.style.borderColor     = 'rgb(254, 200, 1)';
                 //btnSubmit.style.display             = 'none';
             }
-    
+            
             workModo.value          = 'U';
             personCuenta.value      = xJSON[0].persona_cuenta;
             personNomPri.value      = xJSON[0].persona_nombre_primer;
@@ -179,6 +178,18 @@ function validateMotorDocument(parmButton) {
             personApePat.value      = '';
             personApeMat.value      = '';
         }
+
+        if (personCliente.value    === 'NUEVO' && _parm07BASE == 'N') {
+            btnSubmit.style.display     = 'none';  
+        }
+
+        if (personCliente.value    === 'NUEVO - SIN FICHA' && _parm07BASE == 'N') {
+            btnSubmit.style.display     = 'none';  
+        }
+
+        if (personCliente.value    === 'RECURRENTE' && _parm08BASE == 'N') {
+            btnSubmit.style.display     = 'none';  
+        } 
     }
 }
 

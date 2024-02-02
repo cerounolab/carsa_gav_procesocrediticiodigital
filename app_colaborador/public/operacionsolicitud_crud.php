@@ -1050,6 +1050,9 @@
 			const _parm03BASE = '<?php echo $log_03; ?>';
 			const _parm04BASE = 'public/operacionsolicitud_crud.php?';
 			const _parm05BASE = '<?php echo $usu_04; ?>';
+			const _parm06BASE = '<?php echo $usu_15; ?>';
+			const _parm07BASE = '<?php echo $usu_16; ?>';
+			const _parm08BASE = '<?php echo $usu_17; ?>';
 		</script>
 
 		<script src="./../js/operacionsolicitud.js?<?php echo date('Ymd');?>"></script>
