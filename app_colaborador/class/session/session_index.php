@@ -38,21 +38,25 @@
         $_SESSION['log_03'] = $val_03;
         $_SESSION['log_04'] = trim(strtoupper($val_01));
 
-        $_SESSION['usuarioUsuario']         = trim(strtoupper(strtolower($resultJSON['data']['0']['usuarioUsuario'])));
-        $_SESSION['usuarioDocumento']       = trim($resultJSON['data']['0']['usuarioDocumento']);
-        $_SESSION['usuarioNombre']          = trim(strtoupper(strtolower($resultJSON['data']['0']['usuarioNombre'])));
-        $_SESSION['usuarioApellido']        = trim(strtoupper(strtolower($resultJSON['data']['0']['usuarioApellido'])));
+        $_SESSION['usuarioUsuario']             = trim(strtoupper(strtolower($resultJSON['data']['0']['usuarioUsuario'])));
+        $_SESSION['usuarioDocumento']           = trim($resultJSON['data']['0']['usuarioDocumento']);
+        $_SESSION['usuarioNombre']              = trim(strtoupper(strtolower($resultJSON['data']['0']['usuarioNombre'])));
+        $_SESSION['usuarioApellido']            = trim(strtoupper(strtolower($resultJSON['data']['0']['usuarioApellido'])));
 
-        $_SESSION['usuarioEmail']           = trim(strtoupper(strtolower($resultJSON['data']['0']['usuarioEmail'])));
-        $_SESSION['empresaCodigo']          = intval($resultJSON['data']['0']['empresaCodigo']);
-        $_SESSION['empresaNombre']          = trim(strtoupper(strtolower($resultJSON['data']['0']['empresaNombre'])));
-        $_SESSION['empresaRuc']             = trim(strtoupper(strtolower($resultJSON['data']['0']['empresaRuc'])));
-        $_SESSION['rolCodigo']              = intval($resultJSON['data']['0']['rolCodigo']);
-        $_SESSION['rolNombre']              = trim(strtoupper(strtolower($resultJSON['data']['0']['rolNombre'])));
-        $_SESSION['empresaSitoWeb']         = trim($resultJSON['data']['0']['empresaSitoWeb']);
-        $_SESSION['empresaCorreo']          = trim(strtolower($resultJSON['data']['0']['empresaCorreo']));
-        $_SESSION['empresaDireccion']       = trim($resultJSON['data']['0']['empresaDireccion']);
+        $_SESSION['usuarioEmail']               = trim(strtoupper(strtolower($resultJSON['data']['0']['usuarioEmail'])));
+        $_SESSION['empresaCodigo']              = intval($resultJSON['data']['0']['empresaCodigo']);
+        $_SESSION['empresaNombre']              = trim(strtoupper(strtolower($resultJSON['data']['0']['empresaNombre'])));
+        $_SESSION['empresaRuc']                 = trim(strtoupper(strtolower($resultJSON['data']['0']['empresaRuc'])));
+        $_SESSION['rolCodigo']                  = intval($resultJSON['data']['0']['rolCodigo']);
+        $_SESSION['rolNombre']                  = trim(strtoupper(strtolower($resultJSON['data']['0']['rolNombre'])));
+        $_SESSION['empresaSitoWeb']             = trim($resultJSON['data']['0']['empresaSitoWeb']);
+        $_SESSION['empresaCorreo']              = trim(strtolower($resultJSON['data']['0']['empresaCorreo']));
+        $_SESSION['empresaDireccion']           = trim($resultJSON['data']['0']['empresaDireccion']);
         // $_SESSION['empresaLogo']            = (trim($resultJSON['data']['0']['empresaLogo']) == null) ? '' : trim($resultJSON['data']['0']['empresaLogo']);
+
+        $_SESSION['ejecutivoVentaCodigo']       = ($resultJSON['data']['0']['ejecutivoVentaCodigo'] == null) ? 0 : trim($resultJSON['data']['0']['ejecutivoVentaCodigo']);
+        $_SESSION['usuarioClienteNuevo']        = ($resultJSON['data']['0']['usuarioClienteNuevo'] == null) ? 'N' : trim($resultJSON['data']['0']['usuarioClienteNuevo']);
+        $_SESSION['usuarioClienteRecurrente']   = ($resultJSON['data']['0']['usuarioClienteRecurrente'] == null) ? 'N' : trim($resultJSON['data']['0']['usuarioClienteRecurrente']);
 
         $_SESSION['expire'] = time() + 1800;
 
